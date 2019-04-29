@@ -11,7 +11,7 @@ const Leaflet = () => {
     <LeafletMap
       center={[48.864716, 2.349014]}
       zoom={6}
-      maxZoom={19}
+      maxZoom={18}
       attributionControl
       zoomControl={false}
       doubleClickZoom={false}
