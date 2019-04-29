@@ -1,60 +1,62 @@
 version: 2
 jobs:
   build-and-deploy:
+    # filter:
+    #   branches:
+    #     only: master
     docker:
       - image: node:11.10.1
 
     working_directory: ~/repo
 
     steps:
-#       - checkout
+      - checkout
 
-#       # Download and cache dependencies
-#       - restore_cache:
-#           keys:
-#             - v1-dependencies-{{ checksum "package.json" }}
-#             # fallback to using the latest cache if no exact match is found
-#             - v1-dependencies-
+      # Download and cache dependencies
+      - restore_cache:
+          keys:
+            - v1-dependencies-{{ checksum "package.json" }}
+            # fallback to using the latest cache if no exact match is found
+            - v1-dependencies-
 
-#       - run: yarn install
+      - run: yarn install
 
-#       - save_cache:
-#           paths:
-#             - node_modules
-#           key: v1-dependencies-{{ checksum "package.json" }}
+      - save_cache:
+          paths:
+            - node_modules
+          key: v1-dependencies-{{ checksum "package.json" }}
 
-#       # run build
-#       - run: yarn build:prod
+      # run build
+      - run: yarn build:prod
 
-#       - persist_to_workspace:
-#           root: /root/repo
-#           paths:
-#             - .
+      - persist_to_workspace:
+          root: /root/repo
+          paths:
+            - .
 
-#       - add_ssh_keys:
-#           fingerprints:
-#             - '85:aa:4d:76:8c:f8:1b:58:69:ae:e8:5d:10:db:42:5c'
+      - add_ssh_keys:
+          fingerprints:
+            - 'ae:ec:2e:86:b7:25:f0:79:09:ab:78:24:7f:f6:45:30'
       
       - run:
-          name: coucou
+          name: Deploy over ssh
           command:
-            ssh -o StrictHostKeyChecking=no $SSH_USER@$SSH_HOST "echo serveur"
-            mkdir teampolis
-            # scp -o StrictHostKeyChecking=no -r -p ./dist/* $SSH_USER@$SSH_HOST:/var/www/html
+            # ssh -o StrictHostKeyChecking=no $SSH_USER@$SSH_HOST "echo serveur"
+            scp -o StrictHostKeyChecking=no -r -p ./dist/* $SSH_USER@$SSH_HOST:/var/www/html/Polis/
 
-#   deploy:
-#     working_directory: ~/repo
-#     machine:
-#       enabled: true
-#     steps:
-#       - attach_workspace:
-#           at: /repo/dist
-#       - run:
-#           name: Deploy Over SSH
-#           command: |
-#             # ssh $SSH_USER@$SSH_HOST "echo serveur"
-#             # scp -r -p ./dist $SSH_USER@$SSH_HOST:/var/www/html
-#             # ls -a
+  # deploy:
+  #   working_directory: ~/repo
+  #   machine:
+  #     enabled: true
+  #   steps:
+  #     - attach_workspace:
+  #         at: /repo/dist
+  #     - run:
+  #         name: Deploy Over SSH
+  #         command: |
+  #           # ssh $SSH_USER@$SSH_HOST "echo serveur"
+  #           # scp -r -p ./dist $SSH_USER@$SSH_HOST:/var/www/html
+  #           # ls -a
 
 workflows:
   version: 2
