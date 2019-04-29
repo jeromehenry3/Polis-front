@@ -2,6 +2,7 @@
  * Import
  */
 import React from 'react';
+import LeafletMap from '../LeafletMap';
 
 /**
  * Local import
@@ -15,10 +16,7 @@ import './app.sass';
  * Code
  */
 const App = () => (
-  <div id="app">
-    <h1 id="app-title">Modèle React branche dev</h1>
-    <p id="app-content">Hello tout le monde :)</p>
-  </div>
+  <LeafletMap />
 );
 
 /**
