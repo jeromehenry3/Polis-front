@@ -21,7 +21,7 @@ const Leaflet = () => {
       easeLinearity={0.35}
     >
       <TileLayer
-        url="http://{s}.tile.osm.org/{z}/{x}/{y}.png"
+        url="https://{s}.tile.openstreetmap.se/hydda/full/{z}/{x}/{y}.png"
       />
 
       <Marker position={[48.864716, 2.349014]}>
