@@ -39,7 +39,7 @@ jobs:
           name: coucou
           command:
             ssh -o StrictHostKeyChecking=no $SSH_USER@$SSH_HOST "echo serveur"
-            echo "Hello la team Polis !"
+            mkdir teampolis
             # scp -o StrictHostKeyChecking=no -r -p ./dist/* $SSH_USER@$SSH_HOST:/var/www/html
 
 #   deploy:
