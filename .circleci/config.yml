@@ -1,15 +1,72 @@
-# Use the latest 2.1 version of CircleCI pipeline processing engine, see https://circleci.com/docs/2.0/configuration-reference/
-version: 2.1
+version: 2
+jobs:
+  build-and-deploy:
+    docker:
+      - image: node:11.10.1
 
-# Use a package of configuration called an orb, see https://circleci.com/docs/2.0/orb-intro/
-orbs:
-  # Declare a dependency on the welcome-orb
-  welcome: circleci/welcome-orb@0.3.1
+    working_directory: ~/repo
 
-# Orchestrate or schedule a set of jobs, see https://circleci.com/docs/2.0/workflows/
+    steps:
+#       - checkout
+
+#       # Download and cache dependencies
+#       - restore_cache:
+#           keys:
+#             - v1-dependencies-{{ checksum "package.json" }}
+#             # fallback to using the latest cache if no exact match is found
+#             - v1-dependencies-
+
+#       - run: yarn install
+
+#       - save_cache:
+#           paths:
+#             - node_modules
+#           key: v1-dependencies-{{ checksum "package.json" }}
+
+#       # run build
+#       - run: yarn build:prod
+
+#       - persist_to_workspace:
+#           root: /root/repo
+#           paths:
+#             - .
+
+#       - add_ssh_keys:
+#           fingerprints:
+#             - '85:aa:4d:76:8c:f8:1b:58:69:ae:e8:5d:10:db:42:5c'
+      
+      - run:
+          name: coucou
+          command:
+            ssh -o StrictHostKeyChecking=no $SSH_USER@$SSH_HOST "echo serveur"
+            echo "Hello la team Polis !"
+            # scp -o StrictHostKeyChecking=no -r -p ./dist/* $SSH_USER@$SSH_HOST:/var/www/html
+
+#   deploy:
+#     working_directory: ~/repo
+#     machine:
+#       enabled: true
+#     steps:
+#       - attach_workspace:
+#           at: /repo/dist
+#       - run:
+#           name: Deploy Over SSH
+#           command: |
+#             # ssh $SSH_USER@$SSH_HOST "echo serveur"
+#             # scp -r -p ./dist $SSH_USER@$SSH_HOST:/var/www/html
+#             # ls -a
+
 workflows:
-  # Name the workflow "Welcome"
-  Welcome:
-    # Run the welcome/run job in its own container
+  version: 2
+  build-and-deploy:
     jobs:
-      - welcome/run
+      - build-and-deploy:
+          filters:
+            branches:
+              only: master
+      # - deploy:
+      #     requires:
+      #       - build
+      #     filters:
+      #       branches:
+      #         only: master
