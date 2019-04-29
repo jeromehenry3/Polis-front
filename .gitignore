@@ -6,4 +6,6 @@ dist/
 .DS_Store
 Thumbs.db
 
+.eslintrc
+
 yarn-error.log
