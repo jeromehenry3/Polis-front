@@ -16,7 +16,7 @@ import './app.sass';
  */
 const App = () => (
   <div id="app">
-    <h1 id="app-title">Modèle React</h1>
+    <h1 id="app-title">Modèle React branche dev</h1>
     <p id="app-content">Hello tout le monde :)</p>
   </div>
 );
