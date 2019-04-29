@@ -42,7 +42,7 @@ jobs:
           name: Deploy over ssh
           command:
             # ssh -o StrictHostKeyChecking=no $SSH_USER@$SSH_HOST "echo serveur"
-            scp -o StrictHostKeyChecking=no -r -p ./dist/* $SSH_USER@$SSH_HOST:/var/www/html/Polis/
+            scp -o StrictHostKeyChecking=no -r -p ./dist/* $SSH_USER@$SSH_HOST:/var/www/html/
 
   # deploy:
   #   working_directory: ~/repo
@@ -65,7 +65,7 @@ workflows:
       - build-and-deploy:
           filters:
             branches:
-              only: master
+              only: dev
       # - deploy:
       #     requires:
       #       - build
