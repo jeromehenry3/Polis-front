@@ -9,7 +9,7 @@ import React from 'react';
  */
 // Composants
 import Logo from '../../styles/images/logo-saumon.png';
-
+import Background from '../../styles/images/BG-Login-Signin.jpg';
 // Styles et assets
 import './signin.scss';
 
@@ -33,7 +33,12 @@ const Signin = () => {
   };
 
   return (
-    <div className="signin">
+    <div
+      className="login"
+      style={{
+        backgroundImage: `url(${Background})`,
+      }}
+    >
       <div className="signin-container">
 
 

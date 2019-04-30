@@ -11,7 +11,6 @@
 }
 
 .signin {
-  background-image: url('../../styles/images/BG-Login-Signin.jpg');
   background-position: center;
   background-size: cover;
   width: 100%;
@@ -23,6 +22,7 @@
     margin: 0;
     position: absolute;
     max-width: 400px;
+    min-width: 300px;
     top: 50%;
     left: 50%;
     -ms-transform: translate(-50%, -50%);

@@ -7,6 +7,7 @@ import React from 'react';
  */
 // Composants
 import Logo from 'src/styles/images/logo-saumon.png';
+import Background from '../../styles/images/BG-Login-Signin.jpg';
 // Styles et assets
 import './login.scss';
 
@@ -30,7 +31,12 @@ const Login = () => {
   };
 
   return (
-    <div className="login">
+    <div
+      className="login"
+      style={{
+        backgroundImage: `url(${Background})`,
+      }}
+    >
       <div className="login-container">
 
 
