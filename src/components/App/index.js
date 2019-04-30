@@ -11,6 +11,7 @@ import LeafletMap from '../LeafletMap';
 
 // Styles et assets
 import './app.sass';
+import './style.scss';
 
 /**
  * Code

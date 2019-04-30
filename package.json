@@ -59,6 +59,7 @@
     "react-dom": "*",
     "react-leaflet": "^2.2.1",
     "react-redux": "*",
-    "redux": "*"
+    "redux": "*",
+    "semantic-ui-react": "^0.86.0"
   }
 }
