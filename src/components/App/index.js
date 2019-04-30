@@ -17,8 +17,8 @@ import './app.sass';
  * Code
  */
 const App = () => (
-  <Login />
-  // {/* <LeafletMap /> */}
+  // <Login />
+  <LeafletMap />
 );
 
 /**
