@@ -2,7 +2,7 @@
  * Import
  */
 import React from 'react';
-import LeafletMap from '../LeafletMap';
+import Loading from 'src/components/Loading';
 
 /**
  * Local import
@@ -11,13 +11,13 @@ import LeafletMap from '../LeafletMap';
 
 // Styles et assets
 import './app.sass';
-import './style.scss';
+import './app.scss';
 
 /**
  * Code
  */
 const App = () => (
-  <LeafletMap />
+  <Loading />
 );
 
 /**
