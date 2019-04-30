@@ -8,7 +8,7 @@ import React from 'react';
 // Composants
 import Logo from 'src/styles/images/logo-saumon.png';
 // Styles et assets
-import './styles.scss';
+import './login.scss';
 
 /**
  * Code
@@ -30,12 +30,12 @@ const Login = () => {
   };
 
   return (
-    <div className="signin">
-      <div className="signin-container">
+    <div className="login">
+      <div className="login-container">
 
 
         <h1><img src={Logo} alt="Polis" /></h1>
-        <p className="signin-container_subtitle">En grec ancien πόλις <span>la cité</span></p>
+        <p className="login-container_subtitle">En grec ancien πόλις <span>la cité</span></p>
 
 
         <form action="">
