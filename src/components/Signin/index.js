@@ -15,16 +15,17 @@ import './signin.scss';
  */
 const Signin = () => (
   <div className="signin">
-    <div className="signin-center">
+    <div className="signin-container">
       <h1><img src={Logo} alt="Polis" /></h1>
+      <p className="signin-container_subtitle">En grec ancien πόλις <span>la cité</span></p>
       <form action="">
-        <div className="signin-names">
+        <div className="signin-container_names">
           <input type="text" placeholder="Nom" />
           <input type="text" placeholder="Prénom" />
         </div>
-        <input type="email" />
-        <input type="password" />
-        <input type="password" />
+        <input type="email" placeholder="Email" />
+        <input type="password" placeholder="Mot de passe" />
+        <input type="password" placeholder="Confirmer votre mot de passe" />
         <button type="submit">M'inscrire</button>
         <a href="#">J'ai déjà les identifiants</a>
       </form>
