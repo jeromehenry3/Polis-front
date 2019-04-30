@@ -51,12 +51,12 @@ const Login = () => {
 
           <div>
             <label htmlFor="email">Email</label>
-            <input type="email" id="email" name="email" placeholder="Email" onClick={handleFocus} onBlur={handleBlur} />
+            <input type="email" id="email" name="email" placeholder="Email" onFocus={handleFocus} onBlur={handleBlur} />
           </div>
 
           <div>
             <label htmlFor="password">Mot de passe</label>
-            <input type="password" id="password" name="password" placeholder="Mot de passe" onClick={handleFocus} onBlur={handleBlur} />
+            <input type="password" id="password" name="password" placeholder="Mot de passe" onFocus={handleFocus} onBlur={handleBlur} />
           </div>
 
           <p className="lost-password">

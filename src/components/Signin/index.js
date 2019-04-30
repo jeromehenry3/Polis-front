@@ -50,28 +50,28 @@ const Signin = () => {
           <div className="signin-container_names">
             <div>
               <label htmlFor="last-name">Nom</label>
-              <input type="text" id="last-name" name="last-name" placeholder="Nom" onClick={handleFocus} onBlur={handleBlur} />
+              <input type="text" id="last-name" name="last-name" placeholder="Nom" onFocus={handleFocus} onBlur={handleBlur} />
             </div>
 
             <div>
               <label htmlFor="first-name">Prénom</label>
-              <input type="text" id="first-name" name="first-name" placeholder="Prénom" onClick={handleFocus} onBlur={handleBlur} />
+              <input type="text" id="first-name" name="first-name" placeholder="Prénom" onFocus={handleFocus} onBlur={handleBlur} />
             </div>
           </div>
 
           <div>
             <label htmlFor="email">Email</label>
-            <input type="email" id="email" name="email" placeholder="Email" onClick={handleFocus} onBlur={handleBlur} />
+            <input type="email" id="email" name="email" placeholder="Email" onFocus={handleFocus} onBlur={handleBlur} />
           </div>
 
           <div>
             <label htmlFor="password">Mot de passe</label>
-            <input type="password" id="password" name="password" placeholder="Mot de passe" onClick={handleFocus} onBlur={handleBlur} />
+            <input type="password" id="password" name="password" placeholder="Mot de passe" onFocus={handleFocus} onBlur={handleBlur} />
           </div>
 
           <div>
             <label htmlFor="password-confirm">Confirmer votre mot de passe</label>
-            <input type="password" id="password-confirm" name="password-confirm" placeholder="Confirmer votre mot de passe" onClick={handleFocus} onBlur={handleBlur} />
+            <input type="password" id="password-confirm" name="password-confirm" placeholder="Confirmer votre mot de passe" onFocus={handleFocus} onBlur={handleBlur} />
           </div>
 
           <button type="submit">M'inscrire</button>
