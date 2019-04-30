@@ -3,6 +3,7 @@
  */
 import React from 'react';
 import LeafletMap from '../LeafletMap';
+import Signin from '../Signin';
 
 /**
  * Local import
@@ -16,7 +17,10 @@ import './app.sass';
  * Code
  */
 const App = () => (
-  <LeafletMap />
+  <>
+    {false && <LeafletMap />}
+    <Signin />
+  </>
 );
 
 /**
