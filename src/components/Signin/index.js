@@ -22,7 +22,7 @@ const Signin = () => {
   const handleFocus = (e) => {
     // J'ajoute la classe focus à l'élément focus, ce qui passe sa bordure en orange.
     console.log(e.target.previousSibling);
-    e.target.previousSibling.classList.add('focus');
+    e.target.previousSibling.classList.add('open', 'focus');
     e.target.classList.add('focus');
   };
 
@@ -57,7 +57,7 @@ const Signin = () => {
 
           <div>
             <label htmlFor="email">Email</label>
-            <input type="email" name="email" placeholder="Email" onClick={handleFocus} onBlur={handleBlur} />
+            <input type="email" id="email" name="email" placeholder="Email" onClick={handleFocus} onBlur={handleBlur} />
           </div>
 
           <div>

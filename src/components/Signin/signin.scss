@@ -57,11 +57,16 @@
         transition: 0.4s;
         font-weight: bold;
         font-size: .9em;
+        color: rgb(242, 212, 121);
 
-        &.focus {
+        &.open {
           animation: 0.4s showLabel;
           opacity: 1;
           top: -17px;
+        }
+
+        &.focus {
+          color: rgb(217, 140, 94);
         }
       }
     }
@@ -115,7 +120,8 @@
       }
 
       a {
-        color: rgb(248, 222, 159);
+        color: rgb(242, 212, 121);
+        font-weight: bold;
         text-align: center;
         margin-top: 20px;
       }
