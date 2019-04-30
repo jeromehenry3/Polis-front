@@ -1,3 +1,5 @@
+/* eslint-disable jsx-a11y/label-has-associated-control */
+/* eslint-disable jsx-a11y/label-has-for */
 /**
  * Import
  */
@@ -6,14 +8,15 @@ import React from 'react';
  * Local import
  */
 // Composants
-import Logo from 'src/styles/images/logo-saumon.png';
+import Logo from '../../styles/images/logo-saumon.png';
+
 // Styles et assets
-import './styles.scss';
+import './signin.scss';
 
 /**
  * Code
  */
-const Login = () => {
+const Signin = () => {
 
   // Je récupère le focus d'un input
   const handleFocus = (e) => {
@@ -39,8 +42,17 @@ const Login = () => {
 
 
         <form action="">
+          <div className="signin-container_names">
+            <div>
+              <label htmlFor="last-name">Nom</label>
+              <input type="text" id="last-name" name="last-name" placeholder="Nom" onClick={handleFocus} onBlur={handleBlur} />
+            </div>
 
-          <p>Vous devez vous identifier pour contribuer à Polis</p>
+            <div>
+              <label htmlFor="first-name">Prénom</label>
+              <input type="text" id="first-name" name="first-name" placeholder="Prénom" onClick={handleFocus} onBlur={handleBlur} />
+            </div>
+          </div>
 
           <div>
             <label htmlFor="email">Email</label>
@@ -52,20 +64,14 @@ const Login = () => {
             <input type="password" id="password" name="password" placeholder="Mot de passe" onClick={handleFocus} onBlur={handleBlur} />
           </div>
 
-          <p className="lost-password">
-            <a href="#">J'ai perdu</a> mon mot de passe
-          </p>
-
-          <button type="submit" className="inverted-colors">Me connecter</button>
-
-          <p>Je souhaite <a href="">m'inscrire</a> et contribuer à Polis</p>
-
-          <div className="ou-pin-div">
-            <p>ou</p>
+          <div>
+            <label htmlFor="password-confirm">Confirmer votre mot de passe</label>
+            <input type="password" id="password-confirm" name="password-confirm" placeholder="Confirmer votre mot de passe" onClick={handleFocus} onBlur={handleBlur} />
           </div>
 
-          <button type="submit">Entrer en simple visiteur</button>
+          <button type="submit">M'inscrire</button>
 
+          <a href="#">J'ai déjà les identifiants</a>
         </form>
 
       </div>
@@ -76,4 +82,4 @@ const Login = () => {
 /**
  * Export
  */
-export default Login;
+export default Signin;

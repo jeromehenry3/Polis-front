@@ -1,3 +1,15 @@
+@keyframes showLabel {
+  0% {
+    opacity: 0;
+    top: 0
+  }
+
+  100% {
+    opacity: 1;
+    top: -17px;
+  }
+}
+
 .signin {
     background-image: url('/src/styles/images/BG-Login-Signin.jpg');
     background-position: center;
@@ -35,6 +47,28 @@
           width: 45%;
         }
       }
+
+      div {
+        position: relative;
+        label {
+          position: absolute;
+          opacity: 0;
+          transition: 0.4s;
+          font-weight: bold;
+          font-size: .9em;
+          color: rgb(242, 212, 121);
+  
+          &.open {
+            animation: 0.4s showLabel;
+            opacity: 1;
+            top: -17px;
+          }
+  
+          &.focus {
+            color: rgb(217, 140, 94);
+          }
+        }
+      }
       
       img {
         width: 100%;
@@ -62,7 +96,7 @@
     
         input {
           margin-bottom: 14px;
-          padding: 8px;
+          padding: 10px;
           border-radius: 4px;
           border: 2px solid rgba(191, 191, 191, 0.5);
           font-size: 1.2em;
@@ -71,7 +105,12 @@
             color: rgba(191, 191, 191, 1);
           }
           &.focus {
-            border: 2px solid rgb(217, 140, 94)
+            border: 2px solid rgb(217, 140, 94);
+            padding: 18px 10px 2px 10px;
+  
+            &::placeholder {
+              opacity: 0;
+            }
           }
         }
   

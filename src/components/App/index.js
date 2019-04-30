@@ -3,6 +3,7 @@
  */
 import React from 'react';
 import LeafletMap from '../LeafletMap';
+import Signin from '../Signin';
 
 /**
  * Local import
