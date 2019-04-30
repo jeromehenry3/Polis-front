@@ -6,12 +6,20 @@ import { connect } from 'react-redux';
 import Signin from 'src/components/Signin';
 
 // Action Creators
-import { toggleWelcomeView } from 'src/store/reducer';
+import { toggleWelcomeView, updateFormField } from 'src/store/reducer';
 
-const mapStateToProps = null;
+const mapStateToProps = state => ({
+  loginInput: state.loginInput,
+  passwordInput: state.passwordInput,
+  passwordConfirmInput: state.passwordConfirmInput,
+  firstNameInput: state.firstNameInput,
+  lastNameInput: state.lastNameInput,
+});
 
 const mapDispatchToProps = dispatch => ({
-
+  updateFormField: (fieldName, input) => {
+    dispatch(updateFormField(fieldName, input));
+  },
   goToLogin: () => {
     dispatch(toggleWelcomeView('Login'));
   },

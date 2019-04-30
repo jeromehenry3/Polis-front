@@ -8,7 +8,7 @@ import Form from '../Form';
 import './login.scss';
 
 const Login = ({
-  loginInput, passwordInput, changeLoginInput, changePasswordInput, goToSignin,
+  loginInput, passwordInput, updateFormField, goToSignin,
 }) => (
   <Form>
     <p className="identification-message">Vous devez vous identifier pour contribuer à Polis</p>
@@ -19,7 +19,7 @@ const Login = ({
       name="email"
       placeholder="Email"
       value={loginInput}
-      onChangeFunction={changeLoginInput}
+      onChangeFunction={input => updateFormField('loginInput', input)}
     />
 
     <Input
@@ -28,7 +28,7 @@ const Login = ({
       name="password"
       placeholder="Mot de passe"
       value={passwordInput}
-      onChangeFunction={changePasswordInput}
+      onChangeFunction={input => updateFormField('passwordInput', input)}
     />
 
     <p className="lost-password">
@@ -55,9 +55,8 @@ const Login = ({
 
 Login.propTypes = {
   loginInput: PropTypes.string.isRequired,
-  changeLoginInput: PropTypes.func.isRequired,
   passwordInput: PropTypes.string.isRequired,
-  changePasswordInput: PropTypes.func.isRequired,
+  updateFormField: PropTypes.func.isRequired,
   goToSignin: PropTypes.func.isRequired,
 };
 
