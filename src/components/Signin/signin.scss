@@ -1,5 +1,17 @@
+@keyframes showLabel {
+  0% {
+    opacity: 0;
+    top: 0
+  }
+
+  100% {
+    opacity: 1;
+    top: -17px;
+  }
+}
+
 .signin {
-  background-image: url('../../images/BG-Login-Signin.jpg');
+  background-image: url('../../styles/images/BG-Login-Signin.jpg');
   background-position: center;
   background-size: cover;
   width: 100%;
@@ -31,11 +43,29 @@
       display: flex;
       justify-content: space-between;
       
-      input {
+      div {
         width: 45%;
+        position: relative;
       }
     }
     
+    div {
+      position: relative;
+      label {
+        position: absolute;
+        opacity: 0;
+        transition: 0.4s;
+        font-weight: bold;
+        font-size: .9em;
+
+        &.focus {
+          animation: 0.4s showLabel;
+          opacity: 1;
+          top: -17px;
+        }
+      }
+    }
+
     img {
       width: 100%;
     }
@@ -49,17 +79,23 @@
       justify-content: space-between;
   
       input {
-        margin-bottom: 14px;
-        padding: 8px;
+        margin-bottom: 20px;
+        padding: 10px;
         border-radius: 4px;
         border: 2px solid rgba(191, 191, 191, 0.5);
         font-size: 1.2em;
         transition: 0.2s;
+        width: 100%;
         &::placeholder {
           color: rgba(191, 191, 191, 1);
         }
         &.focus {
-          border: 2px solid rgb(217, 140, 94)
+          border: 2px solid rgb(217, 140, 94);
+          padding: 18px 10px 2px 10px;
+
+          &::placeholder {
+            opacity: 0;
+          }
         }
       }
 
