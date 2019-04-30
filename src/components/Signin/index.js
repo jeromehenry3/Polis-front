@@ -10,79 +10,75 @@ import React from 'react';
 // Composants
 import Logo from '../../styles/images/logo-saumon.png';
 import Background from '../../styles/images/BG-Login-Signin.jpg';
+import Input from '../Input';
+import Form from '../Form';
 // Styles et assets
 import './signin.scss';
 
 /**
  * Code
  */
-const Signin = () => {
-
-  // Je récupère le focus d'un input
-  const handleFocus = (e) => {
-    // J'ajoute la classe focus à l'élément focus, ce qui passe sa bordure en orange.
-    e.target.previousSibling.classList.add('open', 'focus');
-    e.target.classList.add('focus');
-  };
-
-  // Je récupère le blur d'un input
-  const handleBlur = (e) => {
-    // Je remove la classe focus, ce qui redonnera à l'élément la bordure de base
-    e.target.previousSibling.classList.remove('focus');
-    e.target.classList.remove('focus');
-  };
-
-  return (
-    <div
-      className="login"
-      style={{
-        backgroundImage: `url(${Background})`,
-      }}
-    >
-      <div className="signin-container">
+const Signin = () => (
+  <div
+    className="login"
+    style={{
+      backgroundImage: `url(${Background})`,
+    }}
+  >
+    <div className="signin-container">
 
 
-        <h1><img src={Logo} alt="Polis" /></h1>
-        <p className="signin-container_subtitle">En grec ancien πόλις <span>la cité</span></p>
+      <h1><img src={Logo} alt="Polis" /></h1>
+      <p className="signin-container_subtitle">En grec ancien πόλις <span>la cité</span></p>
 
 
-        <form action="">
-          <div className="signin-container_names">
-            <div>
-              <label htmlFor="last-name">Nom</label>
-              <input type="text" id="last-name" name="last-name" placeholder="Nom" onFocus={handleFocus} onBlur={handleBlur} />
-            </div>
+      <Form>
+        <div className="signin-container_names">
+          <Input
+            type="text"
+            id="last-name"
+            name="last-name"
+            placeholder="Nom"
+          />
 
-            <div>
-              <label htmlFor="first-name">Prénom</label>
-              <input type="text" id="first-name" name="first-name" placeholder="Prénom" onFocus={handleFocus} onBlur={handleBlur} />
-            </div>
-          </div>
+          <Input
+            type="text"
+            id="first-name"
+            name="first-name"
+            placeholder="Prénom"
+          />
 
-          <div>
-            <label htmlFor="email">Email</label>
-            <input type="email" id="email" name="email" placeholder="Email" onFocus={handleFocus} onBlur={handleBlur} />
-          </div>
+        </div>
 
-          <div>
-            <label htmlFor="password">Mot de passe</label>
-            <input type="password" id="password" name="password" placeholder="Mot de passe" onFocus={handleFocus} onBlur={handleBlur} />
-          </div>
+        <Input
+          type="email"
+          id="email"
+          name="email"
+          placeholder="Email"
+        />
 
-          <div>
-            <label htmlFor="password-confirm">Confirmer votre mot de passe</label>
-            <input type="password" id="password-confirm" name="password-confirm" placeholder="Confirmer votre mot de passe" onFocus={handleFocus} onBlur={handleBlur} />
-          </div>
+        <Input
+          type="password"
+          id="password"
+          name="password"
+          placeholder="Mot de passe"
+        />
 
-          <button type="submit">M'inscrire</button>
+        <Input
+          type="password"
+          id="password-confirm"
+          name="password-confirm"
+          placeholder="Confirmer votre mot de passe"
+        />
 
-          <a href="#">J'ai déjà les identifiants</a>
-        </form>
+        <button type="submit">M'inscrire</button>
 
-      </div>
+        <a href="#">J'ai déjà les identifiants</a>
+      </Form>
+
     </div>
-  );
-};
+  </div>
+);
 
 /**
  * Export

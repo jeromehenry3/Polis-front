@@ -1,7 +1,7 @@
 @keyframes showLabel {
   0% {
     opacity: 0;
-    top: 0
+    top: 0;
   }
 
   100% {
@@ -54,9 +54,8 @@
       label {
         position: absolute;
         opacity: 0;
-        transition: 0.4s;
         font-weight: bold;
-        font-size: .9em;
+        font-size: .7em;
         color: rgb(242, 212, 121);
 
         &.open {
@@ -75,55 +74,11 @@
       width: 100%;
     }
     
-    form {
-      display: flex;
-      flex-direction: column;
-      padding: 35px;
-      border-radius: 10px;
-      background-color: white;
-      justify-content: space-between;
-  
-      input {
-        margin-bottom: 20px;
-        padding: 10px;
-        border-radius: 4px;
-        border: 2px solid rgba(191, 191, 191, 0.5);
-        font-size: 1.2em;
-        transition: 0.2s;
-        width: 100%;
-        &::placeholder {
-          color: rgba(191, 191, 191, 1);
-        }
-        &.focus {
-          border: 2px solid rgb(217, 140, 94);
-
-          &::placeholder {
-            opacity: 0;
-          }
-        }
-      }
-
-      button {
-        background-color: rgb(217, 140, 94);
-        color: white;
-        border-radius: 4px;
-        padding: 10px;
-        border: none;
-        font-family: 'Open Sans', sans-serif;
-        font-size: 1.3em;
-        margin-top: 10px;
-        transition: 0.4s;
-        &:hover {
-          background-color: rgb(204, 107, 51);
-        }
-      }
-
-      a {
-        color: rgb(242, 212, 121);
-        font-weight: bold;
-        text-align: center;
-        margin-top: 20px;
-      }
+    a {
+      color: rgb(242, 212, 121);
+      font-weight: bold;
+      text-align: center;
+      margin-top: 20px;
     }
   }
 }

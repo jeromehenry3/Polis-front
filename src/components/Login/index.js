@@ -9,6 +9,8 @@ import React from 'react';
 import Logo from 'src/styles/images/logo-saumon.png';
 import Background from '../../styles/images/BG-Login-Signin.jpg';
 import Pins3 from '../../styles/images/pins3.png';
+import Input from '../Input';
+import Form from '../Form';
 // Styles et assets
 import './login.scss';
 
@@ -45,19 +47,22 @@ const Login = () => {
         <p className="login-container_subtitle">En grec ancien πόλις <span>la cité</span></p>
 
 
-        <form action="">
-
+        <Form>
           <p>Vous devez vous identifier pour contribuer à Polis</p>
 
-          <div>
-            <label htmlFor="email">Email</label>
-            <input type="email" id="email" name="email" placeholder="Email" onFocus={handleFocus} onBlur={handleBlur} />
-          </div>
+          <Input
+            type="email"
+            id="email"
+            name="email"
+            placeholder="Email"
+          />
 
-          <div>
-            <label htmlFor="password">Mot de passe</label>
-            <input type="password" id="password" name="password" placeholder="Mot de passe" onFocus={handleFocus} onBlur={handleBlur} />
-          </div>
+          <Input
+            type="password"
+            id="password"
+            name="password"
+            placeholder="Mot de passe"
+          />
 
           <p className="lost-password">
             <a href="#">J'ai perdu</a> mon mot de passe
@@ -78,7 +83,7 @@ const Login = () => {
 
           <button type="submit">Entrer en simple visiteur</button>
 
-        </form>
+        </Form>
 
       </div>
     </div>

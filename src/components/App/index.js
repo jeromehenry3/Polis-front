@@ -13,7 +13,6 @@ import LeafletMap from '../LeafletMap';
 import Signin from '../Signin';
 import Login from '../Login';
 // Styles et assets
-import './app.sass';
 import './app.scss';
 
 /**
@@ -21,10 +20,8 @@ import './app.scss';
  */
 const App = () => (
 
-  <Login />
+  <Signin />
   // <LeafletMap />
-
-
 );
 
 /**
