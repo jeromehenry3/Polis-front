@@ -23,8 +23,8 @@ import './app.scss';
  */
 const App = () => (
 
-  // <Login />
-  <LeafletMap />
+  <Login />
+  // <LeafletMap />
 
 
 );

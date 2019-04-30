@@ -10,7 +10,7 @@
   }
 }
 
-.signin {
+.login {
     background-image: url('/src/styles/images/BG-Login-Signin.jpg');
     background-position: center;
     background-size: cover;
@@ -86,21 +86,23 @@
           font-size: 0.8em;
           text-align: center;
           padding-top: .8em;
-          padding-bottom: 1.6em;
+          padding-bottom: 2em;
           &.lost-password {
             text-align: left;
             color: rgba(191, 191, 191, 1);
             padding-top: 0;
+            margin-top: -.6em;
           }
         }
     
         input {
-          margin-bottom: 14px;
+          margin-bottom: 20px;
           padding: 10px;
           border-radius: 4px;
           border: 2px solid rgba(191, 191, 191, 0.5);
           font-size: 1.2em;
           transition: 0.2s;
+          width: 100%;
           &::placeholder {
             color: rgba(191, 191, 191, 1);
           }
