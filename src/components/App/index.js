@@ -8,7 +8,7 @@ import LeafletMap from '../LeafletMap';
  * Local import
  */
 // Composants
-
+import Login from '../Login';
 // Styles et assets
 import './app.sass';
 
@@ -16,7 +16,8 @@ import './app.sass';
  * Code
  */
 const App = () => (
-  <LeafletMap />
+  <Login />
+  // {/* <LeafletMap /> */}
 );
 
 /**
