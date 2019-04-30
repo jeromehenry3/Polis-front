@@ -8,19 +8,19 @@ import React from 'react';
  * Local import
  */
 // Composants
+import Welcome from 'src/containers/Welcome';
 import Loading from 'src/components/Loading';
 import LeafletMap from '../LeafletMap';
 import Signin from '../Signin';
-import Login from '../Login';
 // Styles et assets
 import './app.scss';
 
 /**
  * Code
  */
-const App = () => (
+const App = () => ( 
 
-  <Signin />
+  <Welcome />
   // <LeafletMap />
 );
 

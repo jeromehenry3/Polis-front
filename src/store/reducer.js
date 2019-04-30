@@ -2,13 +2,17 @@
  * Initial State
  */
 const initialState = {
-  message: 'Hello',
+  loginInput: '', // string
+  passwordInput: '', // string
+  welcomeView: 'Login',
 };
 
 /**
  * Types
  */
-const DO_SOMETHING = 'DO_SOMETHING';
+export const CHANGE_LOGIN_INPUT = 'CHANGE_LOGIN_INPUT';
+export const CHANGE_PASSWORD_INPUT = 'CHANGE_PASSWORD_INPUT';
+export const TOGGLE_WELCOME_VIEW = 'TOGGLE_WELCOME_VIEW';
 
 /**
  * Traitements
@@ -19,9 +23,20 @@ const DO_SOMETHING = 'DO_SOMETHING';
  */
 const reducer = (state = initialState, action = {}) => {
   switch (action.type) {
-    case DO_SOMETHING:
+    case CHANGE_LOGIN_INPUT:
       return {
         ...state,
+        loginInput: action.input,
+      };
+    case CHANGE_PASSWORD_INPUT:
+      return {
+        ...state,
+        passwordInput: action.input,
+      };
+    case TOGGLE_WELCOME_VIEW:
+      return {
+        ...state,
+        welcomeView: action.welcomeView,
       };
 
     default:
@@ -32,8 +47,17 @@ const reducer = (state = initialState, action = {}) => {
 /**
  * Action Creators
  */
-export const doSomething = () => ({
-  type: DO_SOMETHING,
+export const changeLoginInput = input => ({
+  type: CHANGE_LOGIN_INPUT,
+  input,
+});
+export const changePasswordInput = input => ({
+  type: CHANGE_PASSWORD_INPUT,
+  input,
+});
+export const toggleWelcomeView = welcomeView => ({
+  type: TOGGLE_WELCOME_VIEW,
+  welcomeView,
 });
 
 /**

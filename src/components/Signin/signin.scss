@@ -1,84 +1,19 @@
-@keyframes showLabel {
-  0% {
-    opacity: 0;
-    top: 0;
-  }
-
-  100% {
-    opacity: 1;
-    top: -17px;
+.signin-container_names { // The two fields on the same row
+  display: flex;
+  justify-content: space-between;
+  
+  div { // each individual input div (nom, prénom)
+    width: 45%;
+    position: relative;
   }
 }
 
-.signin {
-  background-position: center;
-  background-size: cover;
-  width: 100%;
-  height: 100vh;
-  position: relative;
-  font-family: 'Open Sans', sans-serif;
 
-  &-container {
-    margin: 0;
-    position: absolute;
-    max-width: 400px;
-    min-width: 300px;
-    top: 50%;
-    left: 50%;
-    -ms-transform: translate(-50%, -50%);
-    transform: translate(-50%, -50%);
-
-    &_subtitle {
-      font-weight: bold;
-      text-align: center;
-      margin: 10px 0 50px 0;
-      color: rgb(111, 96, 76);
-      
-      span {
-        font-style: italic;
-      }
-    }
-
-    &_names {
-      display: flex;
-      justify-content: space-between;
-      
-      div {
-        width: 45%;
-        position: relative;
-      }
-    }
-    
-    div {
-      position: relative;
-      label {
-        position: absolute;
-        opacity: 0;
-        font-weight: bold;
-        font-size: .7em;
-        color: rgb(242, 212, 121);
-
-        &.open {
-          animation: 0.4s showLabel;
-          opacity: 1;
-          top: -17px;
-        }
-
-        &.focus {
-          color: rgb(217, 140, 94);
-        }
-      }
-    }
-
-    img {
-      width: 100%;
-    }
-    
-    a {
-      color: rgb(242, 212, 121);
-      font-weight: bold;
-      text-align: center;
-      margin-top: 20px;
-    }
-  }
+a { // link "j'ai déja mes identifiants"
+  color: rgb(242, 212, 121);
+  font-weight: bold;
+  text-align: center;
+  margin-top: 20px;
 }
+
+

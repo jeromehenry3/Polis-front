@@ -1,3 +1,7 @@
+div { // Input containing div
+  position: relative;
+}
+
 input {
   margin-bottom: 20px;
   padding: 10px;
@@ -6,14 +10,44 @@ input {
   font-size: 1.2em;
   transition: 0.2s;
   width: 100%;
+  & + label {
+    position: absolute;
+    display: inline-block;
+    left: 0;
+    opacity: 0;
+    font-weight: bold;
+    font-size: .7em;
+    color: rgb(242, 212, 121);
+  }
   &::placeholder {
     color: rgba(191, 191, 191, 1);
   }
-  &.focus {
+  &:focus {
     border: 2px solid rgb(217, 140, 94);
-
-    &::placeholder {
+    & + label { // The label when input focused
+      color: rgb(217, 140, 94);
+      transform: translateY(-13px);
+      opacity: 1;
+      transition-duration: .4s;
+    }
+    &::placeholder {  // The placeholder when input focused
       opacity: 0;
     }
+  }
+  &.open + label {  // The label when input class = open
+    transform: translateY(-13px);
+    opacity: 1;
+  }
+}
+
+@keyframes showLabel {
+  0% {
+    opacity: 0;
+    top: 0;
+  }
+
+  100% {
+    opacity: 1;
+    // top: -17px;
   }
 }
