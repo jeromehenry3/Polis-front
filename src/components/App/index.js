@@ -2,7 +2,12 @@
  * Import
  */
 import React from 'react';
+
 import Loading from 'src/components/Loading';
+
+import LeafletMap from '../LeafletMap';
+import Signin from '../Signin';
+
 
 /**
  * Local import
@@ -17,7 +22,13 @@ import './app.scss';
  * Code
  */
 const App = () => (
-  <Loading />
+
+  // <Loading />
+
+  <>
+    {false && <LeafletMap />}
+    <Signin />
+  </>
 );
 
 /**
