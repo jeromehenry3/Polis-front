@@ -16,7 +16,7 @@ const Signin = ({
         type="text"
         id="last-name"
         name="last-name"
-        placeholder="Nom"
+        placeholder="Prénom"
         value={firstNameInput}
         onChangeFunction={input => updateFormField('firstNameInput', input)}
       />
@@ -25,7 +25,7 @@ const Signin = ({
         type="text"
         id="first-name"
         name="first-name"
-        placeholder="Prénom"
+        placeholder="Nom"
         value={lastNameInput}
         onChangeFunction={input => updateFormField('lastNameInput', input)}
       />
