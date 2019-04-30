@@ -32,7 +32,7 @@ const Login = ({
     />
 
     <p className="lost-password">
-      <a href="#">J'ai perdu</a> mon mot de passe
+      <a onClick={() => alert('appelle Thomas')}>J'ai perdu</a> mon mot de passe
     </p>
 
     <button type="submit" className="inverted-colors">Me connecter</button>

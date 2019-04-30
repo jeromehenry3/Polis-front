@@ -9,9 +9,7 @@ import React from 'react';
  */
 // Composants
 import Welcome from 'src/containers/Welcome';
-import Loading from 'src/components/Loading';
 import LeafletMap from '../LeafletMap';
-import Signin from '../Signin';
 // Styles et assets
 import './app.scss';
 
