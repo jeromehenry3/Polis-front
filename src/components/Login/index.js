@@ -8,6 +8,7 @@ import React from 'react';
 // Composants
 import Logo from 'src/styles/images/logo-saumon.png';
 import Background from '../../styles/images/BG-Login-Signin.jpg';
+import Pins3 from '../../styles/images/pins3.png';
 // Styles et assets
 import './login.scss';
 
@@ -66,7 +67,12 @@ const Login = () => {
 
           <p>Je souhaite <a href="">m'inscrire</a> et contribuer à Polis</p>
 
-          <div className="ou-pin-div">
+          <div
+            className="ou-pin-div"
+            style={{
+              backgroundImage: `url(${Pins3})`,
+            }}
+          >
             <p>ou</p>
           </div>
 
