@@ -18,7 +18,7 @@ const Signin = ({
         name="last-name"
         placeholder="Nom"
         value={firstNameInput}
-        onChangeFunction={input => updateFormField('lastNameInput' ,input)}
+        onChangeFunction={input => updateFormField('firstNameInput', input)}
       />
 
       <Input
@@ -27,7 +27,7 @@ const Signin = ({
         name="first-name"
         placeholder="Prénom"
         value={lastNameInput}
-        onChangeFunction={input => updateFormField('firstNameInput' ,input)}
+        onChangeFunction={input => updateFormField('lastNameInput', input)}
       />
     </div>
 
@@ -37,7 +37,7 @@ const Signin = ({
       name="email"
       placeholder="Email"
       value={loginInput}
-      onChangeFunction={input => updateFormField('loginInput' ,input)}
+      onChangeFunction={input => updateFormField('loginInput', input)}
     />
 
     <Input
@@ -46,7 +46,7 @@ const Signin = ({
       name="password"
       placeholder="Mot de passe"
       value={passwordInput}
-      onChangeFunction={input => updateFormField('passwordInput' ,input)}
+      onChangeFunction={input => updateFormField('passwordInput', input)}
     />
 
     <Input
@@ -55,7 +55,7 @@ const Signin = ({
       name="password-confirm"
       placeholder="Confirmer votre mot de passe"
       value={passwordConfirmInput}
-      onChangeFunction={input => updateFormField('passwordConfirmInput' ,input)}
+      onChangeFunction={input => updateFormField('passwordConfirmInput', input)}
     />
 
     <button type="submit">M'inscrire</button>
