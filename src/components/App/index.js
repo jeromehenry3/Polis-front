@@ -3,16 +3,14 @@
  */
 import React from 'react';
 
-import Loading from 'src/components/Loading';
-
-import LeafletMap from '../LeafletMap';
-import Signin from '../Signin';
-
 
 /**
  * Local import
  */
 // Composants
+import Loading from 'src/components/Loading';
+import LeafletMap from '../LeafletMap';
+import Signin from '../Signin';
 import Login from '../Login';
 // Styles et assets
 import './app.sass';
