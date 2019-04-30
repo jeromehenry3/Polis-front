@@ -22,6 +22,7 @@ const Loading = () => (
           <span className="color-5">minnea</span>
           <span className="color-5">metro</span>
           <span className="color-5">indiana</span>
+          <span className="color-5">megalo</span>
           <img src={Logo} alt="Logo Polis" />
         </div>
       </h1>
