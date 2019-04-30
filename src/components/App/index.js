@@ -24,7 +24,9 @@ import './app.scss';
 const App = () => (
 
   // <Login />
-  <LeafletMap />
+  <Loading />
+  // <Signin />
+  // <LeafletMap />
 
 
 );
