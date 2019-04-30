@@ -13,7 +13,7 @@ import Signin from '../Signin';
  * Local import
  */
 // Composants
-
+import Login from '../Login';
 // Styles et assets
 import './app.sass';
 import './app.scss';
@@ -23,12 +23,10 @@ import './app.scss';
  */
 const App = () => (
 
-  // <Loading />
+  // <Login />
+  <LeafletMap />
 
-  <>
-    {false && <LeafletMap />}
-    <Signin />
-  </>
+
 );
 
 /**
