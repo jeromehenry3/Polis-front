@@ -3,15 +3,32 @@ import {
   Map as LeafletMap, TileLayer, Marker, Popup,
 } from 'react-leaflet';
 import './leafletmap.scss';
+// pour utiliser des punaises custom
+import L from 'leaflet';
+import pins3 from '../../styles/images/pins3.png';
+import pins8 from '../../styles/images/Pins8.png';
 
 // Création de la map avec React Leaflet
 
 const Leaflet = () => {
+
+
+  const myPinUne = L.icon({
+    iconUrl: `${pins3}`,
+    iconSize:     [40, 40], // size of the icon
+    // shadowSize:   [50, 64], // size of the shadow
+  });
+  const myPinDeux = L.icon({
+    iconUrl: `${pins8}`,
+    iconSize:     [40, 40], // size of the icon
+    // shadowSize:   [50, 64], // size of the shadow
+  });
+
   return (
     <LeafletMap
       center={[48.864716, 2.349014]}
-      zoom={6}
-      maxZoom={18}
+      zoom={12}
+      maxZoom={19}
       attributionControl
       zoomControl={false}
       doubleClickZoom={false}
@@ -21,12 +38,31 @@ const Leaflet = () => {
       easeLinearity={0.35}
     >
       <TileLayer
-        url="https://{s}.tile.openstreetmap.se/hydda/full/{z}/{x}/{y}.png"
+        url="https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png"
       />
 
-      <Marker position={[48.864716, 2.349014]}>
+      <Marker
+        position={[48.864716, 2.349014]}
+        icon={myPinUne}
+      >
         <Popup>
           Je suis un pop up à Paris
+        </Popup>
+      </Marker>
+      <Marker
+        position={[48.864650, 2.349190]}
+        icon={myPinDeux}
+      >
+        <Popup>
+          Je suis un autre pop up à Paris
+        </Popup>
+      </Marker>
+      <Marker
+        position={[48.8598, 2.4371999999999616]}
+        icon={myPinDeux}
+      >
+        <Popup>
+          Clément habite là
         </Popup>
       </Marker>
     </LeafletMap>

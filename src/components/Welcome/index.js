@@ -25,7 +25,7 @@ const Welcome = ({ children }) => (
         <img src={Logo} alt="Polis" />
       </h1>
       <p className="welcome-container_subtitle">
-        En grec ancien πόλις <span>la cité</span>
+        Du grec ancien πόλις <span>la cité</span>
       </p>
 
       {children}
