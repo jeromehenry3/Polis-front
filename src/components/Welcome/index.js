@@ -1,20 +1,13 @@
-/**
- * Import
- */
 import React from 'react';
-/**
- * Local import
- */
+import PropTypes from 'prop-types';
 // Composants
 import Login from 'src/containers/Login';
 import Signin from 'src/containers/Signin';
-import Input from '../Input';
-import Form from '../Form';
 
+
+// Styles et assets
 import Logo from 'src/styles/images/logo-saumon.png';
 import Background from '../../styles/images/BG-Login-Signin.jpg';
-import Pins3 from '../../styles/images/pins3.png';
-// Styles et assets
 import './welcome.scss';
 
 /**
@@ -45,7 +38,8 @@ const Welcome = ({ welcomeView }) => {
   );
 };
 
-/**
- * Export
- */
+Welcome.propTypes = {
+  welcomeView: PropTypes.string.isRequired,
+};
+
 export default Welcome;
