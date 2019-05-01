@@ -5,7 +5,8 @@ form {
   border-radius: 10px;
   background-color: white;
   justify-content: space-between;
-
+  -webkit-backface-visibility: hidden;
+  -webkit-transform: translateZ(0) scale(1.0, 1.0);
   .form-button {
     background-color: rgb(217, 140, 94);
     color: white;
