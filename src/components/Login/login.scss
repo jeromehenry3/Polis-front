@@ -7,12 +7,15 @@ p {
   &.lost-password {
     text-align: left;
     color: rgba(191, 191, 191, 1);
-    padding-top: 0;
     margin-top: -.6em;
   }
   &.identification-message {
     transform: translateY(-20px);
   }
+}
+
+#password {
+  margin-bottom: 10px;
 }
 
 div#login-pin {

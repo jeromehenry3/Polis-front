@@ -1,21 +1,20 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-
+import { Link } from 'react-router-dom';
 import Form from '../Form';
 import Input from '../Input';
 
 import './signin.scss';
 
 const Signin = ({
-  firstNameInput, lastNameInput, loginInput, passwordInput, passwordConfirmInput,
-  goToLogin, updateFormField,
+  firstNameInput, lastNameInput, loginInput, passwordInput, passwordConfirmInput, updateFormField,
 }) => (
   <Form>
     <div className="signin-container_names">
       <Input
         type="text"
-        id="last-name"
-        name="last-name"
+        id="first-name"
+        name="first-name"
         placeholder="Prénom"
         value={firstNameInput}
         onChangeFunction={input => updateFormField('firstNameInput', input)}
@@ -23,8 +22,8 @@ const Signin = ({
 
       <Input
         type="text"
-        id="first-name"
-        name="first-name"
+        id="last-name"
+        name="last-name"
         placeholder="Nom"
         value={lastNameInput}
         onChangeFunction={input => updateFormField('lastNameInput', input)}
@@ -58,9 +57,9 @@ const Signin = ({
       onChangeFunction={input => updateFormField('passwordConfirmInput', input)}
     />
 
-    <button type="submit">M'inscrire</button>
+    <button type="submit" className="form-button">M'inscrire</button>
 
-    <a onClick={goToLogin}>J'ai déjà mes identifiants</a>
+    <Link to="/login">J'ai déjà mes identifiants</Link>
   </Form>
 );
 
@@ -72,7 +71,6 @@ Signin.propTypes = {
   passwordInput: PropTypes.string.isRequired,
   passwordConfirmInput: PropTypes.string.isRequired,
   // FUNCTIONS
-  goToLogin: PropTypes.func.isRequired,
   updateFormField: PropTypes.func.isRequired,
 };
 
