@@ -1,86 +1,79 @@
-/* eslint-disable jsx-a11y/label-has-associated-control */
-/* eslint-disable jsx-a11y/label-has-for */
-/**
- * Import
- */
 import React from 'react';
-/**
- * Local import
- */
-// Composants
-import Logo from '../../styles/images/logo-saumon.png';
-import Background from '../../styles/images/BG-Login-Signin.jpg';
-import Input from '../Input';
+import PropTypes from 'prop-types';
+
 import Form from '../Form';
-// Styles et assets
+import Input from '../Input';
+
 import './signin.scss';
 
-/**
- * Code
- */
-const Signin = () => (
-  <div
-    className="login"
-    style={{
-      backgroundImage: `url(${Background})`,
-    }}
-  >
-    <div className="signin-container">
+const Signin = ({
+  firstNameInput, lastNameInput, loginInput, passwordInput, passwordConfirmInput,
+  goToLogin, updateFormField,
+}) => (
+  <Form>
+    <div className="signin-container_names">
+      <Input
+        type="text"
+        id="last-name"
+        name="last-name"
+        placeholder="Prénom"
+        value={firstNameInput}
+        onChangeFunction={input => updateFormField('firstNameInput', input)}
+      />
 
-
-      <h1><img src={Logo} alt="Polis" /></h1>
-      <p className="signin-container_subtitle">En grec ancien πόλις <span>la cité</span></p>
-
-
-      <Form>
-        <div className="signin-container_names">
-          <Input
-            type="text"
-            id="last-name"
-            name="last-name"
-            placeholder="Nom"
-          />
-
-          <Input
-            type="text"
-            id="first-name"
-            name="first-name"
-            placeholder="Prénom"
-          />
-
-        </div>
-
-        <Input
-          type="email"
-          id="email"
-          name="email"
-          placeholder="Email"
-        />
-
-        <Input
-          type="password"
-          id="password"
-          name="password"
-          placeholder="Mot de passe"
-        />
-
-        <Input
-          type="password"
-          id="password-confirm"
-          name="password-confirm"
-          placeholder="Confirmer votre mot de passe"
-        />
-
-        <button type="submit">M'inscrire</button>
-
-        <a href="#">J'ai déjà les identifiants</a>
-      </Form>
-
+      <Input
+        type="text"
+        id="first-name"
+        name="first-name"
+        placeholder="Nom"
+        value={lastNameInput}
+        onChangeFunction={input => updateFormField('lastNameInput', input)}
+      />
     </div>
-  </div>
+
+    <Input
+      type="email"
+      id="email"
+      name="email"
+      placeholder="Email"
+      value={loginInput}
+      onChangeFunction={input => updateFormField('loginInput', input)}
+    />
+
+    <Input
+      type="password"
+      id="password"
+      name="password"
+      placeholder="Mot de passe"
+      value={passwordInput}
+      onChangeFunction={input => updateFormField('passwordInput', input)}
+    />
+
+    <Input
+      type="password"
+      id="password-confirm"
+      name="password-confirm"
+      placeholder="Confirmer votre mot de passe"
+      value={passwordConfirmInput}
+      onChangeFunction={input => updateFormField('passwordConfirmInput', input)}
+    />
+
+    <button type="submit">M'inscrire</button>
+
+    <a onClick={goToLogin}>J'ai déjà mes identifiants</a>
+  </Form>
 );
 
-/**
- * Export
- */
+Signin.propTypes = {
+  // FORM FIELDS
+  firstNameInput: PropTypes.string.isRequired,
+  lastNameInput: PropTypes.string.isRequired,
+  loginInput: PropTypes.string.isRequired,
+  passwordInput: PropTypes.string.isRequired,
+  passwordConfirmInput: PropTypes.string.isRequired,
+  // FUNCTIONS
+  goToLogin: PropTypes.func.isRequired,
+  updateFormField: PropTypes.func.isRequired,
+};
+
 export default Signin;
