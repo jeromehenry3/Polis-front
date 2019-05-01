@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-
+import { Link } from 'react-router-dom';
 import Pins3 from '../../styles/images/pins3.png';
 import Input from '../Input';
 import Form from '../Form';
@@ -8,7 +8,7 @@ import Form from '../Form';
 import './login.scss';
 
 const Login = ({
-  loginInput, passwordInput, updateFormField, goToSignin,
+  loginInput, passwordInput, updateFormField,
 }) => (
   <Form>
     <p className="identification-message">Vous devez vous identifier pour contribuer à Polis</p>
@@ -35,9 +35,9 @@ const Login = ({
       <a onClick={() => alert('appelle Thomas')}>J'ai perdu</a> mon mot de passe
     </p>
 
-    <button type="submit" className="inverted-colors">Me connecter</button>
+    <button type="submit" className="inverted-colors form-button">Me connecter</button>
 
-    <p>Je souhaite <a onClick={goToSignin}>m'inscrire</a> et contribuer à Polis</p>
+    <p>Je souhaite <Link to="/signin">m'inscrire</Link> et contribuer à Polis</p>
 
     <div
       id="login-pin"
@@ -48,7 +48,7 @@ const Login = ({
       <p>ou</p>
     </div>
 
-    <button type="submit">Entrer en simple visiteur</button>
+    <Link to="/map" className="form-button">Entrer en simple visiteur</Link>
 
   </Form>
 );
@@ -57,7 +57,6 @@ Login.propTypes = {
   loginInput: PropTypes.string.isRequired,
   passwordInput: PropTypes.string.isRequired,
   updateFormField: PropTypes.func.isRequired,
-  goToSignin: PropTypes.func.isRequired,
 };
 
 /**

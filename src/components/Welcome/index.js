@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import Login from 'src/containers/Login';
 import Signin from 'src/containers/Signin';
 
-
+import { Switch, Route, Link } from 'react-router-dom';
 // Styles et assets
 import Logo from 'src/styles/images/logo-saumon.png';
 import Background from '../../styles/images/BG-Login-Signin.jpg';
@@ -13,7 +13,7 @@ import './welcome.scss';
 /**
  * Code
  */
-const Welcome = ({ welcomeView }) => (
+const Welcome = ({ children }) => (
   <div
     id="welcome"
     style={{
@@ -28,8 +28,7 @@ const Welcome = ({ welcomeView }) => (
         En grec ancien πόλις <span>la cité</span>
       </p>
 
-      {welcomeView === 'Login' && <Login />}
-      {welcomeView === 'Signin' && <Signin />}
+      {children}
 
     </div>
   </div>
@@ -37,7 +36,7 @@ const Welcome = ({ welcomeView }) => (
 
 
 Welcome.propTypes = {
-  welcomeView: PropTypes.string.isRequired,
+  children: PropTypes.object.isRequired,
 };
 
 export default Welcome;

@@ -7,8 +7,10 @@ form {
   border-radius: 10px;
   background-color: #ffffff;
   justify-content: space-between;
+  -webkit-backface-visibility: hidden;
+  -webkit-transform: translateZ(0) scale(1.0, 1.0);
 
-  button {
+  .form-button {
     background-color: $salmon;
     color: #ffffff;
     border-radius: 4px;

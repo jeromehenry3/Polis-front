@@ -15,11 +15,18 @@ import './form.scss';
 /**
  * Code
  */
-const Form = ({ children }) => (
-  <form action="">
-    {children}
-  </form>
-);
+const Form = ({ children }) => {
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log('form submitted');
+  };
+
+  return (
+    <form action="" onSubmit={handleSubmit}>
+      {children}
+    </form>
+  );
+}
 
 /**
  * Export
