@@ -1,3 +1,4 @@
+@import 'src/styles/_vars.scss';
 
 p {
   font-size: 0.8em;
@@ -21,21 +22,21 @@ div#login-pin {
   background-size: cover;
   p {
     text-transform: uppercase;
-    color:  #f3d479;
+    color:  $yellow;
     font-weight: bold;
     transform: translateX(-.5px);
   }
 }
 
 button.inverted-colors {
-  color: rgb(217, 140, 94);
-  background-color: #f2d479;
+  color: $salmon;
+  background-color: $yellow;
   &:hover {
-    background-color: #e4c771;
+    background-color: $yellow-darken;
   }
 }
 
 a:hover {
-  color: #e4c771;
+  color: $yellow-darken;
   cursor: pointer;
 }

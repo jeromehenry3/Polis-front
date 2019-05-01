@@ -1,3 +1,5 @@
+@import 'src/styles/_vars.scss';
+
 div { // Input containing div
   position: relative;
 }
@@ -17,15 +19,15 @@ input {
     opacity: 0;
     font-weight: bold;
     font-size: .7em;
-    color: rgb(242, 212, 121);
+    color: $yellow;
   }
   &::placeholder {
-    color: rgba(191, 191, 191, 1);
+    color: $grey;
   }
   &:focus {
-    border: 2px solid rgb(217, 140, 94);
+    border: 2px solid $salmon;
     & + label { // The label when input focused
-      color: rgb(217, 140, 94);
+      color: $salmon;
       transform: translateY(-13px);
       opacity: 1;
       transition-duration: .4s;

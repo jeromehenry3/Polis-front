@@ -1,3 +1,5 @@
+@import 'src/styles/_vars.scss';
+
 .signin-container_names { // The two fields on the same row
   display: flex;
   justify-content: space-between;
@@ -10,7 +12,7 @@
 
 
 a { // link "j'ai déja mes identifiants"
-  color: rgb(242, 212, 121);
+  color: $yellow;
   font-weight: bold;
   text-align: center;
   margin-top: 20px;
