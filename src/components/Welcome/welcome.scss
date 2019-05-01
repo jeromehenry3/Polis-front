@@ -1,3 +1,5 @@
+@import 'src/styles/_vars.scss';
+
 #welcome {  // Tht full screen component
     background-position: center;
     background-size: cover;
@@ -24,7 +26,7 @@
             font-weight: bold;
             text-align: center;
             margin: 10px 0 40px 0;
-            color: rgb(111, 96, 76);
+            color: $grey-dark;
             
             span {  // La cité
               font-style: italic;
