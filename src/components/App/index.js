@@ -57,7 +57,7 @@ const App = () => (
     <Route
       exact
       path="/map"
-      component={LeafletMap}
+      render={() => (
         <LeafletMap />
       )}
     />
