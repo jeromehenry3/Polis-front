@@ -7,6 +7,7 @@ const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin");
 const HtmlWebPackPlugin = require('html-webpack-plugin');
 
+
 // Config pour le devServer
 const host = 'localhost';
 const port = 3000;
@@ -124,6 +125,7 @@ module.exports = {
     new HtmlWebPackPlugin({
       template: './src/index.html',
       filename: './index.html',
+      favicon: './src/styles/images/Pins8.png',
     }),
     // Permet d'exporter les styles CSS dans un fichier css de dist/
     new MiniCssExtractPlugin({

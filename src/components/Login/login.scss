@@ -1,0 +1,42 @@
+@import 'src/styles/_vars.scss';
+
+p {
+  font-size: 0.8em;
+  text-align: center;
+  padding-top: .8em;
+  padding-bottom: .5em;
+  &.lost-password {
+    text-align: left;
+    color: rgba(191, 191, 191, 1);
+    margin-top: -.6em;
+  }
+  &.identification-message {
+    transform: translateY(-20px);
+  }
+}
+
+div#login-pin {
+  margin: .8em auto;
+  width: 2.2em;
+  height: 2.2em;
+  background-size: cover;
+  p {
+    text-transform: uppercase;
+    color:  $yellow;
+    font-weight: bold;
+    transform: translateX(-.5px);
+  }
+}
+
+button.inverted-colors {
+  color: $salmon;
+  background-color: $yellow;
+  &:hover {
+    background-color: $yellow-darken;
+  }
+}
+
+a:hover {
+  color: $yellow-darken;
+  cursor: pointer;
+}

@@ -2,33 +2,76 @@
  * Import
  */
 import React from 'react';
-
-import Loading from 'src/components/Loading';
-
-import LeafletMap from '../LeafletMap';
-import Signin from '../Signin';
-
-
+import { Switch, Route, Redirect } from 'react-router-dom';
 /**
  * Local import
  */
 // Composants
-import Login from '../Login';
-// Styles et assets
-import './app.sass';
-import './app.scss';
 
+// Containers
+import Signin from 'src/containers/Signin';
+import Login from 'src/containers/Login';
+
+// Dumb
+import Welcome from '../Welcome';
+import LeafletMap from '../LeafletMap';
+import NotFound from '../NotFound';
+
+// Styles et assets
+
+import './app.scss';
 /**
  * Code
  */
 const App = () => (
+  <Switch>
 
+    <Route
+      exact
+      path="/"
+      render={() => (
+        <Redirect to="/login" />
+      )}
+    />
+
+    <Route
+      exact
+      path="/signin"
+      render={() => (
+        <Welcome>
+          <Signin />
+        </Welcome>
+      )}
+    />
+
+<<<<<<< HEAD
   // <Login />
   <Loading />
   // <Signin />
   // <LeafletMap />
+=======
+    <Route
+      exact
+      path="/login"
+      render={() => (
+        <Welcome>
+          <Login />
+        </Welcome>
+      )}
+    />
+>>>>>>> be23c84c82adf6956bc7b2a5e0474b37266c6419
 
+    <Route
+      exact
+      path="/map"
+      render={() => (
+        <LeafletMap />
+      )}
+    />
 
+    <Route component={NotFound} />
+  </Switch>
+  // <LeafletMap />
 );
 
 /**
