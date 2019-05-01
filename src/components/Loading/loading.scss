@@ -8,26 +8,26 @@
     flex-direction: column;
     justify-content: center;
     align-items:center;
+    background-color: $yellow;
 
     
     span {
         font-family: 'Catamaran', sans-serif;
         font-size: 2.2em;
         font-weight: 700;
-        position: relative;
-        top:-50px;
         text-align:right;
+        color: $brown
     }
     img {
         padding-left:130px;
-        width:380px;
+        width:420px;
     }
 
 
     /*ROTATION DU MOT MA VERSION 1*/
 
     .rw-words{
-    display: inline;
+    display: inline-block;
     text-indent: 10px;
     }
     .rw-words-1 span{
@@ -35,7 +35,7 @@
     top:50%;
     opacity: 0;
     overflow: hidden;
-    padding: 3px 10px 3px 0;
+    padding: 12px 10px 3px 0;
     margin-top: -3px;
     -webkit-animation: rotateWord 15s ease-in infinite 0s;
     -moz-animation: rotateWord 15s ease-in infinite 0s;
@@ -117,7 +117,7 @@
     100% { opacity: 0; }
     }
 
-    @media screen and (max-width: 400px) {
+    @media screen and (max-width: 430px) {
 
         span {
             font-family: 'Catamaran', sans-seriff;
@@ -135,7 +135,7 @@
         /*ROTATION DU MOT MA VERSION 1*/
     
         .rw-words{
-        display: inline;
+        display: inline-block;
         text-indent: 10px;
         }
         .rw-words-1 span{
@@ -145,7 +145,7 @@
         opacity: 0;
         overflow: hidden;
         padding: 3px 10px 3px 0;
-        margin-top: -3px;
+        margin-top: -65px;
         -webkit-animation: rotateWord 15s linear infinite 0s;
         -moz-animation: rotateWord 15s linear infinite 0s;
         -o-animation: rotateWord 15s linear infinite 0s;

@@ -16,6 +16,7 @@ import Login from 'src/containers/Login';
 import Welcome from '../Welcome';
 import LeafletMap from '../LeafletMap';
 import NotFound from '../NotFound';
+import Loading from '../Loading';
 
 // Styles et assets
 
@@ -51,6 +52,15 @@ const App = () => (
         <Welcome>
           <Login />
         </Welcome>
+      )}
+    />
+
+    <Route
+      // ROUTE LOADING A ENLEVER PAR LA SUITE
+      exact
+      path="/loading"
+      render={() => (
+        <Loading />
       )}
     />
 
