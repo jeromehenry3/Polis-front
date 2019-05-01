@@ -11,14 +11,14 @@ input {
   border: 2px solid rgba(191, 191, 191, 0.5);
   font-size: 1.2em;
   transition: 0.2s;
-  width: 100%;
+  width: 100% !important;
   & + label {
     position: absolute;
     display: inline-block;
     left: 0;
     opacity: 0;
     font-weight: bold;
-    font-size: .7em;
+    font-size: .8em;
     color: $yellow;
   }
   &::placeholder {
