@@ -44,12 +44,6 @@ const App = () => (
       )}
     />
 
-<<<<<<< HEAD
-  // <Login />
-  <Loading />
-  // <Signin />
-  // <LeafletMap />
-=======
     <Route
       exact
       path="/login"
@@ -59,7 +53,6 @@ const App = () => (
         </Welcome>
       )}
     />
->>>>>>> be23c84c82adf6956bc7b2a5e0474b37266c6419
 
     <Route
       exact
