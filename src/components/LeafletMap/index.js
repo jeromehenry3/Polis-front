@@ -2,13 +2,14 @@ import React from 'react';
 import {
   Map as LeafletMap, TileLayer, Marker, Popup,
 } from 'react-leaflet';
-import RenseignementDonnees from './RenseignementDonnees';
+import RenseignementDonnees from '../../containers/RenseignementDonnees';
 import './leafletmap.scss';
 
 // Création de la map avec React Leaflet
 
-const Leaflet = ({ openDataForm, isDataFormOpen, closeDataForm, addBuilding }) => {
-
+const Leaflet = ({
+  openDataForm,
+}) => {
   const handleRightClick = (e) => {
     console.log(e.latlng);
     openDataForm(e.latlng);
@@ -16,7 +17,7 @@ const Leaflet = ({ openDataForm, isDataFormOpen, closeDataForm, addBuilding }) =
 
   return (
     <>
-      <RenseignementDonnees isDataFormOpen={isDataFormOpen} closeDataForm={closeDataForm} addBuilding={addBuilding} />
+      <RenseignementDonnees />
       <LeafletMap
         center={[48.864716, 2.349014]}
         zoom={6}

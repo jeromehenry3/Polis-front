@@ -6,7 +6,25 @@ import AppareilPhoto from '../../../styles/images/photo-camera.svg';
 
 import './renseignement.scss';
 
-const RenseignementDonnees = ({ isDataFormOpen, closeDataForm, addBuilding }) => {
+const RenseignementDonnees = ({
+  isDataFormOpen,
+  closeDataForm,
+  addBuilding,
+  updateFormField,
+  nameInput,
+  surfaceInput,
+  adressInput,
+  styleInput,
+  dateInput,
+  architectInput,
+  promotorInput,
+  constructorInput,
+  amenageInput,
+  urbanistInput,
+  youknowInput,
+}) => {
+  console.log(updateFormField);
+  
   const handleCloseDataForm = (e) => {
     e.preventDefault();
     console.log('Dataform closed');
@@ -32,6 +50,8 @@ const RenseignementDonnees = ({ isDataFormOpen, closeDataForm, addBuilding }) =>
                 id="name"
                 name="name"
                 placeholder="Nom"
+                value={nameInput}
+                onChangeFunction={input => updateFormField('nameInput', input)}
               />
 
               <Input
@@ -39,6 +59,8 @@ const RenseignementDonnees = ({ isDataFormOpen, closeDataForm, addBuilding }) =>
                 id="surface"
                 name="surface"
                 placeholder="m²"
+                value={surfaceInput}
+                onChangeFunction={input => updateFormField('surfaceInput', input)}
               />
             </div>
 
@@ -47,6 +69,8 @@ const RenseignementDonnees = ({ isDataFormOpen, closeDataForm, addBuilding }) =>
               id="adress"
               name="adress"
               placeholder="Adresse"
+              value={adressInput}
+              onChangeFunction={input => updateFormField('adressInput', input)}
             />
 
             <Input
@@ -54,6 +78,8 @@ const RenseignementDonnees = ({ isDataFormOpen, closeDataForm, addBuilding }) =>
               id="style"
               name="style"
               placeholder="Style"
+              value={styleInput}
+              onChangeFunction={input => updateFormField('styleInput', input)}
             />
 
             <Input
@@ -61,6 +87,8 @@ const RenseignementDonnees = ({ isDataFormOpen, closeDataForm, addBuilding }) =>
               id="date"
               name="date"
               placeholder="Année de livraison ou de livraison estimée"
+              value={dateInput}
+              onChangeFunction={input => updateFormField('dateInput', input)}
             />
 
             <Input
@@ -68,6 +96,8 @@ const RenseignementDonnees = ({ isDataFormOpen, closeDataForm, addBuilding }) =>
               id="architect"
               name="architect"
               placeholder="Architecte"
+              value={architectInput}
+              onChangeFunction={input => updateFormField('architectInput', input)}
             />
 
             <Input
@@ -75,6 +105,8 @@ const RenseignementDonnees = ({ isDataFormOpen, closeDataForm, addBuilding }) =>
               id="promotor"
               name="promotor"
               placeholder="Promoteur"
+              value={promotorInput}
+              onChangeFunction={input => updateFormField('promotorInput', input)}
             />
 
             <Input
@@ -82,6 +114,8 @@ const RenseignementDonnees = ({ isDataFormOpen, closeDataForm, addBuilding }) =>
               id="constructor"
               name="constructor"
               placeholder="Constructeur"
+              value={constructorInput}
+              onChangeFunction={input => updateFormField('constructorInput', input)}
             />
 
             <Input
@@ -89,6 +123,8 @@ const RenseignementDonnees = ({ isDataFormOpen, closeDataForm, addBuilding }) =>
               id="amenage"
               name="amenage"
               placeholder="Aménageur"
+              value={amenageInput}
+              onChangeFunction={input => updateFormField('amenageInput', input)}
             />
 
             <Input
@@ -96,13 +132,17 @@ const RenseignementDonnees = ({ isDataFormOpen, closeDataForm, addBuilding }) =>
               id="urbanist"
               name="urbanist"
               placeholder="Urbaniste"
+              value={urbanistInput}
+              onChangeFunction={input => updateFormField('urbanistInput', input)}
             />
 
             <Input
               type="text"
-              id="you-know"
-              name="you-know"
+              id="youknow"
+              name="youknow"
               placeholder="Le saviez-vous ?"
+              value={youknowInput}
+              onChangeFunction={input => updateFormField('youknowInput', input)}
             />
 
           </div>
