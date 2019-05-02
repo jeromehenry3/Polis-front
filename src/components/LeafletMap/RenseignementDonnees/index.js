@@ -26,12 +26,14 @@ const RenseignementDonnees = ({
   console.log(updateFormField);
   
   const handleCloseDataForm = (e) => {
+    // pourquoi preventDefault() ici? sinon la page se recharge? (clément)
     e.preventDefault();
     console.log('Dataform closed');
     closeDataForm();
   };
 
   const handleAddBuilding = (e) => {
+    // pourquoi preventDefault() ici? (clément)
     e.preventDefault();
     console.log('building added');
     // addBuilding();
@@ -41,6 +43,7 @@ const RenseignementDonnees = ({
     <div className={isDataFormOpen ? 'renseignement-donnees open' : 'renseignement-donnees'}>
       <div className="renseignement-donnees_relative">
         <a href="" className="renseignement-donnees_close" onClick={handleCloseDataForm}>Fermer</a>
+// il faut faire un bouton de l'appareil photo
         <img src={AppareilPhoto} alt="Appareil" className="renseignement-donnees_appareil" />
         <form action="">
           <div className="renseignement-donnees_inputs">
