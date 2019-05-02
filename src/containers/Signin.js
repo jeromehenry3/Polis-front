@@ -9,7 +9,7 @@ import Signin from 'src/components/Signin';
 import { updateFormField } from 'src/store/reducer';
 
 const mapStateToProps = state => ({
-  loginInput: state.loginInput,
+  username: state.username,
   passwordInput: state.passwordInput,
   passwordConfirmInput: state.passwordConfirmInput,
   firstNameInput: state.firstNameInput,

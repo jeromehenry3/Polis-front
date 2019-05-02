@@ -20,7 +20,7 @@ const Form = ({ children, onSubmit }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log('form submitted');
-    onSubmit();
+    onSubmit(); // Function passed from the containing component.
   };
 
   return (

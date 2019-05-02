@@ -3,12 +3,11 @@
  */
 const initialState = {
   // *******FIELDS OF THE LOGIN / SIGNIN FORM******/
-  loginInput: '', // string
+  username: '', // string
   passwordInput: '', // string
   passwordConfirmInput: '', // string
   firstNameInput: '', // string
   lastNameInput: '', // string
-  // email: '', // could be the same as loginInput, shall we merge them ?
 };
 
 /**
@@ -30,7 +29,7 @@ const reducer = (state = initialState, action = {}) => {
         ...state,
         [action.fieldName]: action.input,
       };
-    case CONNECT_USER:
+    case CONNECT_USER: // To be updated for real state management
       return state;
 
     default:
@@ -47,7 +46,7 @@ export const updateFormField = (fieldName, input) => ({
   fieldName,
   input,
 });
-export const connectUser = () => ({
+export const connectUser = () => ({ // To be modified with real data, created for testing purposes
   type: CONNECT_USER,
 });
 

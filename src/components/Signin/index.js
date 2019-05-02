@@ -7,7 +7,7 @@ import Input from '../Input';
 import './signin.scss';
 
 const Signin = ({
-  firstNameInput, lastNameInput, loginInput, passwordInput, passwordConfirmInput, updateFormField,
+  firstNameInput, lastNameInput, username, passwordInput, passwordConfirmInput, updateFormField,
 }) => (
   <Form>
     <div className="signin-container_names">
@@ -35,8 +35,8 @@ const Signin = ({
       id="email"
       name="email"
       placeholder="Email"
-      value={loginInput}
-      onChangeFunction={input => updateFormField('loginInput', input)}
+      value={username}
+      onChangeFunction={input => updateFormField('username', input)}
     />
 
     <Input
@@ -67,7 +67,7 @@ Signin.propTypes = {
   // FORM FIELDS
   firstNameInput: PropTypes.string.isRequired,
   lastNameInput: PropTypes.string.isRequired,
-  loginInput: PropTypes.string.isRequired,
+  username: PropTypes.string.isRequired,
   passwordInput: PropTypes.string.isRequired,
   passwordConfirmInput: PropTypes.string.isRequired,
   // FUNCTIONS

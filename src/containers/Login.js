@@ -9,7 +9,7 @@ import Login from 'src/components/Login';
 import { updateFormField, connectUser } from 'src/store/reducer';
 
 const mapStateToProps = state => ({
-  loginInput: state.loginInput,
+  username: state.username,
   passwordInput: state.passwordInput,
 });
 
@@ -17,7 +17,7 @@ const mapDispatchToProps = dispatch => ({
   updateFormField: (fieldName, input) => {
     dispatch(updateFormField(fieldName, input));
   },
-  connectUser: () => {
+  connectUser: () => { // To be updated !
     dispatch(connectUser());
   },
 });

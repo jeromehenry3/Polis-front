@@ -8,65 +8,58 @@ import Form from '../Form';
 import './login.scss';
 
 const Login = ({
-  loginInput, passwordInput, updateFormField, connectUser,
-}) => {
-  const handleConnectUser = (event) => {
-    event.preventDefault();
-    console.log('connectUser');
-    connectUser();
-  }
-  return (
-    <Form onSubmit={connectUser}>
-      <p className="identification-message">Vous devez vous identifier pour contribuer à Polis</p>
+  username, passwordInput, updateFormField, connectUser,
+}) => (
+  <Form onSubmit={connectUser}>
+    <p className="identification-message">Vous devez vous identifier pour contribuer à Polis</p>
 
-      <Input
-        type="email"
-        id="email"
-        name="email"
-        placeholder="Email"
-        value={loginInput}
-        onChangeFunction={input => updateFormField('loginInput', input)}
-      />
+    <Input
+      type="email"
+      id="email"
+      name="email"
+      placeholder="Email"
+      value={username}
+      onChangeFunction={input => updateFormField('username', input)}
+    />
 
-      <Input
-        type="password"
-        id="password"
-        name="password"
-        placeholder="Mot de passe"
-        value={passwordInput}
-        onChangeFunction={input => updateFormField('passwordInput', input)}
-      />
+    <Input
+      type="password"
+      id="password"
+      name="password"
+      placeholder="Mot de passe"
+      value={passwordInput}
+      onChangeFunction={input => updateFormField('passwordInput', input)}
+    />
 
-      <p className="lost-password">
-        <a onClick={() => alert('appelle Thomas')}>J'ai perdu</a> mon mot de passe
-      </p>
+    <p className="lost-password">
+      <a onClick={() => alert('appelle Thomas')}>J'ai perdu</a> mon mot de passe
+    </p>
 
-      <button
-        type="submit"
-        className="inverted-colors form-button"
-      >
-        Me connecter
-      </button>
+    <button
+      type="submit"
+      className="inverted-colors form-button"
+    >
+      Me connecter
+    </button>
 
-      <p>Je souhaite <Link to="/signin">m'inscrire</Link> et contribuer à Polis</p>
+    <p>Je souhaite <Link to="/signin">m'inscrire</Link> et contribuer à Polis</p>
 
-      <div
-        id="login-pin"
-        style={{
-          backgroundImage: `url(${Pins3})`,
-        }}
-      >
-        <p>ou</p>
-      </div>
+    <div
+      id="login-pin"
+      style={{
+        backgroundImage: `url(${Pins3})`,
+      }}
+    >
+      <p>ou</p>
+    </div>
 
-      <Link to="/map" className="form-button">Entrer en simple visiteur</Link>
+    <Link to="/map" className="form-button">Entrer en simple visiteur</Link>
 
-    </Form>
-  )
-};
+  </Form>
+);
 
 Login.propTypes = {
-  loginInput: PropTypes.string.isRequired,
+  username: PropTypes.string.isRequired,
   passwordInput: PropTypes.string.isRequired,
   updateFormField: PropTypes.func.isRequired,
   connectUser: PropTypes.func.isRequired,
