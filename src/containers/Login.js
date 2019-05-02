@@ -17,7 +17,7 @@ const mapDispatchToProps = dispatch => ({
   updateFormField: (fieldName, input) => {
     dispatch(updateFormField(fieldName, input));
   },
-  connectUser: () => { // To be updated !
+  connectUser: () => {
     dispatch(connectUser());
   },
 });

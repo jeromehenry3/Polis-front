@@ -7,9 +7,10 @@ import Input from '../Input';
 import './signin.scss';
 
 const Signin = ({
-  firstNameInput, lastNameInput, username, passwordInput, passwordConfirmInput, updateFormField,
+  firstNameInput, lastNameInput, username, passwordInput, passwordConfirmInput,
+  updateFormField, signin,
 }) => (
-  <Form>
+  <Form onSubmit={signin}>
     <div className="signin-container_names">
       <Input
         type="text"
@@ -72,6 +73,7 @@ Signin.propTypes = {
   passwordConfirmInput: PropTypes.string.isRequired,
   // FUNCTIONS
   updateFormField: PropTypes.func.isRequired,
+  signin: PropTypes.func.isRequired,
 };
 
 export default Signin;
