@@ -15,7 +15,7 @@ const initialState = {
  * Types
  */
 export const UPDATE_FORM_FIELD = 'UPDATE_FORM_FIELD';
-
+export const CONNECT_USER = 'CONNECT_USER';
 /**
  * Traitements
  */
@@ -30,6 +30,8 @@ const reducer = (state = initialState, action = {}) => {
         ...state,
         [action.fieldName]: action.input,
       };
+    case CONNECT_USER:
+      return state;
 
     default:
       return state;
@@ -44,6 +46,9 @@ export const updateFormField = (fieldName, input) => ({
   type: UPDATE_FORM_FIELD,
   fieldName,
   input,
+});
+export const connectUser = () => ({
+  type: CONNECT_USER,
 });
 
 /**
