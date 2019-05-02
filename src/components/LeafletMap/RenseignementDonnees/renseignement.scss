@@ -1,15 +1,27 @@
+#root {
+  position: relative;
+}
+
 .renseignement-donnees {
   z-index: 10000;
   position: absolute;
   max-width: 320px;
   background-color: white;
   border-radius: 10px;
+  top: 50%; /* poussé de la moitié de hauteur du référent */
+  left: -320px;
+  transform: translateY(-50%); /* tiré de la moitié de sa propre hauteur */
   -webkit-box-shadow: 0px 0px 8px 0px rgba(0,0,0,0.75);
   -moz-box-shadow: 0px 0px 8px 0px rgba(0,0,0,0.75);
   box-shadow: 0px 0px 8px 0px rgba(0,0,0,0.75);
+  transition: 0.4s;
 
   &_relative {
     position: relative;
+  }
+
+  &.open {
+    left: 0;
   }
 
   form {

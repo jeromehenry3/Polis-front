@@ -7,7 +7,13 @@ import './leafletmap.scss';
 
 // Création de la map avec React Leaflet
 
-const Leaflet = () => {
+const Leaflet = ({ openDataForm }) => {
+
+  const handleRightClick = (e) => {
+    console.log(e.latlng);
+    openDataForm(e.latlng);
+  }
+
   return (
     <>
       <RenseignementDonnees />
@@ -22,6 +28,7 @@ const Leaflet = () => {
         dragging
         animate
         easeLinearity={0.35}
+        onContextmenu={handleRightClick}
       >
         <TileLayer
           url="https://{s}.tile.openstreetmap.se/hydda/full/{z}/{x}/{y}.png"
