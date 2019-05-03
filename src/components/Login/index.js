@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 import Pins3 from '../../styles/images/pins3.png';
 import Input from '../Input';
 import Form from '../Form';
@@ -8,9 +8,11 @@ import Form from '../Form';
 import './login.scss';
 
 const Login = ({
-  username, passwordInput, updateFormField, connectUser,
+  username, passwordInput, updateFormField, connectUser, isConnected,
 }) => (
+
   <Form onSubmit={connectUser}>
+    {isConnected && <Redirect to="/map" />}
     <p className="identification-message">Vous devez vous identifier pour contribuer à Polis</p>
 
     <Input
@@ -63,6 +65,7 @@ Login.propTypes = {
   passwordInput: PropTypes.string.isRequired,
   updateFormField: PropTypes.func.isRequired,
   connectUser: PropTypes.func.isRequired,
+  isConnected: PropTypes.bool.isRequired,
 };
 
 /**

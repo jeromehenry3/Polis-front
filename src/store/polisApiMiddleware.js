@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-import { CONNECT_USER, SIGNIN } from './reducer';
+import { CONNECT_USER, SIGNIN, storeToken } from './reducer';
 
 // eslint-disable-next-line consistent-return
 const polisApiMiddleware = store => next => (action) => {
@@ -13,6 +13,8 @@ const polisApiMiddleware = store => next => (action) => {
       })
         .then((response) => {
           console.log(response.data);
+          const { token, refresh_token: refreshToken } = response.data;
+          store.dispatch(storeToken(token, refreshToken));
         })
         .catch((error) => {
           console.log(error.message);

@@ -8,7 +8,13 @@ const initialState = {
   passwordConfirmInput: '', // string
   firstNameInput: '', // string
   lastNameInput: '', // string
-  isDataFormOpen: false, // bool qui indique si le formulaire de renseignement de données est ouvert ou non
+  token: '', // string,
+  refreshToken: '',
+  isConnected: false,
+
+
+  // ************FIELDS OF THE CARD DATA*******
+  isDataFormOpen: false, // bool qui indique si le formulaire de renseignement de données est ouvert
   clickedAdress: '', // String contenant l'adresse d'où a cliqué l'utilisateur
   nameInput: '',
   surfaceInput: '',
@@ -27,7 +33,8 @@ const initialState = {
  * Types
  */
 export const UPDATE_FORM_FIELD = 'UPDATE_FORM_FIELD';
-export const CONNECT_USER = 'CONNECT_USER';
+export const CONNECT_USER = 'CONNECT_USER'; // Api connection with username && password
+export const STORE_TOKEN = 'STORE_TOKEN';
 export const SIGNIN = 'SIGNIN';
 export const OPEN_DATA_FORM = 'OPEN_DATA_FORM';
 export const CLOSE_DATA_FORM = 'CLOSE_DATA_FORM';
@@ -47,6 +54,13 @@ const reducer = (state = initialState, action = {}) => {
       };
     case CONNECT_USER:
       return state;
+    case STORE_TOKEN:
+      return {
+        ...state,
+        token: action.token,
+        refreshToken: action.refreshToken,
+        isConnected: true,
+      };
     case SIGNIN:
       return state;
     case OPEN_DATA_FORM:
@@ -75,6 +89,11 @@ export const updateFormField = (fieldName, input) => ({
 });
 export const connectUser = () => ({
   type: CONNECT_USER,
+});
+export const storeToken = (token, refreshToken) => ({
+  type: STORE_TOKEN,
+  token,
+  refreshToken,
 });
 export const signin = () => ({
   type: SIGNIN,

@@ -11,6 +11,7 @@ import { updateFormField, connectUser } from 'src/store/reducer';
 const mapStateToProps = state => ({
   username: state.username,
   passwordInput: state.passwordInput,
+  isConnected: state.isConnected,
 });
 
 const mapDispatchToProps = dispatch => ({
