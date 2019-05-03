@@ -12,7 +12,9 @@ import pins8 from '../../styles/images/Pins8.png';
 // Création de la map avec React Leaflet
 
 const Leaflet = ({
-  openDataForm, updateFormField,
+
+  openDataForm, closeAllModals, updateFormField,
+
 }) => {
   const handleRightClick = (e) => {
     console.log(e.latlng);
@@ -46,6 +48,7 @@ const Leaflet = ({
         animate
         easeLinearity={0.35}
         onContextmenu={handleRightClick}
+        onClick={closeAllModals}
       >
         <TileLayer
           url="https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png"

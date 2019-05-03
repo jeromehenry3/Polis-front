@@ -6,7 +6,9 @@ import { connect } from 'react-redux';
 import LeafletMap from 'src/components/LeafletMap';
 
 // Action Creators
-import { openDataForm, updateFormField } from 'src/store/reducer';
+
+import { openDataForm, closeAllModals, updateFormField } from 'src/store/reducer';
+
 
 const mapStateToProps = null;
 
@@ -14,6 +16,11 @@ const mapDispatchToProps = dispatch => ({
   openDataForm: (position) => {
     dispatch(openDataForm(position));
   },
+
+  closeAllModals: () => {
+    dispatch(closeAllModals());
+  }
+
   updateFormField: (fieldName, input) => {
     dispatch(updateFormField(fieldName, input));
   },

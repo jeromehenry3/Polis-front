@@ -1,6 +1,9 @@
+/* eslint-disable jsx-a11y/label-has-associated-control */
 /* eslint-disable jsx-a11y/label-has-for */
 
 import React from 'react';
+import PropTypes from 'prop-types';
+import { Dimmer, Loader } from 'semantic-ui-react';
 import Input from '../../Input';
 import AppareilPhoto from '../../../styles/images/photo-camera.svg';
 
@@ -13,7 +16,7 @@ const RenseignementDonnees = ({
   updateFormField,
   nameInput,
   surfaceInput,
-  adressInput,
+  addressInput,
   styleInput,
   dateInput,
   architectInput,
@@ -22,8 +25,8 @@ const RenseignementDonnees = ({
   amenageInput,
   urbanistInput,
   youknowInput,
+  loading,
 }) => {
-  console.log(updateFormField);
   
   const handleCloseDataForm = (e) => {
     e.preventDefault();
@@ -40,9 +43,9 @@ const RenseignementDonnees = ({
   return (
     <div className={isDataFormOpen ? 'renseignement-donnees open' : 'renseignement-donnees'}>
       <div className="renseignement-donnees_relative">
-        <a href="" className="renseignement-donnees_close" onClick={handleCloseDataForm}>Fermer</a>
-// il faut faire un bouton de l'appareil photo
-        <img src={AppareilPhoto} alt="Appareil" className="renseignement-donnees_appareil" />
+        <a href="#" className="renseignement-donnees_close" onClick={handleCloseDataForm}>Fermer</a>
+        <label htmlFor="picture-building"><img src={AppareilPhoto} alt="Appareil" className="renseignement-donnees_appareil" /></label>
+        <input type="file" id="picture-building" className="inputfile" />
         <form action="">
           <div className="renseignement-donnees_inputs">
             <div className="renseignement-donnees_primary-infos">
@@ -65,14 +68,19 @@ const RenseignementDonnees = ({
               />
             </div>
 
-            <Input
-              type="text"
-              id="adress"
-              name="adress"
-              placeholder="Adresse"
-              value={adressInput}
-              onChangeFunction={input => updateFormField('adressInput', input)}
-            />
+            <div className="renseignement-donnees_address-container">
+              <Dimmer active={loading} inverted>
+                <Loader inverted />
+              </Dimmer>
+              <Input
+                type="text"
+                id={loading ? 'addressloading' : 'address'}
+                name="address"
+                placeholder="Adresse"
+                value={addressInput}
+                onChangeFunction={input => updateFormField('addressInput', input)}
+              />
+            </div>
 
             <Input
               type="text"
@@ -155,6 +163,25 @@ const RenseignementDonnees = ({
       </div>
     </div>
   );
+};
+
+RenseignementDonnees.propTypes = {
+  addBuilding: PropTypes.func.isRequired,
+  addressInput: PropTypes.string.isRequired,
+  amenageInput: PropTypes.string.isRequired,
+  architectInput: PropTypes.string.isRequired,
+  closeDataForm: PropTypes.func.isRequired,
+  constructorInput: PropTypes.string.isRequired,
+  dateInput: PropTypes.string.isRequired,
+  isDataFormOpen: PropTypes.bool.isRequired,
+  loading: PropTypes.bool.isRequired,
+  nameInput: PropTypes.string.isRequired,
+  promotorInput: PropTypes.string.isRequired,
+  styleInput: PropTypes.string.isRequired,
+  surfaceInput: PropTypes.string.isRequired,
+  updateFormField: PropTypes.func.isRequired,
+  urbanistInput: PropTypes.string.isRequired,
+  youknowInput: PropTypes.string.isRequired,
 };
 
 export default RenseignementDonnees;

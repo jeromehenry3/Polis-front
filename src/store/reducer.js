@@ -1,3 +1,4 @@
+/* eslint-disable no-case-declarations */
 /**
  * Initial State
  */
@@ -8,10 +9,10 @@ const initialState = {
   passwordConfirmInput: '', // string
   firstNameInput: '', // string
   lastNameInput: '', // string
+  isDataFormOpen: false, // bool qui indique si le formulaire de renseignement de données est ouvert ou non
   token: '', // string,
   refreshToken: '',
   isConnected: false,
-
   loginMessage: 'Vous devez vous identifier pour contribuer à Polis',
   loginStatus: 'not-connected', // string : not-connected || connecting || connected, for logic purposes
 
@@ -22,7 +23,7 @@ const initialState = {
   clickedLng: '',
   nameInput: '',
   surfaceInput: '',
-  adressInput: '',
+  addressInput: '',
   styleInput: '',
   dateInput: '',
   architectInput: '',
@@ -31,6 +32,7 @@ const initialState = {
   amenageInput: '',
   urbanistInput: '',
   youknowInput: '',
+  loading: false,
 };
 
 /**
@@ -42,8 +44,11 @@ export const STORE_TOKEN = 'STORE_TOKEN';
 export const CONNECTING_ERROR = 'CONNECTING_ERROR';
 export const SIGNIN = 'SIGNIN';
 export const OPEN_DATA_FORM = 'OPEN_DATA_FORM';
+export const OPEN_DATA_FORM_RESPONSE = 'OPEN_DATA_FORM_RESPONSE';
 export const CLOSE_DATA_FORM = 'CLOSE_DATA_FORM';
+export const CLOSE_ALL_MODALS = 'CLOSE_ALL_MODALS';
 export const SUBMIT_BUILDING = 'SUBMIT_BULDING';
+
 /**
  * Traitements
  */
@@ -84,11 +89,27 @@ const reducer = (state = initialState, action = {}) => {
       return {
         ...state,
         isDataFormOpen: true,
+        loading: true,
+      };
+    case OPEN_DATA_FORM_RESPONSE:
+      // eslint-disable-next-line camelcase
+      const { display_name } = action.data;
+      return {
+        ...state,
+        addressInput: display_name,
+        loading: false,
       };
     case CLOSE_DATA_FORM:
       return {
         ...state,
         isDataFormOpen: false,
+      };
+
+    case CLOSE_ALL_MODALS:
+      return {
+        ...state,
+        isDataFormOpen: false,
+        // Les futurs modals à fermer
       };
     case SUBMIT_BUILDING:
       return state;
@@ -126,8 +147,17 @@ export const openDataForm = position => ({
   position,
 });
 
+export const openDataFormResponse = data => ({
+  type: OPEN_DATA_FORM_RESPONSE,
+  data,
+});
+
 export const closeDataForm = () => ({
   type: CLOSE_DATA_FORM,
+});
+
+export const closeAllModals = () => ({
+  type: CLOSE_ALL_MODALS,
 });
 
 export const submitBuilding = () => ({
