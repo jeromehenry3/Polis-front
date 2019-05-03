@@ -30,49 +30,51 @@ const Leaflet = ({
   });
 
   return (
-    <RenseignementDonnees />
-    <LeafletMap
-      center={[48.864716, 2.349014]}
-      zoom={12}
-      maxZoom={19}
-      attributionControl
-      zoomControl={false}
-      doubleClickZoom={false}
-      scrollWheelZoom
-      dragging
-      animate
-      easeLinearity={0.35}
-      onContextmenu={handleRightClick}
-    >
-      <TileLayer
-        url="https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png"
-      />
+    <>
+      <RenseignementDonnees />
+      <LeafletMap
+        center={[48.864716, 2.349014]}
+        zoom={12}
+        maxZoom={19}
+        attributionControl
+        zoomControl={false}
+        doubleClickZoom={false}
+        scrollWheelZoom
+        dragging
+        animate
+        easeLinearity={0.35}
+        onContextmenu={handleRightClick}
+      >
+        <TileLayer
+          url="https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png"
+        />
 
-      <Marker
-        position={[48.864716, 2.349014]}
-        icon={myPinUne}
-      >
-        <Popup>
-          Je suis un pop up à Paris
-        </Popup>
-      </Marker>
-      <Marker
-        position={[48.864650, 2.349190]}
-        icon={myPinDeux}
-      >
-        <Popup>
-          Je suis un autre pop up à Paris
-        </Popup>
-      </Marker>
-      <Marker
-        position={[48.8598, 2.4371999999999616]}
-        icon={myPinDeux}
-      >
-        <Popup>
-          Clément habite là
-        </Popup>
-      </Marker>
-    </LeafletMap>
+        <Marker
+          position={[48.864716, 2.349014]}
+          icon={myPinUne}
+        >
+          <Popup>
+            Je suis un pop up à Paris
+          </Popup>
+        </Marker>
+        <Marker
+          position={[48.864650, 2.349190]}
+          icon={myPinDeux}
+        >
+          <Popup>
+            Je suis un autre pop up à Paris
+          </Popup>
+        </Marker>
+        <Marker
+          position={[48.8598, 2.4371999999999616]}
+          icon={myPinDeux}
+        >
+          <Popup>
+            Clément habite là
+          </Popup>
+        </Marker>
+      </LeafletMap>
+    </>
   );
 };
 
