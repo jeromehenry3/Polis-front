@@ -24,7 +24,7 @@ const Form = ({ children, onSubmit }) => {
   };
 
   return (
-    <form action="" onSubmit={handleSubmit}>
+    <form action="" onSubmit={handleSubmit} className="form">
       {children}
     </form>
   );

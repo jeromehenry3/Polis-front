@@ -8,6 +8,19 @@ const initialState = {
   passwordConfirmInput: '', // string
   firstNameInput: '', // string
   lastNameInput: '', // string
+  isDataFormOpen: false, // bool qui indique si le formulaire de renseignement de données est ouvert ou non
+  clickedAdress: '', // String contenant l'adresse d'où a cliqué l'utilisateur
+  nameInput: '',
+  surfaceInput: '',
+  adressInput: '',
+  styleInput: '',
+  dateInput: '',
+  architectInput: '',
+  promotorInput: '',
+  constructorInput: '',
+  amenageInput: '',
+  urbanistInput: '',
+  youknowInput: '',
 };
 
 /**
@@ -16,6 +29,8 @@ const initialState = {
 export const UPDATE_FORM_FIELD = 'UPDATE_FORM_FIELD';
 export const CONNECT_USER = 'CONNECT_USER';
 export const SIGNIN = 'SIGNIN';
+export const OPEN_DATA_FORM = 'OPEN_DATA_FORM';
+export const CLOSE_DATA_FORM = 'CLOSE_DATA_FORM';
 /**
  * Traitements
  */
@@ -34,7 +49,16 @@ const reducer = (state = initialState, action = {}) => {
       return state;
     case SIGNIN:
       return state;
-
+    case OPEN_DATA_FORM:
+      return {
+        ...state,
+        isDataFormOpen: true,
+      };
+    case CLOSE_DATA_FORM:
+      return {
+        ...state,
+        isDataFormOpen: false,
+      };
     default:
       return state;
   }
@@ -56,6 +80,14 @@ export const signin = () => ({
   type: SIGNIN,
 });
 
+export const openDataForm = position => ({
+  type: OPEN_DATA_FORM,
+  position,
+});
+
+export const closeDataForm = () => ({
+  type: CLOSE_DATA_FORM,
+});
 /**
  * Selectors
  */
