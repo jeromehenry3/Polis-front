@@ -1,6 +1,4 @@
-#root {
-  position: relative;
-}
+@import 'src/styles/_vars.scss';
 
 .renseignement-donnees {
   z-index: 10000;
@@ -26,6 +24,25 @@
     border-top: 1px solid rgba(191, 191, 191, 0.5);
   }
 
+  .ui.loader:after, .ui.loader:before {
+    width: 1.5rem;
+    height: 1.5rem;
+    margin: 0 0 0 -1.14285714rem;
+    opacity: 0.5;
+    top:5px;
+  }
+  .ui.inverted.dimmer .ui.loader:after {
+    border-color: $salmon-darken transparent transparent;
+  }
+  .inputfile {
+    width: 0.1px;
+    height: 0.1px;
+    opacity: 0;
+    overflow: hidden;
+    position: absolute;
+    z-index: -1;
+  }
+
   &_inputs {
     padding: 20px 20px 0 20px;
     input {
@@ -34,6 +51,11 @@
         font-size: .9em;
       }
     }
+  }
+
+  &_address-container {
+    height:40px;
+    margin-bottom:30px;
   }
 
   &_appareil {

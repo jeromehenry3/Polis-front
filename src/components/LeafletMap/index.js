@@ -2,17 +2,17 @@ import React from 'react';
 import {
   Map as LeafletMap, TileLayer, Marker, Popup,
 } from 'react-leaflet';
+import L from 'leaflet';
 import RenseignementDonnees from '../../containers/RenseignementDonnees';
 import './leafletmap.scss';
 // pour utiliser des punaises custom
-import L from 'leaflet';
 import pins3 from '../../styles/images/pins3.png';
 import pins8 from '../../styles/images/Pins8.png';
 
 // Création de la map avec React Leaflet
 
 const Leaflet = ({
-  openDataForm,
+  openDataForm, closeAllModals,
 }) => {
   const handleRightClick = (e) => {
     console.log(e.latlng);
@@ -44,6 +44,7 @@ const Leaflet = ({
         animate
         easeLinearity={0.35}
         onContextmenu={handleRightClick}
+        onClick={closeAllModals}
       >
         <TileLayer
           url="https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png"

@@ -14,7 +14,7 @@ const mapStateToProps = state => ({
   isDataFormOpen: state.isDataFormOpen,
   nameInput: state.nameInput,
   surfaceInput: state.surfaceInput,
-  adressInput: state.adressInput,
+  addressInput: state.addressInput,
   styleInput: state.styleInput,
   dateInput: state.dateInput,
   architectInput: state.architectInput,
@@ -23,6 +23,7 @@ const mapStateToProps = state => ({
   amenageInput: state.amenageInput,
   urbanistInput: state.urbanistInput,
   youknowInput: state.youknowInput,
+  loading: state.loading,
 });
 
 const mapDispatchToProps = dispatch => ({
