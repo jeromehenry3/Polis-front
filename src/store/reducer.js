@@ -3,7 +3,7 @@
  */
 const initialState = {
   // *******FIELDS OF THE LOGIN / SIGNIN FORM******/
-  loginInput: '', // string
+  username: '', // string
   passwordInput: '', // string
   passwordConfirmInput: '', // string
   firstNameInput: '', // string
@@ -21,14 +21,14 @@ const initialState = {
   amenageInput: '',
   urbanistInput: '',
   youknowInput: '',
-
-  // email: '', // could be the same as loginInput, shall we merge them ?
 };
 
 /**
  * Types
  */
 export const UPDATE_FORM_FIELD = 'UPDATE_FORM_FIELD';
+export const CONNECT_USER = 'CONNECT_USER';
+export const SIGNIN = 'SIGNIN';
 export const OPEN_DATA_FORM = 'OPEN_DATA_FORM';
 export const CLOSE_DATA_FORM = 'CLOSE_DATA_FORM';
 /**
@@ -45,6 +45,10 @@ const reducer = (state = initialState, action = {}) => {
         ...state,
         [action.fieldName]: action.input,
       };
+    case CONNECT_USER:
+      return state;
+    case SIGNIN:
+      return state;
     case OPEN_DATA_FORM:
       return {
         ...state,
@@ -68,6 +72,12 @@ export const updateFormField = (fieldName, input) => ({
   type: UPDATE_FORM_FIELD,
   fieldName,
   input,
+});
+export const connectUser = () => ({
+  type: CONNECT_USER,
+});
+export const signin = () => ({
+  type: SIGNIN,
 });
 
 export const openDataForm = position => ({
