@@ -2,20 +2,22 @@ import React from 'react';
 import {
   Map as LeafletMap, TileLayer, Marker, Popup,
 } from 'react-leaflet';
+import L from 'leaflet';
 import RenseignementDonnees from '../../containers/RenseignementDonnees';
 import './leafletmap.scss';
 // pour utiliser des punaises custom
-import L from 'leaflet';
 import pins3 from '../../styles/images/pins3.png';
 import pins8 from '../../styles/images/Pins8.png';
 
 // Création de la map avec React Leaflet
 
 const Leaflet = ({
-  openDataForm,
+  openDataForm, updateFormField,
 }) => {
   const handleRightClick = (e) => {
     console.log(e.latlng);
+    updateFormField('clickedLat', e.latlng.lat);
+    updateFormField('clickedLng', e.latlng.lng);
     openDataForm(e.latlng);
   };
   const myPinUne = L.icon({

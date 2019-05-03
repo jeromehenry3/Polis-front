@@ -6,13 +6,16 @@ import { connect } from 'react-redux';
 import LeafletMap from 'src/components/LeafletMap';
 
 // Action Creators
-import { openDataForm } from 'src/store/reducer';
+import { openDataForm, updateFormField } from 'src/store/reducer';
 
 const mapStateToProps = null;
 
 const mapDispatchToProps = dispatch => ({
   openDataForm: (position) => {
     dispatch(openDataForm(position));
+  },
+  updateFormField: (fieldName, input) => {
+    dispatch(updateFormField(fieldName, input));
   },
 });
 
