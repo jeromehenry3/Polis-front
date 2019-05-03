@@ -3,17 +3,23 @@
 .renseignement-donnees {
   z-index: 10000;
   position: absolute;
-  max-width: 600px;
+  max-width: 380px;
   background-color: white;
   border-radius: 10px;
   top: 50%; /* poussé de la moitié de hauteur du référent */
   left: -600px;
   transform: translateY(-50%); /* tiré de la moitié de sa propre hauteur */
   box-shadow: 0px 0px 8px 0px rgba(0,0,0,0.75);
-  transition: 0.4s;
+  transition: 0.28s;
+  transition-timing-function: cubic-bezier(0,.98,.73,1.03);
 
   &_relative {
     position: relative;
+  }
+
+  input {
+    font-size:1em;
+    margin-bottom:22px;
   }
 
   &.open {
@@ -55,12 +61,12 @@
 
   &_address-container {
     height:40px;
-    margin-bottom:30px;
+    margin-bottom:20px;
   }
 
   &_appareil {
     width: 50px;
-    margin: 20px auto;
+    margin: 30px auto;
     display: block;
   }
 
@@ -93,7 +99,11 @@
   &_close {
     position: absolute;
     top: -10px;
-    right: 10px;
+    right: 20px;
+  }
+
+  &_share {
+    padding:10px 0;
   }
 
   &_submit {

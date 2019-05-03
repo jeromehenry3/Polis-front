@@ -27,7 +27,7 @@ const RenseignementDonnees = ({
   youknowInput,
   loading,
 }) => {
-  
+
   const handleCloseDataForm = (e) => {
     e.preventDefault();
     console.log('Dataform closed');
