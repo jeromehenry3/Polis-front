@@ -8,12 +8,12 @@ import Form from '../Form';
 import './login.scss';
 
 const Login = ({
-  username, passwordInput, updateFormField, connectUser, isConnected,
+  username, passwordInput, updateFormField, connectUser, isConnected, loginMessage, loginStatus,
 }) => (
 
   <Form onSubmit={connectUser}>
     {isConnected && <Redirect to="/map" />}
-    <p className="identification-message">Vous devez vous identifier pour contribuer à Polis</p>
+    <p className={`identification-message ${loginStatus}`}>{loginMessage}</p>
 
     <Input
       type="email"
@@ -22,6 +22,7 @@ const Login = ({
       placeholder="Email"
       value={username}
       onChangeFunction={input => updateFormField('username', input)}
+      disabled={loginStatus === 'connecting'}
     />
 
     <Input
@@ -31,6 +32,7 @@ const Login = ({
       placeholder="Mot de passe"
       value={passwordInput}
       onChangeFunction={input => updateFormField('passwordInput', input)}
+      disabled={loginStatus === 'connecting'}
     />
 
     <p className="lost-password">
@@ -66,6 +68,8 @@ Login.propTypes = {
   updateFormField: PropTypes.func.isRequired,
   connectUser: PropTypes.func.isRequired,
   isConnected: PropTypes.bool.isRequired,
+  loginMessage: PropTypes.string.isRequired,
+  loginStatus: PropTypes.string.isRequired,
 };
 
 /**

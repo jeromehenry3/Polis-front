@@ -12,6 +12,8 @@ const initialState = {
   refreshToken: '',
   isConnected: false,
 
+  loginMessage: 'Vous devez vous identifier pour contribuer à Polis',
+  loginStatus: 'not-connected', // string : not-connected || connecting || connected, for logic purposes
 
   // ************FIELDS OF THE CARD DATA*******
   isDataFormOpen: false, // bool qui indique si le formulaire de renseignement de données est ouvert
@@ -56,13 +58,18 @@ const reducer = (state = initialState, action = {}) => {
         [action.fieldName]: action.input,
       };
     case CONNECT_USER:
-      return state;
+      return {
+        ...state,
+        loginMessage: 'Connexion en cours',
+        loginStatus: 'connecting',
+      };
     case STORE_TOKEN:
       return {
         ...state,
         token: action.token,
         refreshToken: action.refreshToken,
         isConnected: true,
+        loginMessage: 'Vous êtes connecté(e)',
       };
     case SIGNIN:
       return state;

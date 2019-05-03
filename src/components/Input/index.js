@@ -6,7 +6,7 @@ import PropTypes from 'prop-types';
 import './input.scss';
 
 const Input = ({
-  type, id, name, placeholder, value, onChangeFunction,
+  type, id, name, placeholder, value, onChangeFunction, disabled,
 }) => {
   const handleFocus = (event) => {
     event.target.classList.add('open');
@@ -25,6 +25,7 @@ const Input = ({
         onFocus={handleFocus}
         value={value}
         onChange={handleChange}
+        disabled={disabled}
       />
       <label htmlFor={id}>{placeholder}</label>
     </div>
@@ -32,6 +33,7 @@ const Input = ({
 };
 
 Input.propTypes = {
+  // *******DATA*******
   id: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
   placeholder: PropTypes.string.isRequired,
@@ -40,7 +42,10 @@ Input.propTypes = {
     PropTypes.string,
     PropTypes.number,
   ]).isRequired,
+
+  // *******LOGIC*******
   onChangeFunction: PropTypes.func.isRequired,
+  disabled: PropTypes.bool.isRequired,
 };
 
 export default Input;

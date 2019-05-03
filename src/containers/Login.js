@@ -12,6 +12,8 @@ const mapStateToProps = state => ({
   username: state.username,
   passwordInput: state.passwordInput,
   isConnected: state.isConnected,
+  loginMessage: state.loginMessage,
+  loginStatus: state.loginStatus,
 });
 
 const mapDispatchToProps = dispatch => ({
