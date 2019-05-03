@@ -9,7 +9,7 @@ const polisApiMiddleware = store => next => (action) => {
       next(action);
       axios.post('http://92.243.9.51/api/login', {
         username: store.getState().username,
-        passwordInput: store.getState().passwordInput,
+        password: store.getState().passwordInput,
       })
         .then((response) => {
           console.log(response.data);
@@ -21,7 +21,7 @@ const polisApiMiddleware = store => next => (action) => {
     case SIGNIN:
       next(action);
       axios.post('http://92.243.9.51/api/signin', {
-        username: store.getState().username,
+        email: store.getState().username,
         password: store.getState().passwordInput,
         password2: store.getState().passwordConfirmInput,
         firstname: store.getState().firstNameInput,
