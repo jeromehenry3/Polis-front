@@ -26,14 +26,12 @@ const RenseignementDonnees = ({
   console.log(updateFormField);
   
   const handleCloseDataForm = (e) => {
-    // pourquoi preventDefault() ici? sinon la page se recharge? (clément)
     e.preventDefault();
     console.log('Dataform closed');
     closeDataForm();
   };
 
   const handleAddBuilding = (e) => {
-    // pourquoi preventDefault() ici? (clément)
     e.preventDefault();
     console.log('building added');
     // addBuilding();
