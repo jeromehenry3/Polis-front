@@ -39,6 +39,7 @@ const initialState = {
 export const UPDATE_FORM_FIELD = 'UPDATE_FORM_FIELD';
 export const CONNECT_USER = 'CONNECT_USER'; // Api connection with username && password
 export const STORE_TOKEN = 'STORE_TOKEN';
+export const CONNECTING_ERROR = 'CONNECTING_ERROR';
 export const SIGNIN = 'SIGNIN';
 export const OPEN_DATA_FORM = 'OPEN_DATA_FORM';
 export const CLOSE_DATA_FORM = 'CLOSE_DATA_FORM';
@@ -62,6 +63,12 @@ const reducer = (state = initialState, action = {}) => {
         ...state,
         loginMessage: 'Connexion en cours',
         loginStatus: 'connecting',
+      };
+    case CONNECTING_ERROR:
+      return {
+        ...state,
+        loginMessage: action.message,
+        loginStatus: 'not-connected',
       };
     case STORE_TOKEN:
       return {
@@ -110,7 +117,10 @@ export const storeToken = (token, refreshToken) => ({
 export const signin = () => ({
   type: SIGNIN,
 });
-
+export const connectingError = message => ({
+  type: CONNECTING_ERROR,
+  message,
+});
 export const openDataForm = position => ({
   type: OPEN_DATA_FORM,
   position,

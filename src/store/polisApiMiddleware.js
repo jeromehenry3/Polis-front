@@ -1,6 +1,8 @@
 import axios from 'axios';
 
-import { CONNECT_USER, SIGNIN, SUBMIT_BUILDING, storeToken } from './reducer';
+import {
+  CONNECT_USER, SIGNIN, SUBMIT_BUILDING, storeToken, connectingError,
+} from './reducer';
 
 // eslint-disable-next-line consistent-return
 const polisApiMiddleware = store => next => (action) => {
@@ -17,7 +19,9 @@ const polisApiMiddleware = store => next => (action) => {
           store.dispatch(storeToken(token, refreshToken));
         })
         .catch((error) => {
-          console.log(error.message);
+          console.log('erreur :', error.code);
+          const message = (error.code === '401' ? 'Identifiant ou mot de passe invalide' : 'Une erreur est survenue, veuillez réessayer');
+          store.dispatch(connectingError(message));
         });
       break;
     case SIGNIN:
