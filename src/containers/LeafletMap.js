@@ -19,7 +19,7 @@ const mapDispatchToProps = dispatch => ({
 
   closeAllModals: () => {
     dispatch(closeAllModals());
-  }
+  },
 
   updateFormField: (fieldName, input) => {
     dispatch(updateFormField(fieldName, input));

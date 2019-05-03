@@ -10,29 +10,30 @@ import './login.scss';
 const Login = ({
   username, passwordInput, updateFormField, connectUser, isConnected, loginMessage, loginStatus,
 }) => (
-  <Form onSubmit={connectUser}>
-    {isConnected && <Redirect to="/map" />}
-    <p className={`identification-message ${loginStatus}`}>{loginMessage}</p>
+  <div id="login">
+    <Form onSubmit={connectUser}>
+      {isConnected && <Redirect to="/map" />}
+      <p className={`identification-message ${loginStatus}`}>{loginMessage}</p>
 
-    <Input
-      type="email"
-      id="email"
-      name="email"
-      placeholder="Email"
-      value={username}
-      onChangeFunction={input => updateFormField('username', input)}
-      disabled={loginStatus === 'connecting'}
-    />
+      <Input
+        type="email"
+        id="email"
+        name="email"
+        placeholder="Email"
+        value={username}
+        onChangeFunction={input => updateFormField('username', input)}
+        disabled={loginStatus === 'connecting'}
+      />
 
-    <Input
-      type="password"
-      id="password"
-      name="password"
-      placeholder="Mot de passe"
-      value={passwordInput}
-      onChangeFunction={input => updateFormField('passwordInput', input)}
-      disabled={loginStatus === 'connecting'}
-    />
+      <Input
+        type="password"
+        id="password"
+        name="password"
+        placeholder="Mot de passe"
+        value={passwordInput}
+        onChangeFunction={input => updateFormField('passwordInput', input)}
+        disabled={loginStatus === 'connecting'}
+      />
 
       <p className="lost-password-label"><Link to="/lost-password" className="lost-password-link"> J'ai perdu </Link>mon mot de passe </p>
 
