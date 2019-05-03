@@ -9,7 +9,7 @@ const polisApiMiddleware = store => next => (action) => {
   switch (action.type) {
     case CONNECT_USER:
       next(action);
-      axios.post('https://92.243.9.51/api/login', {
+      axios.post('http://92.243.9.51/api/login', {
         username: store.getState().username,
         password: store.getState().passwordInput,
       })
@@ -26,7 +26,7 @@ const polisApiMiddleware = store => next => (action) => {
       break;
     case SIGNIN:
       next(action);
-      axios.post('https://92.243.9.51/api/signin', {
+      axios.post('http://92.243.9.51/api/signin', {
         email: store.getState().username,
         password: store.getState().passwordInput,
         password2: store.getState().passwordConfirmInput,
