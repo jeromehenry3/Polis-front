@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 
-import { updateFormField, closeDataForm } from 'src/store/reducer';
+import { updateFormField, closeDataForm, submitBuilding } from 'src/store/reducer';
 
 /**
  * Local import
@@ -32,8 +32,8 @@ const mapDispatchToProps = dispatch => ({
   updateFormField: (fieldName, input) => {
     dispatch(updateFormField(fieldName, input));
   },
-  addBuilding: () => {
-
+  submitBuilding: () => {
+    dispatch(submitBuilding());
   },
 });
 
