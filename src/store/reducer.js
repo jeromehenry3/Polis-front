@@ -15,7 +15,7 @@ const initialState = {
 
   // ************FIELDS OF THE CARD DATA*******
   isDataFormOpen: false, // bool qui indique si le formulaire de renseignement de données est ouvert
-  clickedAdress: '', // String contenant l'adresse d'où a cliqué l'utilisateur
+  clickedAdress: '', // String contenant l'adresse d'où a cliqué l'utilisateur // TYPO A CORRIGER PARTOUT*******
   clickedLat: '',
   clickedLng: '',
   nameInput: '',
@@ -40,6 +40,7 @@ export const STORE_TOKEN = 'STORE_TOKEN';
 export const SIGNIN = 'SIGNIN';
 export const OPEN_DATA_FORM = 'OPEN_DATA_FORM';
 export const CLOSE_DATA_FORM = 'CLOSE_DATA_FORM';
+export const SUBMIT_BUILDING = 'SUBMIT_BULDING';
 /**
  * Traitements
  */
@@ -75,6 +76,8 @@ const reducer = (state = initialState, action = {}) => {
         ...state,
         isDataFormOpen: false,
       };
+    case SUBMIT_BUILDING:
+      return state;
     default:
       return state;
   }
@@ -108,6 +111,10 @@ export const openDataForm = position => ({
 
 export const closeDataForm = () => ({
   type: CLOSE_DATA_FORM,
+});
+
+export const submitBuilding = () => ({
+  type: SUBMIT_BUILDING,
 });
 /**
  * Selectors

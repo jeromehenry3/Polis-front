@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-import { CONNECT_USER, SIGNIN, storeToken } from './reducer';
+import { CONNECT_USER, SIGNIN, SUBMIT_BUILDING, storeToken } from './reducer';
 
 // eslint-disable-next-line consistent-return
 const polisApiMiddleware = store => next => (action) => {
@@ -28,6 +28,26 @@ const polisApiMiddleware = store => next => (action) => {
         password2: store.getState().passwordConfirmInput,
         firstname: store.getState().firstNameInput,
         lastname: store.getState().lastNameInput,
+      })
+        .then((response) => {
+          console.log(response.data);
+        })
+        .catch((error) => {
+          console.log(error.message);
+        });
+      break;
+    case SUBMIT_BUILDING:
+      next(action);
+      axios.post('http://92.243.9.51/api/createBuilding', {
+        latitude: store.getState().clickedLat,
+        longitude: store.getState().clickedLng,
+        adresse: store.getState().clickedAdress,
+        certified: false,
+        delivered: true,
+      }, {
+        headers: {
+          Authorization: `Bearer ${store.getState().token}`,
+        },
       })
         .then((response) => {
           console.log(response.data);
