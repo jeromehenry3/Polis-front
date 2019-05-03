@@ -25,7 +25,7 @@
         &_subtitle {    // Polis subtitle
             font-weight: bold;
             text-align: center;
-            margin: 10px 0 40px 0;
+            margin: 0 0 20px 0;
             color: $grey-dark;
             
             span {  // La cité
@@ -33,4 +33,17 @@
             }
         }
     }
+}
+
+@media screen and (max-width: 430px) { 
+  #welcome {
+      .welcome-container {
+          img {
+              width:250px;
+              position: relative;
+              left: 50%;
+              margin-left: -125px;
+          }
+      }
+  }
 }

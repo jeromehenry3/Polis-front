@@ -10,7 +10,6 @@ import './login.scss';
 const Login = ({
   username, passwordInput, updateFormField, connectUser, isConnected, loginMessage, loginStatus,
 }) => (
-
   <Form onSubmit={connectUser}>
     {isConnected && <Redirect to="/map" />}
     <p className={`identification-message ${loginStatus}`}>{loginMessage}</p>
@@ -35,31 +34,30 @@ const Login = ({
       disabled={loginStatus === 'connecting'}
     />
 
-    <p className="lost-password">
-      <a onClick={() => alert('appelle Thomas')}>J'ai perdu</a> mon mot de passe
-    </p>
+      <p className="lost-password-label"><Link to="/lost-password" className="lost-password-link"> J'ai perdu </Link>mon mot de passe </p>
 
-    <button
-      type="submit"
-      className="inverted-colors form-button"
-    >
-      Me connecter
-    </button>
+      <button
+        type="submit"
+        className="inverted-colors form-button"
+      >
+        Me connecter
+      </button>
 
-    <p>Je souhaite <Link to="/signin">m'inscrire</Link> et contribuer à Polis</p>
+      <p>Je souhaite <Link to="/signin">m'inscrire</Link> et contribuer à Polis</p>
 
-    <div
-      id="login-pin"
-      style={{
-        backgroundImage: `url(${Pins3})`,
-      }}
-    >
-      <p>ou</p>
-    </div>
+      <div
+        id="login-pin"
+        style={{
+          backgroundImage: `url(${Pins3})`,
+        }}
+      >
+        <p>ou</p>
+      </div>
 
-    <Link to="/map" className="form-button">Entrer en simple visiteur</Link>
+      <Link to="/map" className="form-button">Entrer en simple visiteur</Link>
 
-  </Form>
+    </Form>
+  </div>
 );
 
 Login.propTypes = {

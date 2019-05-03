@@ -11,6 +11,7 @@ import { Switch, Route, Redirect } from 'react-router-dom';
 // Containers
 import Signin from 'src/containers/Signin';
 import Login from 'src/containers/Login';
+import LostPassword from 'src/containers/LostPassword';
 import LeafletMap from 'src/containers/LeafletMap';
 
 // Dumb
@@ -51,6 +52,16 @@ const App = () => (
       render={() => (
         <Welcome>
           <Login />
+        </Welcome>
+      )}
+    />
+
+    <Route
+      exact
+      path="/lost-password"
+      render={() => (
+        <Welcome>
+          <LostPassword />
         </Welcome>
       )}
     />
