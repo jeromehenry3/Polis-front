@@ -5,17 +5,19 @@ p {
   text-align: center;
   padding-top: .8em;
   padding-bottom: .5em;
-  &.lost-password {
-    text-align: left;
-    color: rgba(191, 191, 191, 1);
-    margin-top: -1.8em;
-    margin-bottom: 1.8em;
-  }
+  
   &.identification-message {
     transform: translateY(-20px);
   }
 }
-
+#password {
+  margin-bottom:0;
+}
+.lost-password-label {
+  text-align: left;
+  color: rgb(195, 195, 195);
+  margin-bottom: 1.8em;
+}
 div#login-pin {
   margin: .8em auto;
   width: 2.4em;
@@ -41,4 +43,14 @@ button.inverted-colors {
 a:hover {
   color: $yellow-darken;
   cursor: pointer;
+}
+
+@media screen and (max-width: 430px) {  
+  p.lost-password {
+    font-size: 0.7em;
+    margin-bottom:0.6em;
+  }
+  div#login-pin {
+    margin:.2em auto;
+  }
 }
