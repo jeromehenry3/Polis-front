@@ -11,8 +11,6 @@
   top: 50%; /* poussé de la moitié de hauteur du référent */
   left: -600px;
   transform: translateY(-50%); /* tiré de la moitié de sa propre hauteur */
-  -webkit-box-shadow: 0px 0px 8px 0px rgba(0,0,0,0.75);
-  -moz-box-shadow: 0px 0px 8px 0px rgba(0,0,0,0.75);
   box-shadow: 0px 0px 8px 0px rgba(0,0,0,0.75);
   transition: 0.4s;
 
