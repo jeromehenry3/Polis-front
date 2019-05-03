@@ -60,7 +60,12 @@ const Signin = ({
 
     <button type="submit" className="form-button">M'inscrire</button>
 
-    <Link to="/login">J'ai déjà mes identifiants</Link>
+    <Link
+      to="/login"
+      className="link-to-login"
+    >
+      J'ai déjà des identifiants
+    </Link>
   </Form>
 );
 

@@ -20,12 +20,12 @@ const Leaflet = ({
   };
   const myPinUne = L.icon({
     iconUrl: `${pins3}`,
-    iconSize:     [40, 40], // size of the icon
+    iconSize: [40, 40], // size of the icon
     // shadowSize:   [50, 64], // size of the shadow
   });
   const myPinDeux = L.icon({
     iconUrl: `${pins8}`,
-    iconSize:     [40, 40], // size of the icon
+    iconSize: [40, 40], // size of the icon
     // shadowSize:   [50, 64], // size of the shadow
   });
 
