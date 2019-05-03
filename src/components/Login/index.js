@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 import Pins3 from '../../styles/images/pins3.png';
 import Input from '../Input';
 import Form from '../Form';
@@ -8,10 +8,11 @@ import Form from '../Form';
 import './login.scss';
 
 const Login = ({
-  username, passwordInput, updateFormField, connectUser,
+  username, passwordInput, updateFormField, connectUser, isConnected, loginMessage, loginStatus,
 }) => (
   <Form onSubmit={connectUser}>
-    <p className="identification-message">Vous devez vous identifier pour contribuer à Polis</p>
+    {isConnected && <Redirect to="/map" />}
+    <p className={`identification-message ${loginStatus}`}>{loginMessage}</p>
 
     <Input
       type="email"
@@ -20,6 +21,7 @@ const Login = ({
       placeholder="Email"
       value={username}
       onChangeFunction={input => updateFormField('username', input)}
+      disabled={loginStatus === 'connecting'}
     />
 
     <Input
@@ -29,33 +31,33 @@ const Login = ({
       placeholder="Mot de passe"
       value={passwordInput}
       onChangeFunction={input => updateFormField('passwordInput', input)}
+      disabled={loginStatus === 'connecting'}
     />
 
-    <p className="lost-password">
-      <a onClick={() => alert('appelle Thomas')}>J'ai perdu</a> mon mot de passe
-    </p>
+      <p className="lost-password-label"><Link to="/lost-password" className="lost-password-link"> J'ai perdu </Link>mon mot de passe </p>
 
-    <button
-      type="submit"
-      className="inverted-colors form-button"
-    >
-      Me connecter
-    </button>
+      <button
+        type="submit"
+        className="inverted-colors form-button"
+      >
+        Me connecter
+      </button>
 
-    <p>Je souhaite <Link to="/signin">m'inscrire</Link> et contribuer à Polis</p>
+      <p>Je souhaite <Link to="/signin">m'inscrire</Link> et contribuer à Polis</p>
 
-    <div
-      id="login-pin"
-      style={{
-        backgroundImage: `url(${Pins3})`,
-      }}
-    >
-      <p>ou</p>
-    </div>
+      <div
+        id="login-pin"
+        style={{
+          backgroundImage: `url(${Pins3})`,
+        }}
+      >
+        <p>ou</p>
+      </div>
 
-    <Link to="/map" className="form-button">Entrer en simple visiteur</Link>
+      <Link to="/map" className="form-button">Entrer en simple visiteur</Link>
 
-  </Form>
+    </Form>
+  </div>
 );
 
 Login.propTypes = {
@@ -63,6 +65,9 @@ Login.propTypes = {
   passwordInput: PropTypes.string.isRequired,
   updateFormField: PropTypes.func.isRequired,
   connectUser: PropTypes.func.isRequired,
+  isConnected: PropTypes.bool.isRequired,
+  loginMessage: PropTypes.string.isRequired,
+  loginStatus: PropTypes.string.isRequired,
 };
 
 /**

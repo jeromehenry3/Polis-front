@@ -12,7 +12,7 @@ import './renseignement.scss';
 const RenseignementDonnees = ({
   isDataFormOpen,
   closeDataForm,
-  addBuilding,
+  submitBuilding,
   updateFormField,
   nameInput,
   surfaceInput,
@@ -34,10 +34,10 @@ const RenseignementDonnees = ({
     closeDataForm();
   };
 
-  const handleAddBuilding = (e) => {
+  const handleSubmitBuilding = (e) => {
     e.preventDefault();
-    console.log('building added');
-    // addBuilding();
+    console.log('submitting building');
+    submitBuilding();
   };
 
   return (
@@ -156,7 +156,7 @@ const RenseignementDonnees = ({
 
           </div>
           <div className="renseignement-donnees_submit">
-            <button type="submit" className="form-button" onClick={handleAddBuilding}>Ajouter</button>
+            <button type="submit" className="form-button" onClick={handleSubmitBuilding}>Ajouter</button>
           </div>
         </form>
         <a href="#" className="renseignement-donnees_share">Partager</a>

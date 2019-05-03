@@ -26,3 +26,15 @@
   }
 }
 
+// Petits écrans
+@media screen and (max-width: 430px) { 
+  .form {
+    padding: 30px 35px;
+  }
+  .form-button {
+    font-size:16px;;
+  }
+  .link-to-login {
+    font-size:12px;
+  }
+}

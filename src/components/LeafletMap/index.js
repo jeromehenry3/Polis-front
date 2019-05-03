@@ -12,20 +12,24 @@ import pins8 from '../../styles/images/Pins8.png';
 // Création de la map avec React Leaflet
 
 const Leaflet = ({
-  openDataForm, closeAllModals,
+
+  openDataForm, closeAllModals, updateFormField,
+
 }) => {
   const handleRightClick = (e) => {
     console.log(e.latlng);
+    updateFormField('clickedLat', e.latlng.lat);
+    updateFormField('clickedLng', e.latlng.lng);
     openDataForm(e.latlng);
   };
   const myPinUne = L.icon({
     iconUrl: `${pins3}`,
-    iconSize:     [40, 40], // size of the icon
+    iconSize: [40, 40], // size of the icon
     // shadowSize:   [50, 64], // size of the shadow
   });
   const myPinDeux = L.icon({
     iconUrl: `${pins8}`,
-    iconSize:     [40, 40], // size of the icon
+    iconSize: [40, 40], // size of the icon
     // shadowSize:   [50, 64], // size of the shadow
   });
 
