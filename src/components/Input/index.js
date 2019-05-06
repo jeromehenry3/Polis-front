@@ -16,7 +16,7 @@ const Input = ({
   };
 
   return (
-    <div>
+    <div className="input-container">
       <input
         type={type}
         id={id}
@@ -26,6 +26,7 @@ const Input = ({
         value={value}
         onChange={handleChange}
         disabled={disabled}
+        className="input"
       />
       <label htmlFor={id}>{placeholder}</label>
     </div>

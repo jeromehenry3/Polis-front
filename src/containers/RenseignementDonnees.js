@@ -18,12 +18,13 @@ const mapStateToProps = state => ({
   styleInput: state.styleInput,
   dateInput: state.dateInput,
   architectInput: state.architectInput,
-  promotorInput: state.promotorInput,
-  constructorInput: state.constructorInput,
-  amenageInput: state.amenageInput,
+  promoterInput: state.promoterInput,
+  builderInput: state.builderInput,
+  plannerInput: state.plannerInput,
   urbanistInput: state.urbanistInput,
-  youknowInput: state.youknowInput,
+  descriptionInput: state.descriptionInput,
   loading: state.loading,
+  architectures: state.architectures,
 });
 
 const mapDispatchToProps = dispatch => ({

@@ -10,29 +10,28 @@ const initialState = {
   firstNameInput: '', // string
   lastNameInput: '', // string
   isDataFormOpen: false, // bool qui indique si le formulaire de renseignement de données est ouvert ou non
-  token: '', // string,
+  token: "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJpYXQiOjE1NTcxNDQxNjMsImV4cCI6MTU1NzIzMDU2Mywicm9sZXMiOlsiUk9MRV9VU0VSIl0sInVzZXJuYW1lIjoiZm1hY2tvZGV2QGdtYWlsLmNvbSJ9.KAFU6aKPvmfEa_TFz78HiXX_xwjURYJGFGwkguRtbqAeT1h6wWyJooEjsgvnRfYQGN_uCg_oxtyqRSqTYGl2ze_VRtntVc0sp4iwLkmspNMtg4CzCRdceDiiUfpVP9plFRjXHUQ_zWrLqr-Efu5UsbiduHWUi9nUs-Ie1ivPejfTwYkyuCZR3RKyl09Yqva9XhLTn7RofLqJgUOOPViuTbv03hXmG_f4Oe6RWjBTz1JHt9i5iSvzP2wJU_3ApsfwgKSkhBNssF-NRfkx0UnsFN-vPQbgDor-Seb_v-ItzKo_k21INx_wRgt3gbjjDkUaBhfBNC1tdjVYGq3toYZVqg5DwOjWuVbdkzmWSd3LSqa_dTY0pixt9rx5hsMSkmENyvrKVQ3C6cRa9-IYFJdDvaumoP2cz_KSfJSnUiCD7YtiRz5gb2a5gyJDJIHe3o-KLFdHImqqWJlO-SBStgLoO_jWFmmAZRxTECnSg3EBF18v4m_xOHSI_Cs5eg_XpXGPfz3Y-X-zJFh7iaJ8tVLTEDFmsoFB3TtZG5KI1-ciByWH0egF2_kkABpLHmVfEbWtxNjIfnfxl2Sg4zGqFtVn28DiuvZag41ML9OVRk9h7z1o9JC8qqw2EOpcBI_gkNnzsIkhsEGC2DPo3DbMXV_kyUTg6WzofCGnwhNRr8wxTR4", // string,
   refreshToken: '',
   isConnected: false,
   loginMessage: 'Vous devez vous identifier pour contribuer à Polis',
   loginStatus: 'not-connected', // string : not-connected || connecting || connected, for logic purposes
 
   // ************FIELDS OF THE CARD DATA*******
-  isDataFormOpen: false, // bool qui indique si le formulaire de renseignement de données est ouvert
-  clickedAdress: '', // String contenant l'adresse d'où a cliqué l'utilisateur // TYPO A CORRIGER PARTOUT*******
-  clickedLat: '',
-  clickedLng: '',
+  clickedLat: 0,
+  clickedLng: 0,
   nameInput: '',
   surfaceInput: '',
   addressInput: '',
-  styleInput: '',
+  styleInput: 0,
   dateInput: '',
   architectInput: '',
-  promotorInput: '',
-  constructorInput: '',
-  amenageInput: '',
+  promoterInput: '',
+  builderInput: '',
+  plannerInput: '',
   urbanistInput: '',
-  youknowInput: '',
+  descriptionInput: '',
   loading: false,
+  architectures: [],
 };
 
 /**
@@ -48,6 +47,8 @@ export const OPEN_DATA_FORM_RESPONSE = 'OPEN_DATA_FORM_RESPONSE';
 export const CLOSE_DATA_FORM = 'CLOSE_DATA_FORM';
 export const CLOSE_ALL_MODALS = 'CLOSE_ALL_MODALS';
 export const SUBMIT_BUILDING = 'SUBMIT_BULDING';
+export const SET_ARCHITECTURES = 'SET_ARCHITECTURES';
+export const GET_ARCHITECTURES = 'GET_ARCHITECTURES';
 
 /**
  * Traitements
@@ -111,6 +112,11 @@ const reducer = (state = initialState, action = {}) => {
         isDataFormOpen: false,
         // Les futurs modals à fermer
       };
+    case SET_ARCHITECTURES:
+      return {
+        ...state,
+        architectures: action.architectures,
+      };
     case SUBMIT_BUILDING:
       return state;
     default:
@@ -158,6 +164,15 @@ export const closeDataForm = () => ({
 
 export const closeAllModals = () => ({
   type: CLOSE_ALL_MODALS,
+});
+
+export const getArchitectures = () => ({
+  type: GET_ARCHITECTURES,
+});
+
+export const setArchitectures = architectures => ({
+  type: SET_ARCHITECTURES,
+  architectures,
 });
 
 export const submitBuilding = () => ({
