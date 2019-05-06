@@ -91,47 +91,48 @@ const RenseignementDonnees = ({
                 disabled={false}
               />
             </div>
+            <div className="renseignement-donnees_secondary-infos">  
+              <div className="input-container">
+                <select
+                  id="style"
+                  name="style"
+                  className="input select-style"
+                  onChange={handleSelectChange}
+                  onFocus={(event) => {
+                    event.target.classList.add('open');
+                  }}
+                >
+                  <option value={0} defaultValue>-- Style Architectural --</option>
+                  {
+                    architectures.map(architecture => (
+                      <option key={architecture.id} value={architecture.id}>{architecture.name}</option>
+                    ))
+                  }
+                </select>
+                <label htmlFor="style">Style</label>
+              </div>
 
-            <div className="input-container">
-              <select
-                id="style"
-                name="style"
-                className="input"
-                onChange={handleSelectChange}
-                onFocus={(event) => {
-                  event.target.classList.add('open');
-                }}
-              >
-                <option value={0} defaultValue>-- Style Architectural --</option>
-                {
-                  architectures.map(architecture => (
-                    <option key={architecture.id} value={architecture.id}>{architecture.name}</option>
-                  ))
-                }
-              </select>
-              <label htmlFor="style">Style</label>
-            </div>
-
-            <div className="input-container">
-              <input
-                className="input"
-                type="number"
-                min="1900"
-                max="2099"
-                step="1"
-                value={dateInput}
-                id="date"
-                name="date"
-                placeholder="Année de livraison ou de livraison estimée"
-                onChange={(e) => {
-                  updateFormField('dateInput', e.target.value);
-                }}
-                onFocus={(event) => {
-                  event.target.classList.add('open');
-                }}
-              />
-              <label htmlFor="date">Date</label>
-            </div>
+              <div className="input-container">
+                <input
+                  className="input"
+                  type="number"
+                  min="1900"
+                  max="2099"
+                  step="1"
+                  value={dateInput}
+                  id="date"
+                  name="date"
+                  placeholder="Année de livraison ou de livraison estimée"
+                  onChange={(e) => {
+                    updateFormField('dateInput', e.target.value);
+                  }}
+                  onFocus={(event) => {
+                    event.target.classList.add('open');
+                  }}
+                />
+                <label htmlFor="date">Date</label>
+              </div>
+          </div>
             <Input
               type="text"
               id="architect"

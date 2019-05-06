@@ -100,6 +100,24 @@
     }
   }
 
+  .renseignement-donnees_secondary-infos {
+    display: flex;
+    justify-content: space-between;
+    .input-container:nth-child(1) {
+      width: 92%;
+      padding-right:10px;
+    }
+    .input-container:nth-child(2) {
+      width: 30%;
+    }
+  }
+
+  select.select-style {
+    background-color:white;
+    padding-top:6px;
+    padding-bottom:7px;
+  }
+
   &_share, &_close {
     text-transform: uppercase;
     font-weight: bold;
@@ -107,14 +125,15 @@
     color: black;
     margin: 0 auto;
     display: block;
-    margin: 10px 0;
+    margin: 5px 0;
     transition: 0.2s;
   }
 
   &_close {
     position: absolute;
-    top: -10px;
+    top: -5px;
     right: 20px;
+    padding: 10px;
   }
 
   &_share {
@@ -141,6 +160,12 @@
   }
   .invisible-desktop {
     display:inline-block;
+  }
+
+  select.select-style {
+    background-color:white;
+    padding-top:6px;
+    padding-bottom:5px;
   }
 
   .renseignement-donnees {
