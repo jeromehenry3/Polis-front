@@ -1,3 +1,4 @@
+/* eslint-disable radix */
 /* eslint-disable jsx-a11y/label-has-associated-control */
 /* eslint-disable jsx-a11y/label-has-for */
 
@@ -17,20 +18,26 @@ const RenseignementDonnees = ({
   nameInput,
   surfaceInput,
   addressInput,
-  styleInput,
   dateInput,
   architectInput,
-  promotorInput,
-  constructorInput,
-  amenageInput,
+  promoterInput,
+  builderInput,
+  plannerInput,
   urbanistInput,
-  youknowInput,
+  descriptionInput,
   loading,
+  architectures,
 }) => {
   const handleCloseDataForm = (e) => {
     e.preventDefault();
     console.log('Dataform closed');
     closeDataForm();
+  };
+
+  const handleSelectChange = (e) => {
+    console.log(e.target.value);
+
+    updateFormField('architectureInput', parseInt(e.target.value));
   };
 
   const handleSubmitBuilding = (e) => {
@@ -55,6 +62,7 @@ const RenseignementDonnees = ({
                 placeholder="Nom"
                 value={nameInput}
                 onChangeFunction={input => updateFormField('nameInput', input)}
+                disabled={false}
               />
 
               <Input
@@ -64,6 +72,7 @@ const RenseignementDonnees = ({
                 placeholder="m²"
                 value={surfaceInput}
                 onChangeFunction={input => updateFormField('surfaceInput', input)}
+                disabled={false}
               />
             </div>
 
@@ -78,29 +87,40 @@ const RenseignementDonnees = ({
                 placeholder="Adresse"
                 value={addressInput}
                 onChangeFunction={input => updateFormField('addressInput', input)}
+                disabled={false}
               />
             </div>
 
-            <Input
-              type="text"
-              id="style"
-              name="style"
-              placeholder="Style"
-              value={styleInput}
-              onChangeFunction={input => updateFormField('styleInput', input)}
-            />
-            <select name="carlist" form="carform" className="input-container">
-              <option className="input" value="volvo">Volvo</option>
-            </select>
+            <div className="input-container">
+              <select id="style" name="carlist" form="carform" className="input" onChange={handleSelectChange}>
+                <option value={0} defaultValue>-- Style Architectural --</option>
+                {
+                  architectures.map(architecture => (
+                    <option key={architecture.id} value={architecture.id}>{architecture.name}</option>
+                  ))
+                }
+              </select>
+              <label htmlFor="style">Style</label>
+            </div>
 
-            <Input
-              type="date"
-              id="date"
-              name="date"
-              placeholder="Année de livraison ou de livraison estimée"
-              value={dateInput}
-              onChangeFunction={input => updateFormField('dateInput', input)}
-            />
+            <div className="input-container">
+              <input
+                className="input"
+                type="number"
+                min="1900"
+                max="2099"
+                step="1"
+                value={dateInput}
+                id="date"
+                name="date"
+                placeholder="Année de livraison ou de livraison estimée"
+                onChange={(e) => {
+                  updateFormField('dateInput', e.target.value);
+                }}
+              />
+              <label htmlFor="date">Date</label>
+            </div>
+
 
             <Input
               type="text"
@@ -109,33 +129,37 @@ const RenseignementDonnees = ({
               placeholder="Architecte"
               value={architectInput}
               onChangeFunction={input => updateFormField('architectInput', input)}
+              disabled={false}
             />
 
             <Input
               type="text"
-              id="promotor"
-              name="promotor"
+              id="promoter"
+              name="promoter"
               placeholder="Promoteur"
-              value={promotorInput}
-              onChangeFunction={input => updateFormField('promotorInput', input)}
+              value={promoterInput}
+              onChangeFunction={input => updateFormField('promoterInput', input)}
+              disabled={false}
             />
 
             <Input
               type="text"
-              id="constructor"
-              name="constructor"
+              id="builder"
+              name="builder"
               placeholder="Constructeur"
-              value={constructorInput}
-              onChangeFunction={input => updateFormField('constructorInput', input)}
+              value={builderInput}
+              onChangeFunction={input => updateFormField('builderInput', input)}
+              disabled={false}
             />
 
             <Input
               type="text"
-              id="amenage"
-              name="amenage"
+              id="planner"
+              name="planner"
               placeholder="Aménageur"
-              value={amenageInput}
-              onChangeFunction={input => updateFormField('amenageInput', input)}
+              value={plannerInput}
+              onChangeFunction={input => updateFormField('plannerInput', input)}
+              disabled={false}
             />
 
             <Input
@@ -145,15 +169,17 @@ const RenseignementDonnees = ({
               placeholder="Urbaniste"
               value={urbanistInput}
               onChangeFunction={input => updateFormField('urbanistInput', input)}
+              disabled={false}
             />
 
             <Input
               type="text"
-              id="youknow"
-              name="youknow"
+              id="description"
+              name="description"
               placeholder="Le saviez-vous ?"
-              value={youknowInput}
-              onChangeFunction={input => updateFormField('youknowInput', input)}
+              value={descriptionInput}
+              onChangeFunction={input => updateFormField('descriptionInput', input)}
+              disabled={false}
             />
 
           </div>
@@ -170,20 +196,20 @@ const RenseignementDonnees = ({
 RenseignementDonnees.propTypes = {
   submitBuilding: PropTypes.func.isRequired,
   addressInput: PropTypes.string.isRequired,
-  amenageInput: PropTypes.string.isRequired,
+  plannerInput: PropTypes.string.isRequired,
   architectInput: PropTypes.string.isRequired,
   closeDataForm: PropTypes.func.isRequired,
-  constructorInput: PropTypes.string.isRequired,
+  builderInput: PropTypes.string.isRequired,
   dateInput: PropTypes.string.isRequired,
   isDataFormOpen: PropTypes.bool.isRequired,
   loading: PropTypes.bool.isRequired,
   nameInput: PropTypes.string.isRequired,
-  promotorInput: PropTypes.string.isRequired,
-  styleInput: PropTypes.string.isRequired,
+  promoterInput: PropTypes.string.isRequired,
   surfaceInput: PropTypes.string.isRequired,
   updateFormField: PropTypes.func.isRequired,
   urbanistInput: PropTypes.string.isRequired,
-  youknowInput: PropTypes.string.isRequired,
+  descriptionInput: PropTypes.string.isRequired,
+  architectures: PropTypes.array.isRequired,
 };
 
 export default RenseignementDonnees;

@@ -1,15 +1,22 @@
+/* eslint-disable radix */
 import axios from 'axios';
 
 import {
-  CONNECT_USER, SIGNIN, SUBMIT_BUILDING, storeToken, connectingError,
+  CONNECT_USER,
+  SIGNIN,
+  SUBMIT_BUILDING,
+  storeToken,
+  connectingError,
+  GET_ARCHITECTURES,
+  setArchitectures,
 } from './reducer';
-
+const polisApi = 'https://www.thomas-gillet.com/api';
 // eslint-disable-next-line consistent-return
 const polisApiMiddleware = store => next => (action) => {
   switch (action.type) {
     case CONNECT_USER:
       next(action);
-      axios.post('http://92.243.9.51/api/login', {
+      axios.post(`${polisApi}/login`, {
         username: store.getState().username,
         password: store.getState().passwordInput,
       })
@@ -19,14 +26,14 @@ const polisApiMiddleware = store => next => (action) => {
           store.dispatch(storeToken(token, refreshToken));
         })
         .catch((error) => {
-          console.log('erreur :', error.code);
+          console.log('erreur :', error);
           const message = (error.code === '401' ? 'Identifiant ou mot de passe invalide' : 'Une erreur est survenue, veuillez réessayer');
           store.dispatch(connectingError(message));
         });
       break;
     case SIGNIN:
       next(action);
-      axios.post('http://92.243.9.51/api/signin', {
+      axios.post(`${polisApi}/signin`, {
         email: store.getState().username,
         password: store.getState().passwordInput,
         password2: store.getState().passwordConfirmInput,
@@ -42,10 +49,10 @@ const polisApiMiddleware = store => next => (action) => {
       break;
     case SUBMIT_BUILDING:
       next(action);
-      axios.post('http://92.243.9.51/api/createBuilding', {
+      axios.post(`${polisApi}/createBuilding`, {
         latitude: store.getState().clickedLat,
         longitude: store.getState().clickedLng,
-        adresse: store.getState().addressInput,
+        address: store.getState().addressInput,
         certified: false,
         delivered: true,
       }, {
@@ -55,6 +62,16 @@ const polisApiMiddleware = store => next => (action) => {
       })
         .then((response) => {
           console.log(response.data);
+        })
+        .catch((error) => {
+          console.log(error.message);
+        });
+      break;
+    case GET_ARCHITECTURES:
+      axios.get(`${polisApi}/architecture`)
+        .then((response) => {
+          console.log(response);
+          store.dispatch(setArchitectures(response.data));
         })
         .catch((error) => {
           console.log(error.message);

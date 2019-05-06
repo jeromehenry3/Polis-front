@@ -26,6 +26,16 @@
     left: 10px;
   }
 
+  select {
+    margin-bottom: 30px;
+    padding: 7px;
+    border-radius: 4px;
+    border: 2px solid rgba(191, 191, 191, 0.5);
+    font-size: 1.1em;
+    transition: 0.2s;
+    width: 100%;
+  }
+
   form {
     border-top: 1px solid rgba(191, 191, 191, 0.5);
   }
@@ -62,6 +72,7 @@
   &_address-container {
     height:40px;
     margin-bottom:20px;
+    position: relative;
   }
 
   &_appareil {

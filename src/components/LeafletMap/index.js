@@ -13,7 +13,8 @@ import pins8 from '../../styles/images/Pins8.png';
 // Création de la map avec React Leaflet
 
 class Leaflet extends React.Component {
-  // openDataForm, closeAllModals, updateFormField,
+  // Props: openDataForm, closeAllModals, updateFormField
+
 
   myPinUne = L.icon({
     iconUrl: `${pins3}`,
@@ -26,6 +27,11 @@ class Leaflet extends React.Component {
     iconSize: [40, 40], // size of the icon
     // shadowSize:   [50, 64], // size of the shadow
   });
+
+  componentDidMount() {
+    const { getArchitectures } = this.props;
+    getArchitectures();
+  }
 
   handleRightClick = (e) => {
     const { updateFormField, openDataForm } = this.props;
