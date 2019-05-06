@@ -171,7 +171,7 @@ const RenseignementDonnees = ({
 };
 
 RenseignementDonnees.propTypes = {
-  addBuilding: PropTypes.func.isRequired,
+  submitBuilding: PropTypes.func.isRequired,
   addressInput: PropTypes.string.isRequired,
   amenageInput: PropTypes.string.isRequired,
   architectInput: PropTypes.string.isRequired,

@@ -10,7 +10,7 @@ const extApiMiddleware = store => next => (action) => {
   switch (action.type) {
     case OPEN_DATA_FORM:
       next(action);
-      axios.get(`http://nominatim.openstreetmap.org/reverse?lat=${action.position.lat}&lon=${action.position.lng}&format=json&addressdetails=1`)
+      axios.get(`https://nominatim.openstreetmap.org/reverse?lat=${action.position.lat}&lon=${action.position.lng}&format=json&addressdetails=1`)
         .then((response) => {
           console.log(response.data);
           store.dispatch(openDataFormResponse(response.data));
