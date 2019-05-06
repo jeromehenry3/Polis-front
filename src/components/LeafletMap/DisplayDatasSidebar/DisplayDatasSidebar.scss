@@ -1,0 +1,293 @@
+@import 'src/styles/_vars.scss';
+
+#DisplayDatasSidebar {
+    
+    .invisible-desktop {
+    display:none;
+    }
+
+    .display-donnees {
+    z-index: 10000;
+    position: absolute;
+    max-width: 380px;
+    background-color: white;
+    border-radius: 10px;
+    top: 50%; /* poussé de la moitié de hauteur du référent */
+    left: 5px;
+    transform: translateY(2%); /* -50% tiré de la moitié de sa propre hauteur */
+    box-shadow: 0px 0px 8px 0px rgba(0,0,0,0.75);
+    transition: 0.28s;
+    transition-timing-function: cubic-bezier(0,.98,.73,1.03);
+
+        &_relative {
+            position: relative;
+        }
+
+        &.open {
+            left: 5px;
+        }
+    
+    }
+
+    hr {
+        border-top:rgb(240, 240, 240) 1px solid;
+        border-bottom: 0 solid;
+        margin-bottom:0;
+        padding-bottom:0;
+    }
+
+    .header-picture {
+        width: 380px;
+        height: 170px;
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center;
+        border-radius: 10px 10px 0 0;
+    }
+
+    .header-info {
+        padding:15px 15px 2px;
+
+        &-name {
+            color:rgb(190, 190, 190);
+            font-weight:500;
+            line-height: 1.2em;
+            margin-bottom:5px;
+        }
+        &-address {
+            font-weight:700;
+            font-size: 1.2em;
+            margin-bottom:5px;
+        }
+        &-bottom--panel {
+            display:flex;
+            justify-content: space-between;
+            align-items: baseline;
+        }
+        &-tag {
+            color:white;
+            font-size:0.8em;
+            background-color: $salmon;
+            font-weight:500;
+            padding: 5px 8px 7px 8px;
+            border-radius: 5px;
+        }
+        &-date {
+            font-size:0.8em;
+            font-weight:500;
+            padding: 4px 8px 6px 8px;
+            border-radius: 5px;
+            border: 2px solid $yellow;
+        }
+        &-surface {
+            font-weight:700;
+        }
+
+    }
+
+    .panel-description {
+        padding: 15px 15px 5px;
+        margin-top:-5px;
+        p {
+            text-align:left;
+        }
+        &-title {
+            font-weight: 700;
+            color: $brown;
+            font-size:0.8em;
+            text-decoration: underline;
+        }
+        &-text {
+            line-height: 1.2em;
+        }
+    }
+
+    .panel-builders {
+        padding: 0 15px;
+
+        li {
+            display:flex;
+            justify-content: space-between;
+        }
+        .construction {
+            color:$yellow-darken;
+            font-weight:700;
+            text-decoration: underline;
+        }
+        .amenagement {
+            color:$orange-darken;
+            font-weight:700;
+            text-decoration: underline;
+        }
+    }
+
+    footer {
+        display:flex;
+        justify-content: space-around;
+        align-items:baseline;
+
+        .panel-vote {
+            display: flex;
+            align-items:baseline;
+            border-right: 1px solid #f0f0f0;
+            padding:8px;
+            font-size:0.8em;
+            font-weight:700;
+
+            .upvote a {
+                padding-left:15px;
+                padding-right:5px;
+            }
+
+            .downvote a {
+                color: $brown;
+                padding-right:5px;
+            }
+
+            .downvote a:hover {
+                color: $brown-darken;
+            }
+        }
+        .panel-share a {
+            font-size:0.8em;
+            font-weight:700;
+            padding-right:20px;
+            color:rgba(0,0,0,.87)
+        }
+    }
+
+    .panel-modify.hidden {
+        display:none;
+        padding: 15px;
+        font-size:0.8em; 
+        transition: 0.7s;
+        transform: translateY(-100px);
+    }
+    .panel-modify.visible p {
+        display: block;
+        padding: 15px;
+        font-size:0.8em;   
+    }
+
+
+
+    // Petits écrans
+    @media screen and (max-width: 430px) { 
+
+        .invisible-mobile {
+            display:none;
+        }
+        .invisible-desktop {
+            display:inline-block;
+        }
+
+        hr {
+        margin-top:0;
+        padding-top:0;
+        margin-bottom: 0;
+        padding-bottom:0;
+        }
+
+        .display-donnees {
+            max-width: 300px;
+            background-color: white;  
+            }
+        .header-picture {
+            width: 300px;
+            height: 100px;
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center;
+            border-radius: 10px 10px 0 0;
+        } 
+        .header-info {
+            padding:10px 15px 8px;
+    
+            &-name {
+                font-size:0.9em;
+                line-height: 1.2em;
+                margin-bottom:5px;
+            }
+            &-address {
+                font-weight:700;
+                font-size: 1em;
+                margin-bottom:0;
+                line-height: 1.2em;
+            }
+            &-tag {
+                color:white;
+                font-size:0.7em;
+                background-color: $salmon;
+                font-weight:500;
+                padding: 5px 4px 7px 4px;
+            }
+            &-date {
+                font-size:0.7em;
+                font-weight:500;
+                padding: 4px 7px 6px 7px;
+                border-radius: 5px;
+            }   
+        }
+    
+        .panel-description {
+            padding: 5px 15px 8px;
+            margin-top:-5px;
+            p {
+                text-align:left;
+            }
+            &-title {
+                font-size:0.7em;
+            }
+            &-text {
+                padding-top:2px;
+            }
+        }
+
+        .panel-builders {
+            padding: 5px 15px 8px;
+        }
+    
+        footer {
+    
+            .panel-vote {
+                display: flex;
+                align-items:baseline;
+                border-right: 1px solid #f0f0f0;
+                padding:8px 8px 8px;
+    
+                .upvote a {
+                    padding-left:15px;
+                    padding-right:5px;
+                }
+    
+                .downvote a {
+                    color: $brown;
+                    padding-right:5px;
+                }
+    
+                .downvote a:hover {
+                    color: $brown-darken;
+                }
+            }
+            .panel-share a {
+                font-size:0.8em;
+                font-weight:700;
+                padding-right:20px;
+                color:rgba(0,0,0,.87)
+            }
+        }
+    
+        .panel-modify.hidden {
+            display:none;
+            padding: 15px;
+            font-size:0.8em; 
+            transition: 0.7s;
+            transform: translateY(-100px);
+        }
+        .panel-modify.visible p {
+            display: block;
+            padding: 15px;
+            font-size:0.8em;   
+        } 
+    }
+}
