@@ -118,19 +118,12 @@ const RenseignementDonnees = ({
                 onChange={(e) => {
                   updateFormField('dateInput', e.target.value);
                 }}
+                onFocus={(event) => {
+                  event.target.classList.add('open');
+                }}
               />
               <label htmlFor="date">Date</label>
             </div>
-
-            <Input
-              type="number"
-              id="date"
-              name="date"
-              placeholder="Année de livraison ou de livraison estimée"
-              value={dateInput}
-              onChangeFunction={input => updateFormField('dateInput', input)}
-            />
-                  
             <Input
               type="text"
               id="architect"
