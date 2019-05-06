@@ -1,60 +1,110 @@
-import React, { Component } from 'react';
-import { Button, Header, Icon, Image, Menu, Segment, Sidebar } from 'semantic-ui-react';
+/* eslint-disable jsx-a11y/label-has-associated-control */
+/* eslint-disable jsx-a11y/label-has-for */
 
-import LeafletMap from '../index.js';
+import React from 'react';
+import PropTypes from 'prop-types';
+import { Icon } from 'semantic-ui-react';
 
-export default class DisplayDatasSidebar extends Component {
-  state = { visible: false }
+import './DisplayDatasSidebar.scss';
 
-  handleHideClick = () => this.setState({ visible: false })
+const DisplayDatasSidebar = () => {
 
-  handleShowClick = () => this.setState({ visible: true })
+  // const handleCloseDataForm = (e) => {
+  //   e.preventDefault();
+  //   console.log('Dataform closed');
+  //   closeDataForm();
+  // };
 
-  handleSidebarHide = () => this.setState({ visible: false })
+  const mainPicture = require('../../../styles/images/Libertony.jpg');
 
-  render() {
-    const { visible } = this.state;
-
-    return (
-      <div>
-        <Button.Group>
-          <Button disabled={visible} onClick={this.handleShowClick}>
-            Show sidebar
-          </Button>
-          <Button disabled={!visible} onClick={this.handleHideClick}>
-            Hide sidebar
-          </Button>
-        </Button.Group>
-
-        <Sidebar.Pushable as={Segment}>
-          <Sidebar
-            as={Menu}
-            animation='overlay'
-            icon='labeled'
-            onHide={this.handleSidebarHide}
-            vertical
-            visible={visible}
-            width='wide'
-          >
-            <Menu.Item as='a'>
-              <Icon name='home' />
-              Home
-            </Menu.Item>
-            <Menu.Item as='a'>
-              <Icon name='gamepad' />
-              Games
-            </Menu.Item>
-            <Menu.Item as='a'>
-              <Icon name='camera' />
-              Channels
-            </Menu.Item>
-          </Sidebar>
-
-          <Sidebar.Pusher>
-              <LeafletMap />
-          </Sidebar.Pusher>
-        </Sidebar.Pushable>
+  return (
+    <div id="DisplayDatasSidebar">
+      <div className="display-donnees">
+        <div className="dysplay-donnees_relative">
+          <header>
+            <div
+              className="header-picture"
+              style={{
+                backgroundImage: `url(${mainPicture})`,
+              }}
+            />
+            <div className="header-info">
+              <h2 className="header-info-name">Tour Eiffel</h2>
+              <h3 className="header-info-address">5, Avenue Anatole France, 75007 Paris, France</h3>
+              <div className="header-info-bottom--panel">
+                <p className="header-info-tag">Architecture totalitaire</p>
+                <p className="header-info-date">Livraison fin 1887</p>
+                <p className="header-info-surface">6.5 Ha</p>
+              </div>
+            </div>
+          </header>
+          <hr />
+          <div className="panel-description">
+            <p className="panel-description-title">Le saviez-vous ?</p>
+            <p className="panel-description-text">La tour Eiffel est vraiment très jolie. Elle est toute en fer. D'ailleurs c'est même pour cela qu'on l'appelle la dame de fer.</p>
+          </div>
+          <hr />
+          <div className="panel-builders">
+            <ul>
+              <li>
+                <p className="construction">Architecte</p>
+                <p>Gustave Eiffel</p>
+              </li>
+              <li>
+                <p className="construction">Promoteur</p>
+                <p>Bouygues Immobilier</p>
+              </li>
+              <li>
+                <p className="construction">Constructeur</p>
+                <p>La Gustave Eiffel Company</p>
+              </li>
+              <li>
+                <p className="amenagement">Aménageur</p>
+                <p>La mairie de Paris</p>
+              </li>
+              <li>
+                <p className="amenagement">Urbaniste</p>
+                <p>-</p>
+              </li>
+            </ul>
+          </div>
+          <hr />
+          <footer>
+            <div className="panel-vote">
+              <p>VOTER POUR CETTE FICHE</p>
+              <span className="upvote">
+                <a href="">
+                  <Icon name="arrow up" />
+                </a>
+              </span>
+              <span className="downvote">
+                <a
+                  // onClick={handleDeployBottomPanel}
+                >
+                  <Icon name="arrow down" />
+                </a>
+              </span>
+            </div>
+            <div className="panel-share">
+              <p>
+                <a href="">
+                PARTAGER
+                </a>
+              </p>
+            </div>
+          </footer>
+          <div className="panel-modify visible">
+            <hr />
+            <a href=""><p>Modifier des informations sur cette fiche</p></a>
+          </div>
+        </div>
       </div>
-    )
-  }
-}
+    </div>
+  );
+};
+
+// DisplayDatasSidebar.propTypes = {
+//   closeDataForm: PropTypes.func.isRequired,
+// };
+
+export default DisplayDatasSidebar;
