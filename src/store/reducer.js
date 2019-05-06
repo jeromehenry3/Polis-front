@@ -17,8 +17,6 @@ const initialState = {
   loginStatus: 'not-connected', // string : not-connected || connecting || connected, for logic purposes
 
   // ************FIELDS OF THE CARD DATA*******
-  isDataFormOpen: false, // bool qui indique si le formulaire de renseignement de données est ouvert
-  clickedAdress: '', // String contenant l'adresse d'où a cliqué l'utilisateur // TYPO A CORRIGER PARTOUT*******
   clickedLat: '',
   clickedLng: '',
   nameInput: '',

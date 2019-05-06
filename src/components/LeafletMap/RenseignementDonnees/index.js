@@ -27,7 +27,6 @@ const RenseignementDonnees = ({
   youknowInput,
   loading,
 }) => {
-
   const handleCloseDataForm = (e) => {
     e.preventDefault();
     console.log('Dataform closed');
@@ -90,9 +89,12 @@ const RenseignementDonnees = ({
               value={styleInput}
               onChangeFunction={input => updateFormField('styleInput', input)}
             />
+            <select name="carlist" form="carform" className="input-container">
+              <option className="input" value="volvo">Volvo</option>
+            </select>
 
             <Input
-              type="number"
+              type="date"
               id="date"
               name="date"
               placeholder="Année de livraison ou de livraison estimée"

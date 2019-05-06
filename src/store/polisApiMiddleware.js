@@ -45,7 +45,7 @@ const polisApiMiddleware = store => next => (action) => {
       axios.post('http://92.243.9.51/api/createBuilding', {
         latitude: store.getState().clickedLat,
         longitude: store.getState().clickedLng,
-        adresse: store.getState().clickedAdress,
+        adresse: store.getState().addressInput,
         certified: false,
         delivered: true,
       }, {
