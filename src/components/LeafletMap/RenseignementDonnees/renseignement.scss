@@ -1,5 +1,9 @@
 @import 'src/styles/_vars.scss';
 
+.invisible-desktop {
+  display:none;
+}
+
 .renseignement-donnees {
   z-index: 10000;
   position: absolute;
@@ -114,6 +118,98 @@
       width: 90%;
       margin: 0 auto;
       display: block;
+    }
+  }
+}
+
+// Petits écrans
+@media screen and (max-width: 430px) { 
+
+  .invisible-mobile {
+    display:none;
+  }
+  .invisible-desktop {
+    display:inline-block;
+  }
+
+  .renseignement-donnees {
+    opacity: 0.95;
+    max-width: 300px;
+
+    input {
+      font-size:0.8em;
+      margin-bottom:15px;
+    }
+  
+    .ui.loader:after, .ui.loader:before {
+      top:2px;
+    }
+    
+    &_address-container {
+      margin-bottom:8px;
+    }
+  
+    &_appareil {
+      margin: 10px auto;
+    }
+  
+    &_primary-infos {
+      display: flex;
+      justify-content: space-between;
+      input {
+        width: 100% !important;
+      }
+      :nth-child(1) {
+        width: 47%;
+      } 
+      :nth-child(2) {
+        width: 47%;
+      }
+    }
+  
+    &_share, &_close {
+      text-transform: uppercase;
+      font-weight: bold;
+      font-size: .7em;
+      color: black;
+      margin: 0 auto;
+      margin: 10px 0;
+      transition: 0.2s;
+    }
+  
+    &_close {
+      position: absolute;
+      top: -5px;
+      right: 20px;
+      display: block;
+    }
+
+    .footer-mobile {
+      display:flex;
+      justify-content: space-around;
+      align-items:center;
+      margin-top:-5px;
+    }
+
+    .btn-submit-mobile {
+      padding: 10px 30px;
+      text-transform: uppercase;
+      font-size:0.7em;
+      font-weight:bold;
+      background-color: $yellow-lighten;
+      border-radius:5px;
+      color: white;
+      margin-top: 0;
+      transition: 0.4s;
+    }
+
+    .btn-submit-mobile:hover {
+      background-color: $yellow-darken;
+    }
+
+    &_share {
+      // padding:10px 10px 10px 20px;
+      display: inline-block;
     }
   }
 }
