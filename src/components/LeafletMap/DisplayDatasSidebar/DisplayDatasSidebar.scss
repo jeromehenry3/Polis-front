@@ -14,7 +14,7 @@
     border-radius: 10px;
     top: 50%; /* poussé de la moitié de hauteur du référent */
     left: 5px;
-    transform: translateY(5%); /* -50% tiré de la moitié de sa propre hauteur */
+    transform: translateY(2%); /* -50% tiré de la moitié de sa propre hauteur */
     box-shadow: 0px 0px 8px 0px rgba(0,0,0,0.75);
     transition: 0.28s;
     transition-timing-function: cubic-bezier(0,.98,.73,1.03);
@@ -189,25 +189,8 @@
         }
 
         .display-donnees {
-            z-index: 10000;
-            position: absolute;
             max-width: 300px;
-            background-color: white;
-            border-radius: 10px;
-            top: 50%; /* poussé de la moitié de hauteur du référent */
-            left: 5px;
-            transform: translateY(0%); /* -50% tiré de la moitié de sa propre hauteur */
-            box-shadow: 0px 0px 8px 0px rgba(0,0,0,0.75);
-            transition: 0.28s;
-            transition-timing-function: cubic-bezier(0,.98,.73,1.03);
-        
-                &_relative {
-                    position: relative;
-                }
-        
-                &.open {
-                    left: 5px;
-                }      
+            background-color: white;  
             }
         .header-picture {
             width: 300px;

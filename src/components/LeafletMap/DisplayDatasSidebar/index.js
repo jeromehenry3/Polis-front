@@ -98,6 +98,7 @@ const DisplayDatasSidebar = () => {
             <a href=""><p>Modifier des informations sur cette fiche</p></a>
           </div>
         </div>
+        
       </div>
     </div>
   );
