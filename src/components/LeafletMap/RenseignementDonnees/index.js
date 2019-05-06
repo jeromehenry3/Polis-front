@@ -7,6 +7,7 @@ import PropTypes from 'prop-types';
 import { Dimmer, Loader } from 'semantic-ui-react';
 import Input from '../../Input';
 import AppareilPhoto from '../../../styles/images/photo-camera.svg';
+import { Icon } from 'semantic-ui-react'
 
 import './renseignement.scss';
 
@@ -121,7 +122,15 @@ const RenseignementDonnees = ({
               <label htmlFor="date">Date</label>
             </div>
 
-
+            <Input
+              type="number"
+              id="date"
+              name="date"
+              placeholder="Année de livraison ou de livraison estimée"
+              value={dateInput}
+              onChangeFunction={input => updateFormField('dateInput', input)}
+            />
+                  
             <Input
               type="text"
               id="architect"
@@ -183,11 +192,14 @@ const RenseignementDonnees = ({
             />
 
           </div>
-          <div className="renseignement-donnees_submit">
+          <div className="renseignement-donnees_submit invisible-mobile">
             <button type="submit" className="form-button" onClick={handleSubmitBuilding}>Ajouter</button>
           </div>
         </form>
-        <a href="#" className="renseignement-donnees_share">Partager</a>
+        <div className="footer-mobile">
+          <a href="#" className="renseignement-donnees_share">Partager <Icon name='share' /> </a>
+          <a href="#" className="invisible-desktop btn-submit-mobile" onClick={handleSubmitBuilding}>Valider</a>
+        </div>
       </div>
     </div>
   );
