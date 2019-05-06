@@ -93,7 +93,15 @@ const RenseignementDonnees = ({
             </div>
 
             <div className="input-container">
-              <select id="style" name="carlist" form="carform" className="input" onChange={handleSelectChange}>
+              <select
+                id="style"
+                name="style"
+                className="input"
+                onChange={handleSelectChange}
+                onFocus={(event) => {
+                  event.target.classList.add('open');
+                }}
+              >
                 <option value={0} defaultValue>-- Style Architectural --</option>
                 {
                   architectures.map(architecture => (
