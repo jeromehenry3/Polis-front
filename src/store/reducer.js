@@ -11,13 +11,13 @@ const initialState = {
   lastNameInput: '', // string
   isDataFormOpen: false, // bool qui indique si le formulaire de renseignement de données est ouvert ou non
   isDisplayBuildingOpen: false, // bool qui toggle l'ouverture de displayBuilding
-  token: "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJpYXQiOjE1NTcxNDQxNjMsImV4cCI6MTU1NzIzMDU2Mywicm9sZXMiOlsiUk9MRV9VU0VSIl0sInVzZXJuYW1lIjoiZm1hY2tvZGV2QGdtYWlsLmNvbSJ9.KAFU6aKPvmfEa_TFz78HiXX_xwjURYJGFGwkguRtbqAeT1h6wWyJooEjsgvnRfYQGN_uCg_oxtyqRSqTYGl2ze_VRtntVc0sp4iwLkmspNMtg4CzCRdceDiiUfpVP9plFRjXHUQ_zWrLqr-Efu5UsbiduHWUi9nUs-Ie1ivPejfTwYkyuCZR3RKyl09Yqva9XhLTn7RofLqJgUOOPViuTbv03hXmG_f4Oe6RWjBTz1JHt9i5iSvzP2wJU_3ApsfwgKSkhBNssF-NRfkx0UnsFN-vPQbgDor-Seb_v-ItzKo_k21INx_wRgt3gbjjDkUaBhfBNC1tdjVYGq3toYZVqg5DwOjWuVbdkzmWSd3LSqa_dTY0pixt9rx5hsMSkmENyvrKVQ3C6cRa9-IYFJdDvaumoP2cz_KSfJSnUiCD7YtiRz5gb2a5gyJDJIHe3o-KLFdHImqqWJlO-SBStgLoO_jWFmmAZRxTECnSg3EBF18v4m_xOHSI_Cs5eg_XpXGPfz3Y-X-zJFh7iaJ8tVLTEDFmsoFB3TtZG5KI1-ciByWH0egF2_kkABpLHmVfEbWtxNjIfnfxl2Sg4zGqFtVn28DiuvZag41ML9OVRk9h7z1o9JC8qqw2EOpcBI_gkNnzsIkhsEGC2DPo3DbMXV_kyUTg6WzofCGnwhNRr8wxTR4", // string,
+  token: 'eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJpYXQiOjE1NTcxNDQxNjMsImV4cCI6MTU1NzIzMDU2Mywicm9sZXMiOlsiUk9MRV9VU0VSIl0sInVzZXJuYW1lIjoiZm1hY2tvZGV2QGdtYWlsLmNvbSJ9.KAFU6aKPvmfEa_TFz78HiXX_xwjURYJGFGwkguRtbqAeT1h6wWyJooEjsgvnRfYQGN_uCg_oxtyqRSqTYGl2ze_VRtntVc0sp4iwLkmspNMtg4CzCRdceDiiUfpVP9plFRjXHUQ_zWrLqr-Efu5UsbiduHWUi9nUs-Ie1ivPejfTwYkyuCZR3RKyl09Yqva9XhLTn7RofLqJgUOOPViuTbv03hXmG_f4Oe6RWjBTz1JHt9i5iSvzP2wJU_3ApsfwgKSkhBNssF-NRfkx0UnsFN-vPQbgDor-Seb_v-ItzKo_k21INx_wRgt3gbjjDkUaBhfBNC1tdjVYGq3toYZVqg5DwOjWuVbdkzmWSd3LSqa_dTY0pixt9rx5hsMSkmENyvrKVQ3C6cRa9-IYFJdDvaumoP2cz_KSfJSnUiCD7YtiRz5gb2a5gyJDJIHe3o-KLFdHImqqWJlO-SBStgLoO_jWFmmAZRxTECnSg3EBF18v4m_xOHSI_Cs5eg_XpXGPfz3Y-X-zJFh7iaJ8tVLTEDFmsoFB3TtZG5KI1-ciByWH0egF2_kkABpLHmVfEbWtxNjIfnfxl2Sg4zGqFtVn28DiuvZag41ML9OVRk9h7z1o9JC8qqw2EOpcBI_gkNnzsIkhsEGC2DPo3DbMXV_kyUTg6WzofCGnwhNRr8wxTR4', // string,
   refreshToken: '',
   isConnected: false,
   loginMessage: 'Vous devez vous identifier pour contribuer à Polis',
   loginStatus: 'not-connected', // string : not-connected || connecting || connected, for logic purposes
 
-  // ************FIELDS OF THE CARD DATA*******
+  // ************FIELDS OF THE CARD DATA TO SEND*******
   clickedLat: 0,
   clickedLng: 0,
   nameInput: '',
@@ -34,6 +34,27 @@ const initialState = {
   loading: false,
   architectures: [],
   buildings: [],
+
+
+  // ************FIELDS OF THE CARD DATA*******
+  address: '',
+  architect: '',
+  architecture: { id: 0, name: '' },
+  builder: '',
+  certified: false,
+  creationDate: 0,
+  delivered: true,
+  description: '',
+  id: 0,
+  images: [],
+  latitude: 0,
+  longitude: 0,
+  name: '',
+  planner: '',
+  promoter: '',
+  surface: 0,
+  urbanist: '',
+  user: { firstName: '', lastName: '' },
 };
 
 /**
@@ -54,6 +75,7 @@ export const GET_ARCHITECTURES = 'GET_ARCHITECTURES';
 export const GET_BUILDINGS = 'GET_BUILDINGS';
 export const SET_BUILDINGS = 'SET_BUILDINGS';
 export const CREATE_MARKER = 'CREATE_MARKER';
+export const SET_BUILDING_DATAS = 'SET_BUILDING_DATAS';
 
 /**
  * Traitements
@@ -139,6 +161,11 @@ const reducer = (state = initialState, action = {}) => {
           },
         ],
       };
+    case SET_BUILDING_DATAS:
+      return {
+        ...state,
+        [action.key]: action.value,
+      };
     default:
       return state;
   }
@@ -172,8 +199,9 @@ export const openDataForm = position => ({
   type: OPEN_DATA_FORM,
   position,
 });
-export const openDisplayBuilding = () => ({
+export const openDisplayBuilding = id => ({
   type: OPEN_DISPLAY_BUILDING,
+  id,
 });
 export const openDataFormResponse = data => ({
   type: OPEN_DATA_FORM_RESPONSE,
@@ -210,6 +238,12 @@ export const createMarker = (latitude, longitude) => ({
   type: CREATE_MARKER,
   latitude,
   longitude,
+});
+
+export const setBuildingDatas = (key, value) => ({
+  type: SET_BUILDING_DATAS,
+  key,
+  value,
 });
 /**
  * Selectors
