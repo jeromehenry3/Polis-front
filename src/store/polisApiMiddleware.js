@@ -9,6 +9,9 @@ import {
   connectingError,
   GET_ARCHITECTURES,
   setArchitectures,
+  GET_BUILDINGS,
+  setBuildings,
+  createMarker,
 } from './reducer';
 const polisApi = 'https://www.thomas-gillet.com/api';
 // eslint-disable-next-line consistent-return
@@ -72,6 +75,7 @@ const polisApiMiddleware = store => next => (action) => {
       })
         .then((response) => {
           console.log(response.data);
+          store.dispatch(createMarker(store.getState().clickedLat, store.getState().clickedLng));
         })
         .catch((error) => {
           console.log(error.message);
@@ -82,6 +86,16 @@ const polisApiMiddleware = store => next => (action) => {
         .then((response) => {
           console.log(response);
           store.dispatch(setArchitectures(response.data));
+        })
+        .catch((error) => {
+          console.log(error.message);
+        });
+      break;
+    case GET_BUILDINGS:
+      axios.get(`${polisApi}/buildings`)
+        .then((response) => {
+          console.log(response);
+          store.dispatch(setBuildings(response.data));
         })
         .catch((error) => {
           console.log(error.message);

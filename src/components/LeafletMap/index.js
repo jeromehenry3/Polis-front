@@ -30,7 +30,8 @@ class Leaflet extends React.Component {
   });
 
   componentDidMount() {
-    const { getArchitectures } = this.props;
+    const { getArchitectures, getBuildings } = this.props;
+    getBuildings();
     getArchitectures();
   }
 
@@ -51,21 +52,27 @@ class Leaflet extends React.Component {
   }
 
   render() {
-    const { closeAllModals } = this.props;
+    const { closeAllModals, buildings } = this.props;
+    const southWest = L.latLng(-66.51326044311186, -172.26562500000003);
+    const northEast = L.latLng(81.92318632602199, 190.54687500000003);
+    const bounds = L.latLngBounds(southWest, northEast);
     return (
       <>
         <RenseignementDonnees />
         <DisplayBuilding />
         <LeafletMap
-          center={[48.864716, 2.349014]}
-          zoom={12}
+          center={[46.7248003746672, 2.9003906250000004]}
+          zoom={6}
           maxZoom={19}
+          minZoom={3}
           attributionControl
-          zoomControl={false}
-          doubleClickZoom={false}
+          zoomControl
+          doubleClickZoom
           scrollWheelZoom
+          maxBounds={bounds}
           dragging
           animate
+          infinite
           easeLinearity={0.35}
           onContextmenu={this.handleRightClick}
           onClick={closeAllModals}
@@ -74,27 +81,21 @@ class Leaflet extends React.Component {
             url="https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png"
           />
 
-          <Marker
-            position={[48.864716, 2.349014]}
-            icon={this.myPinUne}
-          >
-            <Popup>
-              Je suis un pop up à Paris
-            </Popup>
-          </Marker>
-          <Marker
-            position={[48.864650, 2.349190]}
-            icon={this.myPinDeux}
-          >
-            <Popup>
-              Je suis un autre pop up à Paris
-            </Popup>
-          </Marker>
-          <Marker
-            position={[48.8598, 2.4371999999999616]}
-            icon={this.myPinDeux}
-            onClick={this.handleClickMarker}
-          />
+          {
+            buildings.map(({ latitude, longitude, id }) => (
+              <Marker
+                position={[latitude, longitude]}
+                icon={this.myPinUne}
+                key={id}
+                onClick={this.handleClickMarker}
+              >
+                <Popup>
+                  Je suis un pop up
+                </Popup>
+              </Marker>
+            ))
+          }
+
         </LeafletMap>
       </>
     );
@@ -105,7 +106,10 @@ Leaflet.propTypes = {
   closeAllModals: PropTypes.func.isRequired,
   openDataForm: PropTypes.func.isRequired,
   updateFormField: PropTypes.func.isRequired,
+  getArchitectures: PropTypes.func.isRequired,
+  getBuildings: PropTypes.func.isRequired,
+  buildings: PropTypes.arrayOf(PropTypes.object).isRequired,
   openDisplayBuilding: PropTypes.func.isRequired,
-}
+};
 
 export default Leaflet;
