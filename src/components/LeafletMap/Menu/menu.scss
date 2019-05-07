@@ -59,4 +59,39 @@
         }
     }
 
+    @media screen and (max-width: 430px) { 
+        .ui.button {
+            display: none;
+        }
+        i.search.link.icon {
+            // display:none;
+            // height: 0;
+            // width: 0;
+            // transform: translate(-15px, 15px);
+            pointer-events: none;
+        }
+        .ui.search > div > div > input {
+            width: 3em;
+            &::placeholder {
+                opacity: 0;
+
+            }
+            & + label {
+                opacity: 0
+            }
+            &:focus {
+                width: inherit;
+                transform: translateX(calc(-50vw + 50%));
+
+                &::placeholder {
+                    opacity: inherit;
+                }
+
+                & + label {
+                    transform: translate(calc(-50vw + 150%), -13px);
+                    opacity: 1;
+                }
+            }
+        }
+      }
 }
