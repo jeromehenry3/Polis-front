@@ -32,6 +32,7 @@ const initialState = {
   descriptionInput: '',
   loading: false,
   architectures: [],
+  buildings: [],
 };
 
 /**
@@ -49,6 +50,9 @@ export const CLOSE_ALL_MODALS = 'CLOSE_ALL_MODALS';
 export const SUBMIT_BUILDING = 'SUBMIT_BULDING';
 export const SET_ARCHITECTURES = 'SET_ARCHITECTURES';
 export const GET_ARCHITECTURES = 'GET_ARCHITECTURES';
+export const GET_BUILDINGS = 'GET_BUILDINGS';
+export const SET_BUILDINGS = 'SET_BUILDINGS';
+export const CREATE_MARKER = 'CREATE_MARKER';
 
 /**
  * Traitements
@@ -117,8 +121,22 @@ const reducer = (state = initialState, action = {}) => {
         ...state,
         architectures: action.architectures,
       };
-    case SUBMIT_BUILDING:
-      return state;
+    case SET_BUILDINGS:
+      return {
+        ...state,
+        buildings: action.buildings,
+      };
+    case CREATE_MARKER:
+      return {
+        ...state,
+        buildings: [
+          ...state.buildings,
+          {
+            latitude: action.latitude,
+            longitude: action.longitude,
+          },
+        ],
+      };
     default:
       return state;
   }
@@ -175,8 +193,23 @@ export const setArchitectures = architectures => ({
   architectures,
 });
 
+export const getBuildings = () => ({
+  type: GET_BUILDINGS,
+});
+
+export const setBuildings = buildings => ({
+  type: SET_BUILDINGS,
+  buildings,
+});
+
 export const submitBuilding = () => ({
   type: SUBMIT_BUILDING,
+});
+
+export const createMarker = (latitude, longitude) => ({
+  type: CREATE_MARKER,
+  latitude,
+  longitude,
 });
 /**
  * Selectors

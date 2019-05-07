@@ -29,7 +29,8 @@ class Leaflet extends React.Component {
   });
 
   componentDidMount() {
-    const { getArchitectures } = this.props;
+    const { getArchitectures, getBuildings } = this.props;
+    getBuildings();
     getArchitectures();
   }
 
@@ -42,7 +43,7 @@ class Leaflet extends React.Component {
   };
 
   render() {
-    const { closeAllModals } = this.props;
+    const { closeAllModals, buildings } = this.props;
     return (
       <>
         <RenseignementDonnees />
@@ -63,31 +64,19 @@ class Leaflet extends React.Component {
           <TileLayer
             url="https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png"
           />
-
-          <Marker
-            position={[48.864716, 2.349014]}
-            icon={this.myPinUne}
-          >
-            <Popup>
-              Je suis un pop up à Paris
-            </Popup>
-          </Marker>
-          <Marker
-            position={[48.864650, 2.349190]}
-            icon={this.myPinDeux}
-          >
-            <Popup>
-              Je suis un autre pop up à Paris
-            </Popup>
-          </Marker>
-          <Marker
-            position={[48.8598, 2.4371999999999616]}
-            icon={this.myPinDeux}
-          >
-            <Popup>
-              Clément habite là
-            </Popup>
-          </Marker>
+          {
+            buildings.map(({ latitude, longitude, id }) => (
+              <Marker
+                position={[latitude, longitude]}
+                icon={this.myPinUne}
+                key={id}
+              >
+                <Popup>
+                  Je suis un pop up
+                </Popup>
+              </Marker>
+            ))
+          }
         </LeafletMap>
       </>
     );
@@ -98,6 +87,9 @@ Leaflet.propTypes = {
   closeAllModals: PropTypes.func.isRequired,
   openDataForm: PropTypes.func.isRequired,
   updateFormField: PropTypes.func.isRequired,
-}
+  getArchitectures: PropTypes.func.isRequired,
+  getBuildings: PropTypes.func.isRequired,
+  buildings: PropTypes.arrayOf(PropTypes.object).isRequired,
+};
 
 export default Leaflet;
