@@ -5,6 +5,7 @@ import {
 } from 'react-leaflet';
 import L from 'leaflet';
 import RenseignementDonnees from '../../containers/RenseignementDonnees';
+import DisplayBuilding from '../../containers/DisplayBuilding';
 import './leafletmap.scss';
 // pour utiliser des punaises custom
 import pins3 from '../../styles/images/pins3.png';
@@ -34,18 +35,27 @@ class Leaflet extends React.Component {
   }
 
   handleRightClick = (e) => {
-    const { updateFormField, openDataForm } = this.props;
+    const { updateFormField, openDataForm, closeAllModals } = this.props;
     console.log(e.latlng);
     updateFormField('clickedLat', e.latlng.lat);
     updateFormField('clickedLng', e.latlng.lng);
+    closeAllModals();
     openDataForm(e.latlng);
   };
+
+  handleClickMarker = () => {
+    const { openDisplayBuilding, closeAllModals } = this.props;
+    console.log('marker clicked');
+    closeAllModals();
+    openDisplayBuilding();
+  }
 
   render() {
     const { closeAllModals } = this.props;
     return (
       <>
         <RenseignementDonnees />
+        <DisplayBuilding />
         <LeafletMap
           center={[48.864716, 2.349014]}
           zoom={12}
@@ -83,11 +93,8 @@ class Leaflet extends React.Component {
           <Marker
             position={[48.8598, 2.4371999999999616]}
             icon={this.myPinDeux}
-          >
-            <Popup>
-              Clément habite là
-            </Popup>
-          </Marker>
+            onClick={this.handleClickMarker}
+          />
         </LeafletMap>
       </>
     );
@@ -98,6 +105,7 @@ Leaflet.propTypes = {
   closeAllModals: PropTypes.func.isRequired,
   openDataForm: PropTypes.func.isRequired,
   updateFormField: PropTypes.func.isRequired,
+  openDisplayBuilding: PropTypes.func.isRequired,
 }
 
 export default Leaflet;

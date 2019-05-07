@@ -4,30 +4,31 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Icon } from 'semantic-ui-react';
+import MainPicture from '../../../styles/images/Libertony.jpg';
 
 import './DisplayBuilding.scss';
 
-const DisplayBuilding = () => {
-
-  // const handleCloseDataForm = (e) => {
-  //   e.preventDefault();
-  //   console.log('Dataform closed');
-  //   closeDataForm();
-  // };
-
-  const mainPicture = require('../../../styles/images/Libertony.jpg');
+const DisplayBuilding = ({ isDisplayBuildingOpen, closeAllModals }) => {
+  
+  const handleCloseDataForm = (e) => {
+    e.preventDefault();
+    console.log('Dataform closed');
+    closeAllModals();
+  };
 
   return (
     <div id="DisplayBuilding">
-      <div className="display-donnees">
+      <div className={isDisplayBuildingOpen ? 'display-donnees open' : 'display-donnees'}>
         <div className="dysplay-donnees_relative">
           <header>
             <div
               className="header-picture"
               style={{
-                backgroundImage: `url(${mainPicture})`,
+                backgroundImage: `url(${MainPicture})`,
               }}
+              
             />
+            <a href="#" className="renseignement-donnees_close" onClick={handleCloseDataForm}>Fermer</a>
             <div className="header-info">
               <h2 className="header-info-name">Tour Eiffel</h2>
               <h3 className="header-info-address">5, Avenue Anatole France, 75007 Paris, France</h3>
@@ -104,8 +105,9 @@ const DisplayBuilding = () => {
   );
 };
 
-// DisplayBuilding.propTypes = {
-//   closeDataForm: PropTypes.func.isRequired,
-// };
+DisplayBuilding.propTypes = {
+  closeAllModals: PropTypes.func.isRequired,
+  isDisplayBuildingOpen: PropTypes.func.isRequired,
+};
 
 export default DisplayBuilding;
