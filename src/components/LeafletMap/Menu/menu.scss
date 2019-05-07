@@ -11,7 +11,7 @@
     align-items: center;
     padding: 0 1em;
     
-    .ui.button {
+    .ui.button { // Buttons of the view change : carte / Bâtiments
         background-color: #ffffff;
         color: $salmon;
         border: 2px solid $salmon;
@@ -40,7 +40,7 @@
     .search.link.icon {
         right: 10px;
     }
-    .ui.item.dropdown {
+    .ui.item.dropdown { // The menu from the burger
         margin-right: 100px;
         font-size: 1.9em;
         color: #405c78;
@@ -60,6 +60,7 @@
     }
 
     @media screen and (max-width: 430px) { 
+      // For mobile view, the search field is displayed as a button, that becomes an input when focused
       z-index: 401;
         .ui.button { // Buttons carte / bâtiments
             display: none;
@@ -85,11 +86,12 @@
                 width: inherit;
                 transform: translateX(calc(-50vw + 50%));
 
-                &::placeholder {
+                &::placeholder { 
+                  // placheholder appears only when field opened in moble
                     opacity: inherit;
                 }
 
-                & + label {
+                & + label { // Label while field is focused
                     transform: translate(calc(-50vw + 150%), -13px);
                     opacity: 1;
                 }

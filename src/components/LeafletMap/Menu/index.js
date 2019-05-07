@@ -10,7 +10,6 @@ const TopMenu = ({ searchInput, updateFormField }) => (
     <Dropdown item icon="bars" simple>
       <Dropdown.Menu>
         <Dropdown.Item>Déconnexion</Dropdown.Item>
-        <Dropdown.Divider />
         <Dropdown.Item>Mon compte</Dropdown.Item>
         <Dropdown.Item>Recrutement</Dropdown.Item>
         <Dropdown.Item>A propos</Dropdown.Item>
