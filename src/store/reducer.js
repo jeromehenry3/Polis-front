@@ -17,6 +17,10 @@ const initialState = {
   loginMessage: 'Vous devez vous identifier pour contribuer à Polis',
   loginStatus: 'not-connected', // string : not-connected || connecting || connected, for logic purposes
 
+  // ************MANAGEMENT OF THE MENU********
+  searchInput: '', // string
+
+
   // ************FIELDS OF THE CARD DATA*******
   clickedLat: 0,
   clickedLng: 0,

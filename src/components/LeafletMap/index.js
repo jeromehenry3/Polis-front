@@ -6,7 +6,7 @@ import {
 import L from 'leaflet';
 import RenseignementDonnees from '../../containers/RenseignementDonnees';
 
-import Menu from './Menu';
+import Menu from '../../containers/Menu';
 import DisplayBuilding from '../../containers/DisplayBuilding';
 
 import './leafletmap.scss';

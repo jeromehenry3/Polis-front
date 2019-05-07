@@ -1,11 +1,11 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Menu, Dropdown, Button } from 'semantic-ui-react';
 import Input from '../../Input';
-import PropTypes from 'prop-types';
 
 import './menu.scss';
 
-const TopMenu = () => (
+const TopMenu = ({ searchInput, updateFormField }) => (
   <div id="menu">
     <Dropdown item icon="bars" simple>
       <Dropdown.Menu>
@@ -27,7 +27,13 @@ const TopMenu = () => (
     <Menu.Menu position="right">
       <div className="ui right aligned category search item">
         <div className="ui transparent icon input">
-          <Input className="prompt" type="text" placeholder="Recherche" />
+          <Input
+            className="prompt"
+            type="text"
+            placeholder="Recherche"
+            value={searchInput}
+            onChangeFunction={input => updateFormField('searchInput', input)}
+          />
           <i className="search link icon" />
         </div>
         <div className="results" />
@@ -36,8 +42,10 @@ const TopMenu = () => (
   </div>
 );
 
-TopMenu.propTypes = {
 
+TopMenu.propTypes = {
+  searchInput: PropTypes.string.isRequired,
+  updateFormField: PropTypes.func.isRequired,
 };
 
 export default TopMenu;
