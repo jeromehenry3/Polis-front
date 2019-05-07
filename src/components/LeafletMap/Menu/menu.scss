@@ -60,26 +60,28 @@
     }
 
     @media screen and (max-width: 430px) { 
-        .ui.button {
+      z-index: 401;
+        .ui.button { // Buttons carte / bâtiments
             display: none;
         }
-        i.search.link.icon {
-            // display:none;
-            // height: 0;
-            // width: 0;
-            // transform: translate(-15px, 15px);
+        i.search.link.icon { // Icon magnifying glass
             pointer-events: none;
+            position: fixed;
+            height: inherit;
+            top: 31px;
+            right: 25px;
+
         }
-        .ui.search > div > div > input {
+        .ui.search > div > div > input { // the search input
             width: 3em;
             &::placeholder {
                 opacity: 0;
 
             }
-            & + label {
+            & + label { // its label "recherche"
                 opacity: 0
             }
-            &:focus {
+            &:focus { // When input is focused, it movez to the center
                 width: inherit;
                 transform: translateX(calc(-50vw + 50%));
 
@@ -92,7 +94,20 @@
                     opacity: 1;
                 }
             }
-
         }
+        // input search when has value (centered)
+        .ui.search > div.not-empty > div > input {
+          width: inherit;
+          transform: translateX(calc(-50vw + 50%));
+          & + label { // label stays
+            transform: translate(calc(-50vw + 150%), -13px);
+            opacity: 1;
+          }
+        }
+        // Icon not displayed when input not empty :
+        .ui.search > div.not-empty > i.search.link.icon {
+          display: none;
+        }
+
       }
 }

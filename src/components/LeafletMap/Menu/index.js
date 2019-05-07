@@ -26,10 +26,10 @@ const TopMenu = ({ searchInput, updateFormField }) => (
 
     <Menu.Menu position="right">
       <div className="ui right aligned category search item">
-        <div className="ui transparent icon input">
+        <div className={`ui transparent icon input ${searchInput && 'not-empty'}`}>
           <Input
-            className="prompt"
             type="text"
+            id="search-input"
             placeholder="Recherche"
             value={searchInput}
             onChangeFunction={input => updateFormField('searchInput', input)}
