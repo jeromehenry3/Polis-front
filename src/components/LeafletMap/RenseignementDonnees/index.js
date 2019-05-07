@@ -13,7 +13,7 @@ import './renseignement.scss';
 
 const RenseignementDonnees = ({
   isDataFormOpen,
-  closeDataForm,
+  closeAllModals,
   submitBuilding,
   updateFormField,
   nameInput,
@@ -32,7 +32,7 @@ const RenseignementDonnees = ({
   const handleCloseDataForm = (e) => {
     e.preventDefault();
     console.log('Dataform closed');
-    closeDataForm();
+    closeAllModals();
   };
 
   const handleSelectChange = (e) => {
@@ -209,10 +209,10 @@ const RenseignementDonnees = ({
 
 RenseignementDonnees.propTypes = {
   submitBuilding: PropTypes.func.isRequired,
+  closeAllModals: PropTypes.func.isRequired,
   addressInput: PropTypes.string.isRequired,
   plannerInput: PropTypes.string.isRequired,
   architectInput: PropTypes.string.isRequired,
-  closeDataForm: PropTypes.func.isRequired,
   builderInput: PropTypes.string.isRequired,
   dateInput: PropTypes.string.isRequired,
   isDataFormOpen: PropTypes.bool.isRequired,
