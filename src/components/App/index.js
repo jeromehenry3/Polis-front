@@ -18,7 +18,7 @@ import LeafletMap from 'src/containers/LeafletMap';
 import Welcome from '../Welcome';
 import NotFound from '../NotFound';
 import Loading from '../Loading';
-import DisplayDatasSidebar from '../LeafletMap/DisplayDatasSidebar';
+import DisplayBuilding from '../LeafletMap/DisplayBuilding';
 
 // Styles et assets
 
@@ -88,7 +88,7 @@ const App = () => (
       exact
       path="/display"
       render={() => (
-        <DisplayDatasSidebar />
+        <DisplayBuilding />
       )}
     />
 

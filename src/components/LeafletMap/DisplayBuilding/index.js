@@ -5,9 +5,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Icon } from 'semantic-ui-react';
 
-import './DisplayDatasSidebar.scss';
+import './DisplayBuilding.scss';
 
-const DisplayDatasSidebar = () => {
+const DisplayBuilding = () => {
 
   // const handleCloseDataForm = (e) => {
   //   e.preventDefault();
@@ -18,7 +18,7 @@ const DisplayDatasSidebar = () => {
   const mainPicture = require('../../../styles/images/Libertony.jpg');
 
   return (
-    <div id="DisplayDatasSidebar">
+    <div id="DisplayBuilding">
       <div className="display-donnees">
         <div className="dysplay-donnees_relative">
           <header>
@@ -104,8 +104,8 @@ const DisplayDatasSidebar = () => {
   );
 };
 
-// DisplayDatasSidebar.propTypes = {
+// DisplayBuilding.propTypes = {
 //   closeDataForm: PropTypes.func.isRequired,
 // };
 
-export default DisplayDatasSidebar;
+export default DisplayBuilding;
