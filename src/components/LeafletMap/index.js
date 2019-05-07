@@ -5,6 +5,7 @@ import {
 } from 'react-leaflet';
 import L from 'leaflet';
 import RenseignementDonnees from '../../containers/RenseignementDonnees';
+import Menu from './Menu';
 import './leafletmap.scss';
 // pour utiliser des punaises custom
 import pins3 from '../../styles/images/pins3.png';
@@ -45,6 +46,7 @@ class Leaflet extends React.Component {
     const { closeAllModals } = this.props;
     return (
       <>
+        <Menu />
         <RenseignementDonnees />
         <LeafletMap
           center={[48.864716, 2.349014]}
