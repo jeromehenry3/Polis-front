@@ -31,6 +31,10 @@
         padding: 7px 12px;
         width: 100px;
         box-shadow: 0px 2px 6px 0px rgba(0,0,0,0.40);
+        &:hover {
+            color: $salmon-darken;
+            background-color: $beige-lighten;
+        }
         &.no-border-left {
             border-left: none;
         }
@@ -59,6 +63,16 @@
         height: 100%;
         width: 2em;
         
+    }
+    .menu.transition { // i.e. dropdown menu
+        border: none;
+        box-shadow: 2px 2px 8px 0px rgba(0,0,0,0.40);
+        font-size: 1rem;
+        font-weight: 700;
+        z-index: 1500000;
+        &.option {
+            z-index: 1500000;
+        }
     }
     // .menu.transition.visible {
     //     display: block !important;

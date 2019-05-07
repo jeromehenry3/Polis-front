@@ -19,7 +19,7 @@ const TopMenu = () => (
 
       <Menu.Menu>
         <Button.Group>
-          <Button>Carte</Button>
+          <Button active>Carte</Button>
           <Button className="no-border-left">Bâtiments</Button>
         </Button.Group>
       </Menu.Menu>
