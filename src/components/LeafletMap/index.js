@@ -66,7 +66,7 @@ class Leaflet extends React.Component {
           maxZoom={19}
           minZoom={3}
           attributionControl
-          zoomControl
+          zoomControl={false}
           doubleClickZoom
           scrollWheelZoom
           maxBounds={bounds}
@@ -88,11 +88,7 @@ class Leaflet extends React.Component {
                 icon={this.myPinUne}
                 key={id}
                 onClick={this.handleClickMarker}
-              >
-                <Popup>
-                  Je suis un pop up
-                </Popup>
-              </Marker>
+              />
             ))
           }
 

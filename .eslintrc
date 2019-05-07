@@ -5,7 +5,7 @@
     "browser": true
   },
   "rules": {
-    // "linebreak-style": ["error", "windows"],
+    "linebreak-style": ["error", "windows"],
     "brace-style": ["error", "stroustrup"],
     "no-param-reassign": ["error", { "props": false }],
     "no-mixed-operators": ["error", { "allowSamePrecedence": true }],
