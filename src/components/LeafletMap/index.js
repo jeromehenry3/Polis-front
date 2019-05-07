@@ -5,7 +5,10 @@ import {
 } from 'react-leaflet';
 import L from 'leaflet';
 import RenseignementDonnees from '../../containers/RenseignementDonnees';
+
 import Menu from './Menu';
+import DisplayBuilding from '../../containers/DisplayBuilding';
+
 import './leafletmap.scss';
 // pour utiliser des punaises custom
 import pins3 from '../../styles/images/pins3.png';
@@ -30,34 +33,50 @@ class Leaflet extends React.Component {
   });
 
   componentDidMount() {
-    const { getArchitectures } = this.props;
+    const { getArchitectures, getBuildings } = this.props;
+    getBuildings();
     getArchitectures();
   }
 
   handleRightClick = (e) => {
-    const { updateFormField, openDataForm } = this.props;
+    const { updateFormField, openDataForm, closeAllModals } = this.props;
     console.log(e.latlng);
     updateFormField('clickedLat', e.latlng.lat);
     updateFormField('clickedLng', e.latlng.lng);
+    closeAllModals();
     openDataForm(e.latlng);
   };
 
+  handleClickMarker = () => {
+    const { openDisplayBuilding, closeAllModals } = this.props;
+    console.log('marker clicked');
+    closeAllModals();
+    openDisplayBuilding();
+  }
+
   render() {
-    const { closeAllModals } = this.props;
+    const { closeAllModals, buildings } = this.props;
+    const southWest = L.latLng(-66.51326044311186, -172.26562500000003);
+    const northEast = L.latLng(81.92318632602199, 190.54687500000003);
+    const bounds = L.latLngBounds(southWest, northEast);
     return (
       <>
         <Menu />
         <RenseignementDonnees />
+        <DisplayBuilding />
         <LeafletMap
-          center={[48.864716, 2.349014]}
-          zoom={12}
+          center={[46.7248003746672, 2.9003906250000004]}
+          zoom={6}
           maxZoom={19}
+          minZoom={3}
           attributionControl
           zoomControl={false}
-          doubleClickZoom={false}
+          doubleClickZoom
           scrollWheelZoom
+          maxBounds={bounds}
           dragging
           animate
+          infinite
           easeLinearity={0.35}
           onContextmenu={this.handleRightClick}
           onClick={closeAllModals}
@@ -66,30 +85,17 @@ class Leaflet extends React.Component {
             url="https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png"
           />
 
-          <Marker
-            position={[48.864716, 2.349014]}
-            icon={this.myPinUne}
-          >
-            <Popup>
-              Je suis un pop up à Paris
-            </Popup>
-          </Marker>
-          <Marker
-            position={[48.864650, 2.349190]}
-            icon={this.myPinDeux}
-          >
-            <Popup>
-              Je suis un autre pop up à Paris
-            </Popup>
-          </Marker>
-          <Marker
-            position={[48.8598, 2.4371999999999616]}
-            icon={this.myPinDeux}
-          >
-            <Popup>
-              Clément habite là
-            </Popup>
-          </Marker>
+          {
+            buildings.map(({ latitude, longitude, id }) => (
+              <Marker
+                position={[latitude, longitude]}
+                icon={this.myPinUne}
+                key={id}
+                onClick={this.handleClickMarker}
+              />
+            ))
+          }
+
         </LeafletMap>
       </>
     );
@@ -100,6 +106,10 @@ Leaflet.propTypes = {
   closeAllModals: PropTypes.func.isRequired,
   openDataForm: PropTypes.func.isRequired,
   updateFormField: PropTypes.func.isRequired,
-}
+  getArchitectures: PropTypes.func.isRequired,
+  getBuildings: PropTypes.func.isRequired,
+  buildings: PropTypes.arrayOf(PropTypes.object).isRequired,
+  openDisplayBuilding: PropTypes.func.isRequired,
+};
 
 export default Leaflet;
