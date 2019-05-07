@@ -10,6 +10,7 @@ const initialState = {
   firstNameInput: '', // string
   lastNameInput: '', // string
   isDataFormOpen: false, // bool qui indique si le formulaire de renseignement de données est ouvert ou non
+  isDisplayBuildingOpen: false, // bool qui toggle l'ouverture de displayBuilding
   token: "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJpYXQiOjE1NTcxNDQxNjMsImV4cCI6MTU1NzIzMDU2Mywicm9sZXMiOlsiUk9MRV9VU0VSIl0sInVzZXJuYW1lIjoiZm1hY2tvZGV2QGdtYWlsLmNvbSJ9.KAFU6aKPvmfEa_TFz78HiXX_xwjURYJGFGwkguRtbqAeT1h6wWyJooEjsgvnRfYQGN_uCg_oxtyqRSqTYGl2ze_VRtntVc0sp4iwLkmspNMtg4CzCRdceDiiUfpVP9plFRjXHUQ_zWrLqr-Efu5UsbiduHWUi9nUs-Ie1ivPejfTwYkyuCZR3RKyl09Yqva9XhLTn7RofLqJgUOOPViuTbv03hXmG_f4Oe6RWjBTz1JHt9i5iSvzP2wJU_3ApsfwgKSkhBNssF-NRfkx0UnsFN-vPQbgDor-Seb_v-ItzKo_k21INx_wRgt3gbjjDkUaBhfBNC1tdjVYGq3toYZVqg5DwOjWuVbdkzmWSd3LSqa_dTY0pixt9rx5hsMSkmENyvrKVQ3C6cRa9-IYFJdDvaumoP2cz_KSfJSnUiCD7YtiRz5gb2a5gyJDJIHe3o-KLFdHImqqWJlO-SBStgLoO_jWFmmAZRxTECnSg3EBF18v4m_xOHSI_Cs5eg_XpXGPfz3Y-X-zJFh7iaJ8tVLTEDFmsoFB3TtZG5KI1-ciByWH0egF2_kkABpLHmVfEbWtxNjIfnfxl2Sg4zGqFtVn28DiuvZag41ML9OVRk9h7z1o9JC8qqw2EOpcBI_gkNnzsIkhsEGC2DPo3DbMXV_kyUTg6WzofCGnwhNRr8wxTR4", // string,
   refreshToken: '',
   isConnected: false,
@@ -44,8 +45,8 @@ export const STORE_TOKEN = 'STORE_TOKEN';
 export const CONNECTING_ERROR = 'CONNECTING_ERROR';
 export const SIGNIN = 'SIGNIN';
 export const OPEN_DATA_FORM = 'OPEN_DATA_FORM';
+export const OPEN_DISPLAY_BUILDING = 'OPEN_DISPLAY_BUILDING';
 export const OPEN_DATA_FORM_RESPONSE = 'OPEN_DATA_FORM_RESPONSE';
-export const CLOSE_DATA_FORM = 'CLOSE_DATA_FORM';
 export const CLOSE_ALL_MODALS = 'CLOSE_ALL_MODALS';
 export const SUBMIT_BUILDING = 'SUBMIT_BULDING';
 export const SET_ARCHITECTURES = 'SET_ARCHITECTURES';
@@ -96,6 +97,11 @@ const reducer = (state = initialState, action = {}) => {
         isDataFormOpen: true,
         loading: true,
       };
+    case OPEN_DISPLAY_BUILDING:
+      return {
+        ...state,
+        isDisplayBuildingOpen: true,
+      };
     case OPEN_DATA_FORM_RESPONSE:
       // eslint-disable-next-line camelcase
       const { display_name } = action.data;
@@ -104,16 +110,12 @@ const reducer = (state = initialState, action = {}) => {
         addressInput: display_name,
         loading: false,
       };
-    case CLOSE_DATA_FORM:
-      return {
-        ...state,
-        isDataFormOpen: false,
-      };
 
     case CLOSE_ALL_MODALS:
       return {
         ...state,
         isDataFormOpen: false,
+        isDisplayBuildingOpen: false,
         // Les futurs modals à fermer
       };
     case SET_ARCHITECTURES:
@@ -170,14 +172,12 @@ export const openDataForm = position => ({
   type: OPEN_DATA_FORM,
   position,
 });
-
+export const openDisplayBuilding = () => ({
+  type: OPEN_DISPLAY_BUILDING,
+});
 export const openDataFormResponse = data => ({
   type: OPEN_DATA_FORM_RESPONSE,
   data,
-});
-
-export const closeDataForm = () => ({
-  type: CLOSE_DATA_FORM,
 });
 
 export const closeAllModals = () => ({

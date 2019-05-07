@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 
-import { updateFormField, closeDataForm, submitBuilding } from 'src/store/reducer';
+import { updateFormField, closeAllModals, submitBuilding } from 'src/store/reducer';
 
 /**
  * Local import
@@ -28,8 +28,8 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  closeDataForm: () => {
-    dispatch(closeDataForm());
+  closeAllModals: () => {
+    dispatch(closeAllModals());
   },
   updateFormField: (fieldName, input) => {
     dispatch(updateFormField(fieldName, input));

@@ -5,6 +5,7 @@ import {
 } from 'react-leaflet';
 import L from 'leaflet';
 import RenseignementDonnees from '../../containers/RenseignementDonnees';
+import DisplayBuilding from '../../containers/DisplayBuilding';
 import './leafletmap.scss';
 // pour utiliser des punaises custom
 import pins3 from '../../styles/images/pins3.png';
@@ -35,12 +36,20 @@ class Leaflet extends React.Component {
   }
 
   handleRightClick = (e) => {
-    const { updateFormField, openDataForm } = this.props;
+    const { updateFormField, openDataForm, closeAllModals } = this.props;
     console.log(e.latlng);
     updateFormField('clickedLat', e.latlng.lat);
     updateFormField('clickedLng', e.latlng.lng);
+    closeAllModals();
     openDataForm(e.latlng);
   };
+
+  handleClickMarker = () => {
+    const { openDisplayBuilding, closeAllModals } = this.props;
+    console.log('marker clicked');
+    closeAllModals();
+    openDisplayBuilding();
+  }
 
   render() {
     const { closeAllModals, buildings } = this.props;
@@ -50,6 +59,7 @@ class Leaflet extends React.Component {
     return (
       <>
         <RenseignementDonnees />
+        <DisplayBuilding />
         <LeafletMap
           center={[46.7248003746672, 2.9003906250000004]}
           zoom={6}
@@ -70,12 +80,14 @@ class Leaflet extends React.Component {
           <TileLayer
             url="https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png"
           />
+
           {
             buildings.map(({ latitude, longitude, id }) => (
               <Marker
                 position={[latitude, longitude]}
                 icon={this.myPinUne}
                 key={id}
+                onClick={this.handleClickMarker}
               >
                 <Popup>
                   Je suis un pop up
@@ -83,6 +95,7 @@ class Leaflet extends React.Component {
               </Marker>
             ))
           }
+
         </LeafletMap>
       </>
     );
@@ -96,6 +109,7 @@ Leaflet.propTypes = {
   getArchitectures: PropTypes.func.isRequired,
   getBuildings: PropTypes.func.isRequired,
   buildings: PropTypes.arrayOf(PropTypes.object).isRequired,
+  openDisplayBuilding: PropTypes.func.isRequired,
 };
 
 export default Leaflet;
