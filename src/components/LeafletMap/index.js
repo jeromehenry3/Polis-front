@@ -44,19 +44,25 @@ class Leaflet extends React.Component {
 
   render() {
     const { closeAllModals, buildings } = this.props;
+    const southWest = L.latLng(-66.51326044311186, -172.26562500000003);
+    const northEast = L.latLng(81.92318632602199, 190.54687500000003);
+    const bounds = L.latLngBounds(southWest, northEast);
     return (
       <>
         <RenseignementDonnees />
         <LeafletMap
-          center={[48.864716, 2.349014]}
-          zoom={12}
+          center={[46.7248003746672, 2.9003906250000004]}
+          zoom={6}
           maxZoom={19}
+          minZoom={3}
           attributionControl
-          zoomControl={false}
-          doubleClickZoom={false}
+          zoomControl
+          doubleClickZoom
           scrollWheelZoom
+          maxBounds={bounds}
           dragging
           animate
+          infinite
           easeLinearity={0.35}
           onContextmenu={this.handleRightClick}
           onClick={closeAllModals}
