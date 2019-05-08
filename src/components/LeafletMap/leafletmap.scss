@@ -4,3 +4,7 @@
   height: 100vh;
   width: 100%;
 }
+svg path.leaflet-interactive {
+  pointer-events: unset !important;
+
+}
