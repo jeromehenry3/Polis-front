@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {
-  Map as LeafletMap, TileLayer, Marker,
+  Map as LeafletMap, TileLayer, Marker, Circle,
 } from 'react-leaflet';
 import { geolocated } from 'react-geolocated';
 import L from 'leaflet';
@@ -61,7 +61,7 @@ class Leaflet extends React.Component {
     const northEast = L.latLng(81.92318632602199, 190.54687500000003);
     const bounds = L.latLngBounds(southWest, northEast);
     const defaultCenter = coords ? [coords.latitude, coords.longitude] : [46.7248003746672, 2.9003906250000004];
-    console.log(coords);
+    console.log(this.props);
     return (
       <>
         <Menu />
@@ -73,9 +73,10 @@ class Leaflet extends React.Component {
             coords.longitude,
           ]}
           // center={defaultCenter}
-          zoom={12}
+          zoom={13}
           maxZoom={19}
           minZoom={3}
+          setView
           attributionControl
           zoomControl={false}
           doubleClickZoom
@@ -102,10 +103,13 @@ class Leaflet extends React.Component {
               />
             ))
           }
-          {isGeolocationEnabled && (
-            <Marker
-              position={defaultCenter}
-              icon={this.myPinDeux}
+          {coords !== null && (
+            <Circle
+              center={defaultCenter}
+              radius={coords.accuracy / 2}
+              color="#d98c5f"
+              fillColor="#f3b05f"
+              
             />
           )}
         </LeafletMap>
