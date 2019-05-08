@@ -47,11 +47,11 @@ class Leaflet extends React.Component {
     openDataForm(e.latlng);
   };
 
-  handleClickMarker = () => {
+  handleClickMarker = (e) => {
     const { openDisplayBuilding, closeAllModals } = this.props;
-    console.log('marker clicked');
+    const { id } = e.target.options;
     closeAllModals();
-    openDisplayBuilding();
+    openDisplayBuilding(id);
   }
 
   render() {
@@ -86,11 +86,14 @@ class Leaflet extends React.Component {
           />
 
           {
-            buildings.map(({ latitude, longitude, id }) => (
+            buildings.map(({
+              latitude, longitude, delivered, id,
+            }) => (
               <Marker
                 position={[latitude, longitude]}
-                icon={this.myPinUne}
+                icon={delivered ? this.myPinDeux : this.myPinUne}
                 key={id}
+                id={id}
                 onClick={this.handleClickMarker}
               />
             ))

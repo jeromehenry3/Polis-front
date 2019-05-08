@@ -11,7 +11,6 @@ import LeafletMap from 'src/components/LeafletMap';
 import { openDataForm, closeAllModals, updateFormField, getArchitectures, getBuildings, openDisplayBuilding } from 'src/store/reducer';
 
 
-
 const mapStateToProps = state => ({
   buildings: state.buildings,
 });
@@ -32,13 +31,13 @@ const mapDispatchToProps = dispatch => ({
   getArchitectures: () => {
     dispatch(getArchitectures());
   },
-  
+
   getBuildings: () => {
     dispatch(getBuildings());
   },
 
-  openDisplayBuilding: () => {
-    dispatch(openDisplayBuilding());
+  openDisplayBuilding: (id) => {
+    dispatch(openDisplayBuilding(id));
   },
 });
 

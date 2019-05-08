@@ -8,13 +8,34 @@ import MainPicture from '../../../styles/images/Libertony.jpg';
 
 import './DisplayBuilding.scss';
 
-const DisplayBuilding = ({ isDisplayBuildingOpen, closeAllModals }) => {
-  
+const DisplayBuilding = ({
+  isDisplayBuildingOpen,
+  closeAllModals,
+  address,
+  architect, 
+  architecture, 
+  builder,
+  certified, 
+  creationDate, 
+  delivered, 
+  description, 
+  id,
+  images, 
+  latitude,
+  longitude,
+  name,
+  planner,
+  promoter,
+  surface,
+  urbanist,
+  user,
+}) => {
   const handleCloseDataForm = (e) => {
     e.preventDefault();
     console.log('Dataform closed');
     closeAllModals();
   };
+
 
   return (
     <div id="DisplayBuilding">
@@ -26,46 +47,45 @@ const DisplayBuilding = ({ isDisplayBuildingOpen, closeAllModals }) => {
               style={{
                 backgroundImage: `url(${MainPicture})`,
               }}
-              
             />
             <a href="#" className="renseignement-donnees_close" onClick={handleCloseDataForm}>Fermer</a>
             <div className="header-info">
-              <h2 className="header-info-name">Tour Eiffel</h2>
-              <h3 className="header-info-address">5, Avenue Anatole France, 75007 Paris, France</h3>
+              <h2 className="header-info-name">{name}</h2>
+              <h3 className="header-info-address">{address}</h3>
               <div className="header-info-bottom--panel">
-                <p className="header-info-tag">Architecture totalitaire</p>
-                <p className="header-info-date">Livraison fin 1887</p>
-                <p className="header-info-surface">6.5 Ha</p>
+                <p className="header-info-tag">{architecture.name}</p>
+                <p className="header-info-date">{delivered ? creationDate : `Livraison: ${creationDate}`}</p>
+                <p className="header-info-surface">{surface} m²</p>
               </div>
             </div>
           </header>
           <hr />
           <div className="panel-description">
             <p className="panel-description-title">Le saviez-vous ?</p>
-            <p className="panel-description-text">La tour Eiffel est vraiment très jolie. Elle est toute en fer. D'ailleurs c'est même pour cela qu'on l'appelle la dame de fer.</p>
+            <p className="panel-description-text">{description}</p>
           </div>
           <hr />
           <div className="panel-builders">
             <ul>
               <li>
                 <p className="construction">Architecte</p>
-                <p>Gustave Eiffel</p>
+                <p>{architect}</p>
               </li>
               <li>
                 <p className="construction">Promoteur</p>
-                <p>Bouygues Immobilier</p>
+                <p>{promoter}</p>
               </li>
               <li>
                 <p className="construction">Constructeur</p>
-                <p>La Gustave Eiffel Company</p>
+                <p>{builder}</p>
               </li>
               <li>
                 <p className="amenagement">Aménageur</p>
-                <p>La mairie de Paris</p>
+                <p>{planner}</p>
               </li>
               <li>
                 <p className="amenagement">Urbaniste</p>
-                <p>-</p>
+                <p>{urbanist}</p>
               </li>
             </ul>
           </div>
@@ -107,7 +127,7 @@ const DisplayBuilding = ({ isDisplayBuildingOpen, closeAllModals }) => {
 
 DisplayBuilding.propTypes = {
   closeAllModals: PropTypes.func.isRequired,
-  isDisplayBuildingOpen: PropTypes.func.isRequired,
+  isDisplayBuildingOpen: PropTypes.bool.isRequired,
 };
 
 export default DisplayBuilding;

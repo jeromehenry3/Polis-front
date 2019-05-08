@@ -30,7 +30,7 @@ const initialState = {
   searchInput: '', // string
 
 
-  // ************FIELDS OF THE CARD DATA*************/
+  // ************FIELDS OF THE CARD DATA TO SEND*************/
   clickedLat: 0,
   clickedLng: 0,
   nameInput: '',
@@ -47,6 +47,27 @@ const initialState = {
   loading: false,
   architectures: [],
   buildings: [],
+
+
+  // ************FIELDS OF THE CARD DATA*******
+  address: '',
+  architect: '',
+  architecture: { id: 0, name: '' },
+  builder: '',
+  certified: false,
+  creationDate: 0,
+  delivered: true,
+  description: '',
+  id: 0,
+  images: [],
+  latitude: 0,
+  longitude: 0,
+  name: '',
+  planner: '',
+  promoter: '',
+  surface: 0,
+  urbanist: '',
+  user: { firstName: '', lastName: '' },
 };
 
 /**
@@ -67,6 +88,7 @@ export const GET_ARCHITECTURES = 'GET_ARCHITECTURES';
 export const GET_BUILDINGS = 'GET_BUILDINGS';
 export const SET_BUILDINGS = 'SET_BUILDINGS';
 export const CREATE_MARKER = 'CREATE_MARKER';
+export const SET_BUILDING_DATAS = 'SET_BUILDING_DATAS';
 
 /**
  * Traitements
@@ -152,6 +174,11 @@ const reducer = (state = initialState, action = {}) => {
           },
         ],
       };
+    case SET_BUILDING_DATAS:
+      return {
+        ...state,
+        [action.key]: action.value,
+      };
     default:
       return state;
   }
@@ -185,8 +212,9 @@ export const openDataForm = position => ({
   type: OPEN_DATA_FORM,
   position,
 });
-export const openDisplayBuilding = () => ({
+export const openDisplayBuilding = id => ({
   type: OPEN_DISPLAY_BUILDING,
+  id,
 });
 export const openDataFormResponse = data => ({
   type: OPEN_DATA_FORM_RESPONSE,
@@ -223,6 +251,12 @@ export const createMarker = (latitude, longitude) => ({
   type: CREATE_MARKER,
   latitude,
   longitude,
+});
+
+export const setBuildingDatas = (key, value) => ({
+  type: SET_BUILDING_DATAS,
+  key,
+  value,
 });
 /**
  * Selectors
