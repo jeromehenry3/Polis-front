@@ -4,11 +4,9 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Dimmer, Loader } from 'semantic-ui-react';
+import { Dimmer, Loader, Icon } from 'semantic-ui-react';
 import Input from '../../Input';
 import AppareilPhoto from '../../../styles/images/photo-camera.svg';
-import { Icon } from 'semantic-ui-react'
-
 import './renseignement.scss';
 
 const RenseignementDonnees = ({
@@ -31,7 +29,6 @@ const RenseignementDonnees = ({
 }) => {
   const handleCloseDataForm = (e) => {
     e.preventDefault();
-    console.log('Dataform closed');
     closeAllModals();
   };
 
@@ -52,7 +49,7 @@ const RenseignementDonnees = ({
       <div className="renseignement-donnees_relative">
         <a href="#" className="renseignement-donnees_close" onClick={handleCloseDataForm}>Fermer</a>
         <label htmlFor="picture-building"><img src={AppareilPhoto} alt="Appareil" className="renseignement-donnees_appareil" /></label>
-        <input type="file" id="picture-building" className="inputfile" />
+        <input type="file" id="picture-building" className="inputfile" onChange={e => updateFormField('fileInput', e.target.files[0])} />
         <form action="">
           <div className="renseignement-donnees_inputs">
             <div className="renseignement-donnees_primary-infos">
