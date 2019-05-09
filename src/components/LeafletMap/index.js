@@ -108,7 +108,7 @@ class Leaflet extends React.Component {
               center={defaultCenter}
               radius={coords.accuracy / 2}
               color="#d98c5f"
-              fillColor="#f3b05f"
+              fillColor="#fff9ef"
               
             />
           )}
