@@ -60,7 +60,12 @@ const initialState = {
   delivered: true,
   description: '',
   id: 0,
-  images: [],
+  images: [
+    {
+      id: 0,
+      path: '',
+    },
+  ],
   latitude: 0,
   longitude: 0,
   name: '',

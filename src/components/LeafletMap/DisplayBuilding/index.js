@@ -36,6 +36,7 @@ const DisplayBuilding = ({
     closeAllModals();
   };
 
+  console.log(images[0].path !== '');
 
   return (
     <div id="DisplayBuilding">
@@ -45,7 +46,7 @@ const DisplayBuilding = ({
             <div
               className="header-picture"
               style={{
-                backgroundImage: `url(${MainPicture})`,
+                backgroundImage: `url(${images[0].path !== '' ? images[0].path : MainPicture})`,
               }}
             />
             <a href="#" className="renseignement-donnees_close" onClick={handleCloseDataForm}>Fermer</a>
