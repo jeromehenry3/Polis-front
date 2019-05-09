@@ -16,10 +16,21 @@ import pins3 from '../../styles/images/pins3.png';
 import pins8 from '../../styles/images/Pins8.png';
 
 // Création de la map avec React Leaflet
+const toggleFullScreen = () => {
+  const doc = window.document;
+  const docEl = doc.documentElement;
+  const requestFullScreen = docEl.requestFullscreen || docEl.mozRequestFullScreen || docEl.webkitRequestFullScreen || docEl.msRequestFullscreen;
+  const cancelFullScreen = doc.exitFullscreen || doc.mozCancelFullScreen || doc.webkitExitFullscreen || doc.msExitFullscreen;
+  if (!doc.fullscreenElement && !doc.mozFullScreenElement && !doc.webkitFullscreenElement && !doc.msFullscreenElement) {
+    requestFullScreen.call(docEl);
+  }
+  else {
+    cancelFullScreen.call(doc);
+  }
+}
 
 class Leaflet extends React.Component {
   // Props: openDataForm, closeAllModals, updateFormField
-
   myPinUne = L.icon({
     iconUrl: `${pins3}`,
     iconSize: [40, 40], // size of the icon
@@ -34,6 +45,7 @@ class Leaflet extends React.Component {
 
   componentDidMount() {
     const { getArchitectures, getBuildings } = this.props;
+    toggleFullScreen();
     getBuildings();
     getArchitectures();
   }
