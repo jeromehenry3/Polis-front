@@ -5,7 +5,10 @@ import {
 } from 'react-leaflet';
 import L from 'leaflet';
 import RenseignementDonnees from '../../containers/RenseignementDonnees';
+
+import Menu from '../../containers/Menu';
 import DisplayBuilding from '../../containers/DisplayBuilding';
+
 import './leafletmap.scss';
 // pour utiliser des punaises custom
 import pins3 from '../../styles/images/pins3.png';
@@ -58,6 +61,7 @@ class Leaflet extends React.Component {
     const bounds = L.latLngBounds(southWest, northEast);
     return (
       <>
+        <Menu />
         <RenseignementDonnees />
         <DisplayBuilding />
         <LeafletMap

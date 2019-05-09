@@ -2,6 +2,8 @@
 /**
  * Initial State
  */
+import tokenEnDur from 'src/data/tokenEnDur';
+
 const initialState = {
   // *******FIELDS OF THE LOGIN / SIGNIN FORM******/
   username: '', // string
@@ -9,15 +11,26 @@ const initialState = {
   passwordConfirmInput: '', // string
   firstNameInput: '', // string
   lastNameInput: '', // string
-  isDataFormOpen: false, // bool qui indique si le formulaire de renseignement de données est ouvert ou non
-  isDisplayBuildingOpen: false, // bool qui toggle l'ouverture de displayBuilding
-  token: 'eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJpYXQiOjE1NTcxNDQxNjMsImV4cCI6MTU1NzIzMDU2Mywicm9sZXMiOlsiUk9MRV9VU0VSIl0sInVzZXJuYW1lIjoiZm1hY2tvZGV2QGdtYWlsLmNvbSJ9.KAFU6aKPvmfEa_TFz78HiXX_xwjURYJGFGwkguRtbqAeT1h6wWyJooEjsgvnRfYQGN_uCg_oxtyqRSqTYGl2ze_VRtntVc0sp4iwLkmspNMtg4CzCRdceDiiUfpVP9plFRjXHUQ_zWrLqr-Efu5UsbiduHWUi9nUs-Ie1ivPejfTwYkyuCZR3RKyl09Yqva9XhLTn7RofLqJgUOOPViuTbv03hXmG_f4Oe6RWjBTz1JHt9i5iSvzP2wJU_3ApsfwgKSkhBNssF-NRfkx0UnsFN-vPQbgDor-Seb_v-ItzKo_k21INx_wRgt3gbjjDkUaBhfBNC1tdjVYGq3toYZVqg5DwOjWuVbdkzmWSd3LSqa_dTY0pixt9rx5hsMSkmENyvrKVQ3C6cRa9-IYFJdDvaumoP2cz_KSfJSnUiCD7YtiRz5gb2a5gyJDJIHe3o-KLFdHImqqWJlO-SBStgLoO_jWFmmAZRxTECnSg3EBF18v4m_xOHSI_Cs5eg_XpXGPfz3Y-X-zJFh7iaJ8tVLTEDFmsoFB3TtZG5KI1-ciByWH0egF2_kkABpLHmVfEbWtxNjIfnfxl2Sg4zGqFtVn28DiuvZag41ML9OVRk9h7z1o9JC8qqw2EOpcBI_gkNnzsIkhsEGC2DPo3DbMXV_kyUTg6WzofCGnwhNRr8wxTR4', // string,
+
+  // *******MANAGEMENT OF THE CONNECTION************/
+  token: tokenEnDur, // string,
   refreshToken: '',
   isConnected: false,
   loginMessage: 'Vous devez vous identifier pour contribuer à Polis',
   loginStatus: 'not-connected', // string : not-connected || connecting || connected, for logic purposes
 
-  // ************FIELDS OF THE CARD DATA TO SEND*******
+
+  // ************MANAGEMENT OF THE MODALS************/
+  // bool qui indique si le formulaire de renseignement de données est ouvert ou non
+  isDataFormOpen: false,
+  isDisplayBuildingOpen: false, // bool qui toggle l'ouverture de displayBuilding
+
+
+  // ************MANAGEMENT OF THE MENU**************/
+  searchInput: '', // string
+
+
+  // ************FIELDS OF THE CARD DATA TO SEND*************/
   clickedLat: 0,
   clickedLng: 0,
   fileInput: '',
