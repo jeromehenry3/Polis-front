@@ -58,6 +58,7 @@
     "prop-types": "*",
     "react": "*",
     "react-dom": "*",
+    "react-geolocated": "^2.4.1",
     "react-leaflet": "^2.2.1",
     "react-redux": "*",
     "react-router-dom": "^5.0.0",

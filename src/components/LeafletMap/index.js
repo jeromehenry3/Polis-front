@@ -1,8 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {
-  Map as LeafletMap, TileLayer, Marker, Popup,
+  Map as LeafletMap, TileLayer, Marker, Circle,
 } from 'react-leaflet';
+import { geolocated } from 'react-geolocated';
 import L from 'leaflet';
 import RenseignementDonnees from '../../containers/RenseignementDonnees';
 
@@ -18,7 +19,6 @@ import pins8 from '../../styles/images/Pins8.png';
 
 class Leaflet extends React.Component {
   // Props: openDataForm, closeAllModals, updateFormField
-
 
   myPinUne = L.icon({
     iconUrl: `${pins3}`,
@@ -56,19 +56,27 @@ class Leaflet extends React.Component {
 
   render() {
     const { closeAllModals, buildings } = this.props;
+    const { coords, isGeolocationAvailable, isGeolocationEnabled, positionError } = this.props;
     const southWest = L.latLng(-66.51326044311186, -172.26562500000003);
     const northEast = L.latLng(81.92318632602199, 190.54687500000003);
     const bounds = L.latLngBounds(southWest, northEast);
+    const defaultCenter = coords ? [coords.latitude, coords.longitude] : [46.7248003746672, 2.9003906250000004];
+    console.log(this.props);
     return (
       <>
         <Menu />
         <RenseignementDonnees />
         <DisplayBuilding />
         <LeafletMap
-          center={[46.7248003746672, 2.9003906250000004]}
-          zoom={6}
+          center={isGeolocationEnabled ? defaultCenter : [
+            coords.latitude,
+            coords.longitude,
+          ]}
+          // center={defaultCenter}
+          zoom={13}
           maxZoom={19}
           minZoom={3}
+          setView
           attributionControl
           zoomControl={false}
           doubleClickZoom
@@ -98,7 +106,15 @@ class Leaflet extends React.Component {
               />
             ))
           }
-
+          {coords !== null && (
+            <Circle
+              center={defaultCenter}
+              radius={coords.accuracy / 2}
+              color="#d98c5f"
+              fillColor="#fff9ef"
+              
+            />
+          )}
         </LeafletMap>
       </>
     );
@@ -115,4 +131,10 @@ Leaflet.propTypes = {
   openDisplayBuilding: PropTypes.func.isRequired,
 };
 
-export default Leaflet;
+export default geolocated({
+  positionOptions: {
+    enableHighAccuracy: true,
+  },
+  userDecisionTimeout: null,
+  watchPosition: true,
+})(Leaflet);
