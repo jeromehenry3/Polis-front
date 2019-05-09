@@ -56,11 +56,13 @@ const polisApiMiddleware = store => next => (action) => {
     case SUBMIT_BUILDING:
       next(action);
       const date = new Date();
+
       axios.post(`${polisApi}/createBuilding`, {
         latitude: store.getState().clickedLat,
         longitude: store.getState().clickedLng,
         address: store.getState().addressInput,
         style: store.getState().architectureInput,
+        picture: store.getState().fileInput,
         name: store.getState().nameInput,
         creationDate: parseInt(store.getState().dateInput),
         surface: parseInt(store.getState().surfaceInput),

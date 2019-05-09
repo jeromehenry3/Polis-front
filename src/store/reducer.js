@@ -33,6 +33,7 @@ const initialState = {
   // ************FIELDS OF THE CARD DATA TO SEND*************/
   clickedLat: 0,
   clickedLng: 0,
+  fileInput: '',
   nameInput: '',
   surfaceInput: '',
   addressInput: '',
