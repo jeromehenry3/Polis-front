@@ -70,7 +70,7 @@
             position: fixed;
             height: inherit;
             top: 31px;
-            right: 25px;
+            right: 27px;
 
         }
         .ui.search > div > div > input { // the search input
@@ -92,7 +92,7 @@
                 }
 
                 & + label { // Label while field is focused
-                    transform: translate(calc(-50vw + 150%), -13px);
+                    transform: translate(calc(-50vw + 175%), -13px);
                     opacity: 1;
                 }
             }
