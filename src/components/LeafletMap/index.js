@@ -120,8 +120,9 @@ class Leaflet extends React.Component {
               />
               <Circle
                 center={[coords.latitude, coords.longitude]}
-                radius={2}
+                radius={0.5}
                 color="#cc6b33"
+                fillColor="cc6b33"
               />
             </>
           )}
