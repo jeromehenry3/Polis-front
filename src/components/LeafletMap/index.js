@@ -62,7 +62,7 @@ class Leaflet extends React.Component {
     const southWest = L.latLng(-66.51326044311186, -172.26562500000003);
     const northEast = L.latLng(81.92318632602199, 190.54687500000003);
     const bounds = L.latLngBounds(southWest, northEast);
-    let defaultCenter = coords ? [coords.latitude, coords.longitude] : center;
+    const defaultCenter = coords ? [coords.latitude, coords.longitude] : center;
 
     if (isGeolocationEnabled && coords && !userLocalized) {
       // eslint-disable-next-line no-unused-expressions
@@ -79,8 +79,7 @@ class Leaflet extends React.Component {
         <DisplayBuilding />
         <LeafletMap
           center={center}
-          // center={defaultCenter}
-          zoom={13}
+          zoom={16}
           maxZoom={19}
           minZoom={3}
           setView
