@@ -111,12 +111,19 @@ class Leaflet extends React.Component {
             ))
           }
           {coords !== null && (
-            <Circle
-              center={[coords.latitude, coords.longitude]}
-              radius={coords.accuracy / 2}
-              color="#d98c5f"
-              fillColor="#f3b05f"
-            />
+            <>
+              <Circle
+                center={[coords.latitude, coords.longitude]}
+                radius={coords.accuracy / 2}
+                color="#d98c5f"
+                fillColor="#f3b05f"
+              />
+              <Circle
+                center={[coords.latitude, coords.longitude]}
+                radius={2}
+                color="#cc6b33"
+              />
+            </>
           )}
         </LeafletMap>
       </>
