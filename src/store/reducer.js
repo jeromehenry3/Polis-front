@@ -51,29 +51,31 @@ const initialState = {
 
 
   // ************FIELDS OF THE CARD DATA*******
-  address: '',
-  architect: '',
-  architecture: { id: 0, name: '' },
-  builder: '',
-  certified: false,
-  creationDate: 0,
-  delivered: true,
-  description: '',
-  id: 0,
-  images: [
-    {
-      id: 0,
-      path: '',
-    },
-  ],
-  latitude: 0,
-  longitude: 0,
-  name: '',
-  planner: '',
-  promoter: '',
-  surface: 0,
-  urbanist: '',
-  user: { firstName: '', lastName: '' },
+  datas: {
+    address: '',
+    architect: '',
+    architecture: { id: 0, name: '' },
+    builder: '',
+    certified: false,
+    creationDate: 0,
+    delivered: true,
+    description: '',
+    id: 0,
+    images: [
+      {
+        id: 0,
+        path: '',
+      },
+    ],
+    latitude: 0,
+    longitude: 0,
+    name: '',
+    planner: '',
+    promoter: '',
+    surface: 0,
+    urbanist: '',
+    user: { firstName: '', lastName: '' },
+  },
 };
 
 /**
@@ -142,6 +144,7 @@ const reducer = (state = initialState, action = {}) => {
       return {
         ...state,
         isDisplayBuildingOpen: true,
+        loading: true,
       };
     case OPEN_DATA_FORM_RESPONSE:
       // eslint-disable-next-line camelcase
@@ -175,15 +178,18 @@ const reducer = (state = initialState, action = {}) => {
         buildings: [
           ...state.buildings,
           {
+            id: action.datas.id,
             latitude: action.latitude,
             longitude: action.longitude,
+            delivered: action.datas.delivered,
           },
         ],
       };
     case SET_BUILDING_DATAS:
       return {
         ...state,
-        [action.key]: action.value,
+        datas: action.datas,
+        loading: false,
       };
     default:
       return state;
@@ -253,16 +259,16 @@ export const submitBuilding = () => ({
   type: SUBMIT_BUILDING,
 });
 
-export const createMarker = (latitude, longitude) => ({
+export const createMarker = (latitude, longitude, datas) => ({
   type: CREATE_MARKER,
   latitude,
   longitude,
+  datas,
 });
 
-export const setBuildingDatas = (key, value) => ({
+export const setBuildingDatas = datas => ({
   type: SET_BUILDING_DATAS,
-  key,
-  value,
+  datas,
 });
 /**
  * Selectors
