@@ -19,6 +19,10 @@ const initialState = {
   loginMessage: 'Vous devez vous identifier pour contribuer à Polis',
   loginStatus: 'not-connected', // string : not-connected || connecting || connected, for logic purposes
 
+  // *********MANAGEMENT OF THE GEOLOCALIZATION*********/
+  center: [46.7248003746672, 2.9003906250000004], // Center of the map
+  zoom: 13, // level of zoom
+
 
   // ************MANAGEMENT OF THE MODALS************/
   // bool qui indique si le formulaire de renseignement de données est ouvert ou non
