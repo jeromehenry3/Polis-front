@@ -9,14 +9,13 @@
     justify-content: center;
     align-items:center;
     background-color: $yellow;
-
     
     span {
         font-family: 'Catamaran', sans-serif;
         font-size: 2.2em;
         font-weight: 700;
         text-align:right;
-        color: $brown
+        color: $brown;
     }
     img {
         padding-left:130px;
@@ -32,7 +31,7 @@
     }
     .rw-words-1 span{
     position: absolute;
-    top:50%;
+    top:25%;
     opacity: 0;
     overflow: hidden;
     padding: 12px 10px 3px 0;

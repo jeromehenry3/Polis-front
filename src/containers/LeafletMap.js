@@ -9,7 +9,8 @@ import LeafletMap from 'src/components/LeafletMap';
 
 
 import {
-  openDataForm, closeAllModals, updateFormField, getArchitectures, getBuildings, openDisplayBuilding,
+  openDataForm, closeAllModals, updateFormField, getArchitectures,
+  getBuildings, openDisplayBuilding,
 } from 'src/store/reducer';
 
 const mapStateToProps = state => ({
@@ -17,6 +18,7 @@ const mapStateToProps = state => ({
   center: state.center,
   zoom: state.zoom,
   userLocalized: state.userLocalized,
+  loading: state.loading,
 });
 
 const mapDispatchToProps = dispatch => ({

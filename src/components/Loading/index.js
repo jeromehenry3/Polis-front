@@ -7,26 +7,41 @@ import React from 'react';
  */
 // Composants
 import Logo from 'src/styles/images/logo-dark.png';
+
+import { shuffleArray } from 'src/functions/';
 // Styles et assets
 import './loading.scss';
 
 /**
  * Code
  */
-const Loading = () => (
-  <div id="loading" className="loading bg-color-1">
-    <h1>
-      <div className="rw-words rw-words-1">
-        <span className="color-5">floriano</span>
-        <span className="color-5">minnea</span>
-        <span className="color-5">metro</span>
-        <span className="color-5">indiana</span>
-        <span className="color-5">megalo</span>
-        <img src={Logo} alt="Logo Polis" />
-      </div>
-    </h1>
-  </div>
-);
+
+
+const Loading = () => {
+  const words = [
+    'floriano',
+    'minnea',
+    'metro',
+    'indiana',
+    'megalo',
+  ];
+  // const words = shuffleArray(listToShuffle);
+
+  return (
+    <div id="loading" className="loading bg-color-1">
+      <h1>
+        <div className="rw-words rw-words-1">
+          <span className="color-5">{words[1]}</span>
+          <span className="color-5">{words[2]}</span>
+          <span className="color-5">{words[3]}</span>
+          <span className="color-5">{words[4]}</span>
+          <span className="color-5">{words[5]}</span>
+          <img src={Logo} alt="Logo Polis" />
+        </div>
+      </h1>
+    </div>
+  );
+};
 
 /**
  * Export

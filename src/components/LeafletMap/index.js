@@ -10,6 +10,7 @@ import RenseignementDonnees from '../../containers/RenseignementDonnees';
 
 import Menu from '../../containers/Menu';
 import DisplayBuilding from '../../containers/DisplayBuilding';
+import Loading from '../Loading';
 
 import './leafletmap.scss';
 // pour utiliser des punaises custom
@@ -33,9 +34,10 @@ class Leaflet extends React.Component {
   });
 
   componentDidMount() {
-    const { getArchitectures, getBuildings } = this.props;
+    const { getArchitectures, getBuildings, updateFormField } = this.props;
     // eslint-disable-next-line no-unused-expressions
     detectIfMobile() && toggleFullScreen();
+    updateFormField('loading', true);
     getBuildings();
     getArchitectures();
   }
@@ -56,10 +58,15 @@ class Leaflet extends React.Component {
     openDisplayBuilding(id);
   }
 
+  handleMapReady = (event) => {
+    const { updateFormField, loading } = this.props;
+    setTimeout(() => updateFormField('loading', false), 3000);
+  }
+
   render() {
     const { closeAllModals, buildings } = this.props;
     const {
-      coords, isGeolocationAvailable, isGeolocationEnabled, positionError, center, zoom, userLocalized, updateFormField,
+      coords, isGeolocationAvailable, isGeolocationEnabled, positionError, center, zoom, userLocalized, updateFormField, loading,
     } = this.props;
     const southWest = L.latLng(-66.51326044311186, -172.26562500000003);
     const northEast = L.latLng(81.92318632602199, 190.54687500000003);
@@ -79,9 +86,10 @@ class Leaflet extends React.Component {
     console.log(this.props);
     return (
       <>
-        <Menu />
-        <RenseignementDonnees />
-        <DisplayBuilding />
+        {loading && <Loading />}
+        {!loading && <Menu />}
+        {!loading && <RenseignementDonnees />}
+        {!loading && <DisplayBuilding />}
         <LeafletMap
           center={center}
           zoom={zoom}
@@ -99,6 +107,7 @@ class Leaflet extends React.Component {
           easeLinearity={0.35}
           onContextmenu={this.handleRightClick}
           onClick={closeAllModals}
+          whenReady={this.handleMapReady}
         >
           <TileLayer
             url="https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png"
@@ -154,6 +163,8 @@ Leaflet.propTypes = {
   isGeolocationAvailable: PropTypes.bool.isRequired,
   isGeolocationEnabled: PropTypes.bool.isRequired,
   positionError: PropTypes.number,
+  handleFormField: PropTypes.func.isRequired,
+  loading: PropTypes.bool.isRequired,
 };
 
 export default geolocated({
