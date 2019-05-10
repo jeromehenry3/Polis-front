@@ -59,7 +59,7 @@ class Leaflet extends React.Component {
   render() {
     const { closeAllModals, buildings } = this.props;
     const {
-      coords, isGeolocationAvailable, isGeolocationEnabled, positionError,
+      coords, isGeolocationAvailable, isGeolocationEnabled, positionError, center, zoom, userLocalized, updateFormField,
     } = this.props;
     const southWest = L.latLng(-66.51326044311186, -172.26562500000003);
     const northEast = L.latLng(81.92318632602199, 190.54687500000003);
@@ -67,6 +67,15 @@ class Leaflet extends React.Component {
     const defaultCenter = coords
       ? [coords.latitude, coords.longitude]
       : [46.7248003746672, 2.9003906250000004];
+    // const defaultCenter = coords ? [coords.latitude, coords.longitude] : center;
+
+    if (isGeolocationEnabled && coords && !userLocalized) {
+      // eslint-disable-next-line no-unused-expressions
+      updateFormField('center', [coords.latitude, coords.longitude]);
+      updateFormField('userLocalized', true);
+      updateFormField('zoom', 13);
+    }
+
     console.log(this.props);
     return (
       <>
@@ -74,12 +83,8 @@ class Leaflet extends React.Component {
         <RenseignementDonnees />
         <DisplayBuilding />
         <LeafletMap
-          center={isGeolocationEnabled ? defaultCenter : [
-            coords.latitude,
-            coords.longitude,
-          ]}
-          // center={defaultCenter}
-          zoom={13}
+          center={center}
+          zoom={zoom}
           maxZoom={19}
           minZoom={3}
           setView
@@ -113,12 +118,20 @@ class Leaflet extends React.Component {
             ))
           }
           {coords !== null && (
-            <Circle
-              center={defaultCenter}
-              radius={coords.accuracy / 2}
-              color="#d98c5f"
-              fillColor="#fff9ef"
-            />
+            <>
+              <Circle
+                center={[coords.latitude, coords.longitude]}
+                radius={coords.accuracy / 2}
+                color="#d98c5f"
+                fillColor="#f3b05f"
+              />
+              <Circle
+                center={[coords.latitude, coords.longitude]}
+                radius={0.1}
+                color="#cc6b33"
+                fillColor="#cc6b33"
+              />
+            </>
           )}
         </LeafletMap>
       </>
@@ -135,6 +148,9 @@ Leaflet.propTypes = {
   buildings: PropTypes.arrayOf(PropTypes.object).isRequired,
   openDisplayBuilding: PropTypes.func.isRequired,
   coords: PropTypes.object,
+  center: PropTypes.arrayOf(PropTypes.number).isRequired,
+  zoom: PropTypes.number.isRequired,
+  coords: PropTypes.object.isRequired,
   isGeolocationAvailable: PropTypes.bool.isRequired,
   isGeolocationEnabled: PropTypes.bool.isRequired,
   positionError: PropTypes.number,

@@ -57,7 +57,7 @@ const RenseignementDonnees = ({
     console.log('submitting building');
     submitBuilding();
   };
-
+  console.log(addressInput)
   return (
     <div className={isDataFormOpen ? 'renseignement-donnees open' : 'renseignement-donnees'}>
       <div className="renseignement-donnees_relative">
@@ -205,14 +205,22 @@ const RenseignementDonnees = ({
             />
 
           </div>
-          <div className="renseignement-donnees_submit invisible-mobile">
-            <button type="submit" className="form-button" onClick={handleSubmitBuilding}>Ajouter</button>
-          </div>
+          {
+            addressInput !== "Impossible de trouver l'adresse" && (
+            <div className="renseignement-donnees_submit invisible-mobile">
+              <button type="submit" className="form-button" onClick={handleSubmitBuilding}>Ajouter</button>
+            </div>
+            )
+          }
         </form>
-        <div className="footer-mobile">
-          <a href="#" className="renseignement-donnees_share">Partager <Icon name="share" /> </a>
-          <a href="#" className="invisible-desktop btn-submit-mobile" onClick={handleSubmitBuilding}>Valider</a>
-        </div>
+        {
+            addressInput !== "Impossible de trouver l'adresse" && (
+              <div className="footer-mobile">
+                <a href="#" className="renseignement-donnees_share">Partager <Icon name="share" /> </a>
+                <a href="#" className="invisible-desktop btn-submit-mobile" onClick={handleSubmitBuilding}>Valider</a>
+              </div>
+            )
+          }
       </div>
     </div>
   );
