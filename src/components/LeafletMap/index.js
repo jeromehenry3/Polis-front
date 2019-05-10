@@ -15,11 +15,32 @@ import './leafletmap.scss';
 import pins3 from '../../styles/images/pins3.png';
 import pins8 from '../../styles/images/Pins8.png';
 
-// Création de la map avec React Leaflet
+// Automatically toggles full screen when opening the map
+const toggleFullScreen = () => {
+  const doc = window.document;
+  const docEl = doc.documentElement;
+  const requestFullScreen = docEl.requestFullscreen
+    || docEl.mozRequestFullScreen
+    || docEl.webkitRequestFullScreen
+    || docEl.msRequestFullscreen;
+  const cancelFullScreen = doc.exitFullscreen
+    || doc.mozCancelFullScreen
+    || doc.webkitExitFullscreen
+    || doc.msExitFullscreen;
+  if (!doc.fullscreenElement
+    && !doc.mozFullScreenElement
+    && !doc.webkitFullscreenElement
+    && !doc.msFullscreenElement) {
+    requestFullScreen.call(docEl);
+  }
+  else {
+    cancelFullScreen.call(doc);
+  }
+};
 
+// Création de la map avec React Leaflet
 class Leaflet extends React.Component {
   // Props: openDataForm, closeAllModals, updateFormField
-
   myPinUne = L.icon({
     iconUrl: `${pins3}`,
     iconSize: [40, 40], // size of the icon
@@ -34,6 +55,7 @@ class Leaflet extends React.Component {
 
   componentDidMount() {
     const { getArchitectures, getBuildings } = this.props;
+    toggleFullScreen();
     getBuildings();
     getArchitectures();
   }
@@ -47,11 +69,11 @@ class Leaflet extends React.Component {
     openDataForm(e.latlng);
   };
 
-  handleClickMarker = () => {
+  handleClickMarker = (e) => {
     const { openDisplayBuilding, closeAllModals } = this.props;
-    console.log('marker clicked');
+    const { id } = e.target.options;
     closeAllModals();
-    openDisplayBuilding();
+    openDisplayBuilding(id);
   }
 
   render() {
@@ -101,11 +123,14 @@ class Leaflet extends React.Component {
           />
 
           {
-            buildings.map(({ latitude, longitude, id }) => (
+            buildings.map(({
+              latitude, longitude, delivered, id,
+            }) => (
               <Marker
                 position={[latitude, longitude]}
-                icon={this.myPinUne}
+                icon={delivered ? this.myPinDeux : this.myPinUne}
                 key={id}
+                id={id}
                 onClick={this.handleClickMarker}
               />
             ))
@@ -125,6 +150,12 @@ class Leaflet extends React.Component {
                 fillColor="#cc6b33"
               />
             </>
+            <Circle
+              center={defaultCenter}
+              radius={coords.accuracy / 2}
+              color="#d98c5f"
+              fillColor="#fff9ef"
+            />
           )}
         </LeafletMap>
       </>
@@ -143,6 +174,10 @@ Leaflet.propTypes = {
 
   center: PropTypes.arrayOf(PropTypes.number).isRequired,
   zoom: PropTypes.number.isRequired,
+  coords: PropTypes.object.isRequired,
+  isGeolocationAvailable: PropTypes.bool.isRequired,
+  isGeolocationEnabled: PropTypes.bool.isRequired,
+  positionError: PropTypes.number.isRequired,
 };
 
 export default geolocated({

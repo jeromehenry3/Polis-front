@@ -109,6 +109,12 @@
         li {
             display:flex;
             justify-content: space-between;
+            :nth-child(2) {
+                margin-left: 30px;
+            }
+        }
+        p {
+            text-align: right;
         }
         .construction {
             color:$yellow-darken;
@@ -120,6 +126,15 @@
             font-weight:700;
             text-decoration: underline;
         }
+        a {
+            color:#1d1d1d;
+            font-weight:300;
+            transition: 0.4s;
+        }
+        a:hover {
+            color: $yellow-darken;
+        }
+        
     }
 
     footer {
@@ -169,8 +184,6 @@
         padding: 15px;
         font-size:0.8em;   
     }
-
-
 
     // Petits écrans
     @media screen and (max-width: 430px) { 
@@ -228,6 +241,11 @@
                 padding: 4px 7px 6px 7px;
                 border-radius: 5px;
             }   
+            &-bottom--panel {
+                display:flex;
+                justify-content: space-between;
+                align-items: baseline;
+            }
         }
     
         .panel-description {
@@ -246,6 +264,14 @@
 
         .panel-builders {
             padding: 5px 15px 8px;
+            a {
+                color:#1d1d1d;
+                font-weight:300;
+                transition: 0.4s;
+            }
+            a:hover {
+                color: $yellow-darken;
+            }
         }
     
         footer {

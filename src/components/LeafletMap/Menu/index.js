@@ -29,9 +29,11 @@ const TopMenu = ({ searchInput, updateFormField }) => (
           <Input
             type="text"
             id="search-input"
+            name="search-input"
             placeholder="Recherche"
             value={searchInput}
             onChangeFunction={input => updateFormField('searchInput', input)}
+            disabled={false}
           />
           <i className="search link icon" />
         </div>

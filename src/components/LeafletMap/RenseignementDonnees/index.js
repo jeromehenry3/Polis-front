@@ -4,11 +4,9 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Dimmer, Loader } from 'semantic-ui-react';
+import { Dimmer, Loader, Icon } from 'semantic-ui-react';
 import Input from '../../Input';
 import AppareilPhoto from '../../../styles/images/photo-camera.svg';
-import { Icon } from 'semantic-ui-react'
-
 import './renseignement.scss';
 
 const RenseignementDonnees = ({
@@ -31,7 +29,6 @@ const RenseignementDonnees = ({
 }) => {
   const handleCloseDataForm = (e) => {
     e.preventDefault();
-    console.log('Dataform closed');
     closeAllModals();
   };
 
@@ -39,6 +36,20 @@ const RenseignementDonnees = ({
     console.log(e.target.value);
 
     updateFormField('architectureInput', parseInt(e.target.value));
+  };
+
+  const handleFileChange = (e) => {
+    const readFile = () => {
+      const reader = new FileReader();
+      reader.addEventListener('load', () => {
+        updateFormField('fileInput', reader.result);
+      });
+      reader.readAsDataURL(e.target.files[0]);
+    };
+
+    if (readFile) {
+      readFile(e.target.files[0]);
+    }
   };
 
   const handleSubmitBuilding = (e) => {
@@ -52,7 +63,7 @@ const RenseignementDonnees = ({
       <div className="renseignement-donnees_relative">
         <a href="#" className="renseignement-donnees_close" onClick={handleCloseDataForm}>Fermer</a>
         <label htmlFor="picture-building"><img src={AppareilPhoto} alt="Appareil" className="renseignement-donnees_appareil" /></label>
-        <input type="file" id="picture-building" className="inputfile" />
+        <input type="file" id="picture-building" className="inputfile" onChange={handleFileChange} accept="image/*" />
         <form action="">
           <div className="renseignement-donnees_inputs">
             <div className="renseignement-donnees_primary-infos">
@@ -91,7 +102,7 @@ const RenseignementDonnees = ({
                 disabled={false}
               />
             </div>
-            <div className="renseignement-donnees_secondary-infos">  
+            <div className="renseignement-donnees_secondary-infos">
               <div className="input-container">
                 <select
                   id="style"
@@ -132,7 +143,7 @@ const RenseignementDonnees = ({
                 />
                 <label htmlFor="date">Date</label>
               </div>
-          </div>
+            </div>
             <Input
               type="text"
               id="architect"
@@ -199,7 +210,7 @@ const RenseignementDonnees = ({
           </div>
         </form>
         <div className="footer-mobile">
-          <a href="#" className="renseignement-donnees_share">Partager <Icon name='share' /> </a>
+          <a href="#" className="renseignement-donnees_share">Partager <Icon name="share" /> </a>
           <a href="#" className="invisible-desktop btn-submit-mobile" onClick={handleSubmitBuilding}>Valider</a>
         </div>
       </div>

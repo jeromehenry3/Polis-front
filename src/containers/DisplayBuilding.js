@@ -11,6 +11,8 @@ import DisplayBuilding from 'src/components/LeafletMap/DisplayBuilding';
 
 const mapStateToProps = state => ({
   isDisplayBuildingOpen: state.isDisplayBuildingOpen,
+  datas: state.datas,
+  loading: state.loading,
 });
 
 const mapDispatchToProps = dispatch => ({

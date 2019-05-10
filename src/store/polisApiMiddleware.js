@@ -1,3 +1,4 @@
+/* eslint-disable no-case-declarations */
 /* eslint-disable radix */
 import axios from 'axios';
 
@@ -12,6 +13,8 @@ import {
   GET_BUILDINGS,
   setBuildings,
   createMarker,
+  OPEN_DISPLAY_BUILDING,
+  setBuildingDatas,
 } from './reducer';
 const polisApi = 'https://www.thomas-gillet.com/api';
 // eslint-disable-next-line consistent-return
@@ -52,11 +55,14 @@ const polisApiMiddleware = store => next => (action) => {
       break;
     case SUBMIT_BUILDING:
       next(action);
+      const date = new Date();
+
       axios.post(`${polisApi}/createBuilding`, {
         latitude: store.getState().clickedLat,
         longitude: store.getState().clickedLng,
         address: store.getState().addressInput,
         style: store.getState().architectureInput,
+        picture: store.getState().fileInput,
         name: store.getState().nameInput,
         creationDate: parseInt(store.getState().dateInput),
         surface: parseInt(store.getState().surfaceInput),
@@ -67,7 +73,7 @@ const polisApiMiddleware = store => next => (action) => {
         urbanist: store.getState().urbanistInput,
         description: store.getState().descriptionInput,
         certified: false,
-        delivered: true,
+        delivered: parseInt(store.getState().dateInput) < date.getFullYear(),
       }, {
         headers: {
           Authorization: `Bearer ${store.getState().token}`,
@@ -75,7 +81,7 @@ const polisApiMiddleware = store => next => (action) => {
       })
         .then((response) => {
           console.log(response.data);
-          store.dispatch(createMarker(store.getState().clickedLat, store.getState().clickedLng));
+          store.dispatch(createMarker(store.getState().clickedLat, store.getState().clickedLng, response.data));
         })
         .catch((error) => {
           console.log(error.message);
@@ -96,6 +102,18 @@ const polisApiMiddleware = store => next => (action) => {
         .then((response) => {
           console.log(response);
           store.dispatch(setBuildings(response.data));
+        })
+        .catch((error) => {
+          console.log(error.message);
+        });
+      break;
+    case OPEN_DISPLAY_BUILDING:
+      next(action);
+      axios.get(`${polisApi}/buildings/${action.id}`)
+        .then((response) => {
+          console.log(response);
+
+          store.dispatch(setBuildingDatas(response.data));
         })
         .catch((error) => {
           console.log(error.message);

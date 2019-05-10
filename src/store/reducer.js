@@ -36,9 +36,10 @@ const initialState = {
   searchInput: '', // string
 
 
-  // ************FIELDS OF THE CARD DATA*************/
+  // ************FIELDS OF THE CARD DATA TO SEND*************/
   clickedLat: 0,
   clickedLng: 0,
+  fileInput: '',
   nameInput: '',
   surfaceInput: '',
   addressInput: '',
@@ -53,6 +54,34 @@ const initialState = {
   loading: false,
   architectures: [],
   buildings: [],
+
+
+  // ************FIELDS OF THE CARD DATA*******
+  datas: {
+    address: '',
+    architect: '',
+    architecture: { id: 0, name: '' },
+    builder: '',
+    certified: false,
+    creationDate: 0,
+    delivered: true,
+    description: '',
+    id: 0,
+    images: [
+      {
+        id: 0,
+        path: '',
+      },
+    ],
+    latitude: 0,
+    longitude: 0,
+    name: '',
+    planner: '',
+    promoter: '',
+    surface: 0,
+    urbanist: '',
+    user: { firstName: '', lastName: '' },
+  },
 };
 
 /**
@@ -73,6 +102,7 @@ export const GET_ARCHITECTURES = 'GET_ARCHITECTURES';
 export const GET_BUILDINGS = 'GET_BUILDINGS';
 export const SET_BUILDINGS = 'SET_BUILDINGS';
 export const CREATE_MARKER = 'CREATE_MARKER';
+export const SET_BUILDING_DATAS = 'SET_BUILDING_DATAS';
 
 /**
  * Traitements
@@ -120,6 +150,7 @@ const reducer = (state = initialState, action = {}) => {
       return {
         ...state,
         isDisplayBuildingOpen: true,
+        loading: true,
       };
     case OPEN_DATA_FORM_RESPONSE:
       // eslint-disable-next-line camelcase
@@ -153,10 +184,18 @@ const reducer = (state = initialState, action = {}) => {
         buildings: [
           ...state.buildings,
           {
+            id: action.datas.id,
             latitude: action.latitude,
             longitude: action.longitude,
+            delivered: action.datas.delivered,
           },
         ],
+      };
+    case SET_BUILDING_DATAS:
+      return {
+        ...state,
+        datas: action.datas,
+        loading: false,
       };
     default:
       return state;
@@ -191,8 +230,9 @@ export const openDataForm = position => ({
   type: OPEN_DATA_FORM,
   position,
 });
-export const openDisplayBuilding = () => ({
+export const openDisplayBuilding = id => ({
   type: OPEN_DISPLAY_BUILDING,
+  id,
 });
 export const openDataFormResponse = data => ({
   type: OPEN_DATA_FORM_RESPONSE,
@@ -225,10 +265,16 @@ export const submitBuilding = () => ({
   type: SUBMIT_BUILDING,
 });
 
-export const createMarker = (latitude, longitude) => ({
+export const createMarker = (latitude, longitude, datas) => ({
   type: CREATE_MARKER,
   latitude,
   longitude,
+  datas,
+});
+
+export const setBuildingDatas = datas => ({
+  type: SET_BUILDING_DATAS,
+  datas,
 });
 /**
  * Selectors
