@@ -150,12 +150,6 @@ class Leaflet extends React.Component {
                 fillColor="#cc6b33"
               />
             </>
-            <Circle
-              center={defaultCenter}
-              radius={coords.accuracy / 2}
-              color="#d98c5f"
-              fillColor="#fff9ef"
-            />
           )}
         </LeafletMap>
       </>
