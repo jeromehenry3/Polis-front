@@ -66,14 +66,15 @@ class Leaflet extends React.Component {
   render() {
     const { closeAllModals, buildings } = this.props;
     const {
-      coords, isGeolocationAvailable, isGeolocationEnabled, positionError, center, zoom, userLocalized, updateFormField, loading,
+      coords, isGeolocationEnabled,
+      center, zoom, userLocalized, updateFormField, loading,
     } = this.props;
     const southWest = L.latLng(-66.51326044311186, -172.26562500000003);
     const northEast = L.latLng(81.92318632602199, 190.54687500000003);
     const bounds = L.latLngBounds(southWest, northEast);
-    const defaultCenter = coords
-      ? [coords.latitude, coords.longitude]
-      : [46.7248003746672, 2.9003906250000004];
+    // const defaultCenter = coords
+    //   ? [coords.latitude, coords.longitude]
+    //   : [46.7248003746672, 2.9003906250000004];
     // const defaultCenter = coords ? [coords.latitude, coords.longitude] : center;
 
     if (isGeolocationEnabled && coords && !userLocalized) {
@@ -164,6 +165,7 @@ Leaflet.propTypes = {
   positionError: PropTypes.number,
   handleFormField: PropTypes.func.isRequired,
   loading: PropTypes.bool.isRequired,
+  userLocalized: PropTypes.bool.isRequired,
 };
 
 export default geolocated({
