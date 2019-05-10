@@ -5,6 +5,7 @@ import {
 } from 'react-leaflet';
 import { geolocated } from 'react-geolocated';
 import L from 'leaflet';
+import { toggleFullScreen, detectIfMobile } from 'src/functions/';
 import RenseignementDonnees from '../../containers/RenseignementDonnees';
 
 import Menu from '../../containers/Menu';
@@ -15,28 +16,6 @@ import './leafletmap.scss';
 import pins3 from '../../styles/images/pins3.png';
 import pins8 from '../../styles/images/Pins8.png';
 
-// Automatically toggles full screen when opening the map
-const toggleFullScreen = () => {
-  const doc = window.document;
-  const docEl = doc.documentElement;
-  const requestFullScreen = docEl.requestFullscreen
-    || docEl.mozRequestFullScreen
-    || docEl.webkitRequestFullScreen
-    || docEl.msRequestFullscreen;
-  const cancelFullScreen = doc.exitFullscreen
-    || doc.mozCancelFullScreen
-    || doc.webkitExitFullscreen
-    || doc.msExitFullscreen;
-  if (!doc.fullscreenElement
-    && !doc.mozFullScreenElement
-    && !doc.webkitFullscreenElement
-    && !doc.msFullscreenElement) {
-    requestFullScreen.call(docEl);
-  }
-  else {
-    cancelFullScreen.call(doc);
-  }
-};
 
 // Création de la map avec React Leaflet
 class Leaflet extends React.Component {
@@ -55,7 +34,8 @@ class Leaflet extends React.Component {
 
   componentDidMount() {
     const { getArchitectures, getBuildings } = this.props;
-    toggleFullScreen();
+    // eslint-disable-next-line no-unused-expressions
+    detectIfMobile() && toggleFullScreen();
     getBuildings();
     getArchitectures();
   }
@@ -84,6 +64,9 @@ class Leaflet extends React.Component {
     const southWest = L.latLng(-66.51326044311186, -172.26562500000003);
     const northEast = L.latLng(81.92318632602199, 190.54687500000003);
     const bounds = L.latLngBounds(southWest, northEast);
+    const defaultCenter = coords
+      ? [coords.latitude, coords.longitude]
+      : [46.7248003746672, 2.9003906250000004];
     // const defaultCenter = coords ? [coords.latitude, coords.longitude] : center;
 
     if (isGeolocationEnabled && coords && !userLocalized) {
@@ -92,7 +75,6 @@ class Leaflet extends React.Component {
       updateFormField('userLocalized', true);
       updateFormField('zoom', 13);
     }
-
 
     console.log(this.props);
     return (
@@ -165,13 +147,13 @@ Leaflet.propTypes = {
   getBuildings: PropTypes.func.isRequired,
   buildings: PropTypes.arrayOf(PropTypes.object).isRequired,
   openDisplayBuilding: PropTypes.func.isRequired,
-
+  coords: PropTypes.object,
   center: PropTypes.arrayOf(PropTypes.number).isRequired,
   zoom: PropTypes.number.isRequired,
   coords: PropTypes.object.isRequired,
   isGeolocationAvailable: PropTypes.bool.isRequired,
   isGeolocationEnabled: PropTypes.bool.isRequired,
-  positionError: PropTypes.number.isRequired,
+  positionError: PropTypes.number,
 };
 
 export default geolocated({
