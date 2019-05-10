@@ -13,7 +13,16 @@ const extApiMiddleware = store => next => (action) => {
       axios.get(`https://nominatim.openstreetmap.org/reverse?lat=${action.position.lat}&lon=${action.position.lng}&format=json&addressdetails=1`)
         .then((response) => {
           console.log(response.data);
-          store.dispatch(openDataFormResponse(response.data));
+          if (response.data.error) {
+            console.log('error');
+            const data = {
+              display_name: 'Impossible de trouver l\'adresse',
+            };
+            store.dispatch(openDataFormResponse(data));
+          }
+          else {
+            store.dispatch(openDataFormResponse(response.data));
+          }
         })
         .catch((error) => {
           console.log(error);
