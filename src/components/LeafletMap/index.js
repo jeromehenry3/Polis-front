@@ -57,12 +57,20 @@ class Leaflet extends React.Component {
   render() {
     const { closeAllModals, buildings } = this.props;
     const {
-      coords, isGeolocationAvailable, isGeolocationEnabled, positionError, center, zoom,
+      coords, isGeolocationAvailable, isGeolocationEnabled, positionError, center, zoom, userLocalized, updateFormField,
     } = this.props;
     const southWest = L.latLng(-66.51326044311186, -172.26562500000003);
     const northEast = L.latLng(81.92318632602199, 190.54687500000003);
     const bounds = L.latLngBounds(southWest, northEast);
-    const defaultCenter = coords ? [coords.latitude, coords.longitude] : [46.7248003746672, 2.9003906250000004];
+    let defaultCenter = coords ? [coords.latitude, coords.longitude] : center;
+
+    if (isGeolocationEnabled && coords && !userLocalized) {
+      // eslint-disable-next-line no-unused-expressions
+      defaultCenter = [coords.latitude, coords.longitude],
+      updateFormField('userLocalized', true);
+    }
+
+
     console.log(this.props);
     return (
       <>
@@ -110,8 +118,7 @@ class Leaflet extends React.Component {
               center={defaultCenter}
               radius={coords.accuracy / 2}
               color="#d98c5f"
-              fillColor="#fff9ef"
-              
+              fillColor="#f3b05f"
             />
           )}
         </LeafletMap>
@@ -128,6 +135,9 @@ Leaflet.propTypes = {
   getBuildings: PropTypes.func.isRequired,
   buildings: PropTypes.arrayOf(PropTypes.object).isRequired,
   openDisplayBuilding: PropTypes.func.isRequired,
+
+  center: PropTypes.arrayOf(PropTypes.number).isRequired,
+  zoom: PropTypes.number.isRequired,
 };
 
 export default geolocated({

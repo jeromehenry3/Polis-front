@@ -17,6 +17,7 @@ const mapStateToProps = state => ({
   buildings: state.buildings,
   center: state.center,
   zoom: state.zoom,
+  userLocalized: state.userLocalized,
 });
 
 const mapDispatchToProps = dispatch => ({

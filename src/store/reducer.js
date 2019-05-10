@@ -3,6 +3,7 @@
  * Initial State
  */
 import tokenEnDur from 'src/data/tokenEnDur';
+import { Flag } from 'semantic-ui-react';
 
 const initialState = {
   // *******FIELDS OF THE LOGIN / SIGNIN FORM******/
@@ -22,6 +23,7 @@ const initialState = {
   // *********MANAGEMENT OF THE GEOLOCALIZATION*********/
   center: [46.7248003746672, 2.9003906250000004], // Center of the map
   zoom: 13, // level of zoom
+  userLocalized: false,
 
 
   // ************MANAGEMENT OF THE MODALS************/
