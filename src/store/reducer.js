@@ -178,8 +178,10 @@ const reducer = (state = initialState, action = {}) => {
         buildings: [
           ...state.buildings,
           {
+            id: action.datas.id,
             latitude: action.latitude,
             longitude: action.longitude,
+            delivered: action.datas.delivered,
           },
         ],
       };
@@ -257,10 +259,11 @@ export const submitBuilding = () => ({
   type: SUBMIT_BUILDING,
 });
 
-export const createMarker = (latitude, longitude) => ({
+export const createMarker = (latitude, longitude, datas) => ({
   type: CREATE_MARKER,
   latitude,
   longitude,
+  datas,
 });
 
 export const setBuildingDatas = datas => ({

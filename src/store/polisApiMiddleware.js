@@ -81,7 +81,7 @@ const polisApiMiddleware = store => next => (action) => {
       })
         .then((response) => {
           console.log(response.data);
-          store.dispatch(createMarker(store.getState().clickedLat, store.getState().clickedLng));
+          store.dispatch(createMarker(store.getState().clickedLat, store.getState().clickedLng, response.data));
         })
         .catch((error) => {
           console.log(error.message);
