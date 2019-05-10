@@ -9,7 +9,7 @@ import LostPassword from 'src/components/LostPassword';
 import { updateFormField, connectUser } from 'src/store/reducer';
 
 const mapStateToProps = state => ({
-  useremail: state.useremail,
+  username: state.username,
 });
 
 const mapDispatchToProps = dispatch => ({

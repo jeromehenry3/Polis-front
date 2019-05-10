@@ -12,6 +12,7 @@ import { Switch, Route, Redirect } from 'react-router-dom';
 import Signin from 'src/containers/Signin';
 import Login from 'src/containers/Login';
 import LostPassword from 'src/containers/LostPassword';
+import NewPassword from 'src/containers/NewPassword';
 import LeafletMap from 'src/containers/LeafletMap';
 
 // Dumb
@@ -63,6 +64,16 @@ const App = () => (
       render={() => (
         <Welcome>
           <LostPassword />
+        </Welcome>
+      )}
+    />
+
+    <Route
+      exact
+      path="/new-password"
+      render={() => (
+        <Welcome>
+          <NewPassword />
         </Welcome>
       )}
     />
