@@ -104,7 +104,7 @@ const polisApiMiddleware = store => next => (action) => {
       })
         .then((response) => {
           console.log(response.data);
-          store.dispatch(createMarker(store.getState().clickedLat, store.getState().clickedLng));
+          store.dispatch(createMarker(store.getState().clickedLat, store.getState().clickedLng, response.data));
         })
         .catch((error) => {
           console.log(error.message);
@@ -135,15 +135,8 @@ const polisApiMiddleware = store => next => (action) => {
       axios.get(`${polisApi}/buildings/${action.id}`)
         .then((response) => {
           console.log(response);
-          
-          const keys = Object.keys(response.data);
-          const values = Object.values(response.data);
-          for (let index = 0; index < keys.length; index++) {
-            const key = keys[index];
-            const value = values[index] === null ? '' : values[index];
-            store.dispatch(setBuildingDatas(key, value));
-            // console.log(setBuildingDatas(key, value))
-          }
+
+          store.dispatch(setBuildingDatas(response.data));
         })
         .catch((error) => {
           console.log(error.message);

@@ -8,11 +8,15 @@ import LeafletMap from 'src/components/LeafletMap';
 // Action Creators
 
 
-import { openDataForm, closeAllModals, updateFormField, getArchitectures, getBuildings, openDisplayBuilding } from 'src/store/reducer';
-
+import {
+  openDataForm, closeAllModals, updateFormField, getArchitectures, getBuildings, openDisplayBuilding,
+} from 'src/store/reducer';
 
 const mapStateToProps = state => ({
   buildings: state.buildings,
+  center: state.center,
+  zoom: state.zoom,
+  userLocalized: state.userLocalized,
 });
 
 const mapDispatchToProps = dispatch => ({
