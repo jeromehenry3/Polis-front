@@ -1,10 +1,13 @@
 /* eslint-disable no-case-declarations */
 /* eslint-disable radix */
 import axios from 'axios';
-
+import React from 'react';
+import { Redirect } from 'react-router-dom';
 import {
   CONNECT_USER,
   SIGNIN,
+  signinErrors,
+  NEW_PASSWORD,
   SUBMIT_BUILDING,
   storeToken,
   connectingError,
@@ -15,6 +18,7 @@ import {
   createMarker,
   OPEN_DISPLAY_BUILDING,
   setBuildingDatas,
+  redirectToLogin,
 } from './reducer';
 const polisApi = 'https://www.thomas-gillet.com/api';
 // eslint-disable-next-line consistent-return
@@ -45,6 +49,25 @@ const polisApiMiddleware = store => next => (action) => {
         password2: store.getState().passwordConfirmInput,
         firstname: store.getState().firstNameInput,
         lastname: store.getState().lastNameInput,
+      })
+        .then((response) => {
+          console.log(response.data);
+          if (response.data.length === 0) {
+            console.log('Inscription validée')
+            store.dispatch(signinErrors(response.data));
+            store.dispatch(redirectToLogin());
+          }
+          store.dispatch(signinErrors(response.data));
+        })
+        .catch((error) => {
+          console.log(error.message);
+        });
+      break;
+    case NEW_PASSWORD:
+      next(action);
+      axios.post(`${polisApi}/resetPassword`, {
+        password: store.getState().passwordInput,
+        password2: store.getState().passwordConfirmInput,
       })
         .then((response) => {
           console.log(response.data);

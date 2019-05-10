@@ -9,7 +9,25 @@
     position: relative;
   }
 }
-
+.panel-error {
+  transition: 0.3s;
+}
+.panel-error {
+  background-color: rgba(255, 0, 0, 0.750);
+  border-radius: 5px;
+  position: absolute;
+  left: 50%;
+  top: 0;
+  width: 300px;
+  margin-left: -150px;
+  z-index: 10000;
+  font-weight: 500;
+  .current-error {
+    color: white;
+    font-size: 0.9em;
+    margin: 5px 0;
+  }
+}
 
 a { // link "j'ai déja mes identifiants"
   color: $yellow;

@@ -74,6 +74,11 @@ const initialState = {
   surface: 0,
   urbanist: '',
   user: { firstName: '', lastName: '' },
+
+  // ************ERRORS*******
+  signinErrors: [],
+  redirectToLogin: false,
+
 };
 
 /**
@@ -84,6 +89,8 @@ export const CONNECT_USER = 'CONNECT_USER'; // Api connection with username && p
 export const STORE_TOKEN = 'STORE_TOKEN';
 export const CONNECTING_ERROR = 'CONNECTING_ERROR';
 export const SIGNIN = 'SIGNIN';
+export const SIGNIN_ERRORS = 'SIGNIN_ERRORS';
+export const NEW_PASSWORD = 'NEW_PASSWORD';
 export const OPEN_DATA_FORM = 'OPEN_DATA_FORM';
 export const OPEN_DISPLAY_BUILDING = 'OPEN_DISPLAY_BUILDING';
 export const OPEN_DATA_FORM_RESPONSE = 'OPEN_DATA_FORM_RESPONSE';
@@ -95,6 +102,7 @@ export const GET_BUILDINGS = 'GET_BUILDINGS';
 export const SET_BUILDINGS = 'SET_BUILDINGS';
 export const CREATE_MARKER = 'CREATE_MARKER';
 export const SET_BUILDING_DATAS = 'SET_BUILDING_DATAS';
+export const REDIRECT_TO_LOGIN = 'REDIRECT_TO_LOGIN';
 
 /**
  * Traitements
@@ -131,6 +139,13 @@ const reducer = (state = initialState, action = {}) => {
         loginMessage: 'Vous êtes connecté(e)',
       };
     case SIGNIN:
+      return state;
+    case SIGNIN_ERRORS:
+      return {
+        ...state,
+        signinErrors: action.errors,
+      };
+    case NEW_PASSWORD:
       return state;
     case OPEN_DATA_FORM:
       return {
@@ -185,6 +200,11 @@ const reducer = (state = initialState, action = {}) => {
         ...state,
         [action.key]: action.value,
       };
+    case REDIRECT_TO_LOGIN:
+      return {
+        ...state,
+        redirectToLogin: true,
+      };
     default:
       return state;
   }
@@ -209,6 +229,13 @@ export const storeToken = (token, refreshToken) => ({
 });
 export const signin = () => ({
   type: SIGNIN,
+});
+export const signinErrors = errors => ({
+  type: SIGNIN_ERRORS,
+  errors,
+});
+export const newPassword = () => ({
+  type: NEW_PASSWORD,
 });
 export const connectingError = message => ({
   type: CONNECTING_ERROR,
@@ -263,6 +290,10 @@ export const setBuildingDatas = (key, value) => ({
   type: SET_BUILDING_DATAS,
   key,
   value,
+});
+
+export const redirectToLogin = () => ({
+  type: REDIRECT_TO_LOGIN,
 });
 /**
  * Selectors
