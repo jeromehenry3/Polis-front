@@ -117,8 +117,9 @@ const polisApiMiddleware = store => next => (action) => {
           const values = Object.values(response.data);
           for (let index = 0; index < keys.length; index++) {
             const key = keys[index];
-            const value = values[index] === null ? 'N/A' : values[index];
+            const value = values[index] === null ? '' : values[index];
             store.dispatch(setBuildingDatas(key, value));
+            // console.log(setBuildingDatas(key, value))
           }
         })
         .catch((error) => {

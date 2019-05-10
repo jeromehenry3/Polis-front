@@ -54,39 +54,39 @@ const DisplayBuilding = ({
               <h2 className="header-info-name">{name}</h2>
               <h3 className="header-info-address">{address}</h3>
               <div className="header-info-bottom--panel">
-                <p className="header-info-tag">{architecture.name}</p>
-                <p className="header-info-date">{delivered ? creationDate : `Livraison: ${creationDate}`}</p>
-                <p className="header-info-surface">{surface} m²</p>
+                <p className="header-info-tag">{architecture.name ? architecture.name : 'courant architectural'}</p>
+                <p className="header-info-date">{delivered ? creationDate : `Date de livraison ${creationDate}`}</p>
+                <p className="header-info-surface">{surface ? `${surface} m²` : 'Surface non renseignée'}</p>
               </div>
             </div>
           </header>
           <hr />
           <div className="panel-description">
             <p className="panel-description-title">Le saviez-vous ?</p>
-            <p className="panel-description-text">{description}</p>
+            <p className="panel-description-text">{description ? description : 'aucune description actuellement renseignée'}</p>
           </div>
           <hr />
           <div className="panel-builders">
             <ul>
               <li>
                 <p className="construction">Architecte</p>
-                <p>{architect}</p>
+                <p>{architect ? architect : <a>éditer</a>}</p>
               </li>
               <li>
                 <p className="construction">Promoteur</p>
-                <p>{promoter}</p>
+                <p>{promoter ? promoter : <a>éditer</a>}</p>
               </li>
               <li>
                 <p className="construction">Constructeur</p>
-                <p>{builder}</p>
+                <p>{builder ? builder : <a>éditer</a>}</p>
               </li>
               <li>
                 <p className="amenagement">Aménageur</p>
-                <p>{planner}</p>
+                <p>{planner ? planner : <a>éditer</a>}</p>
               </li>
               <li>
                 <p className="amenagement">Urbaniste</p>
-                <p>{urbanist}</p>
+                <p>{urbanist ? urbanist : <a>éditer</a>}</p>
               </li>
             </ul>
           </div>
