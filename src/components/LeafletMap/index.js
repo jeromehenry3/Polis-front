@@ -66,7 +66,7 @@ class Leaflet extends React.Component {
 
     if (isGeolocationEnabled && coords && !userLocalized) {
       // eslint-disable-next-line no-unused-expressions
-      defaultCenter = [coords.latitude, coords.longitude],
+      updateFormField('center', [coords.latitude, coords.longitude]);
       updateFormField('userLocalized', true);
     }
 
@@ -78,10 +78,7 @@ class Leaflet extends React.Component {
         <RenseignementDonnees />
         <DisplayBuilding />
         <LeafletMap
-          center={isGeolocationEnabled ? defaultCenter : [
-            coords.latitude,
-            coords.longitude,
-          ]}
+          center={center}
           // center={defaultCenter}
           zoom={13}
           maxZoom={19}
