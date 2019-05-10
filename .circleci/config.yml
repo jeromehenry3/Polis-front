@@ -62,10 +62,10 @@ workflows:
   version: 2
   build-and-deploy:
     jobs:
-      - build-and-deploy
-          # filters:
-          #   branches:
-          #     only: dev
+      - build-and-deploy:
+          filters:
+            branches:
+              only: dev
       # - deploy:
       #     requires:
       #       - build
