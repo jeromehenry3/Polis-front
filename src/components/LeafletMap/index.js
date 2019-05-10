@@ -15,11 +15,32 @@ import './leafletmap.scss';
 import pins3 from '../../styles/images/pins3.png';
 import pins8 from '../../styles/images/Pins8.png';
 
-// Création de la map avec React Leaflet
+// Automatically toggles full screen when opening the map
+const toggleFullScreen = () => {
+  const doc = window.document;
+  const docEl = doc.documentElement;
+  const requestFullScreen = docEl.requestFullscreen
+    || docEl.mozRequestFullScreen
+    || docEl.webkitRequestFullScreen
+    || docEl.msRequestFullscreen;
+  const cancelFullScreen = doc.exitFullscreen
+    || doc.mozCancelFullScreen
+    || doc.webkitExitFullscreen
+    || doc.msExitFullscreen;
+  if (!doc.fullscreenElement
+    && !doc.mozFullScreenElement
+    && !doc.webkitFullscreenElement
+    && !doc.msFullscreenElement) {
+    requestFullScreen.call(docEl);
+  }
+  else {
+    cancelFullScreen.call(doc);
+  }
+};
 
+// Création de la map avec React Leaflet
 class Leaflet extends React.Component {
   // Props: openDataForm, closeAllModals, updateFormField
-
   myPinUne = L.icon({
     iconUrl: `${pins3}`,
     iconSize: [40, 40], // size of the icon
@@ -34,6 +55,7 @@ class Leaflet extends React.Component {
 
   componentDidMount() {
     const { getArchitectures, getBuildings } = this.props;
+    toggleFullScreen();
     getBuildings();
     getArchitectures();
   }
@@ -56,7 +78,9 @@ class Leaflet extends React.Component {
 
   render() {
     const { closeAllModals, buildings } = this.props;
-    const { coords, isGeolocationAvailable, isGeolocationEnabled, positionError } = this.props;
+    const {
+      coords, isGeolocationAvailable, isGeolocationEnabled, positionError,
+    } = this.props;
     const southWest = L.latLng(-66.51326044311186, -172.26562500000003);
     const northEast = L.latLng(81.92318632602199, 190.54687500000003);
     const bounds = L.latLngBounds(southWest, northEast);
@@ -112,7 +136,6 @@ class Leaflet extends React.Component {
               radius={coords.accuracy / 2}
               color="#d98c5f"
               fillColor="#fff9ef"
-              
             />
           )}
         </LeafletMap>
@@ -129,6 +152,10 @@ Leaflet.propTypes = {
   getBuildings: PropTypes.func.isRequired,
   buildings: PropTypes.arrayOf(PropTypes.object).isRequired,
   openDisplayBuilding: PropTypes.func.isRequired,
+  coords: PropTypes.object.isRequired,
+  isGeolocationAvailable: PropTypes.bool.isRequired,
+  isGeolocationEnabled: PropTypes.bool.isRequired,
+  positionError: PropTypes.number.isRequired,
 };
 
 export default geolocated({
