@@ -159,7 +159,6 @@ Leaflet.propTypes = {
   coords: PropTypes.object,
   center: PropTypes.arrayOf(PropTypes.number).isRequired,
   zoom: PropTypes.number.isRequired,
-  coords: PropTypes.object.isRequired,
   isGeolocationAvailable: PropTypes.bool.isRequired,
   isGeolocationEnabled: PropTypes.bool.isRequired,
   positionError: PropTypes.number,
