@@ -7,11 +7,8 @@ import { Icon } from 'semantic-ui-react';
 import './input.scss';
 
 class Input extends Component {
-  // {
-  //   type, id, name, placeholder, value, onChangeFunction, disabled,
-  // } = this.props
   state = {
-    type: this.props.type,
+    dynamicType: this.props.type,
   };
 
   handleFocus = (event) => {
@@ -24,38 +21,43 @@ class Input extends Component {
   };
 
   handleReveal = () => {
+    const { dynamicType } = this.state;
     this.setState({
-      type: this.state.type === 'password' ? 'text' : 'password',
+      dynamicType: dynamicType === 'password' ? 'text' : 'password',
     });
   }
 
   render() {
+    const {
+      id, name, placeholder, value, disabled, type,
+    } = this.props;
+    const { dynamicType } = this.state;
     return (
       <div className="input-container">
         <input
-          type={this.state.type}
-          id={this.props.id}
-          name={this.props.name}
-          placeholder={this.props.placeholder}
+          type={dynamicType}
+          id={id}
+          name={name}
+          placeholder={placeholder}
           onFocus={this.handleFocus}
-          value={this.props.value}
+          value={value}
           onChange={this.handleChange}
-          disabled={this.props.disabled}
+          disabled={disabled}
           className="input"
         />
-        <label htmlFor={this.props.id}>{this.props.placeholder}</label>
-        {this.props.type === 'password'
+        <label htmlFor={id}>{placeholder}</label>
+        {type === 'password'
         && (
           <Icon
-            name={this.state.type === 'password' ? 'eye' : 'eye slash'}
+            name={dynamicType === 'password' ? 'eye' : 'eye slash'}
             className="reveal-icon"
             onClick={this.handleReveal}
           />
         )}
       </div>
-  );
+    );
   }
-};
+}
 
 Input.propTypes = {
   // *******DATA*******
