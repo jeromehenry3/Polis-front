@@ -44,6 +44,15 @@
   }
 }
 
+.reveal-icon {
+  position: absolute;
+  top:8px;
+  right: 7px;
+  color: $grey;
+  cursor: pointer;  
+  
+}
+
 @keyframes showLabel {
   0% {
     opacity: 0;

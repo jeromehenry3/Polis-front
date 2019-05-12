@@ -2,6 +2,7 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
+import { Icon } from 'semantic-ui-react';
 
 import './input.scss';
 
@@ -29,6 +30,14 @@ const Input = ({
         className="input"
       />
       <label htmlFor={id}>{placeholder}</label>
+      {type === 'password'
+      && (
+        <Icon
+          name="eye"
+          className="reveal-icon"
+          onClick={console.log}
+        />
+      )}
     </div>
   );
 };
