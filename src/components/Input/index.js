@@ -1,45 +1,60 @@
 /* eslint-disable jsx-a11y/label-has-for */
 
-import React from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Icon } from 'semantic-ui-react';
 
 import './input.scss';
 
-const Input = ({
-  type, id, name, placeholder, value, onChangeFunction, disabled,
-}) => {
-  const handleFocus = (event) => {
+class Input extends Component {
+  // {
+  //   type, id, name, placeholder, value, onChangeFunction, disabled,
+  // } = this.props
+  state = {
+    type: this.props.type,
+  };
+
+  handleFocus = (event) => {
     event.target.classList.add('open');
   };
-  const handleChange = (event) => {
+
+  handleChange = (event) => {
+    const { onChangeFunction } = this.props;
     onChangeFunction(event.target.value);
   };
 
-  return (
-    <div className="input-container">
-      <input
-        type={type}
-        id={id}
-        name={name}
-        placeholder={placeholder}
-        onFocus={handleFocus}
-        value={value}
-        onChange={handleChange}
-        disabled={disabled}
-        className="input"
-      />
-      <label htmlFor={id}>{placeholder}</label>
-      {type === 'password'
-      && (
-        <Icon
-          name="eye"
-          className="reveal-icon"
-          onClick={console.log}
+  handleReveal = () => {
+    this.setState({
+      type: this.state.type === 'password' ? 'text' : 'password',
+    });
+  }
+
+  render() {
+    return (
+      <div className="input-container">
+        <input
+          type={this.state.type}
+          id={this.props.id}
+          name={this.props.name}
+          placeholder={this.props.placeholder}
+          onFocus={this.handleFocus}
+          value={this.props.value}
+          onChange={this.handleChange}
+          disabled={this.props.disabled}
+          className="input"
         />
-      )}
-    </div>
+        <label htmlFor={this.props.id}>{this.props.placeholder}</label>
+        {this.props.type === 'password'
+        && (
+          <Icon
+            name={this.state.type === 'password' ? 'eye' : 'eye slash'}
+            className="reveal-icon"
+            onClick={this.handleReveal}
+          />
+        )}
+      </div>
   );
+  }
 };
 
 Input.propTypes = {
