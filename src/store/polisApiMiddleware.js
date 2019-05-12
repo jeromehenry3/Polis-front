@@ -36,8 +36,8 @@ const polisApiMiddleware = store => next => (action) => {
           store.dispatch(storeToken(token, refreshToken));
         })
         .catch((error) => {
-          console.log('erreur :', error);
-          const message = (error.code === '401' ? 'Identifiant ou mot de passe invalide' : 'Une erreur est survenue, veuillez réessayer');
+          console.log('erreur :', error.response.data.code);
+          const message = (error.response.data.code === 401 ? 'Identifiant ou mot de passe invalide' : 'Une erreur est survenue, veuillez réessayer');
           store.dispatch(connectingError(message));
         });
       break;
@@ -53,7 +53,7 @@ const polisApiMiddleware = store => next => (action) => {
         .then((response) => {
           console.log(response.data);
           if (response.data.length === 0) {
-            console.log('Inscription validée')
+            console.log('Inscription validée');
             store.dispatch(signinErrors(response.data));
             store.dispatch(redirectToLogin());
           }
