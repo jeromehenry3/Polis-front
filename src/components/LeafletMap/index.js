@@ -37,7 +37,7 @@ class Leaflet extends React.Component {
     const { getArchitectures, getBuildings, updateFormField } = this.props;
     // eslint-disable-next-line no-unused-expressions
     detectIfMobile() && toggleFullScreen();
-    updateFormField('loading', true);
+    updateFormField('loadingWithLoader', true);
     getBuildings();
     getArchitectures();
   }
@@ -58,16 +58,16 @@ class Leaflet extends React.Component {
     openDisplayBuilding(id);
   }
 
-  handleMapReady = (event) => {
-    const { updateFormField, loading } = this.props;
-    setTimeout(() => updateFormField('loading', false), 3000);
+  handleMapReady = () => {
+    const { updateFormField } = this.props;
+    setTimeout(() => updateFormField('loadingWithLoader', false), 3000);
   }
 
   render() {
     const { closeAllModals, buildings } = this.props;
     const {
       coords, isGeolocationEnabled,
-      center, zoom, userLocalized, updateFormField, loading,
+      center, zoom, userLocalized, updateFormField, loadingWithLoader,
     } = this.props;
     const southWest = L.latLng(-66.51326044311186, -172.26562500000003);
     const northEast = L.latLng(81.92318632602199, 190.54687500000003);
@@ -87,10 +87,10 @@ class Leaflet extends React.Component {
     console.log(this.props);
     return (
       <>
-        {loading && <Loading />}
-        {!loading && <Menu />}
-        {!loading && <RenseignementDonnees />}
-        {!loading && <DisplayBuilding />}
+        {loadingWithLoader && <Loading />}
+        {!loadingWithLoader && <Menu />}
+        {!loadingWithLoader && <RenseignementDonnees />}
+        {!loadingWithLoader && <DisplayBuilding />}
         <LeafletMap
           center={center}
           zoom={zoom}
@@ -164,7 +164,7 @@ Leaflet.propTypes = {
   isGeolocationEnabled: PropTypes.bool.isRequired,
   positionError: PropTypes.number,
   handleFormField: PropTypes.func.isRequired,
-  loading: PropTypes.bool.isRequired,
+  loadingWithLoader: PropTypes.bool.isRequired,
   userLocalized: PropTypes.bool.isRequired,
 };
 

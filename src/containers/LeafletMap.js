@@ -18,7 +18,7 @@ const mapStateToProps = state => ({
   center: state.center,
   zoom: state.zoom,
   userLocalized: state.userLocalized,
-  loading: state.loading,
+  loadingWithLoader: state.loadingWithLoader,
 });
 
 const mapDispatchToProps = dispatch => ({
