@@ -59,6 +59,20 @@
         }
     }
 
+    button#add-button {
+        position: fixed;
+        bottom: 2em;
+        left: 50vw;
+        transform: translateX(-50%);
+        height: 80px;
+        width: 80px;
+
+        & > i.icons {
+            font-size: 2em;
+            transform: translateX(2px);
+        }
+    }
+
     @media screen and (max-width: 430px) { 
       // For mobile view, the search field is displayed as a button, that becomes an input when focused
       z-index: 401;
@@ -109,6 +123,12 @@
         // Icon not displayed when input not empty :
         .ui.search > div.not-empty > i.search.link.icon {
           display: none;
+
+        }
+        button#add-button { // But add button is
+            display: block;
+            height: 60px;
+            width: 60px;
         }
 
       }
