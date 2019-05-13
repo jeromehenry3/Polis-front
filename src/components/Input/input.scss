@@ -46,11 +46,10 @@
 
 .reveal-icon {
   position: absolute;
-  top: 8px;
+  top: 10px;
   right: 7px;
   color: $grey;
-  cursor: pointer;  
-  
+  cursor: pointer;   
 }
 
 @keyframes showLabel {
@@ -82,6 +81,9 @@
     & + label {
       font-size: 0.7em;
     }
+  }
+  .reveal-icon {
+    top: 8px;
   }
 
 }
