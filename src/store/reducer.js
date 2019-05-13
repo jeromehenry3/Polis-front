@@ -125,6 +125,7 @@ export const SIGNIN = 'SIGNIN';
 export const SIGNIN_ERRORS = 'SIGNIN_ERRORS';
 export const NEW_PASSWORD = 'NEW_PASSWORD';
 export const OPEN_DATA_FORM = 'OPEN_DATA_FORM';
+export const OPEN_DATA_FORM_BUTTON = 'OPEN_DATA_FORM_BUTTON';
 export const OPEN_DISPLAY_BUILDING = 'OPEN_DISPLAY_BUILDING';
 export const OPEN_DATA_FORM_RESPONSE = 'OPEN_DATA_FORM_RESPONSE';
 export const CLOSE_ALL_MODALS = 'CLOSE_ALL_MODALS';
@@ -186,7 +187,13 @@ const reducer = (state = initialState, action = {}) => {
       return {
         ...state,
         isDataFormOpen: true,
-        loading: action.isLoading,
+        loading: true,
+      };
+    case OPEN_DATA_FORM_BUTTON:
+      return {
+        ...state,
+        isDataFormOpen: true,
+        addressInput: '',
       };
     case OPEN_DISPLAY_BUILDING:
       return {
@@ -285,10 +292,9 @@ export const connectingError = message => ({
   type: CONNECTING_ERROR,
   message,
 });
-export const openDataForm = (position, isLoading) => ({
+export const openDataForm = position => ({
   type: OPEN_DATA_FORM,
   position,
-  isLoading,
 });
 export const openDisplayBuilding = id => ({
   type: OPEN_DISPLAY_BUILDING,
@@ -348,6 +354,10 @@ export const foundAddress = () => ({
 export const centerByAddress = position => ({
   type: CENTER_BY_ADDRESS,
   position,
+});
+
+export const openDataFormButton = () => ({
+  type: OPEN_DATA_FORM_BUTTON,
 });
 /**
  * Selectors

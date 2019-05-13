@@ -34,8 +34,6 @@ const RenseignementDonnees = ({
   };
 
   const handleSelectChange = (e) => {
-    console.log(e.target.value);
-
     updateFormField('architectureInput', parseInt(e.target.value));
   };
 

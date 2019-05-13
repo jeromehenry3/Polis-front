@@ -22,8 +22,8 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  openDataForm: (position, isLoading) => {
-    dispatch(openDataForm(position, isLoading));
+  openDataForm: (position) => {
+    dispatch(openDataForm(position));
   },
 
   closeAllModals: () => {
