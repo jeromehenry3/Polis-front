@@ -48,7 +48,7 @@ class Leaflet extends React.Component {
     updateFormField('clickedLat', e.latlng.lat);
     updateFormField('clickedLng', e.latlng.lng);
     closeAllModals();
-    openDataForm(e.latlng);
+    openDataForm(e.latlng, true);
   };
 
   handleClickMarker = (e) => {
@@ -84,7 +84,6 @@ class Leaflet extends React.Component {
       updateFormField('zoom', 13);
     }
 
-    console.log(this.props);
     return (
       <>
         {loadingWithLoader && <Loading />}
@@ -163,7 +162,6 @@ Leaflet.propTypes = {
   isGeolocationAvailable: PropTypes.bool.isRequired,
   isGeolocationEnabled: PropTypes.bool.isRequired,
   positionError: PropTypes.number,
-  handleFormField: PropTypes.func.isRequired,
   loadingWithLoader: PropTypes.bool.isRequired,
   userLocalized: PropTypes.bool.isRequired,
 };

@@ -125,6 +125,7 @@ export const SIGNIN = 'SIGNIN';
 export const SIGNIN_ERRORS = 'SIGNIN_ERRORS';
 export const NEW_PASSWORD = 'NEW_PASSWORD';
 export const OPEN_DATA_FORM = 'OPEN_DATA_FORM';
+export const OPEN_DATA_FORM_BUTTON = 'OPEN_DATA_FORM_BUTTON';
 export const OPEN_DISPLAY_BUILDING = 'OPEN_DISPLAY_BUILDING';
 export const OPEN_DATA_FORM_RESPONSE = 'OPEN_DATA_FORM_RESPONSE';
 export const CLOSE_ALL_MODALS = 'CLOSE_ALL_MODALS';
@@ -136,6 +137,8 @@ export const SET_BUILDINGS = 'SET_BUILDINGS';
 export const CREATE_MARKER = 'CREATE_MARKER';
 export const SET_BUILDING_DATAS = 'SET_BUILDING_DATAS';
 export const REDIRECT_TO_LOGIN = 'REDIRECT_TO_LOGIN';
+export const FOUND_ADDRESS = 'FOUND_ADDRESS';
+export const CENTER_BY_ADDRESS = 'CENTER_BY_ADDRESS';
 
 /**
  * Traitements
@@ -185,6 +188,12 @@ const reducer = (state = initialState, action = {}) => {
         ...state,
         isDataFormOpen: true,
         loading: true,
+      };
+    case OPEN_DATA_FORM_BUTTON:
+      return {
+        ...state,
+        isDataFormOpen: true,
+        addressInput: '',
       };
     case OPEN_DISPLAY_BUILDING:
       return {
@@ -241,6 +250,11 @@ const reducer = (state = initialState, action = {}) => {
       return {
         ...state,
         redirectToLogin: !state.redirectToLogin,
+      };
+    case CENTER_BY_ADDRESS:
+      return {
+        ...state,
+        center: action.position,
       };
     default:
       return state;
@@ -331,6 +345,19 @@ export const setBuildingDatas = datas => ({
 
 export const redirectToLogin = () => ({
   type: REDIRECT_TO_LOGIN,
+});
+
+export const foundAddress = () => ({
+  type: FOUND_ADDRESS,
+});
+
+export const centerByAddress = position => ({
+  type: CENTER_BY_ADDRESS,
+  position,
+});
+
+export const openDataFormButton = () => ({
+  type: OPEN_DATA_FORM_BUTTON,
 });
 /**
  * Selectors

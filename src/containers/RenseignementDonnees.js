@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 
-import { updateFormField, closeAllModals, submitBuilding } from 'src/store/reducer';
+import { updateFormField, closeAllModals, submitBuilding, foundAddress } from 'src/store/reducer';
 
 /**
  * Local import
@@ -38,6 +38,9 @@ const mapDispatchToProps = dispatch => ({
   submitBuilding: () => {
     dispatch(submitBuilding());
   },
+  foundAddress: () => {
+    dispatch(foundAddress());
+  }
 });
 
 export default connect(
