@@ -140,11 +140,12 @@ export const SET_BUILDINGS = 'SET_BUILDINGS';
 export const CREATE_MARKER = 'CREATE_MARKER';
 export const SET_BUILDING_DATAS = 'SET_BUILDING_DATAS';
 export const REDIRECT_TO_LOGIN = 'REDIRECT_TO_LOGIN';
-export const FOUND_ADDRESS = 'FOUND_ADDRESS';
+export const FIND_ADDRESS = 'FIND_ADDRESS';
 export const CENTER_BY_ADDRESS = 'CENTER_BY_ADDRESS';
 export const AUTO_COMPLETE = 'AUTO_COMPLETE';
 export const AUTO_COMPLETE_RESULTS = 'AUTO_COMPLETE_RESULTS';
 export const OPEN_AUTO_COMPLETE = 'OPEN_AUTO_COMPLETE';
+export const FIND_ADDRESS_SEARCH = 'FIND_ADDRESS_SEARCH';
 /**
  * Traitements
  */
@@ -364,8 +365,8 @@ export const redirectToLogin = () => ({
   type: REDIRECT_TO_LOGIN,
 });
 
-export const foundAddress = () => ({
-  type: FOUND_ADDRESS,
+export const findAddress = () => ({
+  type: FIND_ADDRESS,
 });
 
 export const centerByAddress = position => ({
@@ -389,6 +390,10 @@ export const autoCompleteResults = address => ({
 
 export const openAutocomplete = () => ({
   type: OPEN_AUTO_COMPLETE,
+});
+
+export const findAddressSearch = () => ({
+  type: FIND_ADDRESS_SEARCH,
 });
 /**
  * Selectors

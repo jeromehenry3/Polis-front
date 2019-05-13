@@ -7,7 +7,7 @@ import {
 import './menu.scss';
 
 const TopMenu = ({
-  searchInput, openDataForm, closeAllModals, autoComplete, autoCompleteResults, updateFormField, centerByAddress, isAutocompleteOpen,
+  searchInput, openDataForm, closeAllModals, autoComplete, autoCompleteResults, updateFormField, centerByAddress, isAutocompleteOpen, findAddressSearch,
 }) => {
   const handleSearch = position => (e) => {
     updateFormField('searchInput', e.target.textContent);
@@ -43,6 +43,12 @@ const TopMenu = ({
                 id="search-input"
                 name="search-input"
                 placeholder="Rechercher une adresse"
+                onKeyPress={(e) => {
+                  if (e.key === 'Enter') {
+                    closeAllModals();
+                    findAddressSearch();
+                  }
+                }}
                 onChange={(e) => {
                   autoComplete(e.target.value);
                 }}
@@ -52,7 +58,13 @@ const TopMenu = ({
               />
               <label htmlFor="searchInput">Recherche</label>
             </div>
-            <i className="search link icon" />
+            <i
+              className="search link icon"
+              onClick={() => {
+                closeAllModals();
+                findAddressSearch();
+              }}
+            />
           </div>
           <div className={isAutocompleteOpen ? 'results transition visible' : 'results transition'}>
             {

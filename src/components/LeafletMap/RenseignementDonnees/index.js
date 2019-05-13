@@ -26,7 +26,7 @@ const RenseignementDonnees = ({
   descriptionInput,
   loading,
   architectures,
-  foundAddress,
+  findAddress,
 }) => {
   const handleCloseDataForm = (e) => {
     e.preventDefault();
@@ -58,7 +58,7 @@ const RenseignementDonnees = ({
   };
 
   const handleBlur = (e) => {
-    foundAddress();
+    findAddress();
   };
 
   return (
