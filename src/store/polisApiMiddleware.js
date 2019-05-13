@@ -56,6 +56,7 @@ const polisApiMiddleware = store => next => (action) => {
             console.log('Inscription validée')
             store.dispatch(signinErrors(response.data));
             store.dispatch(redirectToLogin());
+            store.dispatch(redirectToLogin());
           }
           store.dispatch(signinErrors(response.data));
         })

@@ -84,7 +84,7 @@ const initialState = {
   // ************ERRORS*******
   signinErrors: [],
   redirectToLogin: false,
-    
+
   datas: {
     address: '',
     architect: '',
@@ -238,7 +238,7 @@ const reducer = (state = initialState, action = {}) => {
     case REDIRECT_TO_LOGIN:
       return {
         ...state,
-        redirectToLogin: true,
+        redirectToLogin: !state.redirectToLogin,
       };
     default:
       return state;
