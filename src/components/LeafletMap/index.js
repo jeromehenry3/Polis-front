@@ -48,7 +48,7 @@ class Leaflet extends React.Component {
     updateFormField('clickedLat', e.latlng.lat);
     updateFormField('clickedLng', e.latlng.lng);
     closeAllModals();
-    openDataForm(e.latlng);
+    openDataForm(e.latlng, true);
   };
 
   handleClickMarker = (e) => {

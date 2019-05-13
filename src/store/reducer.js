@@ -184,7 +184,7 @@ const reducer = (state = initialState, action = {}) => {
       return {
         ...state,
         isDataFormOpen: true,
-        loading: true,
+        loading: action.isLoading,
       };
     case OPEN_DISPLAY_BUILDING:
       return {
@@ -278,9 +278,10 @@ export const connectingError = message => ({
   type: CONNECTING_ERROR,
   message,
 });
-export const openDataForm = position => ({
+export const openDataForm = (position, isLoading) => ({
   type: OPEN_DATA_FORM,
   position,
+  isLoading,
 });
 export const openDisplayBuilding = id => ({
   type: OPEN_DISPLAY_BUILDING,
