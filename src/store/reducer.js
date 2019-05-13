@@ -35,6 +35,8 @@ const initialState = {
   // ************MANAGEMENT OF THE MENU**************/
   searchInput: '', // string
 
+  loadingWithLoader: false, // If loader should be displayed
+
 
   // ************FIELDS OF THE CARD DATA TO SEND*************/
   clickedLat: 0,
@@ -84,7 +86,7 @@ const initialState = {
   // ************ERRORS*******
   signinErrors: [],
   redirectToLogin: false,
-    
+
   datas: {
     address: '',
     architect: '',
@@ -238,7 +240,7 @@ const reducer = (state = initialState, action = {}) => {
     case REDIRECT_TO_LOGIN:
       return {
         ...state,
-        redirectToLogin: true,
+        redirectToLogin: !state.redirectToLogin,
       };
     default:
       return state;

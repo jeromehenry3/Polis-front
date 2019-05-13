@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Menu, Dropdown, Button } from 'semantic-ui-react';
+import { Menu, Dropdown, Button, Icon } from 'semantic-ui-react';
 import Input from '../../Input';
 
 import './menu.scss';
@@ -40,6 +40,12 @@ const TopMenu = ({ searchInput, updateFormField }) => (
         <div className="results" />
       </div>
     </Menu.Menu>
+    <Button id="add-button" circular>
+      <Icon.Group>
+        <Icon name="map marker alternate" />
+        <Icon corner name="add" />
+      </Icon.Group>
+    </Button>
   </div>
 );
 
