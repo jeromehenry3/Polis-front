@@ -100,6 +100,7 @@ const RenseignementDonnees = ({
                 value={addressInput}
                 onChangeFunction={input => updateFormField('addressInput', input)}
                 disabled={false}
+                required
               />
             </div>
             <div className="renseignement-donnees_secondary-infos">
@@ -124,6 +125,9 @@ const RenseignementDonnees = ({
               </div>
 
               <div className="input-container">
+                <div className="input-container--required">
+                  *
+                </div>
                 <input
                   className="input"
                   type="number"
@@ -133,6 +137,7 @@ const RenseignementDonnees = ({
                   value={dateInput}
                   id="date"
                   name="date"
+                  required
                   placeholder="Année de livraison ou de livraison estimée"
                   onChange={(e) => {
                     updateFormField('dateInput', e.target.value);

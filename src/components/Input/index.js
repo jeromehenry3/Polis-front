@@ -29,11 +29,16 @@ class Input extends Component {
 
   render() {
     const {
-      id, name, placeholder, value, disabled, type,
+      id, name, placeholder, value, disabled, type, required,
     } = this.props;
     const { dynamicType } = this.state;
     return (
       <div className="input-container">
+        {required && (
+          <div className="input-container--required">
+            *
+          </div>
+        )}
         <input
           type={dynamicType}
           id={id}
@@ -44,6 +49,7 @@ class Input extends Component {
           onChange={this.handleChange}
           disabled={disabled}
           className="input"
+          required={required}
         />
         <label htmlFor={id}>{placeholder}</label>
         {type === 'password'
@@ -73,6 +79,7 @@ Input.propTypes = {
   // *******LOGIC*******
   onChangeFunction: PropTypes.func.isRequired,
   disabled: PropTypes.bool.isRequired,
+  required: PropTypes.bool,
 };
 
 export default Input;
