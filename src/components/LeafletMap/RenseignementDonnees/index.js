@@ -26,6 +26,7 @@ const RenseignementDonnees = ({
   descriptionInput,
   loading,
   architectures,
+  foundAddress,
 }) => {
   const handleCloseDataForm = (e) => {
     e.preventDefault();
@@ -57,7 +58,11 @@ const RenseignementDonnees = ({
     console.log('submitting building');
     submitBuilding();
   };
-  console.log(addressInput)
+
+  const handleBlur = (e) => {
+    foundAddress();
+  };
+
   return (
     <div className={isDataFormOpen ? 'renseignement-donnees open' : 'renseignement-donnees'}>
       <div className="renseignement-donnees_relative">
@@ -98,6 +103,7 @@ const RenseignementDonnees = ({
                 name="address"
                 placeholder="Adresse"
                 value={addressInput}
+                onBlur={handleBlur}
                 onChangeFunction={input => updateFormField('addressInput', input)}
                 disabled={false}
               />

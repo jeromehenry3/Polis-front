@@ -3,6 +3,8 @@ import axios from 'axios';
 import {
   OPEN_DATA_FORM,
   openDataFormResponse,
+  FOUND_ADDRESS,
+  centerByAddress,
 } from './reducer';
 
 // eslint-disable-next-line consistent-return
@@ -23,6 +25,17 @@ const extApiMiddleware = store => next => (action) => {
           else {
             store.dispatch(openDataFormResponse(response.data));
           }
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+      break;
+    case FOUND_ADDRESS:
+      axios.get(`https://nominatim.openstreetmap.org/search/?q=${store.getState().addressInput}&format=geojson`)
+        .then((response) => {
+          console.log(response);
+          const position = response.data.features[0].geometry.coordinates;
+          store.dispatch(centerByAddress([position[1], position[0]]));
         })
         .catch((error) => {
           console.log(error);

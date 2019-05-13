@@ -136,6 +136,8 @@ export const SET_BUILDINGS = 'SET_BUILDINGS';
 export const CREATE_MARKER = 'CREATE_MARKER';
 export const SET_BUILDING_DATAS = 'SET_BUILDING_DATAS';
 export const REDIRECT_TO_LOGIN = 'REDIRECT_TO_LOGIN';
+export const FOUND_ADDRESS = 'FOUND_ADDRESS';
+export const CENTER_BY_ADDRESS = 'CENTER_BY_ADDRESS';
 
 /**
  * Traitements
@@ -242,6 +244,11 @@ const reducer = (state = initialState, action = {}) => {
         ...state,
         redirectToLogin: !state.redirectToLogin,
       };
+    case CENTER_BY_ADDRESS:
+      return {
+        ...state,
+        center: action.position,
+      };
     default:
       return state;
   }
@@ -332,6 +339,15 @@ export const setBuildingDatas = datas => ({
 
 export const redirectToLogin = () => ({
   type: REDIRECT_TO_LOGIN,
+});
+
+export const foundAddress = () => ({
+  type: FOUND_ADDRESS,
+});
+
+export const centerByAddress = position => ({
+  type: CENTER_BY_ADDRESS,
+  position,
 });
 /**
  * Selectors

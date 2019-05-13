@@ -5,7 +5,7 @@ import Input from '../../Input';
 
 import './menu.scss';
 
-const TopMenu = ({ searchInput, updateFormField, openDataForm }) => (
+const TopMenu = ({ searchInput, updateFormField, openDataForm, closeAllModals }) => (
   <div id="menu">
     <Dropdown item icon="bars" simple>
       <Dropdown.Menu>
@@ -40,7 +40,7 @@ const TopMenu = ({ searchInput, updateFormField, openDataForm }) => (
         <div className="results" />
       </div>
     </Menu.Menu>
-    <Button id="add-button" circular onClick={() => openDataForm(false)}>
+    <Button id="add-button" circular onClick={() => {closeAllModals(); openDataForm(false)}}>
       <Icon.Group>
         <Icon name="map marker alternate" />
         <Icon corner name="add" />

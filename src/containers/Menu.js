@@ -2,7 +2,7 @@ import { connect } from 'react-redux';
 
 import Menu from 'src/components/LeafletMap/Menu';
 
-import { updateFormField, openDataForm } from 'src/store/reducer';
+import { updateFormField, openDataForm, closeAllModals } from 'src/store/reducer';
 
 const mapStateToProps = state => ({
   searchInput: state.searchInput,
@@ -14,6 +14,10 @@ const mapDispatchToProps = dispatch => ({
   },
   openDataForm: (isLoading) => {
     dispatch(openDataForm([], isLoading));
+  },
+
+  closeAllModals: () => {
+    dispatch(closeAllModals());
   },
 });
 
