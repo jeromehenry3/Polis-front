@@ -175,6 +175,7 @@ const reducer = (state = initialState, action = {}) => {
         refreshToken: action.refreshToken,
         isConnected: true,
         loginMessage: 'Vous êtes connecté(e)',
+        redirectToLogin: false,
       };
     case SIGNIN:
       return state;
