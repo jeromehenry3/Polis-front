@@ -3,7 +3,6 @@
  * Initial State
  */
 import tokenEnDur from 'src/data/tokenEnDur';
-import { Flag } from 'semantic-ui-react';
 
 const initialState = {
   // *******FIELDS OF THE LOGIN / SIGNIN FORM******/
@@ -123,7 +122,8 @@ export const STORE_TOKEN = 'STORE_TOKEN';
 export const CONNECTING_ERROR = 'CONNECTING_ERROR';
 export const SIGNIN = 'SIGNIN';
 export const SIGNIN_ERRORS = 'SIGNIN_ERRORS';
-export const NEW_PASSWORD = 'NEW_PASSWORD';
+export const SET_NEW_PASSWORD = 'SET_NEW_PASSWORD';
+export const FORGOTTEN_PASSWORD = 'FORGOTTEN_PASSWORD';
 export const OPEN_DATA_FORM = 'OPEN_DATA_FORM';
 export const OPEN_DISPLAY_BUILDING = 'OPEN_DISPLAY_BUILDING';
 export const OPEN_DATA_FORM_RESPONSE = 'OPEN_DATA_FORM_RESPONSE';
@@ -178,8 +178,19 @@ const reducer = (state = initialState, action = {}) => {
         ...state,
         signinErrors: action.errors,
       };
-    case NEW_PASSWORD:
-      return state;
+    case SET_NEW_PASSWORD:
+      return {
+        ...state,
+        redirectToLogin: true,
+        loginMessage: 'Veuillez vous connecter avec votre nouveau mot de passe.',
+        passwordInput: '',
+      };
+    case FORGOTTEN_PASSWORD:
+      return {
+        ...state,
+        redirectToLogin: true,
+        loginMessage: 'Un mail vous a été envoyé',
+      };
     case OPEN_DATA_FORM:
       return {
         ...state,
@@ -271,8 +282,14 @@ export const signinErrors = errors => ({
   type: SIGNIN_ERRORS,
   errors,
 });
-export const newPassword = () => ({
-  type: NEW_PASSWORD,
+export const setNewPassword = (newPassword, newPasswordConfirm, token) => ({
+  type: SET_NEW_PASSWORD,
+  newPassword,
+  newPasswordConfirm,
+  token,
+});
+export const forgottenPassword = () => ({
+  type: FORGOTTEN_PASSWORD,
 });
 export const connectingError = message => ({
   type: CONNECTING_ERROR,

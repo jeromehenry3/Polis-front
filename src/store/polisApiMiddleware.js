@@ -1,13 +1,13 @@
 /* eslint-disable no-case-declarations */
 /* eslint-disable radix */
 import axios from 'axios';
-import React from 'react';
-import { Redirect } from 'react-router-dom';
+
 import {
   CONNECT_USER,
   SIGNIN,
   signinErrors,
-  NEW_PASSWORD,
+  FORGOTTEN_PASSWORD,
+  SET_NEW_PASSWORD,
   SUBMIT_BUILDING,
   storeToken,
   connectingError,
@@ -62,11 +62,24 @@ const polisApiMiddleware = store => next => (action) => {
           console.log(error.message);
         });
       break;
-    case NEW_PASSWORD:
+    case SET_NEW_PASSWORD:
       next(action);
       axios.post(`${polisApi}/resetPassword`, {
-        password: store.getState().passwordInput,
-        password2: store.getState().passwordConfirmInput,
+        password: action.newPassword,
+        password2: action.newPasswordConfirm,
+        token: action.token,
+      })
+        .then((response) => {
+          console.log(response.data);
+        })
+        .catch((error) => {
+          console.log(error.message);
+        });
+      break;
+    case FORGOTTEN_PASSWORD:
+      next(action);
+      axios.post(`${polisApi}/forgottenPassword`, {
+        email: store.getState().username,
       })
         .then((response) => {
           console.log(response.data);
