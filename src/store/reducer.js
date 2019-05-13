@@ -112,6 +112,9 @@ const initialState = {
     urbanist: '',
     user: { firstName: '', lastName: '' },
   },
+  // Autocomplete results
+  autoCompleteResults: [],
+  isAutocompleteOpen: false,
 };
 
 /**
@@ -139,7 +142,9 @@ export const SET_BUILDING_DATAS = 'SET_BUILDING_DATAS';
 export const REDIRECT_TO_LOGIN = 'REDIRECT_TO_LOGIN';
 export const FOUND_ADDRESS = 'FOUND_ADDRESS';
 export const CENTER_BY_ADDRESS = 'CENTER_BY_ADDRESS';
-
+export const AUTO_COMPLETE = 'AUTO_COMPLETE';
+export const AUTO_COMPLETE_RESULTS = 'AUTO_COMPLETE_RESULTS';
+export const OPEN_AUTO_COMPLETE = 'OPEN_AUTO_COMPLETE';
 /**
  * Traitements
  */
@@ -215,6 +220,7 @@ const reducer = (state = initialState, action = {}) => {
         ...state,
         isDataFormOpen: false,
         isDisplayBuildingOpen: false,
+        isAutocompleteOpen: false,
         // Les futurs modals à fermer
       };
     case SET_ARCHITECTURES:
@@ -255,6 +261,17 @@ const reducer = (state = initialState, action = {}) => {
       return {
         ...state,
         center: action.position,
+        zoom: 14,
+      };
+    case AUTO_COMPLETE_RESULTS:
+      return {
+        ...state,
+        autoCompleteResults: action.address,
+      };
+    case OPEN_AUTO_COMPLETE:
+      return {
+        ...state,
+        isAutocompleteOpen: true,
       };
     default:
       return state;
@@ -358,6 +375,20 @@ export const centerByAddress = position => ({
 
 export const openDataFormButton = () => ({
   type: OPEN_DATA_FORM_BUTTON,
+});
+
+export const autoComplete = value => ({
+  type: AUTO_COMPLETE,
+  value,
+});
+
+export const autoCompleteResults = address => ({
+  type: AUTO_COMPLETE_RESULTS,
+  address,
+});
+
+export const openAutocomplete = () => ({
+  type: OPEN_AUTO_COMPLETE,
 });
 /**
  * Selectors

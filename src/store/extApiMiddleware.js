@@ -6,6 +6,10 @@ import {
   FOUND_ADDRESS,
   centerByAddress,
   updateFormField,
+  AUTO_COMPLETE,
+  autoCompleteResults,
+  openAutocomplete,
+
 } from './reducer';
 
 // eslint-disable-next-line consistent-return
@@ -43,6 +47,24 @@ const extApiMiddleware = store => next => (action) => {
         .catch((error) => {
           console.log(error);
         });
+      break;
+    case AUTO_COMPLETE:
+      store.dispatch(updateFormField('searchInput', action.value));
+      if (action.value !== '') {
+        axios.get(`https://api-adresse.data.gouv.fr/search/?q=${store.getState().searchInput}&limit=4&autocomplete=1`)
+          .then((response) => {
+            const address = response.data.features;
+            console.log(address);
+            store.dispatch(autoCompleteResults(address));
+            store.dispatch(openAutocomplete());
+          })
+          .catch((error) => {
+            console.log(error);
+          });
+      }
+      else {
+        store.dispatch(autoCompleteResults([]));
+      }
       break;
     default:
       return next(action);

@@ -2,10 +2,12 @@ import { connect } from 'react-redux';
 
 import Menu from 'src/components/LeafletMap/Menu';
 
-import { updateFormField, openDataFormButton, closeAllModals } from 'src/store/reducer';
+import { updateFormField, openDataFormButton, closeAllModals, autoComplete, centerByAddress } from 'src/store/reducer';
 
 const mapStateToProps = state => ({
   searchInput: state.searchInput,
+  autoCompleteResults: state.autoCompleteResults,
+  isAutocompleteOpen: state.isAutocompleteOpen,
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -19,6 +21,14 @@ const mapDispatchToProps = dispatch => ({
   closeAllModals: () => {
     dispatch(closeAllModals());
   },
+
+  autoComplete: (value) => {
+    dispatch(autoComplete(value));
+  },
+
+  centerByAddress: (position) => {
+    dispatch(centerByAddress(position));
+  }
 });
 
 export default connect(
