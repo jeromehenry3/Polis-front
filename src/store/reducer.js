@@ -35,6 +35,8 @@ const initialState = {
   // ************MANAGEMENT OF THE MENU**************/
   searchInput: '', // string
 
+  loadingWithLoader: false, // If loader should be displayed
+
 
   // ************FIELDS OF THE CARD DATA TO SEND*************/
   clickedLat: 0,

@@ -10,6 +10,7 @@ import RenseignementDonnees from '../../containers/RenseignementDonnees';
 
 import Menu from '../../containers/Menu';
 import DisplayBuilding from '../../containers/DisplayBuilding';
+import Loading from '../Loading';
 
 import './leafletmap.scss';
 // pour utiliser des punaises custom
@@ -33,9 +34,10 @@ class Leaflet extends React.Component {
   });
 
   componentDidMount() {
-    const { getArchitectures, getBuildings } = this.props;
+    const { getArchitectures, getBuildings, updateFormField } = this.props;
     // eslint-disable-next-line no-unused-expressions
     detectIfMobile() && toggleFullScreen();
+    updateFormField('loadingWithLoader', true);
     getBuildings();
     getArchitectures();
   }
@@ -56,17 +58,23 @@ class Leaflet extends React.Component {
     openDisplayBuilding(id);
   }
 
+  handleMapReady = () => {
+    const { updateFormField } = this.props;
+    setTimeout(() => updateFormField('loadingWithLoader', false), 3000);
+  }
+
   render() {
     const { closeAllModals, buildings } = this.props;
     const {
-      coords, isGeolocationAvailable, isGeolocationEnabled, positionError, center, zoom, userLocalized, updateFormField,
+      coords, isGeolocationEnabled,
+      center, zoom, userLocalized, updateFormField, loadingWithLoader,
     } = this.props;
     const southWest = L.latLng(-66.51326044311186, -172.26562500000003);
     const northEast = L.latLng(81.92318632602199, 190.54687500000003);
     const bounds = L.latLngBounds(southWest, northEast);
-    const defaultCenter = coords
-      ? [coords.latitude, coords.longitude]
-      : [46.7248003746672, 2.9003906250000004];
+    // const defaultCenter = coords
+    //   ? [coords.latitude, coords.longitude]
+    //   : [46.7248003746672, 2.9003906250000004];
     // const defaultCenter = coords ? [coords.latitude, coords.longitude] : center;
 
     if (isGeolocationEnabled && coords && !userLocalized) {
@@ -79,9 +87,10 @@ class Leaflet extends React.Component {
     console.log(this.props);
     return (
       <>
-        <Menu />
-        <RenseignementDonnees />
-        <DisplayBuilding />
+        {loadingWithLoader && <Loading />}
+        {!loadingWithLoader && <Menu />}
+        {!loadingWithLoader && <RenseignementDonnees />}
+        {!loadingWithLoader && <DisplayBuilding />}
         <LeafletMap
           center={center}
           zoom={zoom}
@@ -99,6 +108,7 @@ class Leaflet extends React.Component {
           easeLinearity={0.35}
           onContextmenu={this.handleRightClick}
           onClick={closeAllModals}
+          whenReady={this.handleMapReady}
         >
           <TileLayer
             url="https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png"
@@ -150,10 +160,12 @@ Leaflet.propTypes = {
   coords: PropTypes.object,
   center: PropTypes.arrayOf(PropTypes.number).isRequired,
   zoom: PropTypes.number.isRequired,
-  coords: PropTypes.object.isRequired,
   isGeolocationAvailable: PropTypes.bool.isRequired,
   isGeolocationEnabled: PropTypes.bool.isRequired,
   positionError: PropTypes.number,
+  handleFormField: PropTypes.func.isRequired,
+  loadingWithLoader: PropTypes.bool.isRequired,
+  userLocalized: PropTypes.bool.isRequired,
 };
 
 export default geolocated({
