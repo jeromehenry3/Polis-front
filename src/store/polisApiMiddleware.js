@@ -51,9 +51,7 @@ const polisApiMiddleware = store => next => (action) => {
         lastname: store.getState().lastNameInput,
       })
         .then((response) => {
-          console.log(response.data);
           if (response.data.length === 0) {
-            console.log('Inscription validée');
             store.dispatch(signinErrors(response.data));
             store.dispatch(redirectToLogin());
             store.dispatch(redirectToLogin());

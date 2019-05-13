@@ -19,7 +19,7 @@ const Signin = ({
     <div className={signinErrors.length > 0 ? 'panel-error open' : 'panel-error'}>
       {
         signinErrors.map(error => (
-          <p className="current-error">{error}</p>
+          <p className="current-error" key={error}>{error}</p>
         ))
       }
     </div>
@@ -103,8 +103,10 @@ Signin.propTypes = {
   // FUNCTIONS
   updateFormField: PropTypes.func.isRequired,
   signin: PropTypes.func.isRequired,
-  signinErrors: PropTypes.func.isRequired,
-  redirectToLogin: PropTypes.func.isRequired,
+  signinErrors: PropTypes.arrayOf(
+    PropTypes.string,
+  ).isRequired,
+  redirectToLogin: PropTypes.bool.isRequired,
 
 };
 
