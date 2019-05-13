@@ -117,6 +117,7 @@ const initialState = {
  */
 export const UPDATE_FORM_FIELD = 'UPDATE_FORM_FIELD';
 export const CONNECT_USER = 'CONNECT_USER'; // Api connection with username && password
+export const DISCONNECT_USER = 'DISCONNECT_USER';
 export const STORE_TOKEN = 'STORE_TOKEN';
 export const CONNECTING_ERROR = 'CONNECTING_ERROR';
 export const SIGNIN = 'SIGNIN';
@@ -154,6 +155,12 @@ const reducer = (state = initialState, action = {}) => {
         ...state,
         loginMessage: 'Connexion en cours',
         loginStatus: 'connecting',
+      };
+    case DISCONNECT_USER:
+      return {
+        ...initialState,
+        loginMessage: 'Vous avez bien été déconnecté(e)',
+        redirectToLogin: true,
       };
     case CONNECTING_ERROR:
       return {
@@ -257,6 +264,9 @@ export const updateFormField = (fieldName, input) => ({
 export const connectUser = () => ({
   type: CONNECT_USER,
 });
+export const disconnect = () => ({
+  type: DISCONNECT_USER,
+})
 export const storeToken = (token, refreshToken) => ({
   type: STORE_TOKEN,
   token,
