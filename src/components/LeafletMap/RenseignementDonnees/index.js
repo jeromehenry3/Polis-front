@@ -57,7 +57,7 @@ const RenseignementDonnees = ({
     console.log('submitting building');
     submitBuilding();
   };
-  console.log(addressInput)
+  // console.log(addressInput)
   return (
     <div className={isDataFormOpen ? 'renseignement-donnees open' : 'renseignement-donnees'}>
       <div className="renseignement-donnees_relative">

@@ -1,0 +1,16 @@
+@import 'src/styles/_vars.scss';
+
+#liste {
+    background-color: $yellow-darken;
+    display: flex;
+    justify-content: center;
+    padding: 40px 60px;
+
+    .card {
+        cursor: pointer;
+
+        img {
+        height: 120px;
+        }
+    }  
+}
