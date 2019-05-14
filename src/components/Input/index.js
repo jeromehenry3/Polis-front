@@ -29,11 +29,16 @@ class Input extends Component {
 
   render() {
     const {
-      id, name, placeholder, value, disabled, type,
+      id, name, placeholder, value, disabled, type, required, onBlur,
     } = this.props;
     const { dynamicType } = this.state;
     return (
       <div className="input-container">
+        {required && (
+          <div className="input-container--required">
+            *
+          </div>
+        )}
         <input
           type={dynamicType}
           id={id}
@@ -43,7 +48,9 @@ class Input extends Component {
           value={value}
           onChange={this.handleChange}
           disabled={disabled}
+          onBlur={onBlur}
           className="input"
+          required={required}
         />
         <label htmlFor={id}>{placeholder}</label>
         {type === 'password'
@@ -65,6 +72,7 @@ Input.propTypes = {
   name: PropTypes.string.isRequired,
   placeholder: PropTypes.string.isRequired,
   type: PropTypes.string.isRequired,
+  onBlur: PropTypes.func,
   value: PropTypes.oneOfType([
     PropTypes.string,
     PropTypes.number,
@@ -73,6 +81,14 @@ Input.propTypes = {
   // *******LOGIC*******
   onChangeFunction: PropTypes.func.isRequired,
   disabled: PropTypes.bool.isRequired,
+  required: PropTypes.bool,
+  disabled: PropTypes.bool,
+};
+
+Input.defaultProps = {
+  onBlur: null,
+  disabled: false,
+  required: false,
 };
 
 export default Input;

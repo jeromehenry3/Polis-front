@@ -10,7 +10,14 @@
     justify-content: space-between;
     align-items: center;
     padding: 0 1em;
-    
+
+
+    .result {
+        text-align: left;
+        .city {
+            font-weight: bold;
+        }
+    }
     .ui.button { // Buttons of the view change : carte / Bâtiments
         background-color: #ffffff;
         color: $salmon;

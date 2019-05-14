@@ -108,7 +108,7 @@ const polisApiMiddleware = store => next => (action) => {
         urbanist: store.getState().urbanistInput,
         description: store.getState().descriptionInput,
         certified: false,
-        delivered: parseInt(store.getState().dateInput) < date.getFullYear(),
+        delivered: store.getState().dateInput === '' ? true : parseInt(store.getState().dateInput) < date.getFullYear(),
       }, {
         headers: {
           Authorization: `Bearer ${store.getState().token}`,

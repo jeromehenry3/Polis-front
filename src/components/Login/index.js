@@ -23,6 +23,7 @@ const Login = ({
         value={username}
         onChangeFunction={input => updateFormField('username', input)}
         disabled={loginStatus === 'connecting'}
+        required
       />
 
       <Input
@@ -33,6 +34,7 @@ const Login = ({
         value={passwordInput}
         onChangeFunction={input => updateFormField('passwordInput', input)}
         disabled={loginStatus === 'connecting'}
+        required
       />
 
       <p className="lost-password-label"><Link to="/lost-password" className="lost-password-link"> J'ai perdu </Link>mon mot de passe </p>

@@ -23,7 +23,7 @@ const initialState = {
   center: [46.7248003746672, 2.9003906250000004], // Center of the map
   zoom: 6, // level of zoom
   userLocalized: false,
-
+  iconSize: [40, 80],
 
   // ************MANAGEMENT OF THE MODALS************/
   // bool qui indique si le formulaire de renseignement de données est ouvert ou non
@@ -40,7 +40,8 @@ const initialState = {
   // ************FIELDS OF THE CARD DATA TO SEND*************/
   clickedLat: 0,
   clickedLng: 0,
-  fileInput: '',
+  fileInput: '', // Fichier converti prêt à être envoyé
+  fileText: '', // Nom du fichier
   nameInput: '',
   surfaceInput: '',
   addressInput: '',
@@ -111,6 +112,9 @@ const initialState = {
     urbanist: '',
     user: { firstName: '', lastName: '' },
   },
+  // Autocomplete results
+  autoCompleteResults: [],
+  isAutocompleteOpen: false,
 };
 
 /**
@@ -120,11 +124,13 @@ export const UPDATE_FORM_FIELD = 'UPDATE_FORM_FIELD';
 export const CONNECT_USER = 'CONNECT_USER'; // Api connection with username && password
 export const STORE_TOKEN = 'STORE_TOKEN';
 export const CONNECTING_ERROR = 'CONNECTING_ERROR';
+export const DISCONNECT_USER = 'DISCONNECT_USER';
 export const SIGNIN = 'SIGNIN';
 export const SIGNIN_ERRORS = 'SIGNIN_ERRORS';
 export const SET_NEW_PASSWORD = 'SET_NEW_PASSWORD';
 export const FORGOTTEN_PASSWORD = 'FORGOTTEN_PASSWORD';
 export const OPEN_DATA_FORM = 'OPEN_DATA_FORM';
+export const OPEN_DATA_FORM_BUTTON = 'OPEN_DATA_FORM_BUTTON';
 export const OPEN_DISPLAY_BUILDING = 'OPEN_DISPLAY_BUILDING';
 export const OPEN_DATA_FORM_RESPONSE = 'OPEN_DATA_FORM_RESPONSE';
 export const CLOSE_ALL_MODALS = 'CLOSE_ALL_MODALS';
@@ -136,7 +142,12 @@ export const SET_BUILDINGS = 'SET_BUILDINGS';
 export const CREATE_MARKER = 'CREATE_MARKER';
 export const SET_BUILDING_DATAS = 'SET_BUILDING_DATAS';
 export const REDIRECT_TO_LOGIN = 'REDIRECT_TO_LOGIN';
-
+export const FIND_ADDRESS = 'FIND_ADDRESS';
+export const CENTER_BY_ADDRESS = 'CENTER_BY_ADDRESS';
+export const AUTO_COMPLETE = 'AUTO_COMPLETE';
+export const AUTO_COMPLETE_RESULTS = 'AUTO_COMPLETE_RESULTS';
+export const OPEN_AUTO_COMPLETE = 'OPEN_AUTO_COMPLETE';
+export const FIND_ADDRESS_SEARCH = 'FIND_ADDRESS_SEARCH';
 /**
  * Traitements
  */
@@ -163,6 +174,12 @@ const reducer = (state = initialState, action = {}) => {
         loginMessage: action.message,
         loginStatus: 'not-connected',
       };
+    case DISCONNECT_USER:
+      return {
+        ...initialState,
+        loginMessage: 'Vous avez bien été déconnecté(e)',
+        redirectToLogin: true,
+      };
     case STORE_TOKEN:
       return {
         ...state,
@@ -170,6 +187,7 @@ const reducer = (state = initialState, action = {}) => {
         refreshToken: action.refreshToken,
         isConnected: true,
         loginMessage: 'Vous êtes connecté(e)',
+        redirectToLogin: false,
       };
     case SIGNIN:
       return state;
@@ -197,6 +215,12 @@ const reducer = (state = initialState, action = {}) => {
         isDataFormOpen: true,
         loading: true,
       };
+    case OPEN_DATA_FORM_BUTTON:
+      return {
+        ...state,
+        isDataFormOpen: true,
+        addressInput: '',
+      };
     case OPEN_DISPLAY_BUILDING:
       return {
         ...state,
@@ -217,6 +241,7 @@ const reducer = (state = initialState, action = {}) => {
         ...state,
         isDataFormOpen: false,
         isDisplayBuildingOpen: false,
+        isAutocompleteOpen: false,
         // Les futurs modals à fermer
       };
     case SET_ARCHITECTURES:
@@ -253,6 +278,22 @@ const reducer = (state = initialState, action = {}) => {
         ...state,
         redirectToLogin: !state.redirectToLogin,
       };
+    case CENTER_BY_ADDRESS:
+      return {
+        ...state,
+        center: action.position,
+        zoom: 14,
+      };
+    case AUTO_COMPLETE_RESULTS:
+      return {
+        ...state,
+        autoCompleteResults: action.address,
+      };
+    case OPEN_AUTO_COMPLETE:
+      return {
+        ...state,
+        isAutocompleteOpen: true,
+      };
     default:
       return state;
   }
@@ -274,6 +315,9 @@ export const storeToken = (token, refreshToken) => ({
   type: STORE_TOKEN,
   token,
   refreshToken,
+});
+export const disconnect = () => ({
+  type: DISCONNECT_USER,
 });
 export const signin = () => ({
   type: SIGNIN,
@@ -348,6 +392,37 @@ export const setBuildingDatas = datas => ({
 
 export const redirectToLogin = () => ({
   type: REDIRECT_TO_LOGIN,
+});
+
+export const findAddress = () => ({
+  type: FIND_ADDRESS,
+});
+
+export const centerByAddress = position => ({
+  type: CENTER_BY_ADDRESS,
+  position,
+});
+
+export const openDataFormButton = () => ({
+  type: OPEN_DATA_FORM_BUTTON,
+});
+
+export const autoComplete = value => ({
+  type: AUTO_COMPLETE,
+  value,
+});
+
+export const autoCompleteResults = address => ({
+  type: AUTO_COMPLETE_RESULTS,
+  address,
+});
+
+export const openAutocomplete = () => ({
+  type: OPEN_AUTO_COMPLETE,
+});
+
+export const findAddressSearch = () => ({
+  type: FIND_ADDRESS_SEARCH,
 });
 /**
  * Selectors
