@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Menu, Dropdown, Button, Icon } from 'semantic-ui-react';
+import { Link, Redirect } from 'react-router-dom';
 import Input from '../../Input';
 
 import './menu.scss';
@@ -18,8 +19,20 @@ const TopMenu = ({ searchInput, updateFormField }) => (
 
     <Menu.Menu>
       <Button.Group>
-        <Button active>Carte</Button>
-        <Button className="no-border-left">Bâtiments</Button>
+        <Button
+          active
+          as={Link}
+          to="/map"
+        >
+        Carte
+        </Button>
+        <Button
+          as={Link}
+          to="/liste"
+          className="no-border-left"
+        >
+          Bâtiments
+        </Button>
       </Button.Group>
     </Menu.Menu>
 

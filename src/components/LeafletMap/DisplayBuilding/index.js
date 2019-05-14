@@ -53,7 +53,7 @@ const DisplayBuilding = ({
             <div
               className="header-picture"
               style={{
-                backgroundImage: `url(${images.length !== 0 ? images[0].path : MainPicture})`,
+                backgroundImage: `url(${images.length !== 0 ? images[0].mapPath : MainPicture})`,
               }}
             />
             <a href="#" className="renseignement-donnees_close" onClick={handleCloseDataForm}>Fermer</a>
