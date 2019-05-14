@@ -1,8 +1,7 @@
 /* eslint-disable no-case-declarations */
 /* eslint-disable radix */
 import axios from 'axios';
-import React from 'react';
-import { Redirect } from 'react-router-dom';
+
 import {
   CONNECT_USER,
   SIGNIN,
