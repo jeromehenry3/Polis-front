@@ -1,13 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {
-  Menu, Dropdown, Button, Icon, Header,
+  Menu, Dropdown, Button, Icon,
 } from 'semantic-ui-react';
 
 import './menu.scss';
 
 const TopMenu = ({
-  searchInput, openDataForm, closeAllModals, autoComplete, autoCompleteResults, updateFormField, centerByAddress, isAutocompleteOpen, findAddressSearch,
+  searchInput, openDataForm, closeAllModals, autoComplete, autoCompleteResults,
+  updateFormField, centerByAddress, isAutocompleteOpen, findAddressSearch,
 }) => {
   const handleSearch = position => (e) => {
     updateFormField('searchInput', e.target.textContent);
@@ -95,6 +96,13 @@ const TopMenu = ({
 TopMenu.propTypes = {
   searchInput: PropTypes.string.isRequired,
   updateFormField: PropTypes.func.isRequired,
+  openDataForm: PropTypes.func.isRequired,
+  closeAllModals: PropTypes.func.isRequired,
+  autoComplete: PropTypes.func.isRequired,
+  autoCompleteResults: PropTypes.bool.isRequired,
+  centerByAddress: PropTypes.func.isRequired,
+  isAutocompleteOpen: PropTypes.bool.isRequired,
+  findAddressSearch: PropTypes.func.isRequired,
 };
 
 export default TopMenu;

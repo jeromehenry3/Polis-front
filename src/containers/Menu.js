@@ -2,7 +2,10 @@ import { connect } from 'react-redux';
 
 import Menu from 'src/components/LeafletMap/Menu';
 
-import { updateFormField, openDataFormButton, closeAllModals, autoComplete, centerByAddress, findAddressSearch } from 'src/store/reducer';
+import {
+  updateFormField, openDataFormButton, closeAllModals,
+  autoComplete, centerByAddress, findAddressSearch,
+} from 'src/store/reducer';
 
 const mapStateToProps = state => ({
   searchInput: state.searchInput,
@@ -32,7 +35,7 @@ const mapDispatchToProps = dispatch => ({
 
   findAddressSearch: (address) => {
     dispatch(findAddressSearch(address));
-  }
+  },
 });
 
 export default connect(
