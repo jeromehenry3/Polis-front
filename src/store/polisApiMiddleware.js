@@ -30,7 +30,6 @@ const polisApiMiddleware = store => next => (action) => {
         password: store.getState().passwordInput,
       })
         .then((response) => {
-          console.log(response.data);
           const { token, refresh_token: refreshToken } = response.data;
           store.dispatch(storeToken(token, refreshToken));
         })
@@ -101,8 +100,9 @@ const polisApiMiddleware = store => next => (action) => {
         },
       })
         .then((response) => {
-          console.log(response.data);
-          store.dispatch(createMarker(store.getState().clickedLat, store.getState().clickedLng, response.data));
+          store.dispatch(
+            createMarker(store.getState().clickedLat, store.getState().clickedLng, response.data)
+          );
         })
         .catch((error) => {
           console.log(error.message);
@@ -111,7 +111,6 @@ const polisApiMiddleware = store => next => (action) => {
     case GET_ARCHITECTURES:
       axios.get(`${polisApi}/architecture`)
         .then((response) => {
-          console.log(response);
           store.dispatch(setArchitectures(response.data));
         })
         .catch((error) => {
@@ -122,7 +121,6 @@ const polisApiMiddleware = store => next => (action) => {
       next(action);
       axios.post(`${polisApi}/buildings`, { bounds: action.bounds })
         .then((response) => {
-          console.log(response);
           store.dispatch(setBuildings(response.data));
         })
         .catch((error) => {
@@ -133,8 +131,6 @@ const polisApiMiddleware = store => next => (action) => {
       next(action);
       axios.get(`${polisApi}/buildings/${action.id}`)
         .then((response) => {
-          console.log(response);
-
           store.dispatch(setBuildingDatas(response.data));
         })
         .catch((error) => {
