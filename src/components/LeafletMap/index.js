@@ -39,7 +39,7 @@ class Leaflet extends React.Component {
     const { getArchitectures, getBuildings, updateFormField } = this.props;
     // console.log(this.map.leafletElement.getBounds());
     const actualBounds = this.map.current.leafletElement.getBounds();
-    console.log(actualBounds);
+
     updateFormField('actualBounds', actualBounds);
     // eslint-disable-next-line no-unused-expressions
     detectIfMobile() && toggleFullScreen();
@@ -50,7 +50,7 @@ class Leaflet extends React.Component {
 
   handleRightClick = (e) => {
     const { updateFormField, openDataForm, closeAllModals } = this.props;
-    console.log(e.latlng);
+
     updateFormField('clickedLat', e.latlng.lat);
     updateFormField('clickedLng', e.latlng.lng);
     closeAllModals();
@@ -159,12 +159,10 @@ Leaflet.propTypes = {
   getBuildings: PropTypes.func.isRequired,
   buildings: PropTypes.arrayOf(PropTypes.object).isRequired,
   openDisplayBuilding: PropTypes.func.isRequired,
-  coords: PropTypes.object,
+  coords: PropTypes.object.isRequired,
   center: PropTypes.arrayOf(PropTypes.number).isRequired,
   zoom: PropTypes.number.isRequired,
-  isGeolocationAvailable: PropTypes.bool.isRequired,
   isGeolocationEnabled: PropTypes.bool.isRequired,
-  positionError: PropTypes.number,
   loadingWithLoader: PropTypes.bool.isRequired,
   userLocalized: PropTypes.bool.isRequired,
 };

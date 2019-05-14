@@ -19,6 +19,7 @@ import {
   setBuildingDatas,
   redirectToLogin,
 } from './reducer';
+
 const polisApi = 'https://www.thomas-gillet.com/api';
 // eslint-disable-next-line consistent-return
 const polisApiMiddleware = store => next => (action) => {
@@ -101,7 +102,7 @@ const polisApiMiddleware = store => next => (action) => {
       })
         .then((response) => {
           store.dispatch(
-            createMarker(store.getState().clickedLat, store.getState().clickedLng, response.data)
+            createMarker(store.getState().clickedLat, store.getState().clickedLng, response.data),
           );
         })
         .catch((error) => {
