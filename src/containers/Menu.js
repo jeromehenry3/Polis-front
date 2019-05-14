@@ -4,7 +4,7 @@ import Menu from 'src/components/LeafletMap/Menu';
 
 import {
   updateFormField, openDataFormButton, closeAllModals,
-  autoComplete, centerByAddress, findAddressSearch,
+  autoComplete, centerByAddress, findAddressSearch, disconnect,
 } from 'src/store/reducer';
 
 const mapStateToProps = state => ({
@@ -12,6 +12,7 @@ const mapStateToProps = state => ({
   autoCompleteResults: state.autoCompleteResults,
   isAutocompleteOpen: state.isAutocompleteOpen,
   isConnected: state.isConnected,
+  redirectToLogin: state.redirectToLogin,
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -36,6 +37,9 @@ const mapDispatchToProps = dispatch => ({
 
   findAddressSearch: (address) => {
     dispatch(findAddressSearch(address));
+  },
+  disconnect: () => {
+    dispatch(disconnect());
   },
 });
 

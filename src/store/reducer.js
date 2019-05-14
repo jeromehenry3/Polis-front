@@ -3,7 +3,6 @@
  * Initial State
  */
 import tokenEnDur from 'src/data/tokenEnDur';
-import { Flag } from 'semantic-ui-react';
 
 const initialState = {
   // *******FIELDS OF THE LOGIN / SIGNIN FORM******/
@@ -124,6 +123,7 @@ export const UPDATE_FORM_FIELD = 'UPDATE_FORM_FIELD';
 export const CONNECT_USER = 'CONNECT_USER'; // Api connection with username && password
 export const STORE_TOKEN = 'STORE_TOKEN';
 export const CONNECTING_ERROR = 'CONNECTING_ERROR';
+export const DISCONNECT_USER = 'DISCONNECT_USER';
 export const SIGNIN = 'SIGNIN';
 export const SIGNIN_ERRORS = 'SIGNIN_ERRORS';
 export const NEW_PASSWORD = 'NEW_PASSWORD';
@@ -172,6 +172,12 @@ const reducer = (state = initialState, action = {}) => {
         loginMessage: action.message,
         loginStatus: 'not-connected',
       };
+    case DISCONNECT_USER:
+      return {
+        ...initialState,
+        loginMessage: 'Vous avez bien été déconnecté(e)',
+        redirectToLogin: true,
+      };
     case STORE_TOKEN:
       return {
         ...state,
@@ -179,6 +185,7 @@ const reducer = (state = initialState, action = {}) => {
         refreshToken: action.refreshToken,
         isConnected: true,
         loginMessage: 'Vous êtes connecté(e)',
+        redirectToLogin: false,
       };
     case SIGNIN:
       return state;
@@ -295,6 +302,9 @@ export const storeToken = (token, refreshToken) => ({
   type: STORE_TOKEN,
   token,
   refreshToken,
+});
+export const disconnect = () => ({
+  type: DISCONNECT_USER,
 });
 export const signin = () => ({
   type: SIGNIN,
