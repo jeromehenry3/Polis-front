@@ -120,7 +120,6 @@ const polisApiMiddleware = store => next => (action) => {
         })
         .catch((error) => {
           console.log(error.message);
-          alert('Erreur serveur. Veuillez vérifiez que l\'adresse renseignée est valable.');
         });
       break;
     case GET_ARCHITECTURES:
