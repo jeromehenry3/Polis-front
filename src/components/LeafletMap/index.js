@@ -33,12 +33,18 @@ class Leaflet extends React.Component {
     // shadowSize:   [50, 64], // size of the shadow
   });
 
+  map = React.createRef();
+
   componentDidMount() {
     const { getArchitectures, getBuildings, updateFormField } = this.props;
+    // console.log(this.map.leafletElement.getBounds());
+    const actualBounds = this.map.current.leafletElement.getBounds();
+    console.log(actualBounds);
+    updateFormField('actualBounds', actualBounds);
     // eslint-disable-next-line no-unused-expressions
     detectIfMobile() && toggleFullScreen();
     updateFormField('loadingWithLoader', true);
-    getBuildings();
+    getBuildings(actualBounds);
     getArchitectures();
   }
 
@@ -72,10 +78,6 @@ class Leaflet extends React.Component {
     const southWest = L.latLng(-66.51326044311186, -172.26562500000003);
     const northEast = L.latLng(81.92318632602199, 190.54687500000003);
     const bounds = L.latLngBounds(southWest, northEast);
-    // const defaultCenter = coords
-    //   ? [coords.latitude, coords.longitude]
-    //   : [46.7248003746672, 2.9003906250000004];
-    // const defaultCenter = coords ? [coords.latitude, coords.longitude] : center;
 
     if (isGeolocationEnabled && coords && !userLocalized) {
       // eslint-disable-next-line no-unused-expressions
@@ -91,6 +93,7 @@ class Leaflet extends React.Component {
         {!loadingWithLoader && <RenseignementDonnees />}
         {!loadingWithLoader && <DisplayBuilding />}
         <LeafletMap
+          ref={this.map}
           center={center}
           zoom={zoom}
           maxZoom={19}

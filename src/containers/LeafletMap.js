@@ -38,8 +38,8 @@ const mapDispatchToProps = dispatch => ({
     dispatch(getArchitectures());
   },
 
-  getBuildings: () => {
-    dispatch(getBuildings());
+  getBuildings: (bounds) => {
+    dispatch(getBuildings(bounds));
   },
 
   openDisplayBuilding: (id) => {

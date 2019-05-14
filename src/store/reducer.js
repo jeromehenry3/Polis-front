@@ -3,7 +3,6 @@
  * Initial State
  */
 import tokenEnDur from 'src/data/tokenEnDur';
-import { Flag } from 'semantic-ui-react';
 
 const initialState = {
   // *******FIELDS OF THE LOGIN / SIGNIN FORM******/
@@ -24,6 +23,10 @@ const initialState = {
   center: [46.7248003746672, 2.9003906250000004], // Center of the map
   zoom: 6, // level of zoom
   userLocalized: false,
+  actualBounds: {
+    northEast: '',
+    southWest: '',
+  },
 
 
   // ************MANAGEMENT OF THE MODALS************/
@@ -336,8 +339,9 @@ export const setArchitectures = architectures => ({
   architectures,
 });
 
-export const getBuildings = () => ({
+export const getBuildings = bounds => ({
   type: GET_BUILDINGS,
+  bounds,
 });
 
 export const setBuildings = buildings => ({
