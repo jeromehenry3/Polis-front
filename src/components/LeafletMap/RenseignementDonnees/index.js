@@ -4,7 +4,9 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Dimmer, Loader, Icon } from 'semantic-ui-react';
+import {
+ Dimmer, Loader, Icon, List 
+} from 'semantic-ui-react';
 import Input from '../../Input';
 import AppareilPhoto from '../../../styles/images/photo-camera.svg';
 import './renseignement.scss';
@@ -26,6 +28,7 @@ const RenseignementDonnees = ({
   descriptionInput,
   loading,
   architectures,
+  fileText,
 }) => {
   const handleCloseDataForm = (e) => {
     e.preventDefault();
@@ -39,6 +42,12 @@ const RenseignementDonnees = ({
   };
 
   const handleFileChange = (e) => {
+    console.log(e.target.files[0]);
+    if (e.target.files[0].type !== 'image/png' && e.target.files[0].type !== 'image/jpeg') {
+      updateFormField('fileText', 'Formats acceptés: JPG, PNG');
+    } else {
+      updateFormField('fileText', e.target.files[0].name);
+    }
     const readFile = () => {
       const reader = new FileReader();
       reader.addEventListener('load', () => {
@@ -57,13 +66,17 @@ const RenseignementDonnees = ({
     console.log('submitting building');
     submitBuilding();
   };
-  console.log(addressInput)
   return (
     <div className={isDataFormOpen ? 'renseignement-donnees open' : 'renseignement-donnees'}>
       <div className="renseignement-donnees_relative">
         <a href="#" className="renseignement-donnees_close" onClick={handleCloseDataForm}>Fermer</a>
-        <label htmlFor="picture-building"><img src={AppareilPhoto} alt="Appareil" className="renseignement-donnees_appareil" /></label>
-        <input type="file" id="picture-building" className="inputfile" onChange={handleFileChange} accept="image/*" />
+        <div className="renseignement-donnees_files">
+          <label htmlFor="picture-building"><img src={AppareilPhoto} alt="Appareil" className="renseignement-donnees_appareil" /></label>
+          <input type="file" id="picture-building" className="inputfile" onChange={handleFileChange} accept="image/*" />
+          <List>
+            <List.Item>{fileText}</List.Item>
+          </List>
+        </div>
         <form action="">
           <div className="renseignement-donnees_inputs">
             <div className="renseignement-donnees_primary-infos">
@@ -125,9 +138,6 @@ const RenseignementDonnees = ({
               </div>
 
               <div className="input-container">
-                <div className="input-container--required">
-                  *
-                </div>
                 <input
                   className="input"
                   type="number"
@@ -137,7 +147,6 @@ const RenseignementDonnees = ({
                   value={dateInput}
                   id="date"
                   name="date"
-                  required
                   placeholder="Année de livraison ou de livraison estimée"
                   onChange={(e) => {
                     updateFormField('dateInput', e.target.value);
@@ -219,13 +228,12 @@ const RenseignementDonnees = ({
           }
         </form>
         {
-            addressInput !== "Impossible de trouver l'adresse" && (
-              <div className="footer-mobile">
-                <a href="#" className="renseignement-donnees_share">Partager <Icon name="share" /> </a>
-                <a href="#" className="invisible-desktop btn-submit-mobile" onClick={handleSubmitBuilding}>Valider</a>
-              </div>
-            )
-          }
+          addressInput !== "Impossible de trouver l'adresse" && (
+            <div className="footer-mobile">
+              <a href="#" className="invisible-desktop btn-submit-mobile" onClick={handleSubmitBuilding}>Ajouter</a>
+            </div>
+          )
+        }
       </div>
     </div>
   );
@@ -248,6 +256,7 @@ RenseignementDonnees.propTypes = {
   urbanistInput: PropTypes.string.isRequired,
   descriptionInput: PropTypes.string.isRequired,
   architectures: PropTypes.array.isRequired,
+  fileText: PropTypes.string.isRequired,
 };
 
 export default RenseignementDonnees;

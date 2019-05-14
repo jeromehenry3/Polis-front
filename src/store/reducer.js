@@ -41,7 +41,8 @@ const initialState = {
   // ************FIELDS OF THE CARD DATA TO SEND*************/
   clickedLat: 0,
   clickedLng: 0,
-  fileInput: '',
+  fileInput: '', // Fichier converti prêt à être envoyé
+  fileText: '', // Nom du fichier
   nameInput: '',
   surfaceInput: '',
   addressInput: '',
