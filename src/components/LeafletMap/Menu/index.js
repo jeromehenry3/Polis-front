@@ -1,13 +1,16 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { Redirect } from 'react-router-dom';
 import {
-  Menu, Dropdown, Button, Icon, Header,
+  Menu, Dropdown, Button, Icon,
 } from 'semantic-ui-react';
 
 import './menu.scss';
 
 const TopMenu = ({
-  searchInput, openDataForm, closeAllModals, autoComplete, autoCompleteResults, updateFormField, centerByAddress, isAutocompleteOpen, findAddressSearch,
+  searchInput, openDataForm, closeAllModals, autoComplete, autoCompleteResults,
+  updateFormField, centerByAddress, isAutocompleteOpen, findAddressSearch, isConnected,
+  redirectToLogin, disconnect,
 }) => {
   const handleSearch = position => (e) => {
     updateFormField('searchInput', e.target.textContent);
@@ -16,10 +19,12 @@ const TopMenu = ({
 
   return (
     <div id="menu">
+      {redirectToLogin && <Redirect to="/login/" />}
       <Dropdown item icon="bars" simple>
         <Dropdown.Menu>
-          <Dropdown.Item>Déconnexion</Dropdown.Item>
-          <Dropdown.Item>Mon compte</Dropdown.Item>
+          {isConnected && <Dropdown.Item onClick={disconnect}>Déconnexion</Dropdown.Item>}
+          {!isConnected && <Dropdown.Item onClick={() => updateFormField('redirectToLogin', true)}>Connexion</Dropdown.Item>}
+          {isConnected && <Dropdown.Item>Mon compte</Dropdown.Item>}
           <Dropdown.Item>Recrutement</Dropdown.Item>
           <Dropdown.Item>A propos</Dropdown.Item>
         </Dropdown.Menu>
@@ -95,6 +100,16 @@ const TopMenu = ({
 TopMenu.propTypes = {
   searchInput: PropTypes.string.isRequired,
   updateFormField: PropTypes.func.isRequired,
+  openDataForm: PropTypes.func.isRequired,
+  closeAllModals: PropTypes.func.isRequired,
+  autoComplete: PropTypes.func.isRequired,
+  autoCompleteResults: PropTypes.bool.isRequired,
+  centerByAddress: PropTypes.func.isRequired,
+  isAutocompleteOpen: PropTypes.bool.isRequired,
+  findAddressSearch: PropTypes.func.isRequired,
+  isConnected: PropTypes.bool.isRequired,
+  disconnect: PropTypes.func.isRequired,
+  redirectToLogin: PropTypes.bool.isRequired,
 };
 
 export default TopMenu;

@@ -14,9 +14,9 @@ import Login from 'src/containers/Login';
 import LostPassword from 'src/containers/LostPassword';
 import NewPassword from 'src/containers/NewPassword';
 import LeafletMap from 'src/containers/LeafletMap';
+import Welcome from 'src/containers/Welcome';
 
 // Dumb
-import Welcome from '../Welcome';
 import NotFound from '../NotFound';
 import Loading from '../Loading';
 import DisplayBuilding from '../LeafletMap/DisplayBuilding';
