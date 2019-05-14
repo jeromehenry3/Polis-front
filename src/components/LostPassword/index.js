@@ -18,7 +18,7 @@ const LostPassword = ({
         type="email"
         id="email"
         name="email"
-        placeholder="Email"
+        placeholder="Email *"
         value={username}
         onChangeFunction={input => updateFormField('username', input)}
         disabled={false}

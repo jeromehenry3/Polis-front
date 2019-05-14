@@ -3,13 +3,13 @@
 .input-container { // Input containing div
   position: relative;
 
-  &--required {
-    position: absolute !important;
-    top: -7px;
-    right: -7px;
-    color: $orange;
-    width: auto !important;
-  }
+  // &--required {
+  //   position: absolute !important;
+  //   top: -7px;
+  //   right: -7px;
+  //   color: $orange;
+  //   width: auto !important;
+  // }
 
   .input {
     margin-bottom: 30px;
