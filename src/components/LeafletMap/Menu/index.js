@@ -2,19 +2,23 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import { Redirect } from 'react-router-dom';
-import { Menu, Dropdown, Button } from 'semantic-ui-react';
+import {
+  Menu, Dropdown, Button, Icon,
+} from 'semantic-ui-react';
 
 import Input from '../../Input';
 
 import './menu.scss';
 
-const TopMenu = ({ searchInput, updateFormField, disconnect, redirectToLogin }) => (
+const TopMenu = ({
+  searchInput, updateFormField, disconnect, redirectToLogin, isConnected,
+}) => (
   <div id="menu">
     {redirectToLogin && <Redirect to="/login" />}
     <Dropdown item icon="bars" simple>
       <Dropdown.Menu>
-        <Dropdown.Item onClick={disconnect}>Déconnexion</Dropdown.Item>
-        <Dropdown.Item>Mon compte</Dropdown.Item>
+        {isConnected && <Dropdown.Item onClick={disconnect}>Déconnexion</Dropdown.Item>}
+        {isConnected && <Dropdown.Item>Mon compte</Dropdown.Item>}
         <Dropdown.Item>Recrutement</Dropdown.Item>
         <Dropdown.Item>A propos</Dropdown.Item>
       </Dropdown.Menu>
@@ -58,6 +62,8 @@ TopMenu.propTypes = {
   searchInput: PropTypes.string.isRequired,
   updateFormField: PropTypes.func.isRequired,
   disconnect: PropTypes.func.isRequired,
+  redirectToLogin: PropTypes.bool.isRequired,
+  isConnected: PropTypes.bool.isRequired,
 };
 
 export default TopMenu;

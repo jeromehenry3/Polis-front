@@ -7,6 +7,7 @@ import { updateFormField, disconnect } from 'src/store/reducer';
 const mapStateToProps = state => ({
   searchInput: state.searchInput,
   redirectToLogin: state.redirectToLogin,
+  isConnected: state.isConnected,
 });
 
 const mapDispatchToProps = dispatch => ({
