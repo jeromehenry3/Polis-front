@@ -6,19 +6,20 @@ import { connect } from 'react-redux';
 import NewPassword from 'src/components/LostPassword/NewPassword';
 
 // Action Creators
-import { updateFormField, newPassword } from 'src/store/reducer';
+import { updateFormField, setNewPassword } from 'src/store/reducer';
 
 const mapStateToProps = state => ({
   passwordInput: state.passwordInput,
   passwordConfirmInput: state.passwordConfirmInput,
+  redirectToLogin: state.redirectToLogin,
 });
 
 const mapDispatchToProps = dispatch => ({
   updateFormField: (fieldName, input) => {
     dispatch(updateFormField(fieldName, input));
   },
-  newPassword: () => {
-    dispatch(newPassword());
+  setNewPassword: (newPassword, newPasswordConfirm, token) => {
+    dispatch(setNewPassword(newPassword, newPasswordConfirm, token));
   },
 });
 
