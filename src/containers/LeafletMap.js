@@ -19,6 +19,7 @@ const mapStateToProps = state => ({
   zoom: state.zoom,
   userLocalized: state.userLocalized,
   loadingWithLoader: state.loadingWithLoader,
+  isConnected: state.isConnected,
 });
 
 const mapDispatchToProps = dispatch => ({

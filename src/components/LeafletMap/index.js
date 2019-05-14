@@ -49,12 +49,15 @@ class Leaflet extends React.Component {
   }
 
   handleRightClick = (e) => {
-    const { updateFormField, openDataForm, closeAllModals } = this.props;
+    const {
+      updateFormField, openDataForm, closeAllModals, isConnected,
+    } = this.props;
 
     updateFormField('clickedLat', e.latlng.lat);
     updateFormField('clickedLng', e.latlng.lng);
     closeAllModals();
-    openDataForm(e.latlng, true);
+    // eslint-disable-next-line no-unused-expressions
+    isConnected && openDataForm(e.latlng, true);
   };
 
   handleClickMarker = (e) => {
