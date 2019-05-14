@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Redirect } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 import {
   Menu, Dropdown, Button, Icon,
 } from 'semantic-ui-react';
@@ -32,8 +32,20 @@ const TopMenu = ({
 
       <Menu.Menu>
         <Button.Group>
-          <Button active>Carte</Button>
-          <Button className="no-border-left">Bâtiments</Button>
+          <Button
+            active
+            as={Link}
+            to="/map"
+          >
+          Carte
+          </Button>
+          <Button
+            as={Link}
+            to="/liste"
+            className="no-border-left"
+          >
+            Bâtiments
+          </Button>
         </Button.Group>
       </Menu.Menu>
 

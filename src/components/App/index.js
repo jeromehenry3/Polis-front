@@ -7,7 +7,7 @@ import { Switch, Route, Redirect } from 'react-router-dom';
  * Local import
  */
 // Composants
-
+import Liste from 'src/components/LeafletMap/Liste/index';
 // Containers
 import Signin from 'src/containers/Signin';
 import Login from 'src/containers/Login';
@@ -100,6 +100,14 @@ const App = () => (
       path="/display"
       render={() => (
         <DisplayBuilding />
+      )}
+    />
+
+    <Route
+      exact
+      path="/liste"
+      render={() => (
+        <Liste />
       )}
     />
 
