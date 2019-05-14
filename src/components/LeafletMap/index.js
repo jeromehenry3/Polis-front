@@ -48,6 +48,13 @@ class Leaflet extends React.Component {
     getArchitectures();
   }
 
+  handleMove = () => {
+    const { updateFormField, getBuildings } = this.props;
+    const actualBounds = this.map.current.leafletElement.getBounds();
+    updateFormField('actualBounds', actualBounds);
+    getBuildings(actualBounds);
+  }
+
   handleRightClick = (e) => {
     const {
       updateFormField, openDataForm, closeAllModals, isConnected,
@@ -114,6 +121,7 @@ class Leaflet extends React.Component {
           onContextmenu={this.handleRightClick}
           onClick={closeAllModals}
           whenReady={this.handleMapReady}
+          onMoveEnd={this.handleMove}
         >
           <TileLayer
             url="https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png"
