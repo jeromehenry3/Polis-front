@@ -168,6 +168,7 @@ Leaflet.propTypes = {
   isGeolocationEnabled: PropTypes.bool.isRequired,
   loadingWithLoader: PropTypes.bool.isRequired,
   userLocalized: PropTypes.bool.isRequired,
+  isConnected: PropTypes.bool.isRequired,
 };
 
 export default geolocated({
