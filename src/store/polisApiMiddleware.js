@@ -81,7 +81,7 @@ const polisApiMiddleware = store => next => (action) => {
       axios.post(`${polisApi}/createBuilding`, {
         latitude: store.getState().clickedLat,
         longitude: store.getState().clickedLng,
-        address: store.getState().addressInput,
+        address: store.getState().addressInput ? store.getState().addressInput : null,
         style: store.getState().architectureInput,
         picture: store.getState().fileInput ? store.getState().fileInput : null,
         name: store.getState().nameInput,
