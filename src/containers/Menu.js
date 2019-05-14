@@ -11,6 +11,7 @@ const mapStateToProps = state => ({
   searchInput: state.searchInput,
   autoCompleteResults: state.autoCompleteResults,
   isAutocompleteOpen: state.isAutocompleteOpen,
+  isConnected: state.isConnected,
 });
 
 const mapDispatchToProps = dispatch => ({

@@ -8,7 +8,7 @@ import './menu.scss';
 
 const TopMenu = ({
   searchInput, openDataForm, closeAllModals, autoComplete, autoCompleteResults,
-  updateFormField, centerByAddress, isAutocompleteOpen, findAddressSearch,
+  updateFormField, centerByAddress, isAutocompleteOpen, findAddressSearch, isConnected,
 }) => {
   const handleSearch = position => (e) => {
     updateFormField('searchInput', e.target.textContent);
@@ -19,8 +19,8 @@ const TopMenu = ({
     <div id="menu">
       <Dropdown item icon="bars" simple>
         <Dropdown.Menu>
-          <Dropdown.Item>Déconnexion</Dropdown.Item>
-          <Dropdown.Item>Mon compte</Dropdown.Item>
+          {isConnected && <Dropdown.Item>Déconnexion</Dropdown.Item>}
+          {isConnected && <Dropdown.Item>Mon compte</Dropdown.Item>}
           <Dropdown.Item>Recrutement</Dropdown.Item>
           <Dropdown.Item>A propos</Dropdown.Item>
         </Dropdown.Menu>
@@ -103,6 +103,7 @@ TopMenu.propTypes = {
   centerByAddress: PropTypes.func.isRequired,
   isAutocompleteOpen: PropTypes.bool.isRequired,
   findAddressSearch: PropTypes.func.isRequired,
+  isConnected: PropTypes.bool.isRequired,
 };
 
 export default TopMenu;
