@@ -29,6 +29,7 @@ const RenseignementDonnees = ({
   loading,
   architectures,
   fileText,
+  findAddress,
 }) => {
   const handleCloseDataForm = (e) => {
     e.preventDefault();
@@ -36,8 +37,6 @@ const RenseignementDonnees = ({
   };
 
   const handleSelectChange = (e) => {
-    console.log(e.target.value);
-
     updateFormField('architectureInput', parseInt(e.target.value));
   };
 
@@ -66,6 +65,11 @@ const RenseignementDonnees = ({
     console.log('submitting building');
     submitBuilding();
   };
+
+  const handleBlur = (e) => {
+    findAddress();
+  };
+  
   return (
     <div className={isDataFormOpen ? 'renseignement-donnees open' : 'renseignement-donnees'}>
       <div className="renseignement-donnees_relative">
@@ -111,6 +115,7 @@ const RenseignementDonnees = ({
                 name="address"
                 placeholder="Adresse"
                 value={addressInput}
+                onBlur={handleBlur}
                 onChangeFunction={input => updateFormField('addressInput', input)}
                 disabled={false}
                 required

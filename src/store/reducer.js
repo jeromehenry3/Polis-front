@@ -3,7 +3,6 @@
  * Initial State
  */
 import tokenEnDur from 'src/data/tokenEnDur';
-import { Flag } from 'semantic-ui-react';
 
 const initialState = {
   // *******FIELDS OF THE LOGIN / SIGNIN FORM******/
@@ -24,7 +23,7 @@ const initialState = {
   center: [46.7248003746672, 2.9003906250000004], // Center of the map
   zoom: 6, // level of zoom
   userLocalized: false,
-
+  iconSize: [40, 80],
 
   // ************MANAGEMENT OF THE MODALS************/
   // bool qui indique si le formulaire de renseignement de données est ouvert ou non
@@ -113,6 +112,9 @@ const initialState = {
     urbanist: '',
     user: { firstName: '', lastName: '' },
   },
+  // Autocomplete results
+  autoCompleteResults: [],
+  isAutocompleteOpen: false,
 };
 
 /**
@@ -124,8 +126,10 @@ export const STORE_TOKEN = 'STORE_TOKEN';
 export const CONNECTING_ERROR = 'CONNECTING_ERROR';
 export const SIGNIN = 'SIGNIN';
 export const SIGNIN_ERRORS = 'SIGNIN_ERRORS';
-export const NEW_PASSWORD = 'NEW_PASSWORD';
+export const SET_NEW_PASSWORD = 'SET_NEW_PASSWORD';
+export const FORGOTTEN_PASSWORD = 'FORGOTTEN_PASSWORD';
 export const OPEN_DATA_FORM = 'OPEN_DATA_FORM';
+export const OPEN_DATA_FORM_BUTTON = 'OPEN_DATA_FORM_BUTTON';
 export const OPEN_DISPLAY_BUILDING = 'OPEN_DISPLAY_BUILDING';
 export const OPEN_DATA_FORM_RESPONSE = 'OPEN_DATA_FORM_RESPONSE';
 export const CLOSE_ALL_MODALS = 'CLOSE_ALL_MODALS';
@@ -137,7 +141,12 @@ export const SET_BUILDINGS = 'SET_BUILDINGS';
 export const CREATE_MARKER = 'CREATE_MARKER';
 export const SET_BUILDING_DATAS = 'SET_BUILDING_DATAS';
 export const REDIRECT_TO_LOGIN = 'REDIRECT_TO_LOGIN';
-
+export const FIND_ADDRESS = 'FIND_ADDRESS';
+export const CENTER_BY_ADDRESS = 'CENTER_BY_ADDRESS';
+export const AUTO_COMPLETE = 'AUTO_COMPLETE';
+export const AUTO_COMPLETE_RESULTS = 'AUTO_COMPLETE_RESULTS';
+export const OPEN_AUTO_COMPLETE = 'OPEN_AUTO_COMPLETE';
+export const FIND_ADDRESS_SEARCH = 'FIND_ADDRESS_SEARCH';
 /**
  * Traitements
  */
@@ -179,13 +188,30 @@ const reducer = (state = initialState, action = {}) => {
         ...state,
         signinErrors: action.errors,
       };
-    case NEW_PASSWORD:
-      return state;
+    case SET_NEW_PASSWORD:
+      return {
+        ...state,
+        redirectToLogin: true,
+        loginMessage: 'Veuillez vous connecter avec votre nouveau mot de passe.',
+        passwordInput: '',
+      };
+    case FORGOTTEN_PASSWORD:
+      return {
+        ...state,
+        redirectToLogin: true,
+        loginMessage: 'Un mail vous a été envoyé',
+      };
     case OPEN_DATA_FORM:
       return {
         ...state,
         isDataFormOpen: true,
         loading: true,
+      };
+    case OPEN_DATA_FORM_BUTTON:
+      return {
+        ...state,
+        isDataFormOpen: true,
+        addressInput: '',
       };
     case OPEN_DISPLAY_BUILDING:
       return {
@@ -207,6 +233,7 @@ const reducer = (state = initialState, action = {}) => {
         ...state,
         isDataFormOpen: false,
         isDisplayBuildingOpen: false,
+        isAutocompleteOpen: false,
         // Les futurs modals à fermer
       };
     case SET_ARCHITECTURES:
@@ -243,6 +270,22 @@ const reducer = (state = initialState, action = {}) => {
         ...state,
         redirectToLogin: !state.redirectToLogin,
       };
+    case CENTER_BY_ADDRESS:
+      return {
+        ...state,
+        center: action.position,
+        zoom: 14,
+      };
+    case AUTO_COMPLETE_RESULTS:
+      return {
+        ...state,
+        autoCompleteResults: action.address,
+      };
+    case OPEN_AUTO_COMPLETE:
+      return {
+        ...state,
+        isAutocompleteOpen: true,
+      };
     default:
       return state;
   }
@@ -272,8 +315,14 @@ export const signinErrors = errors => ({
   type: SIGNIN_ERRORS,
   errors,
 });
-export const newPassword = () => ({
-  type: NEW_PASSWORD,
+export const setNewPassword = (newPassword, newPasswordConfirm, token) => ({
+  type: SET_NEW_PASSWORD,
+  newPassword,
+  newPasswordConfirm,
+  token,
+});
+export const forgottenPassword = () => ({
+  type: FORGOTTEN_PASSWORD,
 });
 export const connectingError = message => ({
   type: CONNECTING_ERROR,
@@ -332,6 +381,37 @@ export const setBuildingDatas = datas => ({
 
 export const redirectToLogin = () => ({
   type: REDIRECT_TO_LOGIN,
+});
+
+export const findAddress = () => ({
+  type: FIND_ADDRESS,
+});
+
+export const centerByAddress = position => ({
+  type: CENTER_BY_ADDRESS,
+  position,
+});
+
+export const openDataFormButton = () => ({
+  type: OPEN_DATA_FORM_BUTTON,
+});
+
+export const autoComplete = value => ({
+  type: AUTO_COMPLETE,
+  value,
+});
+
+export const autoCompleteResults = address => ({
+  type: AUTO_COMPLETE_RESULTS,
+  address,
+});
+
+export const openAutocomplete = () => ({
+  type: OPEN_AUTO_COMPLETE,
+});
+
+export const findAddressSearch = () => ({
+  type: FIND_ADDRESS_SEARCH,
 });
 /**
  * Selectors

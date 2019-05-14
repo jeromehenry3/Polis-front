@@ -41,7 +41,6 @@ const DisplayBuilding = ({
     user,
   } = datas;
 
-  console.log(architecture);
   return (
     <div id="DisplayBuilding">
       <div className={isDisplayBuildingOpen ? 'display-donnees open' : 'display-donnees'}>

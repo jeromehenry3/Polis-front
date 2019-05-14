@@ -6,18 +6,19 @@ import { connect } from 'react-redux';
 import LostPassword from 'src/components/LostPassword';
 
 // Action Creators
-import { updateFormField, connectUser } from 'src/store/reducer';
+import { updateFormField, forgottenPassword } from 'src/store/reducer';
 
 const mapStateToProps = state => ({
   username: state.username,
+  redirectToLogin: state.redirectToLogin,
 });
 
 const mapDispatchToProps = dispatch => ({
   updateFormField: (fieldName, input) => {
     dispatch(updateFormField(fieldName, input));
   },
-  connectUser: () => {
-    dispatch(connectUser());
+  forgottenPassword: () => {
+    dispatch(forgottenPassword());
   },
 });
 
