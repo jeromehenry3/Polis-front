@@ -83,7 +83,7 @@ const polisApiMiddleware = store => next => (action) => {
         longitude: store.getState().clickedLng,
         address: store.getState().addressInput,
         style: store.getState().architectureInput,
-        picture: store.getState().fileInput,
+        picture: store.getState().fileInput ? store.getState().fileInput : null,
         name: store.getState().nameInput,
         creationDate: parseInt(store.getState().dateInput),
         surface: parseInt(store.getState().surfaceInput),
