@@ -26,6 +26,7 @@ const mapStateToProps = state => ({
   loading: state.loading,
   architectures: state.architectures,
   fileInput: state.fileInput,
+  fileText: state.fileText,
 });
 
 const mapDispatchToProps = dispatch => ({

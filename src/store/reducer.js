@@ -27,6 +27,7 @@ const initialState = {
     northEast: '',
     southWest: '',
   },
+  iconSize: [40, 80],
 
 
   // ************MANAGEMENT OF THE MODALS************/
@@ -44,7 +45,8 @@ const initialState = {
   // ************FIELDS OF THE CARD DATA TO SEND*************/
   clickedLat: 0,
   clickedLng: 0,
-  fileInput: '',
+  fileInput: '', // Fichier converti prêt à être envoyé
+  fileText: '', // Nom du fichier
   nameInput: '',
   surfaceInput: '',
   addressInput: '',
@@ -127,9 +129,11 @@ export const UPDATE_FORM_FIELD = 'UPDATE_FORM_FIELD';
 export const CONNECT_USER = 'CONNECT_USER'; // Api connection with username && password
 export const STORE_TOKEN = 'STORE_TOKEN';
 export const CONNECTING_ERROR = 'CONNECTING_ERROR';
+export const DISCONNECT_USER = 'DISCONNECT_USER';
 export const SIGNIN = 'SIGNIN';
 export const SIGNIN_ERRORS = 'SIGNIN_ERRORS';
-export const NEW_PASSWORD = 'NEW_PASSWORD';
+export const SET_NEW_PASSWORD = 'SET_NEW_PASSWORD';
+export const FORGOTTEN_PASSWORD = 'FORGOTTEN_PASSWORD';
 export const OPEN_DATA_FORM = 'OPEN_DATA_FORM';
 export const OPEN_DATA_FORM_BUTTON = 'OPEN_DATA_FORM_BUTTON';
 export const OPEN_DISPLAY_BUILDING = 'OPEN_DISPLAY_BUILDING';
@@ -175,6 +179,12 @@ const reducer = (state = initialState, action = {}) => {
         loginMessage: action.message,
         loginStatus: 'not-connected',
       };
+    case DISCONNECT_USER:
+      return {
+        ...initialState,
+        loginMessage: 'Vous avez bien été déconnecté(e)',
+        redirectToLogin: true,
+      };
     case STORE_TOKEN:
       return {
         ...state,
@@ -182,6 +192,7 @@ const reducer = (state = initialState, action = {}) => {
         refreshToken: action.refreshToken,
         isConnected: true,
         loginMessage: 'Vous êtes connecté(e)',
+        redirectToLogin: false,
       };
     case SIGNIN:
       return state;
@@ -190,8 +201,19 @@ const reducer = (state = initialState, action = {}) => {
         ...state,
         signinErrors: action.errors,
       };
-    case NEW_PASSWORD:
-      return state;
+    case SET_NEW_PASSWORD:
+      return {
+        ...state,
+        redirectToLogin: true,
+        loginMessage: 'Veuillez vous connecter avec votre nouveau mot de passe.',
+        passwordInput: '',
+      };
+    case FORGOTTEN_PASSWORD:
+      return {
+        ...state,
+        redirectToLogin: true,
+        loginMessage: 'Un mail vous a été envoyé',
+      };
     case OPEN_DATA_FORM:
       return {
         ...state,
@@ -299,6 +321,9 @@ export const storeToken = (token, refreshToken) => ({
   token,
   refreshToken,
 });
+export const disconnect = () => ({
+  type: DISCONNECT_USER,
+});
 export const signin = () => ({
   type: SIGNIN,
 });
@@ -306,8 +331,14 @@ export const signinErrors = errors => ({
   type: SIGNIN_ERRORS,
   errors,
 });
-export const newPassword = () => ({
-  type: NEW_PASSWORD,
+export const setNewPassword = (newPassword, newPasswordConfirm, token) => ({
+  type: SET_NEW_PASSWORD,
+  newPassword,
+  newPasswordConfirm,
+  token,
+});
+export const forgottenPassword = () => ({
+  type: FORGOTTEN_PASSWORD,
 });
 export const connectingError = message => ({
   type: CONNECTING_ERROR,

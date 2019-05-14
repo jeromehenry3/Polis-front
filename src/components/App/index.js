@@ -7,16 +7,16 @@ import { Switch, Route, Redirect } from 'react-router-dom';
  * Local import
  */
 // Composants
-
+import Liste from 'src/components/LeafletMap/Liste/index';
 // Containers
 import Signin from 'src/containers/Signin';
 import Login from 'src/containers/Login';
 import LostPassword from 'src/containers/LostPassword';
 import NewPassword from 'src/containers/NewPassword';
 import LeafletMap from 'src/containers/LeafletMap';
+import Welcome from 'src/containers/Welcome';
 
 // Dumb
-import Welcome from '../Welcome';
 import NotFound from '../NotFound';
 import Loading from '../Loading';
 import DisplayBuilding from '../LeafletMap/DisplayBuilding';
@@ -70,10 +70,10 @@ const App = () => (
 
     <Route
       exact
-      path="/new-password"
-      render={() => (
+      path="/resetpassword/:token"
+      render={({ match }) => (
         <Welcome>
-          <NewPassword />
+          <NewPassword match={match} />
         </Welcome>
       )}
     />
@@ -100,6 +100,14 @@ const App = () => (
       path="/display"
       render={() => (
         <DisplayBuilding />
+      )}
+    />
+
+    <Route
+      exact
+      path="/liste"
+      render={() => (
+        <Liste />
       )}
     />
 

@@ -1,15 +1,17 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 import Input from '../Input';
 import Form from '../Form';
 import './lostpassword.scss';
 
 const LostPassword = ({
-  username, updateFormField, connectUser,
+  username, updateFormField, forgottenPassword, redirectToLogin,
 }) => (
+
   <div id="lost-password">
-    <Form onSubmit={connectUser}>
+    {redirectToLogin && <Redirect to="/login" />}
+    <Form onSubmit={forgottenPassword}>
       <p className="identification-message">Merci de renseigner l'email qui que vous avez utilisé lors de votre inscription à Polis. Nous allons vous envoyer un lien pour définir un nouveau mot de passe.</p>
 
       <Input
@@ -38,7 +40,8 @@ const LostPassword = ({
 LostPassword.propTypes = {
   username: PropTypes.string.isRequired,
   updateFormField: PropTypes.func.isRequired,
-  connectUser: PropTypes.func.isRequired,
+  forgottenPassword: PropTypes.func.isRequired,
+  redirectToLogin: PropTypes.bool.isRequired,
 };
 
 /**

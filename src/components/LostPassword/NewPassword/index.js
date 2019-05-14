@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 import React from 'react';
 import PropTypes from 'prop-types';
 import Input from '../../Input';
@@ -7,10 +7,11 @@ import Form from '../../Form';
 import './newpassword.scss';
 
 const NewPassword = ({
-  passwordConfirmInput, passwordInput, updateFormField, newPassword,
+  passwordConfirmInput, passwordInput, updateFormField, setNewPassword, match, redirectToLogin,
 }) => (
   <div id="lost-password">
-    <Form onSubmit={newPassword}>
+    {redirectToLogin && <Redirect to="/login" /> }
+    <Form onSubmit={() => setNewPassword(passwordInput, passwordConfirmInput, match.params.token)}>
       <p className="identification-message">Pour participer à Polis, merci de choisir un nouveau mot de passe.</p>
 
       <Input
@@ -50,7 +51,9 @@ NewPassword.propTypes = {
   passwordInput: PropTypes.string.isRequired,
   passwordConfirmInput: PropTypes.string.isRequired,
   updateFormField: PropTypes.func.isRequired,
-  newPassword: PropTypes.func.isRequired,
+  setNewPassword: PropTypes.func.isRequired,
+  match: PropTypes.object.isRequired,
+  redirectToLogin: PropTypes.bool.isRequired,
 };
 
 /**
