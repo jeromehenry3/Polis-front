@@ -14,22 +14,22 @@ import Loading from '../Loading';
 
 import './leafletmap.scss';
 // pour utiliser des punaises custom
-import pins3 from '../../styles/images/pins3.png';
-import pins8 from '../../styles/images/Pins8.png';
+import pins2 from '../../styles/images/Pins-2 40_80.png';
+import pins from '../../styles/images/Pins 40_80.png';
 
 
 // Création de la map avec React Leaflet
 class Leaflet extends React.Component {
   // Props: openDataForm, closeAllModals, updateFormField
   myPinUne = L.icon({
-    iconUrl: `${pins3}`,
-    iconSize: [40, 40], // size of the icon
+    iconUrl: `${pins2}`,
+    iconSize: [40, 80], // size of the icon
     // shadowSize:   [50, 64], // size of the shadow
   });
 
   myPinDeux = L.icon({
-    iconUrl: `${pins8}`,
-    iconSize: [40, 40], // size of the icon
+    iconUrl: `${pins}`,
+    iconSize: [40, 80], // size of the icon
     // shadowSize:   [50, 64], // size of the shadow
   });
 

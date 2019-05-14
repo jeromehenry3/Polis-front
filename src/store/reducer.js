@@ -23,7 +23,7 @@ const initialState = {
   center: [46.7248003746672, 2.9003906250000004], // Center of the map
   zoom: 6, // level of zoom
   userLocalized: false,
-
+  iconSize: [40, 80],
 
   // ************MANAGEMENT OF THE MODALS************/
   // bool qui indique si le formulaire de renseignement de données est ouvert ou non
@@ -126,7 +126,8 @@ export const CONNECTING_ERROR = 'CONNECTING_ERROR';
 export const DISCONNECT_USER = 'DISCONNECT_USER';
 export const SIGNIN = 'SIGNIN';
 export const SIGNIN_ERRORS = 'SIGNIN_ERRORS';
-export const NEW_PASSWORD = 'NEW_PASSWORD';
+export const SET_NEW_PASSWORD = 'SET_NEW_PASSWORD';
+export const FORGOTTEN_PASSWORD = 'FORGOTTEN_PASSWORD';
 export const OPEN_DATA_FORM = 'OPEN_DATA_FORM';
 export const OPEN_DATA_FORM_BUTTON = 'OPEN_DATA_FORM_BUTTON';
 export const OPEN_DISPLAY_BUILDING = 'OPEN_DISPLAY_BUILDING';
@@ -194,8 +195,19 @@ const reducer = (state = initialState, action = {}) => {
         ...state,
         signinErrors: action.errors,
       };
-    case NEW_PASSWORD:
-      return state;
+    case SET_NEW_PASSWORD:
+      return {
+        ...state,
+        redirectToLogin: true,
+        loginMessage: 'Veuillez vous connecter avec votre nouveau mot de passe.',
+        passwordInput: '',
+      };
+    case FORGOTTEN_PASSWORD:
+      return {
+        ...state,
+        redirectToLogin: true,
+        loginMessage: 'Un mail vous a été envoyé',
+      };
     case OPEN_DATA_FORM:
       return {
         ...state,
@@ -313,8 +325,14 @@ export const signinErrors = errors => ({
   type: SIGNIN_ERRORS,
   errors,
 });
-export const newPassword = () => ({
-  type: NEW_PASSWORD,
+export const setNewPassword = (newPassword, newPasswordConfirm, token) => ({
+  type: SET_NEW_PASSWORD,
+  newPassword,
+  newPasswordConfirm,
+  token,
+});
+export const forgottenPassword = () => ({
+  type: FORGOTTEN_PASSWORD,
 });
 export const connectingError = message => ({
   type: CONNECTING_ERROR,

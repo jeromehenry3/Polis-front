@@ -1,0 +1,29 @@
+@import 'src/styles/_vars.scss';
+
+#bouton-plus {
+    position: absolute;
+    z-index: 4002;
+    bottom:25px;
+    left:50%;
+    margin-left:-32px;
+    cursor: pointer;
+    
+    i.inverted.bordered.icon, i.inverted.circular.icon {
+        background-color: $yellow !important;
+        box-shadow: 0px 4px 4px 1px rgba(0, 0, 0, 0.400);
+        transition:0.5s;
+    }
+}
+
+#bouton-plus:hover {   
+    i.inverted.bordered.icon, i.inverted.circular.icon {
+        background-color: $yellow-darken !important;
+    }
+}
+
+#bouton-plus:focus {   
+    i.inverted.bordered.icon, i.inverted.circular.icon {
+        background-color: $yellow-darken !important;
+        box-shadow: 0px 4px 4px 1px rgba(0, 0, 0, 0);
+    }
+}

@@ -70,10 +70,10 @@ const App = () => (
 
     <Route
       exact
-      path="/new-password"
-      render={() => (
+      path="/resetpassword/:token"
+      render={({ match }) => (
         <Welcome>
-          <NewPassword />
+          <NewPassword match={match} />
         </Welcome>
       )}
     />
