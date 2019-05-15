@@ -21,6 +21,7 @@ import {
   redirectToLogin,
   resetFormBuilding,
 } from './reducer';
+
 const polisApi = 'https://www.thomas-gillet.com/api';
 // eslint-disable-next-line consistent-return
 const polisApiMiddleware = store => next => (action) => {
@@ -32,7 +33,6 @@ const polisApiMiddleware = store => next => (action) => {
         password: store.getState().passwordInput,
       })
         .then((response) => {
-          console.log(response.data);
           const { token, refresh_token: refreshToken } = response.data;
           store.dispatch(storeToken(token, refreshToken));
         })
@@ -96,18 +96,18 @@ const polisApiMiddleware = store => next => (action) => {
       axios.post(`${polisApi}/createBuilding`, {
         latitude: store.getState().clickedLat,
         longitude: store.getState().clickedLng,
-        address: store.getState().addressInput,
-        style: store.getState().architectureInput,
-        picture: store.getState().fileInput,
-        name: store.getState().nameInput,
-        creationDate: parseInt(store.getState().dateInput),
-        surface: parseInt(store.getState().surfaceInput),
-        architect: store.getState().architectInput,
-        promoter: store.getState().promoterInput,
-        builder: store.getState().builderInput,
-        planner: store.getState().plannerInput,
-        urbanist: store.getState().urbanistInput,
-        description: store.getState().descriptionInput,
+        address: store.getState().addressInput ? store.getState().addressInput : null,
+        style: store.getState().architectureInput ? store.getState().architectureInput : null,
+        picture: store.getState().fileInput ? store.getState().fileInput : null,
+        name: store.getState().nameInput ? store.getState().nameInput : null,
+        creationDate: store.getState().dateInput ? parseInt(store.getState().dateInput) : null,
+        surface: store.getState().surfaceInput ? parseInt(store.getState().surfaceInput) : null,
+        architect: store.getState().architectInput ? store.getState().architectInput : null,
+        promoter: store.getState().promoterInput ? store.getState().promoterInput : null,
+        builder: store.getState().builderInput ? store.getState().builderInput : null,
+        planner: store.getState().plannerInput ? store.getState().plannerInput : null,
+        urbanist: store.getState().urbanistInput ? store.getState().urbanistInput : null,
+        description: store.getState().descriptionInput ? store.getState().descriptionInput : null,
         certified: false,
         delivered: store.getState().dateInput === '' ? true : parseInt(store.getState().dateInput) < date.getFullYear(),
       }, {
@@ -116,7 +116,6 @@ const polisApiMiddleware = store => next => (action) => {
         },
       })
         .then((response) => {
-          console.log(response.data);
           store.dispatch(createMarker(store.getState().clickedLat, store.getState().clickedLng, response.data));
           store.dispatch(resetFormBuilding());
         })
@@ -127,7 +126,6 @@ const polisApiMiddleware = store => next => (action) => {
     case GET_ARCHITECTURES:
       axios.get(`${polisApi}/architecture`)
         .then((response) => {
-          console.log(response);
           store.dispatch(setArchitectures(response.data));
         })
         .catch((error) => {
@@ -135,9 +133,9 @@ const polisApiMiddleware = store => next => (action) => {
         });
       break;
     case GET_BUILDINGS:
-      axios.get(`${polisApi}/buildings`)
+      next(action);
+      axios.post(`${polisApi}/buildings/screen`, { bounds: action.bounds })
         .then((response) => {
-          console.log(response);
           store.dispatch(setBuildings(response.data));
         })
         .catch((error) => {
@@ -148,8 +146,6 @@ const polisApiMiddleware = store => next => (action) => {
       next(action);
       axios.get(`${polisApi}/buildings/${action.id}`)
         .then((response) => {
-          console.log(response);
-
           store.dispatch(setBuildingDatas(response.data));
         })
         .catch((error) => {

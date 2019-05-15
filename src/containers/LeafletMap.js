@@ -19,6 +19,7 @@ const mapStateToProps = state => ({
   zoom: state.zoom,
   userLocalized: state.userLocalized,
   loadingWithLoader: state.loadingWithLoader,
+  isConnected: state.isConnected,
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -38,8 +39,8 @@ const mapDispatchToProps = dispatch => ({
     dispatch(getArchitectures());
   },
 
-  getBuildings: () => {
-    dispatch(getBuildings());
+  getBuildings: (bounds) => {
+    dispatch(getBuildings(bounds));
   },
 
   openDisplayBuilding: (id) => {
