@@ -34,6 +34,7 @@ const initialState = {
   // bool qui indique si le formulaire de renseignement de données est ouvert ou non
   isDataFormOpen: false,
   isDisplayBuildingOpen: false, // bool qui toggle l'ouverture de displayBuilding
+  isMenuOpen: false,
 
 
   // ************MANAGEMENT OF THE MENU**************/
@@ -156,6 +157,7 @@ export const AUTO_COMPLETE_RESULTS = 'AUTO_COMPLETE_RESULTS';
 export const OPEN_AUTO_COMPLETE = 'OPEN_AUTO_COMPLETE';
 export const FIND_ADDRESS_SEARCH = 'FIND_ADDRESS_SEARCH';
 export const RESET_FORM_BUILDING = 'RESET_FORM_BUILDING';
+export const TOGGLE_MENU = 'TOGGLE_MENU';
 /**
  * Traitements
  */
@@ -322,6 +324,11 @@ const reducer = (state = initialState, action = {}) => {
         descriptionInput: '',
         loading: false,
       };
+    case TOGGLE_MENU:
+      return {
+        ...state,
+        isMenuOpen: !state.isMenuOpen,
+      };
     default:
       return state;
   }
@@ -457,6 +464,11 @@ export const findAddressSearch = () => ({
 export const resetFormBuilding = () => ({
   type: RESET_FORM_BUILDING,
 });
+
+export const toggleMenu = () => ({
+  type: TOGGLE_MENU,
+});
+
 /**
  * Selectors
  */
