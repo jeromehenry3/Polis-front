@@ -10,7 +10,7 @@ const Signin = ({
   firstNameInput, lastNameInput, username, passwordInput, passwordConfirmInput,
   updateFormField, signin, signinErrors, redirectToLogin,
 }) => (
-  <div>
+  <div id="signin">
     {
       redirectToLogin && (
         <Redirect to="/login" />
