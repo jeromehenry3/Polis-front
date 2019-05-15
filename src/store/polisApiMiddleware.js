@@ -19,6 +19,7 @@ import {
   OPEN_DISPLAY_BUILDING,
   setBuildingDatas,
   redirectToLogin,
+  resetFormBuilding,
 } from './reducer';
 
 const polisApi = 'https://www.thomas-gillet.com/api';
@@ -115,9 +116,8 @@ const polisApiMiddleware = store => next => (action) => {
         },
       })
         .then((response) => {
-          store.dispatch(
-            createMarker(store.getState().clickedLat, store.getState().clickedLng, response.data),
-          );
+          store.dispatch(createMarker(store.getState().clickedLat, store.getState().clickedLng, response.data));
+          store.dispatch(resetFormBuilding());
         })
         .catch((error) => {
           console.log(error.message);

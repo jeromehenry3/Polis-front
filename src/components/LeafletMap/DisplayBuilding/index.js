@@ -41,6 +41,7 @@ const DisplayBuilding = ({
     user,
   } = datas;
 
+  console.log(architecture);
   return (
     <div id="DisplayBuilding">
       <div className={isDisplayBuildingOpen ? 'display-donnees open' : 'display-donnees'}>
@@ -52,7 +53,7 @@ const DisplayBuilding = ({
             <div
               className="header-picture"
               style={{
-                backgroundImage: `url(${images.length !== 0 ? images[0].mapPath : MainPicture})`,
+                backgroundImage: `url(${images.length !== 0 ? images[0].path : MainPicture})`,
               }}
             />
             <a href="#" className="renseignement-donnees_close" onClick={handleCloseDataForm}>Fermer</a>

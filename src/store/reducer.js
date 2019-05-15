@@ -50,7 +50,7 @@ const initialState = {
   nameInput: '',
   surfaceInput: '',
   addressInput: '',
-  styleInput: 0,
+  architectureInput: 0,
   dateInput: '',
   architectInput: '',
   promoterInput: '',
@@ -59,6 +59,8 @@ const initialState = {
   urbanistInput: '',
   descriptionInput: '',
   loading: false,
+
+  // Datas component did mount
   architectures: [],
   buildings: [],
 
@@ -153,6 +155,7 @@ export const AUTO_COMPLETE = 'AUTO_COMPLETE';
 export const AUTO_COMPLETE_RESULTS = 'AUTO_COMPLETE_RESULTS';
 export const OPEN_AUTO_COMPLETE = 'OPEN_AUTO_COMPLETE';
 export const FIND_ADDRESS_SEARCH = 'FIND_ADDRESS_SEARCH';
+export const RESET_FORM_BUILDING = 'RESET_FORM_BUILDING';
 /**
  * Traitements
  */
@@ -299,6 +302,26 @@ const reducer = (state = initialState, action = {}) => {
         ...state,
         isAutocompleteOpen: true,
       };
+    case RESET_FORM_BUILDING:
+      return {
+        ...state,
+        clickedLat: 0,
+        clickedLng: 0,
+        fileInput: '',
+        fileText: '',
+        nameInput: '',
+        surfaceInput: '',
+        addressInput: '',
+        architectureInput: 0,
+        dateInput: '',
+        architectInput: '',
+        promoterInput: '',
+        builderInput: '',
+        plannerInput: '',
+        urbanistInput: '',
+        descriptionInput: '',
+        loading: false,
+      };
     default:
       return state;
   }
@@ -429,6 +452,10 @@ export const openAutocomplete = () => ({
 
 export const findAddressSearch = () => ({
   type: FIND_ADDRESS_SEARCH,
+});
+
+export const resetFormBuilding = () => ({
+  type: RESET_FORM_BUILDING,
 });
 /**
  * Selectors
