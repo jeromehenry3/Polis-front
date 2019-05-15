@@ -33,6 +33,10 @@ class Leaflet extends React.Component {
     // shadowSize:   [50, 64], // size of the shadow
   });
 
+  zoomControl = L.control.zoom({
+    position: 'bottomright',
+  });
+
   map = React.createRef();
 
   componentDidMount() {
@@ -102,6 +106,7 @@ class Leaflet extends React.Component {
         {!loadingWithLoader && <Menu />}
         {!loadingWithLoader && <RenseignementDonnees />}
         {!loadingWithLoader && <DisplayBuilding />}
+
         <LeafletMap
           ref={this.map}
           center={center}
@@ -110,7 +115,7 @@ class Leaflet extends React.Component {
           minZoom={3}
           setView
           attributionControl
-          zoomControl={false}
+          zoomControl
           doubleClickZoom
           scrollWheelZoom
           maxBounds={bounds}
