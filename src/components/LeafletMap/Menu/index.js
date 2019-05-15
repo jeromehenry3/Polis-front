@@ -10,7 +10,7 @@ import './menu.scss';
 const TopMenu = ({
   searchInput, openDataForm, closeAllModals, autoComplete, autoCompleteResults,
   updateFormField, centerByAddress, isAutocompleteOpen, findAddressSearch, isConnected,
-  redirectToLogin, disconnect,
+  redirectToLogin, disconnect, redirect,
 }) => {
   const handleSearch = position => (e) => {
     updateFormField('searchInput', e.target.textContent);
@@ -19,7 +19,7 @@ const TopMenu = ({
 
   return (
     <div id="menu">
-      {redirectToLogin && <Redirect to="/login/" />}
+      {redirectToLogin && <Redirect to="/login" />}
       <Dropdown item icon="bars" simple>
         <Dropdown.Menu>
           {isConnected && <Dropdown.Item onClick={disconnect}>Déconnexion</Dropdown.Item>}
@@ -95,9 +95,13 @@ const TopMenu = ({
       <Button
         id="add-button"
         circular
-        onClick={() => {
-          closeAllModals(); openDataForm(false);
-        }}
+        onClick={isConnected
+          ? () => {
+            closeAllModals(); openDataForm(false);
+          }
+          : () => {
+            closeAllModals(); redirect();
+          }}
       >
         <Icon.Group>
           <Icon name="map marker alternate" />
