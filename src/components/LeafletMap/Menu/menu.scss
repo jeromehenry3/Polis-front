@@ -16,12 +16,13 @@
     }
 
     .content-menu {
-        background-color: $yellow;
-        width: 200px;
-        height: 100vh;
+        background-color: $yellow-lighten;
+        width: 150px;
+        height: 250px;
         position: absolute;
-        top: 0;
-        left: -80%;
+        border-radius: 2px;
+        top: -250px;
+        left: 0;
         transition: 0.4s;
         z-index: 9;
         ul {
@@ -39,7 +40,7 @@
             }
         }
         &.open {
-            left: 0;
+            top: 0;
         }
         
     }
