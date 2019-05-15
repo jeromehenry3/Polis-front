@@ -1,3 +1,4 @@
+/* eslint-disable no-underscore-dangle */
 /*
  * Npm import
  */
@@ -17,12 +18,13 @@ const appliedMiddlewares = (applyMiddleware(polisApiMiddleware, extApiMiddleware
  * Code
  */
 const devTools = [];
-if (window.devToolsExtension) {
-  devTools.push(window.devToolsExtension());
+if (window.__REDUX_DEVTOOLS_EXTENSION__) {
+  devTools.push(window.__REDUX_DEVTOOLS_EXTENSION__());
 }
 
-const enhancers = compose(appliedMiddlewares, ...devTools);
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
+const enhancers = composeEnhancers(appliedMiddlewares);
 // createStore
 const store = createStore(reducer, enhancers);
 

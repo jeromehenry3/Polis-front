@@ -115,7 +115,7 @@ TopMenu.propTypes = {
   openDataForm: PropTypes.func.isRequired,
   closeAllModals: PropTypes.func.isRequired,
   autoComplete: PropTypes.func.isRequired,
-  autoCompleteResults: PropTypes.bool.isRequired,
+  autoCompleteResults: PropTypes.array.isRequired,
   centerByAddress: PropTypes.func.isRequired,
   isAutocompleteOpen: PropTypes.bool.isRequired,
   findAddressSearch: PropTypes.func.isRequired,
