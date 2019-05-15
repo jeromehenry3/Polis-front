@@ -30,9 +30,11 @@ const RenseignementDonnees = ({
   architectures,
   fileText,
   findAddress,
+  resetFormBuilding,
 }) => {
   const handleCloseDataForm = (e) => {
     e.preventDefault();
+    resetFormBuilding();
     closeAllModals();
   };
 
@@ -63,13 +65,14 @@ const RenseignementDonnees = ({
   const handleSubmitBuilding = (e) => {
     e.preventDefault();
     console.log('submitting building');
+    closeAllModals();
     submitBuilding();
   };
 
   const handleBlur = (e) => {
     findAddress();
   };
-  
+
   return (
     <div className={isDataFormOpen ? 'renseignement-donnees open' : 'renseignement-donnees'}>
       <div className="renseignement-donnees_relative">
