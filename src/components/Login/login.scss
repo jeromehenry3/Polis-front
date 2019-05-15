@@ -8,6 +8,9 @@ p {
   
   &.identification-message {
     transform: translateY(-20px);
+    color: $brown-darken;
+    font-size:13px;;
+    font-weight:bold;
   }
   &.connecting:after {
     content: ' .';
