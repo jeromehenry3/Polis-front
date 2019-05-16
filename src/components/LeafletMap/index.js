@@ -185,7 +185,7 @@ Leaflet.propTypes = {
 };
 
 Leaflet.defaultProps = {
-  coords: {},
+  coords: null,
 };
 
 export default geolocated({
