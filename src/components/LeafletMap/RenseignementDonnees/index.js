@@ -5,7 +5,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {
- Dimmer, Loader, Icon, List 
+  Dimmer, Loader, List,
 } from 'semantic-ui-react';
 import Input from '../../Input';
 import AppareilPhoto from '../../../styles/images/photo-camera.svg';
@@ -265,6 +265,8 @@ RenseignementDonnees.propTypes = {
   descriptionInput: PropTypes.string.isRequired,
   architectures: PropTypes.array.isRequired,
   fileText: PropTypes.string.isRequired,
+  findAddress: PropTypes.func.isRequired,
+  resetFormBuilding: PropTypes.func.isRequired,
 };
 
 export default RenseignementDonnees;

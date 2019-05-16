@@ -13,7 +13,7 @@ import './burger.scss';
 const TopMenu = ({
   searchInput, openDataForm, closeAllModals, autoComplete, autoCompleteResults,
   updateFormField, centerByAddress, isAutocompleteOpen, findAddressSearch, isConnected,
-  redirectToLogin, disconnect, isMenuOpen, toggleMenu,
+  redirectToLogin, disconnect, isMenuOpen, toggleMenu, redirect
 }) => {
   const handleSearch = position => (e) => {
     updateFormField('searchInput', e.target.textContent);
@@ -111,9 +111,13 @@ const TopMenu = ({
       <Button
         id="add-button"
         circular
-        onClick={() => {
-          closeAllModals(); openDataForm(false);
-        }}
+        onClick={isConnected
+          ? () => {
+            closeAllModals(); openDataForm(false);
+          }
+          : () => {
+            closeAllModals(); redirect();
+          }}
       >
         <Icon.Group>
           <Icon name="map marker alternate" />

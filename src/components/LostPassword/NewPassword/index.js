@@ -18,7 +18,7 @@ const NewPassword = ({
         type="password"
         id="password"
         name="password"
-        placeholder="Mot de passe"
+        placeholder="Mot de passe *"
         value={passwordInput}
         onChangeFunction={input => updateFormField('passwordInput', input)}
         disabled={false}
@@ -28,7 +28,7 @@ const NewPassword = ({
         type="password"
         id="password-confirm"
         name="password-confirm"
-        placeholder="Confirmer votre mot de passe"
+        placeholder="Confirmer votre mot de passe *"
         value={passwordConfirmInput}
         onChangeFunction={input => updateFormField('passwordConfirmInput', input)}
         disabled={false}
