@@ -85,9 +85,6 @@ class Leaflet extends React.Component {
       coords, isGeolocationEnabled,
       center, zoom, userLocalized, updateFormField, loadingWithLoader,
     } = this.props;
-    const southWest = L.latLng(-66.51326044311186, -172.26562500000003);
-    const northEast = L.latLng(81.92318632602199, 190.54687500000003);
-    const bounds = L.latLngBounds(southWest, northEast);
 
     if (isGeolocationEnabled && coords && !userLocalized) {
       // eslint-disable-next-line no-unused-expressions
@@ -113,7 +110,7 @@ class Leaflet extends React.Component {
           zoomControl={false}
           doubleClickZoom
           scrollWheelZoom
-          maxBounds={bounds}
+          worldCopyJump
           dragging
           animate
           infinite
