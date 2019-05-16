@@ -40,7 +40,7 @@ class Leaflet extends React.Component {
   map = React.createRef();
 
   componentDidMount() {
-    const { getArchitectures, getBuildings, updateFormField } = this.props;
+    const { getArchitectures, getBuildings, updateFormField, closeMenu } = this.props;
     // console.log(this.map.leafletElement.getBounds());
     const actualBounds = this.map.current.leafletElement.getBounds();
 
@@ -50,6 +50,7 @@ class Leaflet extends React.Component {
     updateFormField('loadingWithLoader', true);
     getBuildings(actualBounds);
     getArchitectures();
+    closeMenu();
   }
 
   handleMove = () => {
@@ -182,6 +183,7 @@ Leaflet.propTypes = {
   loadingWithLoader: PropTypes.bool.isRequired,
   userLocalized: PropTypes.bool.isRequired,
   isConnected: PropTypes.bool.isRequired,
+  closeMenu: PropTypes.func.isRequired,
 };
 
 Leaflet.defaultProps = {

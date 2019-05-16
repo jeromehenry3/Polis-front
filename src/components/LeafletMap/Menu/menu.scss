@@ -11,44 +11,11 @@
     padding: 0 1em;
     padding-top: 15px;
 
-    .hamburger {
-        z-index: 10;
-    }
-
-    .content-menu {
-        background-color: $yellow-lighten;
-        width: 150px;
-        height: 300px;
-        position: absolute;
-        border-radius: 2px;
-        top: -300px;
-        left: 0;
-        transition: 0.4s;
-        z-index: 9;
-        ul {
-            margin-left: 10px;
-            margin-top: 100px;
-            .item {
-                font-weight: bold;
-                font-size: 1.1em;
-                margin: 2em 0;
-                transition: 0.4s;
-                &:hover {
-                    cursor: pointer;
-                    color: $salmon-darken;
-                }
-            }
-        }
-        &.open {
-            top: 0;
-        }
-        
-    }
-
     .result {
         text-align: left;
         .city {
             font-weight: bold;
+            color: $salmon;
         }
     }
     .ui.button { // Buttons of the view change : carte / Bâtiments
@@ -73,6 +40,8 @@
     .input-container .input {
         border-color: $salmon-lighten;
         box-shadow: -1px 2px 4px 0px rgba(0,0,0,0.40);
+        transition: 0.4s;
+        width: 230px;
         &:focus {
             border-color: $salmon;
         }

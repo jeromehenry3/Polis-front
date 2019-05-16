@@ -1,4 +1,5 @@
 import React from 'react';
+import BurgerNav from '../../containers/BurgerNav';
 import './about.scss';
 
 import Logo from '../../styles/images/logo-saumon.png';
@@ -9,6 +10,7 @@ import Fabien from '../../styles/images/FAB.png';
 
 const About = () => (
   <div id="about">
+    <BurgerNav />
     <div className="container">
       <div className="header">
         <img src={Logo} alt="" className="header-logo" />

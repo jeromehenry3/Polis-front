@@ -9,8 +9,13 @@ import LeafletMap from 'src/components/LeafletMap';
 
 
 import {
-  openDataForm, closeAllModals, updateFormField, getArchitectures,
-  getBuildings, openDisplayBuilding,
+  openDataForm,
+  closeAllModals,
+  updateFormField,
+  getArchitectures,
+  getBuildings,
+  openDisplayBuilding,
+  closeMenu,
 } from 'src/store/reducer';
 
 const mapStateToProps = state => ({
@@ -46,6 +51,10 @@ const mapDispatchToProps = dispatch => ({
   openDisplayBuilding: (id) => {
     dispatch(openDisplayBuilding(id));
   },
+
+  closeMenu: () => {
+    dispatch(closeMenu());
+  }
 });
 
 export default connect(
