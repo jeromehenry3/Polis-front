@@ -20,6 +20,7 @@ import {
   setBuildingDatas,
   redirectToLogin,
   resetFormBuilding,
+  updateFormField,
 } from './reducer';
 
 const polisApi = 'https://www.thomas-gillet.com/api';
@@ -35,6 +36,7 @@ const polisApiMiddleware = store => next => (action) => {
         .then((response) => {
           const { token, refresh_token: refreshToken } = response.data;
           store.dispatch(storeToken(token, refreshToken));
+          store.dispatch(updateFormField('loadingWithLoader', true));
         })
         .catch((error) => {
           console.log('erreur :', error.response.data.code);
