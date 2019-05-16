@@ -84,8 +84,13 @@ const polisApiMiddleware = store => next => (action) => {
       })
         .then((response) => {
           console.log(response.data);
+          // Si l'email renseigné n'existe pas, j'affiche l'erreur à l'utilisateur.
+          // Si il existe bien, je laisse passer l'action, qui s'occupe d'indiquer à l'utilisateur que le mail a bien été envoyé.
           if (response.data === 'Veuillez entrer un email valide') {
             store.dispatch(emailError(response.data));
+          }
+          else {
+            next(action);
           }
         })
         .catch((error) => {
