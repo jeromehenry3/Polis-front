@@ -41,6 +41,7 @@ const initialState = {
   searchInput: '', // string
 
   loadingWithLoader: false, // If loader should be displayed
+  view: 'map', // Toggle the view (Carte = 'map' // Bâtiments = 'list')
 
 
   // ************FIELDS OF THE CARD DATA TO SEND*************/
@@ -159,6 +160,8 @@ export const FIND_ADDRESS_SEARCH = 'FIND_ADDRESS_SEARCH';
 export const RESET_FORM_BUILDING = 'RESET_FORM_BUILDING';
 export const TOGGLE_MENU = 'TOGGLE_MENU';
 export const CLOSE_MENU = 'CLOSE_MENU';
+export const TOGGLE_VIEW = 'TOGGLE_VIEW';
+
 
 /**
  * Traitements
@@ -336,6 +339,11 @@ const reducer = (state = initialState, action = {}) => {
         ...state,
         isMenuOpen: false,
       };
+    case TOGGLE_VIEW:
+      return {
+        ...state,
+        view: action.view,
+      };
     default:
       return state;
   }
@@ -478,6 +486,11 @@ export const toggleMenu = () => ({
 
 export const closeMenu = () => ({
   type: CLOSE_MENU,
+});
+
+export const toggleView = view => ({
+  type: TOGGLE_VIEW,
+  view,
 });
 
 /**
