@@ -15,12 +15,10 @@ const BurgerNav = ({
   closeMenu,
 }) => {
   const handleNavLinkClick = () => {
-    console.log('link clicked');
     closeMenu();
   };
 
   const handleMenuClick = () => {
-    console.log('clicked');
     closeAllModals();
     toggleMenu();
   };
