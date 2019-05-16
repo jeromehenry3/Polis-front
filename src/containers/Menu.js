@@ -3,14 +3,12 @@ import { connect } from 'react-redux';
 import Menu from 'src/components/LeafletMap/Menu';
 
 import {
-  updateFormField, 
-  openDataFormButton, 
+  updateFormField,
+  openDataFormButton,
   closeAllModals,
-  autoComplete, 
-  centerByAddress, 
-  findAddressSearch, 
-  disconnect, 
-  toggleMenu, 
+  autoComplete,
+  centerByAddress,
+  findAddressSearch,
   redirectToLogin,
 } from 'src/store/reducer';
 
@@ -27,7 +25,7 @@ const mapDispatchToProps = dispatch => ({
   updateFormField: (fieldName, input) => {
     dispatch(updateFormField(fieldName, input));
   },
-  
+
   openDataForm: () => {
     dispatch(openDataFormButton());
   },
@@ -47,14 +45,7 @@ const mapDispatchToProps = dispatch => ({
   findAddressSearch: (address) => {
     dispatch(findAddressSearch(address));
   },
-  
-  disconnect: () => {
-    dispatch(disconnect());
-  },
-  
-  toggleMenu: () => {
-    dispatch(toggleMenu());
-  },
+
   redirect: () => {
     dispatch(redirectToLogin());
   },

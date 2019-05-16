@@ -4,16 +4,16 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Link, Redirect } from 'react-router-dom';
 import {
-  Menu, Dropdown, Button, Icon,
+  Menu, Button, Icon,
 } from 'semantic-ui-react';
+import BurgerNav from 'src/containers/BurgerNav';
 
 import './menu.scss';
-import './burger.scss';
 
 const TopMenu = ({
   searchInput, openDataForm, closeAllModals, autoComplete, autoCompleteResults,
   updateFormField, centerByAddress, isAutocompleteOpen, findAddressSearch, isConnected,
-  redirectToLogin, disconnect, isMenuOpen, toggleMenu, redirect
+  redirectToLogin, redirect,
 }) => {
   const handleSearch = position => (e) => {
     updateFormField('searchInput', e.target.textContent);
@@ -21,31 +21,11 @@ const TopMenu = ({
     closeAllModals();
   };
 
-  const handleMenuClick = () => {
-    console.log('clicked');
-    closeAllModals();
-    toggleMenu();
-  };
 
   return (
     <div id="menu">
       {redirectToLogin && <Redirect to="/login/" />}
-      <button onClick={handleMenuClick} className={isMenuOpen ? 'hamburger hamburger--elastic is-active' : 'hamburger hamburger--elastic'} type="button">
-        <span className="hamburger-box">
-          <span className="hamburger-inner" />
-        </span>
-      </button>
-
-      <nav className={isMenuOpen ? 'content-menu open' : 'content-menu'}>
-        <ul>
-          {isConnected && <Dropdown.Item onClick={disconnect}>Déconnexion</Dropdown.Item>}
-          {!isConnected && <Dropdown.Item onClick={() => updateFormField('redirectToLogin', true)}>Connexion</Dropdown.Item>}
-          {isConnected && <Dropdown.Item>Mon compte</Dropdown.Item>}
-          <Dropdown.Item>Recrutement</Dropdown.Item>
-          <Dropdown.Item>A propos</Dropdown.Item>
-        </ul>
-      </nav>
-
+      <BurgerNav />
       <Menu.Menu>
         <Button.Group>
           <Button
@@ -140,10 +120,8 @@ TopMenu.propTypes = {
   isAutocompleteOpen: PropTypes.bool.isRequired,
   findAddressSearch: PropTypes.func.isRequired,
   isConnected: PropTypes.bool.isRequired,
-  disconnect: PropTypes.func.isRequired,
   redirectToLogin: PropTypes.bool.isRequired,
-  isMenuOpen: PropTypes.bool.isRequired,
-  toggleMenu: PropTypes.func.isRequired,
+  redirect: PropTypes.func.isRequired,
 };
 
 export default TopMenu;

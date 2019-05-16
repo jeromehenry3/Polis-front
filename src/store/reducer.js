@@ -158,6 +158,8 @@ export const OPEN_AUTO_COMPLETE = 'OPEN_AUTO_COMPLETE';
 export const FIND_ADDRESS_SEARCH = 'FIND_ADDRESS_SEARCH';
 export const RESET_FORM_BUILDING = 'RESET_FORM_BUILDING';
 export const TOGGLE_MENU = 'TOGGLE_MENU';
+export const CLOSE_MENU = 'CLOSE_MENU';
+
 /**
  * Traitements
  */
@@ -329,6 +331,11 @@ const reducer = (state = initialState, action = {}) => {
         ...state,
         isMenuOpen: !state.isMenuOpen,
       };
+    case CLOSE_MENU:
+      return {
+        ...state,
+        isMenuOpen: false,
+      };
     default:
       return state;
   }
@@ -467,6 +474,10 @@ export const resetFormBuilding = () => ({
 
 export const toggleMenu = () => ({
   type: TOGGLE_MENU,
+});
+
+export const closeMenu = () => ({
+  type: CLOSE_MENU,
 });
 
 /**
