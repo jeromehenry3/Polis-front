@@ -21,6 +21,7 @@ import {
   redirectToLogin,
   resetFormBuilding,
   emailError,
+  newPasswordErrors,
 } from './reducer';
 
 const polisApi = 'https://www.thomas-gillet.com/api';
@@ -65,7 +66,6 @@ const polisApiMiddleware = store => next => (action) => {
         });
       break;
     case SET_NEW_PASSWORD:
-      next(action);
       axios.post(`${polisApi}/resetPassword`, {
         password: action.newPassword,
         password2: action.newPasswordConfirm,
@@ -73,6 +73,13 @@ const polisApiMiddleware = store => next => (action) => {
       })
         .then((response) => {
           console.log(response.data);
+          if (typeof response.data === 'object') {
+            store.dispatch(newPasswordErrors(response.data));
+          }
+          else {
+            store.dispatch(newPasswordErrors([]));
+            next(action);
+          }
         })
         .catch((error) => {
           console.log(error.message);

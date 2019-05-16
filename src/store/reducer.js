@@ -95,6 +95,7 @@ const initialState = {
   signinErrors: [],
   redirectToLogin: false,
   emailError: '',
+  newPasswordErrors: [],
 
   datas: {
     address: '',
@@ -161,7 +162,7 @@ export const RESET_FORM_BUILDING = 'RESET_FORM_BUILDING';
 export const TOGGLE_MENU = 'TOGGLE_MENU';
 export const CLOSE_MENU = 'CLOSE_MENU';
 export const EMAIL_ERROR = 'EMAIL_ERROR';
-
+export const NEW_PASSWORD_ERRORS = 'NEW_PASSWORD_ERRORS';
 /**
  * Traitements
  */
@@ -209,6 +210,11 @@ const reducer = (state = initialState, action = {}) => {
       return {
         ...state,
         signinErrors: action.errors,
+      };
+    case NEW_PASSWORD_ERRORS:
+      return {
+        ...state,
+        newPasswordErrors: action.errors,
       };
     case SET_NEW_PASSWORD:
       return {
@@ -373,6 +379,11 @@ export const signin = () => ({
 });
 export const signinErrors = errors => ({
   type: SIGNIN_ERRORS,
+  errors,
+});
+
+export const newPasswordErrors = errors => ({
+  type: NEW_PASSWORD_ERRORS,
   errors,
 });
 export const setNewPassword = (newPassword, newPasswordConfirm, token) => ({
