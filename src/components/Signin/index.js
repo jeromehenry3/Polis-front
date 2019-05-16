@@ -10,7 +10,7 @@ const Signin = ({
   firstNameInput, lastNameInput, username, passwordInput, passwordConfirmInput,
   updateFormField, signin, signinErrors, redirectToLogin,
 }) => (
-  <div>
+  <div id="signin">
     {
       redirectToLogin && (
         <Redirect to="/login" />
@@ -29,7 +29,7 @@ const Signin = ({
           type="text"
           id="first-name"
           name="first-name"
-          placeholder="Prénom"
+          placeholder="Prénom *"
           value={firstNameInput}
           onChangeFunction={input => updateFormField('firstNameInput', input)}
           disabled={false}
@@ -40,7 +40,7 @@ const Signin = ({
           type="text"
           id="last-name"
           name="last-name"
-          placeholder="Nom"
+          placeholder="Nom *"
           value={lastNameInput}
           onChangeFunction={input => updateFormField('lastNameInput', input)}
           disabled={false}
@@ -52,7 +52,7 @@ const Signin = ({
         type="email"
         id="email"
         name="email"
-        placeholder="Email"
+        placeholder="Email *"
         value={username}
         onChangeFunction={input => updateFormField('username', input)}
         disabled={false}
@@ -63,7 +63,7 @@ const Signin = ({
         type="password"
         id="password"
         name="password"
-        placeholder="Mot de passe"
+        placeholder="Mot de passe *"
         value={passwordInput}
         onChangeFunction={input => updateFormField('passwordInput', input)}
         disabled={false}
@@ -74,7 +74,7 @@ const Signin = ({
         type="password"
         id="password-confirm"
         name="password-confirm"
-        placeholder="Confirmer votre mot de passe"
+        placeholder="Confirmer votre mot de passe *"
         value={passwordConfirmInput}
         onChangeFunction={input => updateFormField('passwordConfirmInput', input)}
         disabled={false}

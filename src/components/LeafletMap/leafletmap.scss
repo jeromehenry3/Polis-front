@@ -8,3 +8,40 @@ svg path.leaflet-interactive {
   pointer-events: unset !important;
 
 }
+
+.leaflet-control-zoom-in, .leaflet-control-zoom-out {
+  margin-top: 0;
+  color: $orange !important;
+};
+
+.leaflet-control-zoom-out {
+  border-bottom-right-radius: 10px !important;
+  border-bottom-left-radius: 10px !important;
+}
+
+.leaflet-control-zoom-in {
+  border-top-right-radius: 10px !important;
+  border-top-left-radius: 10px !important;
+}
+
+.leaflet-bar a:hover {
+  border-bottom: none !important;
+}
+
+.leaflet-control-zoom {
+  border: 1px solid $orange !important;
+  border-radius: 10px !important;
+}
+
+.leaflet-bar a {
+  border-bottom: none;
+}
+
+.leaflet-top, .leaflet-left {
+  bottom: 0 !important;
+  right: 0 !important;
+  margin-bottom: 30px;
+  margin-right: 20px;
+  left: auto;
+  top: auto;
+}

@@ -34,11 +34,7 @@ class Input extends Component {
     const { dynamicType } = this.state;
     return (
       <div className="input-container">
-        {required && (
-          <div className="input-container--required">
-            *
-          </div>
-        )}
+        
         <input
           type={dynamicType}
           id={id}
