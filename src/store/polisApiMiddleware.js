@@ -133,7 +133,7 @@ const polisApiMiddleware = store => next => (action) => {
         });
       break;
     case GET_BUILDINGS:
-      next(action);
+      setTimeout(() => next(action), 500);
       axios.post(`${polisApi}/buildings/screen`, { bounds: action.bounds })
         .then((response) => {
           store.dispatch(setBuildings(response.data));

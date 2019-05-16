@@ -63,6 +63,7 @@ const initialState = {
   // Datas component did mount
   architectures: [],
   buildings: [],
+  fetichingBuildings: false,
 
 
   // ************FIELDS OF THE CARD DATA*******
@@ -159,7 +160,9 @@ export const RESET_FORM_BUILDING = 'RESET_FORM_BUILDING';
 /**
  * Traitements
  */
-
+const mergeBuildings = (a, b, field) => (
+  a.filter(aa => !b.find(bb => aa[field] === bb[field])).concat(b)
+);
 /**
  * Reducer
  */
@@ -257,10 +260,17 @@ const reducer = (state = initialState, action = {}) => {
         ...state,
         architectures: action.architectures,
       };
+    case GET_BUILDINGS:
+      return {
+        ...state,
+        fetchingBuildings: false,
+      };
     case SET_BUILDINGS:
       return {
         ...state,
-        buildings: action.buildings,
+        // buildings: [...new Set([...state.buildings, ...action.buildings])],
+        buildings: mergeBuildings(state.buildings, action.buildings, 'id'),
+        // fetchingBuildings: false,
       };
     case CREATE_MARKER:
       return {

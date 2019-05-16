@@ -20,6 +20,7 @@ const mapStateToProps = state => ({
   userLocalized: state.userLocalized,
   loadingWithLoader: state.loadingWithLoader,
   isConnected: state.isConnected,
+  fetchingBuildings: state.fetchingBuildings,
 });
 
 const mapDispatchToProps = dispatch => ({
