@@ -2,8 +2,6 @@
 /**
  * Initial State
  */
-import tokenEnDur from 'src/data/tokenEnDur';
-
 const initialState = {
   // *******FIELDS OF THE LOGIN / SIGNIN FORM******/
   username: '', // string
@@ -13,8 +11,6 @@ const initialState = {
   lastNameInput: '', // string
 
   // *******MANAGEMENT OF THE CONNECTION************/
-  token: tokenEnDur, // string,
-  refreshToken: '',
   isConnected: false,
   loginMessage: 'Vous devez vous identifier pour contribuer à Polis',
   loginStatus: 'not-connected', // string : not-connected || connecting || connected, for logic purposes
@@ -130,7 +126,6 @@ const initialState = {
  */
 export const UPDATE_FORM_FIELD = 'UPDATE_FORM_FIELD';
 export const CONNECT_USER = 'CONNECT_USER'; // Api connection with username && password
-export const STORE_TOKEN = 'STORE_TOKEN';
 export const CONNECTING_ERROR = 'CONNECTING_ERROR';
 export const DISCONNECT_USER = 'DISCONNECT_USER';
 export const SIGNIN = 'SIGNIN';
@@ -191,15 +186,6 @@ const reducer = (state = initialState, action = {}) => {
         ...initialState,
         loginMessage: 'Vous avez bien été déconnecté(e)',
         redirectToLogin: true,
-      };
-    case STORE_TOKEN:
-      return {
-        ...state,
-        token: action.token,
-        refreshToken: action.refreshToken,
-        isConnected: true,
-        loginMessage: 'Vous êtes connecté(e)',
-        redirectToLogin: false,
       };
     case SIGNIN:
       return state;
@@ -353,11 +339,11 @@ export const updateFormField = (fieldName, input) => ({
 export const connectUser = () => ({
   type: CONNECT_USER,
 });
-export const storeToken = (token, refreshToken) => ({
-  type: STORE_TOKEN,
-  token,
-  refreshToken,
-});
+// export const storeToken = (token, refreshToken) => ({
+//   type: STORE_TOKEN,
+//   token,
+//   refreshToken,
+// });
 export const disconnect = () => ({
   type: DISCONNECT_USER,
 });

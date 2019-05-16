@@ -9,7 +9,6 @@ import {
   FORGOTTEN_PASSWORD,
   SET_NEW_PASSWORD,
   SUBMIT_BUILDING,
-  storeToken,
   connectingError,
   GET_ARCHITECTURES,
   setArchitectures,
@@ -31,10 +30,11 @@ const polisApiMiddleware = store => next => (action) => {
       axios.post(`${polisApi}/login`, {
         username: store.getState().username,
         password: store.getState().passwordInput,
+      }, {
+        withCredentials: true,
       })
         .then((response) => {
-          const { token, refresh_token: refreshToken } = response.data;
-          store.dispatch(storeToken(token, refreshToken));
+          console.log(response);
         })
         .catch((error) => {
           console.log('erreur :', error.response.data.code);
@@ -68,7 +68,8 @@ const polisApiMiddleware = store => next => (action) => {
       axios.post(`${polisApi}/resetPassword`, {
         password: action.newPassword,
         password2: action.newPasswordConfirm,
-        token: action.token,
+      }, {
+        withCredentials: true,
       })
         .then((response) => {
           console.log(response.data);
@@ -111,9 +112,7 @@ const polisApiMiddleware = store => next => (action) => {
         certified: false,
         delivered: store.getState().dateInput === '' ? true : parseInt(store.getState().dateInput) < date.getFullYear(),
       }, {
-        headers: {
-          Authorization: `Bearer ${store.getState().token}`,
-        },
+        withCredentials: true,
       })
         .then((response) => {
           store.dispatch(createMarker(store.getState().clickedLat, store.getState().clickedLng, response.data));
