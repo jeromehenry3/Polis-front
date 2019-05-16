@@ -1,0 +1,174 @@
+@import 'src/styles/_vars.scss';
+
+#about {
+    width:100%;
+    a {
+        text-decoration: underline;
+    }
+    .container {
+        max-width: 800px;
+        padding-top: 120px;
+        margin-left:auto;
+        margin-right:auto;
+
+        .header {
+            text-align:center;
+            &-logo {
+                width:70%;
+            }
+            &-accroche {
+                font-size:20px;
+                color:$brown;
+                font-weight:500;
+            }
+            &-description {
+                text-transform: uppercase;
+                font-size:12px;
+                font-weight:700;
+                -webkit-font-smoothing: antialiased;
+                -moz-osx-font-smoothing: grayscale;
+                color: $salmon-lighten;
+                padding:80px 0 40px;
+                line-height:18px;
+            }
+        }
+        .main {
+            text-align: justify;
+            font-size: 1.2em;
+            line-height: 34px;
+            padding-top: 40px;
+            .cadre-passion{
+                background-color: $brown-darken;
+                color:$beige-lighten;
+                padding: 5px 15px 7px;
+            }
+            .cadre-improve{
+                background-color: $beige-lighten;
+                color:$salmon;
+                padding: 5px 15px 7px;
+            }
+            &-description-team {
+                padding-top:80px;
+                ul {
+                    padding-top:40px;
+                    text-align: left;
+                }
+                li {
+                    display:flex;
+                    justify-content: space-between;
+                    .team-name, .team-job, .team-role {
+                        width:33%;
+                    }
+                    .team-job {
+                        color: $orange-darken;
+                    }
+                    .team-role {
+                        color:$brown;
+                    }
+                    
+                }
+            }
+            &-description-techno {
+                padding-top:80px;
+                ul {
+                    padding-top:40px;
+                    text-align: left;
+                }
+                li {
+                    display:flex;
+                    justify-content: space-between;
+                    .col-1, .col-2, .col-3 {
+                        width:33%;
+                    }
+                   
+                }
+            }
+            &-medaillons {
+                background-color:black;
+                margin-top:80px;
+                color: $beige;
+                padding-left:25px;
+                padding-right:25px;
+                padding-bottom: 25px;
+                h2 {
+                    padding-top: 10px;
+                }
+                hr {
+                    border-top:1px;
+                    border-color:$beige;
+                    margin-bottom:25px;
+                }
+                &-teamate{
+                    display:flex;
+                    margin-top:25px;
+                    flex-wrap:wrap;
+                    div {
+                        margin-left: 40px;
+                        display:flex;
+                        flex-direction:column;
+                        justify-content: center;
+                        padding-left:25px;
+                        a {
+                            color: $beige;
+                        }
+                        .teamate-name {
+                            font-weight:bold;
+                            font-size:1em;
+                            margin-bottom: 0;
+                            text-transform: uppercase;
+                        }
+                        .teamate-email, .teamate-web {
+                            font-size: 0.8em;                           
+                        }
+                        .teamate-web {
+                            margin-top: -5px;
+                        }
+                        .teamate-linkedin {
+                            margin-top:-5px;
+                            font-size: 0.8em;
+                        }
+                    }
+                }
+            }
+            &-credits {
+                padding: 50px 0 25px;
+                &-title {
+                    text-align: left;
+                    text-decoration: underline;
+                }
+                &-liste p {
+                    text-align: left;
+                    padding-bottom:0;
+                    padding-top:0;
+                }
+            }
+        }
+    }
+
+    // Petits écrans
+    @media screen and (max-width: 801px) { 
+        .container {
+            width: 100%;
+            padding-left: 15px;
+            padding-right: 15px;
+        }
+        #about.container.header-description {
+            padding-top:15px !important;
+        }
+        .main-description {
+            font-size:0.8em;
+        }
+        .team-name {
+            margin-right: 10px;
+        }
+        .main-description-techno li {
+            font-size:0.8em;
+        }
+        .main-medaillons-teamate {
+            justify-content:center;
+        }
+        .main-medaillons-teamate img {
+            margin-bottom:15px;
+        }
+    }
+}
