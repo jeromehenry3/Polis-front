@@ -20,6 +20,7 @@ import {
   setBuildingDatas,
   redirectToLogin,
   resetFormBuilding,
+  emailError,
 } from './reducer';
 
 const polisApi = 'https://www.thomas-gillet.com/api';
@@ -78,15 +79,17 @@ const polisApiMiddleware = store => next => (action) => {
         });
       break;
     case FORGOTTEN_PASSWORD:
-      next(action);
       axios.post(`${polisApi}/forgottenPassword`, {
         email: store.getState().username,
       })
         .then((response) => {
           console.log(response.data);
+          if (response.data === 'Veuillez entrer un email valide') {
+            store.dispatch(emailError(response.data));
+          }
         })
         .catch((error) => {
-          console.log(error.message);
+          console.log(error);
         });
       break;
     case SUBMIT_BUILDING:

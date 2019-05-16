@@ -94,6 +94,7 @@ const initialState = {
   // ************ERRORS*******
   signinErrors: [],
   redirectToLogin: false,
+  emailError: '',
 
   datas: {
     address: '',
@@ -159,6 +160,7 @@ export const FIND_ADDRESS_SEARCH = 'FIND_ADDRESS_SEARCH';
 export const RESET_FORM_BUILDING = 'RESET_FORM_BUILDING';
 export const TOGGLE_MENU = 'TOGGLE_MENU';
 export const CLOSE_MENU = 'CLOSE_MENU';
+export const EMAIL_ERROR = 'EMAIL_ERROR';
 
 /**
  * Traitements
@@ -336,6 +338,11 @@ const reducer = (state = initialState, action = {}) => {
         ...state,
         isMenuOpen: false,
       };
+    case EMAIL_ERROR:
+      return {
+        ...state,
+        emailError: action.error,
+      };
     default:
       return state;
   }
@@ -480,6 +487,11 @@ export const closeMenu = () => ({
   type: CLOSE_MENU,
 });
 
+
+export const emailError = error => ({
+  type: EMAIL_ERROR,
+  error,
+});
 /**
  * Selectors
  */
