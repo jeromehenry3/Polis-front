@@ -19,7 +19,7 @@ const Login = ({
         type="email"
         id="email"
         name="email"
-        placeholder="Email"
+        placeholder="Email *"
         value={username}
         onChangeFunction={input => updateFormField('username', input)}
         disabled={loginStatus === 'connecting'}
@@ -30,7 +30,7 @@ const Login = ({
         type="password"
         id="password"
         name="password"
-        placeholder="Mot de passe"
+        placeholder="Mot de passe *"
         value={passwordInput}
         onChangeFunction={input => updateFormField('passwordInput', input)}
         disabled={loginStatus === 'connecting'}
