@@ -1,23 +1,29 @@
 import React from 'react';
 import './about.scss';
 
+import Logo from '../../styles/images/logo-saumon.png';
+import Clement from '../../styles/images/CLE.png';
+import Thomas from '../../styles/images/TOM.png';
+import Jerome from '../../styles/images/JER.png';
+import Fabien from '../../styles/images/FAB.png';
+
 const About = () => (
   <div id="about">
     <div className="container">
       <div className="header">
-        <img src="src/styles/images/logo-saumon.png" alt="" className="header-logo" />
+        <img src={Logo} alt="" className="header-logo" />
         <p className="header-accroche">Du grec ancien πόλις la cité</p>
         <p className="header-description">Application de cartographie participative de données architecturales</p>
       </div>
       <div className="main">
-        <div className="main-description">La version 1.0 de Polis que vous êtes en train de parcourir a été developpé en 3 semaines. <br />Ce projet valide une formation de 6 mois suivie par 4 aspirants developpeurs dans les salles de cours virtuelles <a href="https://oclock.io/" target="_blank">d'Oclock</a>. Outre le plaisir intense de créer "from scratch" un projet web, cette web app sert également de support au passage du Titre Professionnel de développeur web.
+        <div className="main-description">La version 1.0 de Polis que vous êtes en train de parcourir a été developpée en 3 semaines. <br />Ce projet valide une formation de 6 mois suivie par 4 aspirants developpeurs dans les salles de cours virtuelles <a href="https://oclock.io/" target="_blank">d'Oclock</a>. Outre le plaisir intense de créer "from scratch" un projet web, cette web app sert également de support au passage du Titre Professionnel de développeur web.
           <div className="main-description-team">
             <span className="cadre-passion">Polis est codé avec passion par :</span>
             <ul>
               <li><span className="team-name"><a href="#clement">Clément Eveillard</a></span>  <span className="team-job">Frontend</span>  <span className="team-role">Product Owner</span></li>
               <li><span className="team-name"><a href="#thomas">Thomas Gilet</a></span>  <span className="team-job">Backend</span>  <span className="team-role">Lead Back</span></li>
-              <li><span className="team-name"><a href="#jerome">Jérome Henry</a></span>  <span className="team-job">Frontend</span>  <span className="team-role">Git Master</span></li>
-              <li><span className="team-name"><a href="#fabien">Fabien Mackowiak</a></span>  <span className="team-job">Frontend</span>  <span className="team-role">Lead Front</span></li>
+              <li><span className="team-name"><a href="#jerome">Jérome Henry</a></span>  <span className="team-job">Frontend</span>  <span className="team-role">Lead Front</span></li>
+              <li><span className="team-name"><a href="#fabien">Fabien Mackowiak</a></span>  <span className="team-job">Frontend</span>  <span className="team-role">Project Manager</span></li>
             </ul>
           </div>
           <div className="main-description-techno">
@@ -35,7 +41,7 @@ const About = () => (
           <h2>Polis c'est :</h2>
           <hr />
           <div id="clement" className="main-medaillons-teamate">
-            <img src="src/styles/images/CLE.png" alt=""/>
+            <img src={Clement} alt=""/>
             <div>
               <span className="teamate-name">Clement Eveillard</span>
               <span className="teamate-email">clement.evd.dev@gmail.com</span>
@@ -47,7 +53,7 @@ const About = () => (
             </div>
           </div>
           <div id="thomas" className="main-medaillons-teamate">
-            <img src="src/styles/images/TOM.png" alt=""/>
+            <img src={Thomas} alt="" />
             <div>
               <span className="teamate-name">Thomas GILLET</span>
               <span className="teamate-email">thomas.gillet44@gmail.com</span>
@@ -58,7 +64,7 @@ const About = () => (
             </div>
           </div>
           <div id="jerome" className="main-medaillons-teamate">
-            <img src="src/styles/images/JER.png" alt=""/>
+            <img src={Jerome} alt="" />
             <div>
               <span className="teamate-name">Jerome Henry</span>
               <span className="teamate-email">jerome.henry3@gmail.com</span>
@@ -69,7 +75,7 @@ const About = () => (
             </div>
           </div>
           <div id="fabien" className="main-medaillons-teamate">
-            <img src="src/styles/images/FAB.png" alt=""/>
+            <img src={Fabien} alt="" />
             <div>
               <span className="teamate-name">Fabien Mackowiak</span>
               <span className="teamate-email">fmackodev@gmail.com</span>
