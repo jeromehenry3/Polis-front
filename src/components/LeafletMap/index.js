@@ -175,13 +175,17 @@ Leaflet.propTypes = {
   getBuildings: PropTypes.func.isRequired,
   buildings: PropTypes.arrayOf(PropTypes.object).isRequired,
   openDisplayBuilding: PropTypes.func.isRequired,
-  coords: PropTypes.object.isRequired,
+  coords: PropTypes.object,
   center: PropTypes.arrayOf(PropTypes.number).isRequired,
   zoom: PropTypes.number.isRequired,
   isGeolocationEnabled: PropTypes.bool.isRequired,
   loadingWithLoader: PropTypes.bool.isRequired,
   userLocalized: PropTypes.bool.isRequired,
   isConnected: PropTypes.bool.isRequired,
+};
+
+Leaflet.defaultProps = {
+  coords: {},
 };
 
 export default geolocated({
