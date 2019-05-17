@@ -39,7 +39,7 @@ const polisApiMiddleware = store => next => (action) => {
         .then((response) => {
           console.log(response);
           store.dispatch(updateFormField('isConnected', true));
-          store.diaptch(updateFormField('loginMessage', 'Vous êtes connecté(e)'));
+          store.dispatch(updateFormField('loginMessage', 'Vous êtes connecté(e)'));
           store.dispatch(updateFormField('loginStatus', 'connected'));
         })
         .catch((error) => {
@@ -60,6 +60,8 @@ const polisApiMiddleware = store => next => (action) => {
         .catch((error) => {
           console.log(error.message);
           store.dispatch(updateFormField('loginMessage', 'Veuillez vous connecter pour contribuer à Polis.'));
+          store.dispatch(updateFormField('isConnected', false));
+          setTimeout(() => store.dispatch(updateFormField('loginStatus', 'not-connected')), 1500);
         });
       break;
     case SIGNIN:

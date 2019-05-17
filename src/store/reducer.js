@@ -13,7 +13,7 @@ const initialState = {
   // *******MANAGEMENT OF THE CONNECTION************/
   isConnected: false,
   loginMessage: 'Vous devez vous identifier pour contribuer à Polis',
-  loginStatus: 'not-connected', // string : not-connected || connecting || connected, for logic purposes
+  loginStatus: 'init', // string : not-connected || connecting || connected, for logic purposes
 
   // *********MANAGEMENT OF THE GEOLOCALIZATION*********/
   center: [46.7248003746672, 2.9003906250000004], // Center of the map
@@ -193,12 +193,14 @@ const reducer = (state = initialState, action = {}) => {
       return {
         ...state,
         loginMessage: 'Vérification de vos cookies',
+        loginStatus: 'connecting',
       };
     case AUTOCONNECT:
       return {
         ...state,
         isConnected: true,
         loginMessage: 'Vous êtes connecté(e)',
+        loginStatus: 'connected',
         username: action.userdata[2],
         firstNameInput: action.userdata[0],
         lastNameInput: action.userdata[2],

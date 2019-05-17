@@ -29,12 +29,12 @@ import './app.scss';
 /**
  * Code
  */
-const App = ({ isConnected, checkCookie }) => {
+const App = ({ isConnected, checkCookie, loginStatus }) => {
   // eslint-disable-next-line no-unused-expressions
-  isConnected || checkCookie();
-
+  loginStatus === 'init' && checkCookie();
   return (
     <Switch>
+      {loginStatus === 'connecting' && <Loading />}
 
       <Route
         exact
