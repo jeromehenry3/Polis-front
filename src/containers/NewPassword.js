@@ -12,6 +12,7 @@ const mapStateToProps = state => ({
   passwordInput: state.passwordInput,
   passwordConfirmInput: state.passwordConfirmInput,
   redirectToLogin: state.redirectToLogin,
+  newPasswordErrors: state.newPasswordErrors,
 });
 
 const mapDispatchToProps = dispatch => ({
