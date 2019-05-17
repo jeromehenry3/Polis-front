@@ -20,6 +20,7 @@ import {
   setBuildingDatas,
   redirectToLogin,
   resetFormBuilding,
+  updateFormField,
   emailError,
   newPasswordErrors,
 } from './reducer';
@@ -37,6 +38,7 @@ const polisApiMiddleware = store => next => (action) => {
         .then((response) => {
           const { token, refresh_token: refreshToken } = response.data;
           store.dispatch(storeToken(token, refreshToken));
+          store.dispatch(updateFormField('loadingWithLoader', true));
         })
         .catch((error) => {
           console.log('erreur :', error.response.data.code);
