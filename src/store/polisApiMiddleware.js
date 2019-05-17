@@ -6,6 +6,7 @@ import {
   CONNECT_USER,
   SIGNIN,
   CHECK_COOKIE,
+  autoconnect,
   signinErrors,
   FORGOTTEN_PASSWORD,
   SET_NEW_PASSWORD,
@@ -20,6 +21,7 @@ import {
   setBuildingDatas,
   redirectToLogin,
   resetFormBuilding,
+  updateFormField,
 } from './reducer';
 
 const polisApi = 'https://www.thomas-gillet.com/api';
@@ -50,9 +52,11 @@ const polisApiMiddleware = store => next => (action) => {
       })
         .then((response) => {
           console.log(response.data);
+          store.dispatch(autoconnect(response));
         })
         .catch((error) => {
           console.log(error.message);
+          store.dispatch(updateFormField('loginMessage', 'Veuillez vous connecter pour contribuer à Polis.'));
         });
       break;
     case SIGNIN:

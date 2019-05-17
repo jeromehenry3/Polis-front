@@ -129,6 +129,7 @@ export const CONNECT_USER = 'CONNECT_USER'; // Api connection with username && p
 export const CONNECTING_ERROR = 'CONNECTING_ERROR';
 export const DISCONNECT_USER = 'DISCONNECT_USER';
 export const CHECK_COOKIE = 'CHECK_COOKIE';
+export const AUTOCONNECT = 'AUTOCONNECT';
 export const SIGNIN = 'SIGNIN';
 export const SIGNIN_ERRORS = 'SIGNIN_ERRORS';
 export const SET_NEW_PASSWORD = 'SET_NEW_PASSWORD';
@@ -191,6 +192,15 @@ const reducer = (state = initialState, action = {}) => {
     case CHECK_COOKIE:
       return {
         ...state,
+        loginMessage: 'Vérification de vos cookies',
+      };
+    case AUTOCONNECT:
+      return {
+        ...state,
+        isConnected: true,
+        username: action.userdata[2],
+        firstNameInput: action.userdata[0],
+        lastNameInput: action.userdata[2],
       };
     case SIGNIN:
       return state;
@@ -351,6 +361,10 @@ export const connectUser = () => ({
 // });
 export const checkCookie = () => ({
   type: CHECK_COOKIE,
+});
+export const autoconnect = userdata => ({
+  type: AUTOCONNECT,
+  userdata,
 });
 export const disconnect = () => ({
   type: DISCONNECT_USER,
