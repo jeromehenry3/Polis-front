@@ -11,7 +11,6 @@ const initialState = {
   lastNameInput: '', // string
 
   // *******MANAGEMENT OF THE CONNECTION************/
-  isConnected: false,
   loginMessage: 'Vous devez vous identifier pour contribuer à Polis',
   loginStatus: 'init', // string : not-connected || connecting || connected, for logic purposes
 
