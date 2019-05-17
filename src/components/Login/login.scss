@@ -12,7 +12,7 @@ p {
     font-size:13px;;
     font-weight:bold;
   }
-  &.connecting:after {
+  &.connecting-user:after {
     content: ' .';
     animation: dots 1s steps(3, end) infinite forwards;
   }
