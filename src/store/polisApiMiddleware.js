@@ -155,10 +155,12 @@ const polisApiMiddleware = store => next => (action) => {
       break;
     case GET_BUILDINGS_LIST_DATA:
       next(action);
-      const queries = action.list.map(item => () => axios.get(`$${polisApi}/buildings/${item.id}`));
+      const queries = action.list.map(item => axios.get(`${polisApi}/buildings/${item.id}`));
       axios.all(queries)
         .then((results) => {
           console.log(results);
+          const list = results.map(item => item.data);
+          console.log('Les bâtiments: ', list);
         })
         .catch((error) => {
           console.log(error.message);

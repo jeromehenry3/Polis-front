@@ -7,7 +7,7 @@ import { Switch, Route, Redirect } from 'react-router-dom';
  * Local import
  */
 // Composants
-import Liste from 'src/components/LeafletMap/Liste/index';
+import Liste from 'src/containers/Liste';
 // Containers
 import Signin from 'src/containers/Signin';
 import Login from 'src/containers/Login';
