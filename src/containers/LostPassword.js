@@ -11,6 +11,7 @@ import { updateFormField, forgottenPassword } from 'src/store/reducer';
 const mapStateToProps = state => ({
   username: state.username,
   redirectToLogin: state.redirectToLogin,
+  emailError: state.emailError,
 });
 
 const mapDispatchToProps = dispatch => ({

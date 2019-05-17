@@ -21,6 +21,8 @@ import {
   redirectToLogin,
   resetFormBuilding,
   updateFormField,
+  emailError,
+  newPasswordErrors,
 } from './reducer';
 
 const polisApi = 'https://www.thomas-gillet.com/api';
@@ -66,7 +68,6 @@ const polisApiMiddleware = store => next => (action) => {
         });
       break;
     case SET_NEW_PASSWORD:
-      next(action);
       axios.post(`${polisApi}/resetPassword`, {
         password: action.newPassword,
         password2: action.newPasswordConfirm,
@@ -74,21 +75,35 @@ const polisApiMiddleware = store => next => (action) => {
       })
         .then((response) => {
           console.log(response.data);
+          if (typeof response.data === 'object') {
+            store.dispatch(newPasswordErrors(response.data));
+          }
+          else {
+            store.dispatch(newPasswordErrors([]));
+            next(action);
+          }
         })
         .catch((error) => {
           console.log(error.message);
         });
       break;
     case FORGOTTEN_PASSWORD:
-      next(action);
       axios.post(`${polisApi}/forgottenPassword`, {
         email: store.getState().username,
       })
         .then((response) => {
           console.log(response.data);
+          // Si l'email renseigné n'existe pas, j'affiche l'erreur à l'utilisateur.
+          // Si il existe bien, je laisse passer l'action, qui s'occupe d'indiquer à l'utilisateur que le mail a bien été envoyé.
+          if (response.data === 'Veuillez entrer un email valide') {
+            store.dispatch(emailError(response.data));
+          }
+          else {
+            next(action);
+          }
         })
         .catch((error) => {
-          console.log(error.message);
+          console.log(error);
         });
       break;
     case SUBMIT_BUILDING:
