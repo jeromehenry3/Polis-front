@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 
-import { closeAllModals, disconnect, updateFormField, toggleMenu, closeMenu, openProfile, } from 'src/store/reducer';
+import { closeAllModals, disconnect, updateFormField, toggleMenu, closeMenu, openProfile } from 'src/store/reducer';
 /**
  * Local import
  */

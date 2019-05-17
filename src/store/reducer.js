@@ -15,7 +15,7 @@ const initialState = {
   // *******MANAGEMENT OF THE CONNECTION************/
   token: tokenEnDur, // string,
   refreshToken: '',
-  isConnected:true,
+  isConnected: false,
   loginMessage: 'Vous devez vous identifier pour contribuer à Polis',
   loginStatus: 'not-connected', // string : not-connected || connecting || connected, for logic purposes
 
@@ -163,6 +163,7 @@ export const FIND_ADDRESS_SEARCH = 'FIND_ADDRESS_SEARCH';
 export const RESET_FORM_BUILDING = 'RESET_FORM_BUILDING';
 export const TOGGLE_MENU = 'TOGGLE_MENU';
 export const OPEN_PROFILE = 'OPEN_PROFILE';
+export const CLOSE_PROFILE = 'CLOSE_PROFILE';
 export const CLOSE_MENU = 'CLOSE_MENU';
 export const TOGGLE_VIEW = 'TOGGLE_VIEW';
 export const EMAIL_ERROR = 'EMAIL_ERROR';
@@ -348,6 +349,11 @@ const reducer = (state = initialState, action = {}) => {
         ...state,
         isProfileOpen: true,
       };
+    case CLOSE_PROFILE:
+      return {
+        ...state,
+        isProfileOpen: false,
+      };
     case CLOSE_MENU:
       return {
         ...state,
@@ -510,6 +516,10 @@ export const toggleMenu = () => ({
 
 export const openProfile = () => ({
   type: OPEN_PROFILE,
+});
+
+export const closeProfile = () => ({
+  type: CLOSE_PROFILE,
 });
 
 export const closeMenu = () => ({
