@@ -128,6 +128,7 @@ export const UPDATE_FORM_FIELD = 'UPDATE_FORM_FIELD';
 export const CONNECT_USER = 'CONNECT_USER'; // Api connection with username && password
 export const CONNECTING_ERROR = 'CONNECTING_ERROR';
 export const DISCONNECT_USER = 'DISCONNECT_USER';
+export const CHECK_COOKIE = 'CHECK_COOKIE';
 export const SIGNIN = 'SIGNIN';
 export const SIGNIN_ERRORS = 'SIGNIN_ERRORS';
 export const SET_NEW_PASSWORD = 'SET_NEW_PASSWORD';
@@ -181,11 +182,15 @@ const reducer = (state = initialState, action = {}) => {
         loginMessage: action.message,
         loginStatus: 'not-connected',
       };
-    case DISCONNECT_USER:
+    case DISCONNECT_USER: // Will have to be updated for cookie use
       return {
         ...initialState,
         loginMessage: 'Vous avez bien été déconnecté(e)',
         redirectToLogin: true,
+      };
+    case CHECK_COOKIE:
+      return {
+        ...state,
       };
     case SIGNIN:
       return state;
@@ -344,6 +349,9 @@ export const connectUser = () => ({
 //   token,
 //   refreshToken,
 // });
+export const checkCookie = () => ({
+  type: CHECK_COOKIE,
+});
 export const disconnect = () => ({
   type: DISCONNECT_USER,
 });

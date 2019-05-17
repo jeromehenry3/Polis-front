@@ -3,6 +3,7 @@
  */
 import React from 'react';
 import { Switch, Route, Redirect } from 'react-router-dom';
+import PropTypes from 'prop-types';
 /**
  * Local import
  */
@@ -28,102 +29,112 @@ import './app.scss';
 /**
  * Code
  */
-const App = () => (
-  <Switch>
+const App = ({ isConnected, checkCookie }) => {
+  // eslint-disable-next-line no-unused-expressions
+  isConnected || checkCookie();
 
-    <Route
-      exact
-      path="/"
-      render={() => (
-        <Redirect to="/login" />
-      )}
-    />
+  return (
+    <Switch>
 
-    <Route
-      exact
-      path="/about"
-      render={() => (
-        <About />
-      )}
-    />
+      <Route
+        exact
+        path="/"
+        render={() => (
+          <Redirect to="/login" />
+        )}
+      />
 
-    <Route
-      exact
-      path="/signin"
-      render={() => (
-        <Welcome>
-          <Signin />
-        </Welcome>
-      )}
-    />
+      <Route
+        exact
+        path="/about"
+        render={() => (
+          <About />
+        )}
+      />
 
-    <Route
-      exact
-      path="/login"
-      render={() => (
-        <Welcome>
-          <Login />
-        </Welcome>
-      )}
-    />
+      <Route
+        exact
+        path="/signin"
+        render={() => (
+          <Welcome>
+            <Signin />
+          </Welcome>
+        )}
+      />
 
-    <Route
-      exact
-      path="/lost-password"
-      render={() => (
-        <Welcome>
-          <LostPassword />
-        </Welcome>
-      )}
-    />
+      <Route
+        exact
+        path="/login"
+        render={() => (
+          <Welcome>
+            <Login />
+          </Welcome>
+        )}
+      />
 
-    <Route
-      exact
-      path="/resetpassword/:token"
-      render={({ match }) => (
-        <Welcome>
-          <NewPassword match={match} />
-        </Welcome>
-      )}
-    />
+      <Route
+        exact
+        path="/lost-password"
+        render={() => (
+          <Welcome>
+            <LostPassword />
+          </Welcome>
+        )}
+      />
 
-    <Route
-      // ROUTE LOADING A ENLEVER PAR LA SUITE
-      exact
-      path="/loading"
-      render={() => (
-        <Loading />
-      )}
-    />
+      <Route
+        exact
+        path="/resetpassword/:token"
+        render={({ match }) => (
+          <Welcome>
+            <NewPassword match={match} />
+          </Welcome>
+        )}
+      />
 
-    <Route
-      exact
-      path="/map"
-      render={() => (
-        <LeafletMap />
-      )}
-    />
+      <Route
+        // ROUTE LOADING A ENLEVER PAR LA SUITE
+        exact
+        path="/loading"
+        render={() => (
+          <Loading />
+        )}
+      />
 
-    <Route
-      exact
-      path="/display"
-      render={() => (
-        <DisplayBuilding />
-      )}
-    />
+      <Route
+        exact
+        path="/map"
+        render={() => (
+          <LeafletMap />
+        )}
+      />
 
-    <Route
-      exact
-      path="/liste"
-      render={() => (
-        <Liste />
-      )}
-    />
+      <Route
+        exact
+        path="/display"
+        render={() => (
+          <DisplayBuilding />
+        )}
+      />
 
-    <Route component={NotFound} />
-  </Switch>
-  // <LeafletMap />
-);
+      <Route
+        exact
+        path="/liste"
+        render={() => (
+          <Liste />
+        )}
+      />
+
+      <Route component={NotFound} />
+    </Switch>
+    // <LeafletMap />
+  );
+};
+
+App.propTypes = {
+  isConnected: PropTypes.bool.isRequired,
+  checkCookie: PropTypes.func.isRequired,
+};
 
 /**
  * Export

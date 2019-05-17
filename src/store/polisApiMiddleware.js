@@ -5,6 +5,7 @@ import axios from 'axios';
 import {
   CONNECT_USER,
   SIGNIN,
+  CHECK_COOKIE,
   signinErrors,
   FORGOTTEN_PASSWORD,
   SET_NEW_PASSWORD,
@@ -40,6 +41,18 @@ const polisApiMiddleware = store => next => (action) => {
           console.log('erreur :', error.response.data.code);
           const message = (error.response.data.code === 401 ? 'Identifiant ou mot de passe invalide' : 'Une erreur est survenue, veuillez réessayer');
           store.dispatch(connectingError(message));
+        });
+      break;
+    case CHECK_COOKIE:
+      next(action);
+      axios.get(`${polisApi}/cookie`, {
+        withCredentials: true,
+      })
+        .then((response) => {
+          console.log(response.data);
+        })
+        .catch((error) => {
+          console.log(error.message);
         });
       break;
     case SIGNIN:
