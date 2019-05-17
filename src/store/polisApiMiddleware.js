@@ -4,6 +4,7 @@ import axios from 'axios';
 
 import {
   CONNECT_USER,
+  DISCONNECT_USER,
   SIGNIN,
   CHECK_COOKIE,
   autoconnect,
@@ -46,6 +47,18 @@ const polisApiMiddleware = store => next => (action) => {
           console.log('erreur :', error.response.data.code);
           const message = (error.response.data.code === 401 ? 'Identifiant ou mot de passe invalide' : 'Une erreur est survenue, veuillez réessayer');
           store.dispatch(connectingError(message));
+        });
+      break;
+    case DISCONNECT_USER:
+      axios.get(`${polisApi}/logout`, {
+        withCredentials: true,
+      })
+        .then((response) => {
+          console.log(response.data);
+          next(action);
+        })
+        .catch((error) => {
+          console.log(error.message);
         });
       break;
     case CHECK_COOKIE:
