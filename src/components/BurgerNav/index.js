@@ -52,7 +52,7 @@ const BurgerNav = ({
           >Connexion
           </NavLink>
           )}
-          {isConnected && <NavLink onClick={handleProfileClick}>Mon compte</NavLink>}
+          {isConnected && <NavLink to="#" onClick={handleProfileClick}>Mon compte</NavLink>}
           <NavLink to="/map" onClick={handleNavLinkClick}>La Carte</NavLink>
           <NavLink to="/about" onClick={handleNavLinkClick}>A propos</NavLink>
         </ul>

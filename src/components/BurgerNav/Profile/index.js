@@ -12,7 +12,6 @@ const Profile = ({
   passwordInput,
   passwordConfirmInput,
   updateFormField,
-  loginStatus,
   updateProfile,
   isProfileOpen,
   closeProfile,
@@ -29,7 +28,7 @@ const Profile = ({
   };
 
   return (
-    <div id="profile" className={isProfileOpen ? 'active' : 'inactive'}>
+    <div id="profile" className={isProfileOpen ? 'active' : ''}>
       <p className="header">Editez votre profile</p>
       <form action="">
         <Input
@@ -38,8 +37,7 @@ const Profile = ({
           name="first-name"
           placeholder="Prénom"
           value={firstNameInput}
-          onChangeFunction={input => updateFormField('firstName', input)}
-          disabled={loginStatus === 'connecting'}
+          onChangeFunction={input => updateFormField('firstNameInput', input)}
           required
         />
 
@@ -49,8 +47,7 @@ const Profile = ({
           name="last-name"
           placeholder="Nom"
           value={lastNameInput}
-          onChangeFunction={input => updateFormField('lastName', input)}
-          disabled={loginStatus === 'connecting'}
+          onChangeFunction={input => updateFormField('lastNameInput', input)}
           required
         />
 
@@ -60,8 +57,7 @@ const Profile = ({
           name="email"
           placeholder="Email"
           value={username}
-          onChangeFunction={input => updateFormField('email', input)}
-          disabled={loginStatus === 'connecting'}
+          onChangeFunction={input => updateFormField('username', input)}
           required
         />
 
@@ -100,11 +96,10 @@ Profile.propTypes = {
   lastNameInput: PropTypes.string.isRequired,
   username: PropTypes.string.isRequired,
   passwordInput: PropTypes.string.isRequired,
-  loginStatus: PropTypes.string.isRequired,
   passwordConfirmInput: PropTypes.string.isRequired,
   updateFormField: PropTypes.func.isRequired,
   updateProfile: PropTypes.func.isRequired,
-  isProfileOpen: PropTypes.func.isRequired,
+  isProfileOpen: PropTypes.bool.isRequired,
   closeProfile: PropTypes.func.isRequired,
 };
 
