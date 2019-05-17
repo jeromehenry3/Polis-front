@@ -1,8 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import Input from '../Input';
-import Form from '../Form';
+import Input from '../../Input';
 
 import './profile.scss';
 
@@ -15,17 +14,24 @@ const Profile = ({
   updateFormField,
   loginStatus,
   updateProfile,
+  isProfileOpen,
+  closeProfile,
 }) => {
   const handleUpdateProfile = (e) => {
     e.preventDefault();
-    console.log('submitting building');
+    console.log('Profile Updating');
     updateProfile();
+  };
+  const handlecloseProfile = (e) => {
+    e.preventDefault();
+    console.log('Profile Updating');
+    closeProfile();
   };
 
   return (
-    <div id="profile" className="visible">
+    <div id="profile" className={isProfileOpen ? 'active' : 'inactive'}>
+      <p className="header">Editez votre profile</p>
       <form action="">
-        <span className="header">cliquez pour editer</span>
         <Input
           type="text"
           id="first-name"
@@ -81,7 +87,7 @@ const Profile = ({
           required
         />
         <div className="btns">
-          <button type="button" className="form-button cancel">Annuler</button>
+          <button type="button" className="form-button cancel" onClick={handlecloseProfile}>Annuler</button>
           <button type="submit" className="form-button" onClick={handleUpdateProfile}>Modifier</button>
         </div>
       </form>
@@ -94,9 +100,12 @@ Profile.propTypes = {
   lastNameInput: PropTypes.string.isRequired,
   username: PropTypes.string.isRequired,
   passwordInput: PropTypes.string.isRequired,
+  loginStatus: PropTypes.string.isRequired,
   passwordConfirmInput: PropTypes.string.isRequired,
   updateFormField: PropTypes.func.isRequired,
   updateProfile: PropTypes.func.isRequired,
+  isProfileOpen: PropTypes.func.isRequired,
+  closeProfile: PropTypes.func.isRequired,
 };
 
 export default Profile;

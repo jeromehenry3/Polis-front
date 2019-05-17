@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { NavLink } from 'react-router-dom';
+import Profile from 'src/containers/Profile';
 
 import './burger.scss';
 import './burgernav.scss';
@@ -13,6 +14,7 @@ const BurgerNav = ({
   closeAllModals,
   toggleMenu,
   closeMenu,
+  openProfile,
 }) => {
   const handleNavLinkClick = () => {
     closeMenu();
@@ -21,6 +23,11 @@ const BurgerNav = ({
   const handleMenuClick = () => {
     closeAllModals();
     toggleMenu();
+  };
+
+  const handleProfileClick = (e) => {
+    e.preventDefault();
+    openProfile();
   };
 
   return (
@@ -45,11 +52,12 @@ const BurgerNav = ({
           >Connexion
           </NavLink>
           )}
-          {isConnected && <NavLink to="/profile" onClick={handleNavLinkClick}>Mon compte</NavLink>}
+          {isConnected && <NavLink onClick={handleProfileClick}>Mon compte</NavLink>}
           <NavLink to="/map" onClick={handleNavLinkClick}>La Carte</NavLink>
           <NavLink to="/about" onClick={handleNavLinkClick}>A propos</NavLink>
         </ul>
       </nav>
+      <Profile />
     </div>
   );
 };
@@ -61,6 +69,7 @@ BurgerNav.propTypes = {
   toggleMenu: PropTypes.func.isRequired,
   updateFormField: PropTypes.func.isRequired,
   closeMenu: PropTypes.func.isRequired,
+  openProfile: PropTypes.func.isRequired,
 };
 
 export default BurgerNav;
