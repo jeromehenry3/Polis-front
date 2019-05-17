@@ -211,7 +211,7 @@ const reducer = (state = initialState, action = {}) => {
         loginStatus: 'connected',
         username: action.userdata[2],
         firstNameInput: action.userdata[0],
-        lastNameInput: action.userdata[2],
+        lastNameInput: action.userdata[1],
       };
     case SIGNIN:
       return state;
