@@ -15,7 +15,7 @@ const initialState = {
   // *******MANAGEMENT OF THE CONNECTION************/
   token: tokenEnDur, // string,
   refreshToken: '',
-  isConnected: false,
+  isConnected: true,
   loginMessage: 'Vous devez vous identifier pour contribuer à Polis',
   loginStatus: 'not-connected', // string : not-connected || connecting || connected, for logic purposes
 
