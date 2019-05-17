@@ -9,6 +9,7 @@ import { Switch, Route, Redirect } from 'react-router-dom';
 // Composants
 import Liste from 'src/components/LeafletMap/Liste/index';
 import About from 'src/components/About';
+import Profile from 'src/components/Profile';
 // Containers
 import Signin from 'src/containers/Signin';
 import Login from 'src/containers/Login';
@@ -44,6 +45,14 @@ const App = () => (
       path="/about"
       render={() => (
         <About />
+      )}
+    />
+
+    <Route
+      exact
+      path="/profile"
+      render={() => (
+        <Profile />
       )}
     />
 
