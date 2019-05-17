@@ -5,7 +5,8 @@ import { Link, Redirect } from 'react-router-dom';
 
 import './liste.scss';
 
-const Liste = () => {
+const Liste = ({buildings, listData, loading, getBuildingsListData}) => {
+  
   return (
     <div id="liste">
       <Card.Group>

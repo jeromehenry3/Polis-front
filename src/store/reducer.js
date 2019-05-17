@@ -123,6 +123,9 @@ const initialState = {
   // Autocomplete results
   autoCompleteResults: [],
   isAutocompleteOpen: false,
+
+  // COMPOSANT LISTE
+  listDatas: [],
 };
 
 /**
@@ -140,6 +143,7 @@ export const FORGOTTEN_PASSWORD = 'FORGOTTEN_PASSWORD';
 export const OPEN_DATA_FORM = 'OPEN_DATA_FORM';
 export const OPEN_DATA_FORM_BUTTON = 'OPEN_DATA_FORM_BUTTON';
 export const OPEN_DISPLAY_BUILDING = 'OPEN_DISPLAY_BUILDING';
+export const GET_BUILDINGS_LIST_DATA = 'GET_BUILDINGS_LIST_DATA';
 export const OPEN_DATA_FORM_RESPONSE = 'OPEN_DATA_FORM_RESPONSE';
 export const CLOSE_ALL_MODALS = 'CLOSE_ALL_MODALS';
 export const SUBMIT_BUILDING = 'SUBMIT_BULDING';
@@ -236,6 +240,11 @@ const reducer = (state = initialState, action = {}) => {
       return {
         ...state,
         isDisplayBuildingOpen: true,
+        loading: true,
+      };
+    case GET_BUILDINGS_LIST_DATA:
+      return {
+        ...state,
         loading: true,
       };
     case OPEN_DATA_FORM_RESPONSE:
@@ -422,6 +431,10 @@ export const createMarker = (latitude, longitude, datas) => ({
   latitude,
   longitude,
   datas,
+});
+export const getBuildingsListData = list => ({
+  type: GET_BUILDINGS_LIST_DATA,
+  list,
 });
 
 export const setBuildingDatas = datas => ({
