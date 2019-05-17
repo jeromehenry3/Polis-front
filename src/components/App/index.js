@@ -29,7 +29,7 @@ import './app.scss';
 /**
  * Code
  */
-const App = ({ isConnected, checkCookie, loginStatus }) => {
+const App = ({ checkCookie, loginStatus }) => {
   // eslint-disable-next-line no-unused-expressions
   loginStatus === 'init' && checkCookie();
   return (
@@ -132,8 +132,8 @@ const App = ({ isConnected, checkCookie, loginStatus }) => {
 };
 
 App.propTypes = {
-  isConnected: PropTypes.bool.isRequired,
   checkCookie: PropTypes.func.isRequired,
+  loginStatus: PropTypes.string.isRequired,
 };
 
 /**
