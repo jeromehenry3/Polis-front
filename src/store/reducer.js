@@ -350,6 +350,7 @@ const reducer = (state = initialState, action = {}) => {
       return {
         ...state,
         view: action.view,
+      };
     case EMAIL_ERROR:
       return {
         ...state,
