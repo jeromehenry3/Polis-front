@@ -198,6 +198,7 @@ const reducer = (state = initialState, action = {}) => {
       return {
         ...state,
         isConnected: true,
+        loginMessage: 'Vous êtes connecté(e)',
         username: action.userdata[2],
         firstNameInput: action.userdata[0],
         lastNameInput: action.userdata[2],
@@ -354,11 +355,6 @@ export const updateFormField = (fieldName, input) => ({
 export const connectUser = () => ({
   type: CONNECT_USER,
 });
-// export const storeToken = (token, refreshToken) => ({
-//   type: STORE_TOKEN,
-//   token,
-//   refreshToken,
-// });
 export const checkCookie = () => ({
   type: CHECK_COOKIE,
 });

@@ -38,6 +38,9 @@ const polisApiMiddleware = store => next => (action) => {
       })
         .then((response) => {
           console.log(response);
+          store.dispatch(updateFormField('isConnected', true));
+          store.diaptch(updateFormField('loginMessage', 'Vous êtes connecté(e)'));
+          store.dispatch(updateFormField('loginStatus', 'connected'));
         })
         .catch((error) => {
           console.log('erreur :', error.response.data.code);
