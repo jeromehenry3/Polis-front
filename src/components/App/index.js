@@ -21,7 +21,6 @@ import Welcome from 'src/containers/Welcome';
 // Dumb
 import NotFound from '../NotFound';
 import Loading from '../Loading';
-import DisplayBuilding from '../LeafletMap/DisplayBuilding';
 
 // Styles et assets
 
@@ -29,12 +28,14 @@ import './app.scss';
 /**
  * Code
  */
-const App = ({ checkCookie, loginStatus }) => {
+const App = ({ checkCookie, loginStatus, disconnected }) => {
   // eslint-disable-next-line no-unused-expressions
   loginStatus === 'init' && checkCookie();
   return (
     <Switch>
-      {loginStatus === 'connecting' && <Loading />}
+      {loginStatus === 'init'
+      && disconnected
+      && <Loading />}
 
       <Route
         exact
@@ -126,6 +127,7 @@ const App = ({ checkCookie, loginStatus }) => {
 App.propTypes = {
   checkCookie: PropTypes.func.isRequired,
   loginStatus: PropTypes.string.isRequired,
+  disconnected: PropTypes.bool.isRequired,
 };
 
 
