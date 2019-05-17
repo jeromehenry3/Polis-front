@@ -175,7 +175,7 @@ const reducer = (state = initialState, action = {}) => {
       return {
         ...state,
         loginMessage: 'Connexion en cours',
-        loginStatus: 'connecting',
+        loginStatus: 'connecting-user',
       };
     case CONNECTING_ERROR:
       return {

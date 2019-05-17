@@ -24,7 +24,6 @@ const listToShuffle = [
   'megalo',
   'persé',
   'mariano',
-  'nikla',
 
 ];
 const words = shuffleArray(listToShuffle);
