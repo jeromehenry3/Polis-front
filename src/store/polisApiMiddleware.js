@@ -70,7 +70,7 @@ const polisApiMiddleware = store => next => (action) => {
       })
         .then((response) => {
           console.log(response.data);
-          store.dispatch(autoconnect(response));
+          store.dispatch(autoconnect(response.data));
         })
         .catch((error) => {
           console.log(error.message);
