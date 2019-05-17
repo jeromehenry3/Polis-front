@@ -25,6 +25,7 @@ import {
   updateFormField,
   emailError,
   newPasswordErrors,
+  USER_VOTE,
 } from './reducer';
 
 const polisApi = 'https://www.thomas-gillet.com/api';
@@ -196,6 +197,20 @@ const polisApiMiddleware = store => next => (action) => {
       axios.get(`${polisApi}/buildings/${action.id}`)
         .then((response) => {
           store.dispatch(setBuildingDatas(response.data));
+        })
+        .catch((error) => {
+          console.log(error.message);
+        });
+      break;
+    case USER_VOTE:
+      next(action);
+      axios.post(`${polisApi}/vote/${action.id}`, {
+        vote: action.vote,
+      }, {
+        withCredentials: true,
+      })
+        .then((response) => {
+          console.log(response);
         })
         .catch((error) => {
           console.log(error.message);
