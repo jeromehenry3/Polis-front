@@ -12,7 +12,7 @@ import App from 'src/components/App';
 const mapStateToProps = state => ({
   isConnected: state.isConnected,
   loginStatus: state.loginStatus,
-  disconnect: state.disconnect,
+  disconnected: state.disconnected,
 });
 
 const mapDispatchToProps = dispatch => ({
