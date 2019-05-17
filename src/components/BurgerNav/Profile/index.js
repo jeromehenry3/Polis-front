@@ -16,7 +16,7 @@ const Profile = ({
   isProfileOpen,
   closeProfile,
 }) => {
-  const handleUpdateProfil = (e) => {
+  const handleUpdateProfile = (e) => {
     e.preventDefault();
     console.log('Profile Updating');
     updateProfile();
