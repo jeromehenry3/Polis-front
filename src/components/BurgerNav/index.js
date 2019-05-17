@@ -40,7 +40,7 @@ const BurgerNav = ({
 
       <nav className={isMenuOpen ? 'content-menu open' : 'content-menu'}>
         <ul>
-          {isConnected && <NavLink onClick={() => {disconnect(); handleNavLinkClick();}} to="/login">Déconnexion</NavLink>}
+          {isConnected && <NavLink onClick={() => {disconnect(); handleNavLinkClick(); }} to="/login">Déconnexion</NavLink>}
           {!isConnected && (
           <NavLink
             onClick={() => {
