@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 
-import { closeAllModals } from 'src/store/reducer';
+import { closeAllModals, openModifyPanel, userVote } from 'src/store/reducer';
 /**
  * Local import
  */
@@ -13,11 +13,19 @@ const mapStateToProps = state => ({
   isDisplayBuildingOpen: state.isDisplayBuildingOpen,
   datas: state.datas,
   loading: state.loading,
+  isModifyPanelOpen: state.isModifyPanelOpen,
+  didUserVote: state.didUserVote,
 });
 
 const mapDispatchToProps = dispatch => ({
   closeAllModals: () => {
     dispatch(closeAllModals());
+  },
+  openModifyPanel: () => {
+    dispatch(openModifyPanel());
+  },
+  userVote: (id, vote) => {
+    dispatch(userVote(id, vote));
   },
 });
 

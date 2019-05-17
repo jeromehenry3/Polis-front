@@ -35,6 +35,8 @@ const initialState = {
   isDataFormOpen: false,
   isDisplayBuildingOpen: false, // bool qui toggle l'ouverture de displayBuilding
   isMenuOpen: false,
+  isModifyPanelOpen: false,
+  didUserVote: false,
 
 
   // ************MANAGEMENT OF THE MENU**************/
@@ -165,6 +167,8 @@ export const CLOSE_MENU = 'CLOSE_MENU';
 export const TOGGLE_VIEW = 'TOGGLE_VIEW';
 export const EMAIL_ERROR = 'EMAIL_ERROR';
 export const NEW_PASSWORD_ERRORS = 'NEW_PASSWORD_ERRORS';
+export const OPEN_MODIFY_PANEL = 'OPEN_MODIFY_PANEL';
+export const USER_VOTE = 'USER_VOTE';
 /**
  * Traitements
  */
@@ -356,6 +360,16 @@ const reducer = (state = initialState, action = {}) => {
         ...state,
         emailError: action.error,
       };
+    case OPEN_MODIFY_PANEL:
+      return {
+        ...state,
+        isModifyPanelOpen: true,
+      };
+    case USER_VOTE:
+      return {
+        ...state,
+        didUserVote: true,
+      };
     default:
       return state;
   }
@@ -513,6 +527,16 @@ export const toggleView = view => ({
 export const emailError = error => ({
   type: EMAIL_ERROR,
   error,
+});
+
+export const openModifyPanel = () => ({
+  type: OPEN_MODIFY_PANEL,
+});
+
+export const userVote = (id, vote) => ({
+  type: USER_VOTE,
+  id,
+  vote,
 });
 /**
  * Selectors
