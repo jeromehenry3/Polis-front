@@ -7,6 +7,7 @@ import {
   Menu, Button, Icon,
 } from 'semantic-ui-react';
 import BurgerNav from 'src/containers/BurgerNav';
+import ViewToggler from 'src/containers/ViewToggler';
 
 import './menu.scss';
 
@@ -26,25 +27,7 @@ const TopMenu = ({
     <div id="menu">
       {redirectToLogin && <Redirect to="/login/" />}
       <BurgerNav />
-      <Menu.Menu>
-        <Button.Group>
-          <Button
-            active
-            as={Link}
-            to="/map"
-          >
-          Carte
-          </Button>
-          <Button
-            as={Link}
-            to="/liste"
-            className="no-border-left"
-          >
-            Bâtiments
-          </Button>
-        </Button.Group>
-      </Menu.Menu>
-
+      <ViewToggler />
       <Menu.Menu position="right">
         <div className="ui right aligned category search item">
           <div className={`ui transparent icon input ${searchInput && 'not-empty'}`}>

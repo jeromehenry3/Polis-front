@@ -6,11 +6,16 @@ import Form from '../Form';
 import './lostpassword.scss';
 
 const LostPassword = ({
-  username, updateFormField, forgottenPassword, redirectToLogin,
+  username, updateFormField, forgottenPassword, redirectToLogin, emailError,
 }) => (
 
   <div id="lost-password">
     {redirectToLogin && <Redirect to="/login" />}
+    {emailError && (
+      <div className="panel-error">
+        <p className="current-error">{emailError}</p>
+      </div>
+    )}
     <Form onSubmit={forgottenPassword}>
       <p className="identification-message">Merci de renseigner l'email qui que vous avez utilisé lors de votre inscription à Polis. Nous allons vous envoyer un lien pour définir un nouveau mot de passe.</p>
 
@@ -42,6 +47,7 @@ LostPassword.propTypes = {
   updateFormField: PropTypes.func.isRequired,
   forgottenPassword: PropTypes.func.isRequired,
   redirectToLogin: PropTypes.bool.isRequired,
+  emailError: PropTypes.string.isRequired,
 };
 
 /**

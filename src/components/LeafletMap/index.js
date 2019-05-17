@@ -17,7 +17,6 @@ import './leafletmap.scss';
 import pins2 from '../../styles/images/Pins-2 40_80.png';
 import pins from '../../styles/images/Pins 40_80.png';
 
-
 // Création de la map avec React Leaflet
 class Leaflet extends React.Component {
   // Props: openDataForm, closeAllModals, updateFormField
@@ -47,7 +46,6 @@ class Leaflet extends React.Component {
     updateFormField('actualBounds', actualBounds);
     // eslint-disable-next-line no-unused-expressions
     detectIfMobile() && toggleFullScreen();
-    updateFormField('loadingWithLoader', true);
     getBuildings(actualBounds);
     getArchitectures();
     closeMenu();

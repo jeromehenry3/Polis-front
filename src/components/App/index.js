@@ -111,14 +111,6 @@ const App = ({ checkCookie, loginStatus }) => {
 
       <Route
         exact
-        path="/display"
-        render={() => (
-          <DisplayBuilding />
-        )}
-      />
-
-      <Route
-        exact
         path="/liste"
         render={() => (
           <Liste />
@@ -135,6 +127,7 @@ App.propTypes = {
   checkCookie: PropTypes.func.isRequired,
   loginStatus: PropTypes.string.isRequired,
 };
+
 
 /**
  * Export

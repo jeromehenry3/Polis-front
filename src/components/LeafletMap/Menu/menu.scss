@@ -4,10 +4,6 @@
     position: fixed;
     width: 100%;
     z-index: 1000;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
     padding: 0 1em;
     padding-top: 15px;
 
@@ -16,22 +12,6 @@
         .city {
             font-weight: bold;
             color: $salmon;
-        }
-    }
-    .ui.button { // Buttons of the view change : carte / Bâtiments
-        background-color: #ffffff;
-        color: $salmon;
-        border: 2px solid $salmon;
-        border-collapse: collapse;
-        padding: 7px 12px;
-        width: 100px;
-        box-shadow: 0px 2px 6px 0px rgba(0,0,0,0.40);
-        &:hover {
-            color: $salmon-darken;
-            background-color: #fff9ef;
-        }
-        &.no-border-left {
-            border-left: none;
         }
     }
     .search > div > div > input {
@@ -82,6 +62,12 @@
         }
     }
 
+    .ui.search {
+        top: 15px;
+        right: 10px;
+        position: fixed;
+    }
+
     @media screen and (max-width: 430px) { 
       // For mobile view, the search field is displayed as a button, that becomes an input when focused
       z-index: 401;
@@ -92,8 +78,8 @@
             pointer-events: none;
             position: fixed;
             height: inherit;
-            top: 42px;
-            right: 27px;
+            top: 31px;
+            right: 20px;
 
         }
         .ui.search > div > div > input { // the search input

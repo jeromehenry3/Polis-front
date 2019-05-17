@@ -57,7 +57,7 @@ const Login = ({
         <p>ou</p>
       </div>
 
-      <Link to="/map" className="form-button">Entrer en simple visiteur</Link>
+      <Link to="/map" onClick={() => updateFormField('loadingWithLoader', true)} className="form-button">Entrer en simple visiteur</Link>
 
     </Form>
   </div>
