@@ -1,0 +1,89 @@
+@import 'src/styles/_vars.scss';
+#profile {
+    position: fixed;
+    top:0;
+    left: -600px;
+    transition: 0.2s;
+    height: 300px;
+    width:400px;
+    background-color:white;
+    padding: 10px 10px 10px 10px;
+    margin-bottom: 15px;
+    box-shadow: 1px 2px 7px 0px #00000047;
+    z-index: 13;
+    border: 2px solid $salmon;
+    border-radius: 2px;
+    &.active{
+    left: 155px;  
+    }  
+    .header {
+        font-weight: 900;
+        text-transform: uppercase;
+        font-size: 0.6em;
+        margin-bottom: 10px;
+        text-align: left;
+        padding: 5px 4px 4px;
+        background-color: $salmon;
+        color:white;
+        display:inline-block;
+        width: 100%;
+    }
+    .input-container .input {
+        margin-bottom: 5px;
+        border: 1.5px solid #d98c5f17 !important;
+        box-shadow: 0px 0px 0px 0px rgba(0, 0, 0, 0) !important;
+        width: 100% !important;
+    }
+    .input-container label {
+        display: none;
+    }
+    // .input-container i {
+    //     color: $beige-lighten;
+    // }
+    // .input-container .input:focus {
+    //     margin-bottom: 20px;
+    //     border: none;
+    //     background-color: white;
+    // }
+    .btns {
+        display:flex;
+        justify-content: space-around;
+        flex-wrap: wrap;
+    }
+    .form-button {
+        font-size: 14px;
+        padding-left:53px;
+        padding-right:53px;
+    }
+    .cancel {
+        background-color: white;
+        border: 2px solid #e4c771;
+        color: #e4c771;
+        &:hover {
+            background-color: #e4c771;
+            color:white;
+        }
+    }
+}
+
+@media screen and (max-width: 801px) { 
+    #profile {
+        position: fixed;
+        top:-400px;
+        left: 25px;
+        transition: 0.2s;
+        height: 350px;
+        width:280px;
+        background-color:white;
+        padding: 5px 10px 0px 10px;
+        margin-bottom: 15px;
+        box-shadow: 1px 2px 7px 0px #00000047;
+        z-index: 10;
+        border: 2px solid $salmon;
+        border-radius: 2px;
+        &.active{
+        top: 75px;  
+        left: 25px;
+        } 
+    }
+}

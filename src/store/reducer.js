@@ -2,8 +2,6 @@
 /**
  * Initial State
  */
-import tokenEnDur from 'src/data/tokenEnDur';
-
 const initialState = {
   // *******FIELDS OF THE LOGIN / SIGNIN FORM******/
   username: '', // string
@@ -13,11 +11,8 @@ const initialState = {
   lastNameInput: '', // string
 
   // *******MANAGEMENT OF THE CONNECTION************/
-  token: tokenEnDur, // string,
-  refreshToken: '',
-  isConnected: false,
   loginMessage: 'Vous devez vous identifier pour contribuer à Polis',
-  loginStatus: 'not-connected', // string : not-connected || connecting || connected, for logic purposes
+  loginStatus: 'init', // string : not-connected || connecting || connected, for logic purposes
 
   // *********MANAGEMENT OF THE GEOLOCALIZATION*********/
   center: [46.7248003746672, 2.9003906250000004], // Center of the map
@@ -37,6 +32,7 @@ const initialState = {
   isMenuOpen: false,
   isModifyPanelOpen: false,
   didUserVote: false,
+  isProfileOpen: false,
 
 
   // ************MANAGEMENT OF THE MENU**************/
@@ -135,9 +131,10 @@ const initialState = {
  */
 export const UPDATE_FORM_FIELD = 'UPDATE_FORM_FIELD';
 export const CONNECT_USER = 'CONNECT_USER'; // Api connection with username && password
-export const STORE_TOKEN = 'STORE_TOKEN';
 export const CONNECTING_ERROR = 'CONNECTING_ERROR';
 export const DISCONNECT_USER = 'DISCONNECT_USER';
+export const CHECK_COOKIE = 'CHECK_COOKIE';
+export const AUTOCONNECT = 'AUTOCONNECT';
 export const SIGNIN = 'SIGNIN';
 export const SIGNIN_ERRORS = 'SIGNIN_ERRORS';
 export const SET_NEW_PASSWORD = 'SET_NEW_PASSWORD';
@@ -163,6 +160,8 @@ export const OPEN_AUTO_COMPLETE = 'OPEN_AUTO_COMPLETE';
 export const FIND_ADDRESS_SEARCH = 'FIND_ADDRESS_SEARCH';
 export const RESET_FORM_BUILDING = 'RESET_FORM_BUILDING';
 export const TOGGLE_MENU = 'TOGGLE_MENU';
+export const OPEN_PROFILE = 'OPEN_PROFILE';
+export const CLOSE_PROFILE = 'CLOSE_PROFILE';
 export const CLOSE_MENU = 'CLOSE_MENU';
 export const TOGGLE_VIEW = 'TOGGLE_VIEW';
 export const EMAIL_ERROR = 'EMAIL_ERROR';
@@ -187,7 +186,7 @@ const reducer = (state = initialState, action = {}) => {
       return {
         ...state,
         loginMessage: 'Connexion en cours',
-        loginStatus: 'connecting',
+        loginStatus: 'connecting-user',
       };
     case CONNECTING_ERROR:
       return {
@@ -195,20 +194,27 @@ const reducer = (state = initialState, action = {}) => {
         loginMessage: action.message,
         loginStatus: 'not-connected',
       };
-    case DISCONNECT_USER:
+    case DISCONNECT_USER: // Will have to be updated for cookie use
       return {
         ...initialState,
         loginMessage: 'Vous avez bien été déconnecté(e)',
         redirectToLogin: true,
       };
-    case STORE_TOKEN:
+    case CHECK_COOKIE:
       return {
         ...state,
-        token: action.token,
-        refreshToken: action.refreshToken,
+        loginMessage: 'Vérification de vos cookies',
+        loginStatus: 'connecting',
+      };
+    case AUTOCONNECT:
+      return {
+        ...state,
         isConnected: true,
         loginMessage: 'Vous êtes connecté(e)',
-        redirectToLogin: false,
+        loginStatus: 'connected',
+        username: action.userdata[2],
+        firstNameInput: action.userdata[0],
+        lastNameInput: action.userdata[1],
       };
     case SIGNIN:
       return state;
@@ -345,6 +351,16 @@ const reducer = (state = initialState, action = {}) => {
         ...state,
         isMenuOpen: !state.isMenuOpen,
       };
+    case OPEN_PROFILE:
+      return {
+        ...state,
+        isProfileOpen: true,
+      };
+    case CLOSE_PROFILE:
+      return {
+        ...state,
+        isProfileOpen: false,
+      };
     case CLOSE_MENU:
       return {
         ...state,
@@ -387,10 +403,12 @@ export const updateFormField = (fieldName, input) => ({
 export const connectUser = () => ({
   type: CONNECT_USER,
 });
-export const storeToken = (token, refreshToken) => ({
-  type: STORE_TOKEN,
-  token,
-  refreshToken,
+export const checkCookie = () => ({
+  type: CHECK_COOKIE,
+});
+export const autoconnect = userdata => ({
+  type: AUTOCONNECT,
+  userdata,
 });
 export const disconnect = () => ({
   type: DISCONNECT_USER,
@@ -513,6 +531,14 @@ export const resetFormBuilding = () => ({
 
 export const toggleMenu = () => ({
   type: TOGGLE_MENU,
+});
+
+export const openProfile = () => ({
+  type: OPEN_PROFILE,
+});
+
+export const closeProfile = () => ({
+  type: CLOSE_PROFILE,
 });
 
 export const closeMenu = () => ({

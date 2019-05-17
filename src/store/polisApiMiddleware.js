@@ -4,12 +4,14 @@ import axios from 'axios';
 
 import {
   CONNECT_USER,
+  DISCONNECT_USER,
   SIGNIN,
+  CHECK_COOKIE,
+  autoconnect,
   signinErrors,
   FORGOTTEN_PASSWORD,
   SET_NEW_PASSWORD,
   SUBMIT_BUILDING,
-  storeToken,
   connectingError,
   GET_ARCHITECTURES,
   setArchitectures,
@@ -35,16 +37,47 @@ const polisApiMiddleware = store => next => (action) => {
       axios.post(`${polisApi}/login`, {
         username: store.getState().username,
         password: store.getState().passwordInput,
+      }, {
+        withCredentials: true,
       })
-        .then((response) => {
-          const { token, refresh_token: refreshToken } = response.data;
-          store.dispatch(storeToken(token, refreshToken));
-          store.dispatch(updateFormField('loadingWithLoader', true));
+
+        .then(() => {
+          store.dispatch(updateFormField('isConnected', true));
+          store.dispatch(updateFormField('loginMessage', 'Vous êtes connecté(e)'));
+          store.dispatch(updateFormField('loginStatus', 'connected'));
         })
         .catch((error) => {
           console.log('erreur :', error.response.data.code);
           const message = (error.response.data.code === 401 ? 'Identifiant ou mot de passe invalide' : 'Une erreur est survenue, veuillez réessayer');
           store.dispatch(connectingError(message));
+        });
+      break;
+    case DISCONNECT_USER:
+      axios.get(`${polisApi}/logout`, {
+        withCredentials: true,
+      })
+        .then((response) => {
+          console.log(response.data);
+          next(action);
+        })
+        .catch((error) => {
+          console.log(error.message);
+        });
+      break;
+    case CHECK_COOKIE:
+      next(action);
+      axios.get(`${polisApi}/cookie`, {
+        withCredentials: true,
+      })
+        .then((response) => {
+          console.log(response.data);
+          store.dispatch(autoconnect(response.data));
+        })
+        .catch((error) => {
+          console.log(error.message);
+          store.dispatch(updateFormField('loginMessage', 'Veuillez vous connecter pour contribuer à Polis.'));
+          store.dispatch(updateFormField('isConnected', false));
+          setTimeout(() => store.dispatch(updateFormField('loginStatus', 'not-connected')), 1500);
         });
       break;
     case SIGNIN:
@@ -72,7 +105,8 @@ const polisApiMiddleware = store => next => (action) => {
       axios.post(`${polisApi}/resetPassword`, {
         password: action.newPassword,
         password2: action.newPasswordConfirm,
-        token: action.token,
+      }, {
+        withCredentials: true,
       })
         .then((response) => {
           console.log(response.data);
@@ -129,9 +163,7 @@ const polisApiMiddleware = store => next => (action) => {
         certified: false,
         delivered: store.getState().dateInput === '' ? true : parseInt(store.getState().dateInput) < date.getFullYear(),
       }, {
-        headers: {
-          Authorization: `Bearer ${store.getState().token}`,
-        },
+        withCredentials: true,
       })
         .then((response) => {
           store.dispatch(createMarker(store.getState().clickedLat, store.getState().clickedLng, response.data));

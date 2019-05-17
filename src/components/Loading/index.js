@@ -22,6 +22,9 @@ const listToShuffle = [
   'metro',
   'indiana',
   'megalo',
+  'persé',
+  'mariano',
+
 ];
 const words = shuffleArray(listToShuffle);
 
