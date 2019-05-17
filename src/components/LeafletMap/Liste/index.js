@@ -13,7 +13,7 @@ const Liste = ({buildings, listData, loading, getBuildingsListData}) => {
         <Card className="card">
           <Image src='src/styles/images/flatIron.jpg' wrapped ui={false} />
           <Card.Content>
-            <Card.Header>14, Rue Pascal, Gentilly, Arrondissement de L'Haÿ-les-Roses, Val-de-Marne, Île-de-France, France métropolitaine, 94250, France</Card.Header>
+            <Card.Header onClick={() => getBuildingsListData(buildings)}>14, Rue Pascal, Gentilly, Arrondissement de L'Haÿ-les-Roses, Val-de-Marne, Île-de-France, France métropolitaine, 94250, France</Card.Header>
             <Card.Description>
               Flat Iron Building
             </Card.Description>
