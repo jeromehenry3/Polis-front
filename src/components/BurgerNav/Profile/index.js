@@ -1,8 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import Input from '../Input';
-import Form from '../Form';
+import Input from '../../Input';
 
 import './profile.scss';
 
@@ -15,17 +14,18 @@ const Profile = ({
   updateFormField,
   loginStatus,
   updateProfile,
+  isProfileOpen,
 }) => {
   const handleUpdateProfile = (e) => {
     e.preventDefault();
-    console.log('submitting building');
+    console.log('Profile Updating');
     updateProfile();
   };
 
   return (
-    <div id="profile" className="visible">
+    <div id="profile" className={isProfileOpen ? 'active' : 'inactive'}>
+      <p className="header">Editez votre profile</p>
       <form action="">
-        <span className="header">cliquez pour editer</span>
         <Input
           type="text"
           id="first-name"
@@ -94,9 +94,11 @@ Profile.propTypes = {
   lastNameInput: PropTypes.string.isRequired,
   username: PropTypes.string.isRequired,
   passwordInput: PropTypes.string.isRequired,
+  loginStatus: PropTypes.string.isRequired,
   passwordConfirmInput: PropTypes.string.isRequired,
   updateFormField: PropTypes.func.isRequired,
   updateProfile: PropTypes.func.isRequired,
+  isProfileOpen: PropTypes.func.isRequired,
 };
 
 export default Profile;

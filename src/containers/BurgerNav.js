@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 
-import { closeAllModals, disconnect, updateFormField, toggleMenu, closeMenu } from 'src/store/reducer';
+import { closeAllModals, disconnect, updateFormField, toggleMenu, closeMenu, openProfile, } from 'src/store/reducer';
 /**
  * Local import
  */
@@ -14,6 +14,7 @@ import BurgerNav from 'src/components/BurgerNav';
 // updateFormField,
 // closeAllModals,
 // toggleMenu,
+// openProfile,
 
 const mapStateToProps = state => ({
   isConnected: state.isConnected,
@@ -32,6 +33,9 @@ const mapDispatchToProps = dispatch => ({
   },
   toggleMenu: () => {
     dispatch(toggleMenu());
+  },
+  openProfile: () => {
+    dispatch(openProfile());
   },
   closeMenu: () => {
     dispatch(closeMenu());

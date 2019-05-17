@@ -15,7 +15,7 @@ const initialState = {
   // *******MANAGEMENT OF THE CONNECTION************/
   token: tokenEnDur, // string,
   refreshToken: '',
-  isConnected: false,
+  isConnected:true,
   loginMessage: 'Vous devez vous identifier pour contribuer à Polis',
   loginStatus: 'not-connected', // string : not-connected || connecting || connected, for logic purposes
 
@@ -35,6 +35,7 @@ const initialState = {
   isDataFormOpen: false,
   isDisplayBuildingOpen: false, // bool qui toggle l'ouverture de displayBuilding
   isMenuOpen: false,
+  isProfileOpen: false,
 
 
   // ************MANAGEMENT OF THE MENU**************/
@@ -161,6 +162,7 @@ export const OPEN_AUTO_COMPLETE = 'OPEN_AUTO_COMPLETE';
 export const FIND_ADDRESS_SEARCH = 'FIND_ADDRESS_SEARCH';
 export const RESET_FORM_BUILDING = 'RESET_FORM_BUILDING';
 export const TOGGLE_MENU = 'TOGGLE_MENU';
+export const OPEN_PROFILE = 'OPEN_PROFILE';
 export const CLOSE_MENU = 'CLOSE_MENU';
 export const TOGGLE_VIEW = 'TOGGLE_VIEW';
 export const EMAIL_ERROR = 'EMAIL_ERROR';
@@ -341,6 +343,11 @@ const reducer = (state = initialState, action = {}) => {
         ...state,
         isMenuOpen: !state.isMenuOpen,
       };
+    case OPEN_PROFILE:
+      return {
+        ...state,
+        isProfileOpen: true,
+      };
     case CLOSE_MENU:
       return {
         ...state,
@@ -499,6 +506,10 @@ export const resetFormBuilding = () => ({
 
 export const toggleMenu = () => ({
   type: TOGGLE_MENU,
+});
+
+export const openProfile = () => ({
+  type: OPEN_PROFILE,
 });
 
 export const closeMenu = () => ({
