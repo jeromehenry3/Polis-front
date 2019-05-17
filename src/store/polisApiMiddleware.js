@@ -172,7 +172,11 @@ const polisApiMiddleware = store => next => (action) => {
       break;
     case USER_VOTE:
       next(action);
-      axios.get(`${polisApi}/vote/${action.id}`, { vote: action.vote })
+      axios.post(`${polisApi}/vote/${action.id}`, {
+        vote: action.vote,
+      }, {
+        withCredentials: true,
+      })
         .then((response) => {
           console.log(response);
         })
