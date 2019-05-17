@@ -49,14 +49,24 @@
         padding:15px 15px 2px;
 
         &-name {
-            color:rgb(190, 190, 190);
+            color: $salmon;
             font-weight:500;
             line-height: 1.2em;
             margin-bottom:5px;
+            font-weight: bold;
+        }
+        &-user {
+            color: rgb(190, 190, 190);
+            font-size: .8em;
+            font-style: italic;
+            margin-bottom: 5px;
+            strong {
+                color: $yellow;
+                font-weight: bold;
+            }
         }
         &-address {
-            font-weight:700;
-            font-size: 1.0em;
+            font-size: .8em;
             margin-bottom:5px;
             line-height: 1.2em;
         }
@@ -146,19 +156,27 @@
         .panel-vote {
             display: flex;
             align-items:baseline;
+            justify-content: space-between;
             border-right: 1px solid #f0f0f0;
             padding:8px;
             font-size:0.8em;
             font-weight:700;
 
+            p {
+                margin-right: 10px;
+            }
+
             .upvote a {
-                padding-left:15px;
-                padding-right:5px;
+                i {
+                    margin: 0;
+                }
             }
 
             .downvote a {
+                i {
+                    margin: 0;
+                }
                 color: $brown;
-                padding-right:5px;
             }
 
             .downvote a:hover {

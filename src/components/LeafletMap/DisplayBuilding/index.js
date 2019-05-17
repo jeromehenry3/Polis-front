@@ -25,14 +25,10 @@ const DisplayBuilding = ({
     architect,
     architecture,
     builder,
-    certified,
     creationDate,
     delivered,
     description,
-    id,
     images,
-    latitude,
-    longitude,
     name,
     planner,
     promoter,
@@ -40,7 +36,6 @@ const DisplayBuilding = ({
     urbanist,
     user,
   } = datas;
-
   return (
     <div id="DisplayBuilding">
       <div className={isDisplayBuildingOpen ? 'display-donnees open' : 'display-donnees'}>
@@ -58,6 +53,7 @@ const DisplayBuilding = ({
             <a href="#" className="renseignement-donnees_close" onClick={handleCloseDataForm}>Fermer</a>
             <div className="header-info">
               <h2 className="header-info-name">{name}</h2>
+              <h2 className="header-info-user">Renseigné par <strong>{user.firstName}</strong></h2>
               <h3 className="header-info-address">{address}</h3>
               <div className="header-info-bottom--panel">
                 {architecture !== null && <p className="header-info-tag">{architecture.name}</p>}
@@ -100,16 +96,18 @@ const DisplayBuilding = ({
           <footer>
             <div className="panel-vote">
               <p>VOTER POUR CETTE FICHE</p>
-              <span className="upvote">
-                <a href="">
-                  <Icon name="arrow up" />
-                </a>
-              </span>
-              <span className="downvote">
-                <a>
-                  <Icon name="arrow down" />
-                </a>
-              </span>
+              <div>
+                <span className="upvote">
+                  <a href="">
+                    <Icon name="arrow up" />
+                  </a>
+                </span>
+                <span className="downvote">
+                  <a>
+                    <Icon name="arrow down" />
+                  </a>
+                </span>
+              </div>
             </div>
             <div className="panel-share">
               <p>
