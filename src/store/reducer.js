@@ -252,6 +252,7 @@ const reducer = (state = initialState, action = {}) => {
       return {
         ...state,
         listData: action.list,
+        loading: false,
       };
     case OPEN_DATA_FORM_RESPONSE:
       // eslint-disable-next-line camelcase
