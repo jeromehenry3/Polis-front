@@ -32,7 +32,7 @@ class Liste extends Component {
                 />
                 <Card.Content>
                   <Card.Header>{item.name}</Card.Header>
-                  <Card.Meta>{`${item.architect} ${item.creationDate}`}</Card.Meta>
+                  <Card.Meta>{`${item.architect || ''} ${item.creationDate || ''}`}</Card.Meta>
                   <Card.Description>
                     {item.address}
                   </Card.Description>
