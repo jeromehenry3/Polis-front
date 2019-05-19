@@ -1,30 +1,32 @@
 import { connect } from 'react-redux';
 
+import { closeProfile, updateFormField } from 'src/store/reducer';
+
 /**
  * Local import
  */
-import NewPassword from 'src/components/LostPassword/NewPassword';
+import Profile from 'src/components/BurgerNav/Profile';
 
-// Action Creators
-import { updateFormField, setNewPassword } from 'src/store/reducer';
 
 const mapStateToProps = state => ({
+  isProfileOpen: state.isProfileOpen,
+  username: state.username,
   passwordInput: state.passwordInput,
   passwordConfirmInput: state.passwordConfirmInput,
-  redirectToLogin: state.redirectToLogin,
-  newPasswordErrors: state.newPasswordErrors,
+  firstNameInput: state.firstNameInput,
+  lastNameInput: state.lastNameInput,
 });
 
 const mapDispatchToProps = dispatch => ({
+  closeProfile: () => {
+    dispatch(closeProfile());
+  },
   updateFormField: (fieldName, input) => {
     dispatch(updateFormField(fieldName, input));
-  },
-  setNewPassword: (newPassword, newPasswordConfirm, token) => {
-    dispatch(setNewPassword(newPassword, newPasswordConfirm, token));
   },
 });
 
 export default connect(
   mapStateToProps,
   mapDispatchToProps,
-)(NewPassword);
+)(Profile);

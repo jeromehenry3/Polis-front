@@ -1,54 +1,33 @@
+/* eslint-disable jsx-a11y/label-has-associated-control */
+/* eslint-disable jsx-a11y/label-has-for */
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Link, Redirect } from 'react-router-dom';
 import {
-  Menu, Dropdown, Button, Icon,
+  Menu, Button, Icon,
 } from 'semantic-ui-react';
+import BurgerNav from 'src/containers/BurgerNav';
+import ViewToggler from 'src/containers/ViewToggler';
 
 import './menu.scss';
 
 const TopMenu = ({
   searchInput, openDataForm, closeAllModals, autoComplete, autoCompleteResults,
   updateFormField, centerByAddress, isAutocompleteOpen, findAddressSearch, isConnected,
-  redirectToLogin, disconnect,
+  redirectToLogin, redirect,
 }) => {
   const handleSearch = position => (e) => {
     updateFormField('searchInput', e.target.textContent);
     centerByAddress(position);
+    closeAllModals();
   };
+
 
   return (
     <div id="menu">
       {redirectToLogin && <Redirect to="/login/" />}
-      <Dropdown item icon="bars" simple>
-        <Dropdown.Menu>
-          {isConnected && <Dropdown.Item onClick={disconnect}>Déconnexion</Dropdown.Item>}
-          {!isConnected && <Dropdown.Item onClick={() => updateFormField('redirectToLogin', true)}>Connexion</Dropdown.Item>}
-          {isConnected && <Dropdown.Item>Mon compte</Dropdown.Item>}
-          <Dropdown.Item>Recrutement</Dropdown.Item>
-          <Dropdown.Item>A propos</Dropdown.Item>
-        </Dropdown.Menu>
-      </Dropdown>
-
-      <Menu.Menu>
-        <Button.Group>
-          <Button
-            active
-            as={Link}
-            to="/map"
-          >
-          Carte
-          </Button>
-          <Button
-            as={Link}
-            to="/liste"
-            className="no-border-left"
-          >
-            Bâtiments
-          </Button>
-        </Button.Group>
-      </Menu.Menu>
-
+      <BurgerNav />
+      <ViewToggler />
       <Menu.Menu position="right">
         <div className="ui right aligned category search item">
           <div className={`ui transparent icon input ${searchInput && 'not-empty'}`}>
@@ -95,9 +74,13 @@ const TopMenu = ({
       <Button
         id="add-button"
         circular
-        onClick={() => {
-          closeAllModals(); openDataForm(false);
-        }}
+        onClick={isConnected
+          ? () => {
+            closeAllModals(); openDataForm(false);
+          }
+          : () => {
+            closeAllModals(); redirect();
+          }}
       >
         <Icon.Group>
           <Icon name="map marker alternate" />
@@ -115,13 +98,13 @@ TopMenu.propTypes = {
   openDataForm: PropTypes.func.isRequired,
   closeAllModals: PropTypes.func.isRequired,
   autoComplete: PropTypes.func.isRequired,
-  autoCompleteResults: PropTypes.bool.isRequired,
+  autoCompleteResults: PropTypes.array.isRequired,
   centerByAddress: PropTypes.func.isRequired,
   isAutocompleteOpen: PropTypes.bool.isRequired,
   findAddressSearch: PropTypes.func.isRequired,
   isConnected: PropTypes.bool.isRequired,
-  disconnect: PropTypes.func.isRequired,
   redirectToLogin: PropTypes.bool.isRequired,
+  redirect: PropTypes.func.isRequired,
 };
 
 export default TopMenu;

@@ -95,6 +95,7 @@ class Liste extends Component {
   }
 }
 
+
 Liste.propTypes = {
   buildings: PropTypes.array.isRequired,
   listData: PropTypes.array.isRequired,

@@ -34,11 +34,7 @@ class Input extends Component {
     const { dynamicType } = this.state;
     return (
       <div className="input-container">
-        {required && (
-          <div className="input-container--required">
-            *
-          </div>
-        )}
+        
         <input
           type={dynamicType}
           id={id}
@@ -80,9 +76,8 @@ Input.propTypes = {
 
   // *******LOGIC*******
   onChangeFunction: PropTypes.func.isRequired,
-  disabled: PropTypes.bool.isRequired,
-  required: PropTypes.bool,
   disabled: PropTypes.bool,
+  required: PropTypes.bool,
 };
 
 Input.defaultProps = {

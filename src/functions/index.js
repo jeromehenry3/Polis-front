@@ -38,7 +38,9 @@ export const detectIfMobile = () => {
 
 // Randomisation of an array
 export const shuffleArray = (array) => {
-  let currentIndex = array.length, temporaryValue, randomIndex;
+  let currentIndex = array.length;
+  let temporaryValue;
+  let randomIndex;
 
   // While there remain elements to shuffle...
   while (currentIndex !== 0) {

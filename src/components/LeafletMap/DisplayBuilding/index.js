@@ -13,33 +13,46 @@ const DisplayBuilding = ({
   closeAllModals,
   datas,
   loading,
+  didUserVote,
+  userVote,
+  isModifyPanelOpen,
+  openModifyPanel,
 }) => {
-  const handleCloseDataForm = (e) => {
-    e.preventDefault();
-    console.log('Dataform closed');
-    closeAllModals();
-  };
-
   const {
     address,
     architect,
     architecture,
     builder,
-    certified,
     creationDate,
     delivered,
     description,
-    id,
     images,
-    latitude,
-    longitude,
     name,
     planner,
     promoter,
     surface,
     urbanist,
     user,
+    id,
   } = datas;
+
+
+  const handleCloseDataForm = (e) => {
+    e.preventDefault();
+    closeAllModals();
+  };
+  const handleDownVote = (e) => {
+    e.preventDefault();
+    console.log('downvote');
+    userVote(id, false);
+    openModifyPanel();
+  };
+
+  const handleUpVote = (e) => {
+    e.preventDefault();
+    console.log('upvote');
+    userVote(id, true);
+  };
 
   return (
     <div id="DisplayBuilding">
@@ -58,6 +71,7 @@ const DisplayBuilding = ({
             <a href="#" className="renseignement-donnees_close" onClick={handleCloseDataForm}>Fermer</a>
             <div className="header-info">
               <h2 className="header-info-name">{name}</h2>
+              <h2 className="header-info-user">Renseigné par <strong>{user.firstName}</strong></h2>
               <h3 className="header-info-address">{address}</h3>
               <div className="header-info-bottom--panel">
                 {architecture !== null && <p className="header-info-tag">{architecture.name}</p>}
@@ -98,19 +112,29 @@ const DisplayBuilding = ({
           </div>
           <hr />
           <footer>
-            <div className="panel-vote">
-              <p>VOTER POUR CETTE FICHE</p>
-              <span className="upvote">
-                <a href="">
-                  <Icon name="arrow up" />
-                </a>
-              </span>
-              <span className="downvote">
-                <a>
-                  <Icon name="arrow down" />
-                </a>
-              </span>
-            </div>
+            {
+              didUserVote ? (
+                <div className="panel-vote">
+                  <p>MERCI D'AVOIR VOTÉ !</p>
+                </div>
+              ) : (
+                <div className="panel-vote">
+                  <p>VOTER POUR CETTE FICHE</p>
+                  <div>
+                    <span className="upvote">
+                      <a href="" onClick={handleUpVote}>
+                        <Icon name="arrow up" />
+                      </a>
+                    </span>
+                    <span className="downvote">
+                      <a onClick={handleDownVote}>
+                        <Icon name="arrow down" />
+                      </a>
+                    </span>
+                  </div>
+                </div>
+              )
+            }
             <div className="panel-share">
               <p>
                 <a href="">
@@ -119,7 +143,7 @@ const DisplayBuilding = ({
               </p>
             </div>
           </footer>
-          <div className="panel-modify visible">
+          <div className={isModifyPanelOpen ? 'panel-modify visible' : 'panel-modify hidden'}>
             <hr />
             <a href=""><p>Modifier des informations sur cette fiche</p></a>
           </div>
@@ -131,8 +155,13 @@ const DisplayBuilding = ({
 
 DisplayBuilding.propTypes = {
   closeAllModals: PropTypes.func.isRequired,
-  isDisplayBuildingOpen: PropTypes.bool.isRequired,
   datas: PropTypes.object.isRequired,
+  isDisplayBuildingOpen: PropTypes.bool.isRequired,
+  isModifyPanelOpen: PropTypes.bool.isRequired,
+  loading: PropTypes.bool.isRequired,
+  didUserVote: PropTypes.bool.isRequired,
+  openModifyPanel: PropTypes.func.isRequired,
+  userVote: PropTypes.func.isRequired,
 };
 
 export default DisplayBuilding;

@@ -144,9 +144,11 @@
 
   &_close {
     position: absolute;
-    top: -5px;
+    top: 0px;
     right: 20px;
-    padding: 10px;
+    padding: 7px;
+    background-color: $beige;
+    border-radius: 4px;
   }
 
   &_share {

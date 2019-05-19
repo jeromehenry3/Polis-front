@@ -17,7 +17,6 @@ import './leafletmap.scss';
 import pins2 from '../../styles/images/Pins-2 40_80.png';
 import pins from '../../styles/images/Pins 40_80.png';
 
-
 // Création de la map avec React Leaflet
 class Leaflet extends React.Component {
   // Props: openDataForm, closeAllModals, updateFormField
@@ -35,10 +34,14 @@ class Leaflet extends React.Component {
     // shadowSize:   [50, 64], // size of the shadow
   });
 
+  zoomControl = L.control.zoom({
+    position: 'bottomright',
+  });
+
   map = React.createRef();
 
   componentDidMount() {
-    const { getArchitectures, getBuildings, updateFormField } = this.props;
+    const { getArchitectures, getBuildings, updateFormField, closeMenu } = this.props;
     // console.log(this.map.leafletElement.getBounds());
     const actualBounds = this.map.current.leafletElement.getBounds();
 
@@ -48,6 +51,7 @@ class Leaflet extends React.Component {
     updateFormField('loadingWithLoader', true);
     // getBuildings(actualBounds);
     getArchitectures();
+    closeMenu();
   }
 
   handleMove = () => {
@@ -103,6 +107,7 @@ class Leaflet extends React.Component {
         {!loadingWithLoader && <Menu />}
         {!loadingWithLoader && <RenseignementDonnees />}
         {!loadingWithLoader && <DisplayBuilding />}
+
         <LeafletMap
           ref={this.map}
           center={center}
@@ -115,7 +120,7 @@ class Leaflet extends React.Component {
           // setView
           flyTo
           attributionControl
-          zoomControl={false}
+          zoomControl
           doubleClickZoom
           scrollWheelZoom
           worldCopyJump
@@ -181,13 +186,18 @@ Leaflet.propTypes = {
   getBuildings: PropTypes.func.isRequired,
   buildings: PropTypes.arrayOf(PropTypes.object).isRequired,
   openDisplayBuilding: PropTypes.func.isRequired,
-  coords: PropTypes.object.isRequired,
+  coords: PropTypes.object,
   center: PropTypes.arrayOf(PropTypes.number).isRequired,
   zoom: PropTypes.number.isRequired,
   isGeolocationEnabled: PropTypes.bool.isRequired,
   loadingWithLoader: PropTypes.bool.isRequired,
   userLocalized: PropTypes.bool.isRequired,
   isConnected: PropTypes.bool.isRequired,
+  closeMenu: PropTypes.func.isRequired,
+};
+
+Leaflet.defaultProps = {
+  coords: null,
 };
 
 export default geolocated({
