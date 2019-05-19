@@ -28,13 +28,12 @@ import './app.scss';
 /**
  * Code
  */
-const App = ({ checkCookie, loginStatus, isConnected }) => {
+const App = ({ checkCookie, loginStatus }) => {
   // eslint-disable-next-line no-unused-expressions
   loginStatus === 'init' && checkCookie();
   return (
     <Switch>
       {loginStatus === 'init'
-      && !isConnected
       && <Loading />}
 
       <Route
@@ -127,7 +126,6 @@ const App = ({ checkCookie, loginStatus, isConnected }) => {
 App.propTypes = {
   checkCookie: PropTypes.func.isRequired,
   loginStatus: PropTypes.string.isRequired,
-  isConnected: PropTypes.bool.isRequired,
 };
 
 
