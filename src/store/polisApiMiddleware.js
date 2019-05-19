@@ -21,6 +21,7 @@ import {
   redirectToLogin,
   resetFormBuilding,
   GET_BUILDINGS_LIST_DATA,
+  setBuildingsListData,
 } from './reducer';
 
 const polisApi = 'https://www.thomas-gillet.com/api';
@@ -147,7 +148,7 @@ const polisApiMiddleware = store => next => (action) => {
       next(action);
       axios.get(`${polisApi}/buildings/${action.id}`)
         .then((response) => {
-          store.dispatch(setBuildingDatas(response.data));
+          store.dispatch(setBuildingDatas(response.data.infoBuilding));
         })
         .catch((error) => {
           console.log(error.message);
@@ -159,8 +160,9 @@ const polisApiMiddleware = store => next => (action) => {
       axios.all(queries)
         .then((results) => {
           console.log(results);
-          const list = results.map(item => item.data);
+          const list = results.map(item => item.data.infoBuilding);
           console.log('Les bâtiments: ', list);
+          store.dispatch(setBuildingsListData(list));
         })
         .catch((error) => {
           console.log(error.message);

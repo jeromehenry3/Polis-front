@@ -1,96 +1,63 @@
-import React from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Card, Icon, Image } from 'semantic-ui-react';
-import { Link, Redirect } from 'react-router-dom';  
+import { Link, Redirect } from 'react-router-dom';
+
+import MainPicture from '../../../styles/images/Libertony.jpg';
 
 import './liste.scss';
 
-const Liste = ({buildings, listData, loading, getBuildingsListData}) => {
-  
-  return (
-    <div id="liste">
-      <Card.Group>
-        <Card className="card">
-          <Image src='src/styles/images/flatIron.jpg' wrapped ui={false} />
-          <Card.Content>
-            <Card.Header onClick={() => getBuildingsListData(buildings)}>14, Rue Pascal, Gentilly, Arrondissement de L'Haÿ-les-Roses, Val-de-Marne, Île-de-France, France métropolitaine, 94250, France</Card.Header>
-            <Card.Description>
-              Flat Iron Building
-            </Card.Description>
-          </Card.Content>
-        </Card>
+class Liste extends Component {
+  // {buildings, listData, loading, getBuildingsListData} = this.props;
+  // { buildingsData } = getBuildingsListData(buildings);
+  // console.log(buildingsData);
+  componentDidMount() {
+    const { buildings, getBuildingsListData } = this.props;
+    getBuildingsListData(buildings);
+  }
 
-        <Card className="card">
-          <Image src='src/styles/images/flatIron.jpg' wrapped ui={false} />
-          <Card.Content>
-            <Card.Header>14, Rue Pascal, Gentilly, Arrondissement de L'Haÿ-les-Roses, Val-de-Marne, Île-de-France, France métropolitaine, 94250, France</Card.Header>
-            <Card.Description>
-              Flat Iron Building
-            </Card.Description>
-          </Card.Content>
-        </Card>
-
-        <Card className="card">
-          <Image src='src/styles/images/flatIron.jpg' wrapped ui={false} />
-          <Card.Content>
-            <Card.Header>14, Rue Pascal, Gentilly, Arrondissement de L'Haÿ-les-Roses, Val-de-Marne, Île-de-France, France métropolitaine, 94250, France</Card.Header>
-            <Card.Description>
-              Flat Iron Building
-            </Card.Description>
-          </Card.Content>
-        </Card>
-
-        <Card className="card">
-          <Image src='src/styles/images/flatIron.jpg' wrapped ui={false} />
-          <Card.Content>
-            <Card.Header>14, Rue Pascal, Gentilly, Arrondissement de L'Haÿ-les-Roses, Val-de-Marne, Île-de-France, France métropolitaine, 94250, France</Card.Header>
-            <Card.Description>
-              Flat Iron Building
-            </Card.Description>
-          </Card.Content>
-        </Card>
-
-        <Card className="card">
-          <Image src='src/styles/images/flatIron.jpg' wrapped ui={false} />
-          <Card.Content>
-            <Card.Header>14, Rue Pascal, Gentilly, Arrondissement de L'Haÿ-les-Roses, Val-de-Marne, Île-de-France, France métropolitaine, 94250, France</Card.Header>
-            <Card.Description>
-              Flat Iron Building
-            </Card.Description>
-          </Card.Content>
-        </Card>
-
-        <Card className="card">
-          <Image src='src/styles/images/flatIron.jpg' wrapped ui={false} />
-          <Card.Content>
-            <Card.Header>14, Rue Pascal, Gentilly, Arrondissement de L'Haÿ-les-Roses, Val-de-Marne, Île-de-France, France métropolitaine, 94250, France</Card.Header>
-            <Card.Description>
-              Flat Iron Building
-            </Card.Description>
-          </Card.Content>
-        </Card>
-
-        <Card className="card">
-          <Image src='src/styles/images/flatIron.jpg' wrapped ui={false} />
-          <Card.Content>
-            <Card.Header>14, Rue Pascal, Gentilly, Arrondissement de L'Haÿ-les-Roses, Val-de-Marne, Île-de-France, France métropolitaine, 94250, France</Card.Header>
-            <Card.Description>
-              Statue de la libertony
-            </Card.Description>
-          </Card.Content>
-        </Card>
-      </Card.Group>
-      <div className="back-to-map">
-        <Link className="back-to-map-btn" to="/map">
-          <Icon.Group>
-            <Icon name="map outline" />
-            <Icon corner name="reply" />
-          </Icon.Group>
-          Retour à la carte
-        </Link>
+  render() {
+    const { listData } = this.props;
+    return (
+      <div id="liste">
+        {listData && (
+          <Card.Group>
+            {listData.map(item => (
+              <Card key={item.id} className="card">
+                <Image
+                  src={item.images.length !== 0 ? item.images[0].path : MainPicture}
+                  wrapped
+                  // ui={false}
+                  
+                />
+                <Card.Content>
+                  <Card.Header>{item.name}</Card.Header>
+                  <Card.Description>
+                    {item.address}
+                  </Card.Description>
+                </Card.Content>
+              </Card>
+            ))}
+          </Card.Group>
+        )}
+        <div className="back-to-map">
+          <Link className="back-to-map-btn" to="/map">
+            <Icon.Group>
+              <Icon name="map outline" />
+              <Icon corner name="reply" />
+            </Icon.Group>
+            Retour à la carte
+          </Link>
+        </div>
       </div>
-    </div>
-  );
+    );
+  }
 }
+
+Liste.propTypes = {
+  buildings: PropTypes.array.isRequired,
+  listData: PropTypes.array.isRequired,
+  getBuildingsListData: PropTypes.func.isRequired,
+};
 
 export default Liste;

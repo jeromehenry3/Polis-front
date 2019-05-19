@@ -63,7 +63,7 @@ const initialState = {
   // Datas component did mount
   architectures: [],
   buildings: [],
-  fetichingBuildings: false,
+  fetchingBuildings: false,
 
 
   // ************FIELDS OF THE CARD DATA*******
@@ -125,7 +125,7 @@ const initialState = {
   isAutocompleteOpen: false,
 
   // COMPOSANT LISTE
-  listDatas: [],
+  listData: [],
 };
 
 /**
@@ -144,6 +144,7 @@ export const OPEN_DATA_FORM = 'OPEN_DATA_FORM';
 export const OPEN_DATA_FORM_BUTTON = 'OPEN_DATA_FORM_BUTTON';
 export const OPEN_DISPLAY_BUILDING = 'OPEN_DISPLAY_BUILDING';
 export const GET_BUILDINGS_LIST_DATA = 'GET_BUILDINGS_LIST_DATA';
+export const SET_BUILDINGS_LIST_DATA = 'SET_BUILDINGS_LIST_DATA';
 export const OPEN_DATA_FORM_RESPONSE = 'OPEN_DATA_FORM_RESPONSE';
 export const CLOSE_ALL_MODALS = 'CLOSE_ALL_MODALS';
 export const SUBMIT_BUILDING = 'SUBMIT_BULDING';
@@ -246,6 +247,11 @@ const reducer = (state = initialState, action = {}) => {
       return {
         ...state,
         loading: true,
+      };
+    case SET_BUILDINGS_LIST_DATA:
+      return {
+        ...state,
+        listData: action.list,
       };
     case OPEN_DATA_FORM_RESPONSE:
       // eslint-disable-next-line camelcase
@@ -434,6 +440,10 @@ export const createMarker = (latitude, longitude, datas) => ({
 });
 export const getBuildingsListData = list => ({
   type: GET_BUILDINGS_LIST_DATA,
+  list,
+});
+export const setBuildingsListData = list => ({
+  type: SET_BUILDINGS_LIST_DATA,
   list,
 });
 
