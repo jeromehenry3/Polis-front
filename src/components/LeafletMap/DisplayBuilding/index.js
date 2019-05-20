@@ -37,7 +37,7 @@ const DisplayBuilding = ({
     id,
   } = datas.infoBuilding;
   console.log(datas);
-  
+
   const { total_votes } = datas;
 
 
@@ -115,8 +115,9 @@ const DisplayBuilding = ({
             </ul>
           </div>
           <hr />
-          <footer>
-            {
+          {isConnected && (
+            <footer>
+              {
               didUserVote ? (
                 <div className="panel-vote">
                   <p>MERCI D'AVOIR VOTÉ !</p>
@@ -139,14 +140,15 @@ const DisplayBuilding = ({
                 </div>
               )
             }
-            <div className="panel-share">
-              <p>
-                <a href="">
-            PARTAGER
-                </a>
-              </p>
-            </div>
-          </footer>
+              <div className="panel-share">
+                <p>
+                  <a href="">
+                    PARTAGER
+                  </a>
+                </p>
+              </div>
+            </footer>
+          )}
           <div className={isModifyPanelOpen ? 'panel-modify visible' : 'panel-modify hidden'}>
             <hr />
             <a href=""><p>Modifier des informations sur cette fiche</p></a>
@@ -166,6 +168,7 @@ DisplayBuilding.propTypes = {
   didUserVote: PropTypes.bool.isRequired,
   openModifyPanel: PropTypes.func.isRequired,
   userVote: PropTypes.func.isRequired,
+  isConnected: PropTypes.bool.isRequired,
 };
 
 export default DisplayBuilding;

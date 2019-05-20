@@ -9,6 +9,7 @@ const initialState = {
   passwordConfirmInput: '', // string
   firstNameInput: '', // string
   lastNameInput: '', // string
+  userId: 0,
 
   // *******MANAGEMENT OF THE CONNECTION************/
   isConnected: false,
@@ -225,9 +226,10 @@ const reducer = (state = initialState, action = {}) => {
         isConnected: true,
         loginMessage: 'Vous êtes connecté(e)',
         loginStatus: 'connected',
-        username: action.userdata[2],
-        firstNameInput: action.userdata[0],
-        lastNameInput: action.userdata[1],
+        username: action.userdata.email,
+        firstNameInput: action.userdata.firstname,
+        lastNameInput: action.userdata.lastname,
+        userId: action.userdata.id,
       };
     case SIGNIN:
       return state;
