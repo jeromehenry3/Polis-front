@@ -204,6 +204,12 @@ const polisApiMiddleware = store => next => (action) => {
       next(action);
       axios.get(`${polisApi}/buildings/${action.id}`)
         .then((response) => {
+          console.log(response.data);
+          response.data.infoBuilding.votes.forEach((user) => {
+            if (user.user.id === store.getState().userId) {
+              store.dispatch(updateFormField('didUserVote', true));
+            }
+          });
           store.dispatch(setBuildingDatas(response.data));
         })
         .catch((error) => {

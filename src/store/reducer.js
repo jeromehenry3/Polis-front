@@ -300,6 +300,7 @@ const reducer = (state = initialState, action = {}) => {
         isDataFormOpen: false,
         isDisplayBuildingOpen: false,
         isAutocompleteOpen: false,
+        didUserVote: false,
         // Les futurs modals à fermer
       };
     case SET_ARCHITECTURES:
