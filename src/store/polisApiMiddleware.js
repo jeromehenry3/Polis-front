@@ -6,6 +6,8 @@ import {
   CONNECT_USER,
   DISCONNECT_USER,
   UPDATE_USER,
+  closeProfile,
+  profileIsUpdate,
   SIGNIN,
   CHECK_COOKIE,
   autoconnect,
@@ -48,6 +50,8 @@ const polisApiMiddleware = store => next => (action) => {
           store.dispatch(updateFormField('usernamer', response.data.email));
           store.dispatch(updateFormField('firstNameInput', response.data.firstname));
           store.dispatch(updateFormField('lastNameInput', response.data.lastname));
+          store.dispatch(updateFormField('passwordInput', ''));
+          store.dispatch(updateFormField('passwordInputConfirm', ''));
           store.dispatch(updateFormField('userId', response.data.id));
           store.dispatch(updateFormField('isConnected', true));
           store.dispatch(updateFormField('loginMessage', 'Vous êtes connecté(e)'));
@@ -76,12 +80,14 @@ const polisApiMiddleware = store => next => (action) => {
         firstname: store.getState().firstNameInput,
         lastname: store.getState().lastNameInput,
         email: store.getState().username,
-        password: store.getState().paswordInput,
-        password2: store.getState().paswordConfirmInput,
+        password: store.getState().passwordInput,
+        password2: store.getState().passwordConfirmInput,
       }, {
         withCredentials: true,
       })
-        .then((response) => {
+        .then((response) => {         
+          store.dispatch(profileIsUpdate(response.data));
+          setTimeout(() => store.dispatch(closeProfile()), 1500);
           next(action);
         })
         .catch((error) => {

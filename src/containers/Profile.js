@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 
-import { closeProfile, updateFormField, updateUser } from 'src/store/reducer';
+import { closeProfile, updateFormField, updateUser, } from 'src/store/reducer';
 
 /**
  * Local import
@@ -15,6 +15,7 @@ const mapStateToProps = state => ({
   passwordConfirmInput: state.passwordConfirmInput,
   firstNameInput: state.firstNameInput,
   lastNameInput: state.lastNameInput,
+  profileUpdatedMessage: state.profileUpdatedMessage,
 });
 
 const mapDispatchToProps = dispatch => ({

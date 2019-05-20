@@ -15,6 +15,7 @@ const Profile = ({
   updateUser,
   isProfileOpen,
   closeProfile,
+  profileUpdatedMessage
 }) => {
   const handleUpdateUser = (e) => {
     e.preventDefault();
@@ -82,8 +83,9 @@ const Profile = ({
         />
         <div className="btns">
           <button type="button" className="form-button cancel" onClick={handlecloseProfile}>Annuler</button>
-          <button type="submit" className="form-button" onClick={handleUpdateUser}>Modifier</button>
+          <button type="submit" className="form-button" onClick={handleUpdateUser}>Modifier</button>        
         </div>
+        <p className="updated">{profileUpdatedMessage}</p>
       </form>
     </div>
   );
