@@ -83,7 +83,7 @@ const About = () => (
               <span className="teamate-email">fmackodev@gmail.com</span>
               <span className="teamate-web"><a href="https://www.fabienmackowiak.com" target="_blank">site web perso</a></span>
               <span className="teamate-linkedin">
-                <a href="www.linkedin.com/in/fabienmacko"> Linkedin
+                <a href="https://www.linkedin.com/in/fabienmacko"> Linkedin
                 </a>
               </span>
             </div>
