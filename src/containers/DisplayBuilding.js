@@ -15,6 +15,7 @@ const mapStateToProps = state => ({
   loading: state.loading,
   isModifyPanelOpen: state.isModifyPanelOpen,
   didUserVote: state.didUserVote,
+  isConnected: state.isConnected,
 });
 
 const mapDispatchToProps = dispatch => ({

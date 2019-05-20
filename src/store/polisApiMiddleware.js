@@ -199,7 +199,7 @@ const polisApiMiddleware = store => next => (action) => {
       next(action);
       axios.get(`${polisApi}/buildings/${action.id}`)
         .then((response) => {
-          store.dispatch(setBuildingDatas(response.data.infoBuilding));
+          store.dispatch(setBuildingDatas(response.data));
         })
         .catch((error) => {
           console.log(error.message);

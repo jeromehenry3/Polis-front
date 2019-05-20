@@ -17,6 +17,7 @@ const DisplayBuilding = ({
   userVote,
   isModifyPanelOpen,
   openModifyPanel,
+  isConnected,
 }) => {
   const {
     address,
@@ -34,7 +35,10 @@ const DisplayBuilding = ({
     urbanist,
     user,
     id,
-  } = datas;
+  } = datas.infoBuilding;
+  console.log(datas);
+  
+  const { total_votes } = datas;
 
 
   const handleCloseDataForm = (e) => {
