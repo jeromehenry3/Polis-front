@@ -39,8 +39,6 @@ const DisplayBuilding = ({
     user,
     id,
   } = datas.infoBuilding;
-  console.log(datas);
-
   const { total_votes } = datas;
 
 

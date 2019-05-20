@@ -45,7 +45,6 @@ const polisApiMiddleware = store => next => (action) => {
       })
 
         .then((response) => {
-          console.log(response.data);
           store.dispatch(updateFormField('usernamer', response.data.email));
           store.dispatch(updateFormField('firstNameInput', response.data.firstname));
           store.dispatch(updateFormField('lastNameInput', response.data.lastname));
@@ -66,7 +65,6 @@ const polisApiMiddleware = store => next => (action) => {
         withCredentials: true,
       })
         .then((response) => {
-          console.log(response.data);
           next(action);
         })
         .catch((error) => {
@@ -84,7 +82,6 @@ const polisApiMiddleware = store => next => (action) => {
         withCredentials: true,
       })
         .then((response) => {
-          console.log(response.data);
           next(action);
         })
         .catch((error) => {
@@ -97,7 +94,6 @@ const polisApiMiddleware = store => next => (action) => {
         withCredentials: true,
       })
         .then((response) => {
-          console.log(response.data);
           store.dispatch(autoconnect(response.data));
         })
         .catch((error) => {
@@ -136,7 +132,6 @@ const polisApiMiddleware = store => next => (action) => {
         withCredentials: true,
       })
         .then((response) => {
-          console.log(response.data);
           if (typeof response.data === 'object') {
             store.dispatch(newPasswordErrors(response.data));
           }
@@ -154,7 +149,6 @@ const polisApiMiddleware = store => next => (action) => {
         email: store.getState().username,
       })
         .then((response) => {
-          console.log(response.data);
           // Si l'email renseigné n'existe pas, j'affiche l'erreur à l'utilisateur.
           // Si il existe bien, je laisse passer l'action, qui s'occupe d'indiquer à l'utilisateur que le mail a bien été envoyé.
           if (response.data === 'Veuillez entrer un email valide') {
@@ -223,7 +217,6 @@ const polisApiMiddleware = store => next => (action) => {
       next(action);
       axios.get(`${polisApi}/buildings/${action.id}`)
         .then((response) => {
-          console.log(response.data);
           response.data.infoBuilding.votes.forEach((user) => {
             if (user.user.id === store.getState().userId) {
               store.dispatch(updateFormField('didUserVote', true));
@@ -240,9 +233,7 @@ const polisApiMiddleware = store => next => (action) => {
       const queries = action.list.map(item => axios.get(`${polisApi}/buildings/${item.id}`));
       axios.all(queries)
         .then((results) => {
-          console.log(results);
           const list = results.map(item => item.data.infoBuilding);
-          console.log('Les bâtiments: ', list);
           store.dispatch(setBuildingsListData(list));
         })
         .catch((error) => {
@@ -256,8 +247,7 @@ const polisApiMiddleware = store => next => (action) => {
       }, {
         withCredentials: true,
       })
-        .then((response) => {
-          console.log(response);
+        .then(() => {
         })
         .catch((error) => {
           console.log(error.message);

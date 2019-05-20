@@ -18,12 +18,10 @@ const Profile = ({
 }) => {
   const handleUpdateUser = (e) => {
     e.preventDefault();
-    console.log('User Updating');
     updateUser();
   };
   const handlecloseProfile = (e) => {
     e.preventDefault();
-    console.log('Profile Updating');
     closeProfile();
   };
 
