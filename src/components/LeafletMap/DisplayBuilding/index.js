@@ -1,3 +1,4 @@
+/* eslint-disable camelcase */
 /* eslint-disable jsx-a11y/label-has-associated-control */
 /* eslint-disable jsx-a11y/label-has-for */
 
@@ -17,6 +18,9 @@ const DisplayBuilding = ({
   userVote,
   isModifyPanelOpen,
   openModifyPanel,
+  isConnected,
+  buildings,
+  updateFormField,
 }) => {
   const {
     address,
@@ -34,7 +38,10 @@ const DisplayBuilding = ({
     urbanist,
     user,
     id,
-  } = datas;
+  } = datas.infoBuilding;
+  console.log(datas);
+
+  const { total_votes } = datas;
 
 
   const handleCloseDataForm = (e) => {
@@ -43,14 +50,16 @@ const DisplayBuilding = ({
   };
   const handleDownVote = (e) => {
     e.preventDefault();
-    console.log('downvote');
+    if (total_votes === -4) {
+      const newBuildingArray = buildings.filter(building => building.id !== id);
+      updateFormField('buildings', newBuildingArray);
+    }
     userVote(id, false);
     openModifyPanel();
   };
 
   const handleUpVote = (e) => {
     e.preventDefault();
-    console.log('upvote');
     userVote(id, true);
   };
 
@@ -111,8 +120,9 @@ const DisplayBuilding = ({
             </ul>
           </div>
           <hr />
-          <footer>
-            {
+          {isConnected && (
+            <footer>
+              {
               didUserVote ? (
                 <div className="panel-vote">
                   <p>MERCI D'AVOIR VOTÉ !</p>
@@ -135,14 +145,15 @@ const DisplayBuilding = ({
                 </div>
               )
             }
-            <div className="panel-share">
-              <p>
-                <a href="">
-            PARTAGER
-                </a>
-              </p>
-            </div>
-          </footer>
+              <div className="panel-share">
+                <p>
+                  <a href="">
+                    PARTAGER
+                  </a>
+                </p>
+              </div>
+            </footer>
+          )}
           <div className={isModifyPanelOpen ? 'panel-modify visible' : 'panel-modify hidden'}>
             <hr />
             <a href=""><p>Modifier des informations sur cette fiche</p></a>
@@ -154,13 +165,16 @@ const DisplayBuilding = ({
 };
 
 DisplayBuilding.propTypes = {
+  buildings: PropTypes.array.isRequired,
   closeAllModals: PropTypes.func.isRequired,
   datas: PropTypes.object.isRequired,
+  didUserVote: PropTypes.bool.isRequired,
+  isConnected: PropTypes.bool.isRequired,
   isDisplayBuildingOpen: PropTypes.bool.isRequired,
   isModifyPanelOpen: PropTypes.bool.isRequired,
   loading: PropTypes.bool.isRequired,
-  didUserVote: PropTypes.bool.isRequired,
   openModifyPanel: PropTypes.func.isRequired,
+  updateFormField: PropTypes.func.isRequired,
   userVote: PropTypes.func.isRequired,
 };
 

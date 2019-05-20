@@ -44,7 +44,12 @@ const polisApiMiddleware = store => next => (action) => {
         withCredentials: true,
       })
 
-        .then(() => {
+        .then((response) => {
+          console.log(response.data);
+          store.dispatch(updateFormField('usernamer', response.data.email));
+          store.dispatch(updateFormField('firstNameInput', response.data.firstname));
+          store.dispatch(updateFormField('lastNameInput', response.data.lastname));
+          store.dispatch(updateFormField('userId', response.data.id));
           store.dispatch(updateFormField('isConnected', true));
           store.dispatch(updateFormField('loginMessage', 'Vous êtes connecté(e)'));
           store.dispatch(updateFormField('loginStatus', 'connected'));
@@ -218,7 +223,13 @@ const polisApiMiddleware = store => next => (action) => {
       next(action);
       axios.get(`${polisApi}/buildings/${action.id}`)
         .then((response) => {
-          store.dispatch(setBuildingDatas(response.data.infoBuilding));
+          console.log(response.data);
+          response.data.infoBuilding.votes.forEach((user) => {
+            if (user.user.id === store.getState().userId) {
+              store.dispatch(updateFormField('didUserVote', true));
+            }
+          });
+          store.dispatch(setBuildingDatas(response.data));
         })
         .catch((error) => {
           console.log(error.message);

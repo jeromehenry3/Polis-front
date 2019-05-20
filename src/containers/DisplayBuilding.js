@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 
-import { closeAllModals, openModifyPanel, userVote } from 'src/store/reducer';
+import { closeAllModals, openModifyPanel, userVote, updateFormField } from 'src/store/reducer';
 /**
  * Local import
  */
@@ -15,6 +15,8 @@ const mapStateToProps = state => ({
   loading: state.loading,
   isModifyPanelOpen: state.isModifyPanelOpen,
   didUserVote: state.didUserVote,
+  isConnected: state.isConnected,
+  buildings: state.buildings,
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -27,6 +29,9 @@ const mapDispatchToProps = dispatch => ({
   userVote: (id, vote) => {
     dispatch(userVote(id, vote));
   },
+  updateFormField: (field, value) => {
+    dispatch(updateFormField(field, value));
+  }
 });
 
 export default connect(

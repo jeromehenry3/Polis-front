@@ -9,6 +9,7 @@ const initialState = {
   passwordConfirmInput: '', // string
   firstNameInput: '', // string
   lastNameInput: '', // string
+  userId: 0,
 
   // *******MANAGEMENT OF THE CONNECTION************/
   isConnected: false,
@@ -99,29 +100,32 @@ const initialState = {
   newPasswordErrors: [],
 
   datas: {
-    address: '',
-    architect: '',
-    architecture: { id: 0, name: '' },
-    builder: '',
-    certified: false,
-    creationDate: 0,
-    delivered: true,
-    description: '',
-    id: 0,
-    images: [
-      {
-        id: 0,
-        path: '',
-      },
-    ],
-    latitude: 0,
-    longitude: 0,
-    name: '',
-    planner: '',
-    promoter: '',
-    surface: 0,
-    urbanist: '',
-    user: { firstName: '', lastName: '' },
+    infoBuilding: {
+      address: '',
+      architect: '',
+      architecture: { id: 0, name: '' },
+      builder: '',
+      certified: false,
+      creationDate: 0,
+      delivered: true,
+      description: '',
+      id: 0,
+      images: [
+        {
+          id: 0,
+          path: '',
+        },
+      ],
+      latitude: 0,
+      longitude: 0,
+      name: '',
+      planner: '',
+      promoter: '',
+      surface: 0,
+      urbanist: '',
+      user: { firstName: '', lastName: '' },
+    },
+    total_votes: 0,
   },
   // Autocomplete results
   autoCompleteResults: [],
@@ -226,6 +230,7 @@ const reducer = (state = initialState, action = {}) => {
         username: action.userdata.email,
         firstNameInput: action.userdata.firstname,
         lastNameInput: action.userdata.lastname,
+        userId: action.userdata.id,
       };
     case SIGNIN:
       return state;
@@ -296,6 +301,8 @@ const reducer = (state = initialState, action = {}) => {
         isDataFormOpen: false,
         isDisplayBuildingOpen: false,
         isAutocompleteOpen: false,
+        didUserVote: false,
+        isModifyPanelOpen: false,
         // Les futurs modals à fermer
       };
     case SET_ARCHITECTURES:
