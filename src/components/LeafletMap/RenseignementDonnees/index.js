@@ -43,7 +43,6 @@ const RenseignementDonnees = ({
   };
 
   const handleFileChange = (e) => {
-    console.log(e.target.files[0]);
     if (e.target.files[0].type !== 'image/png' && e.target.files[0].type !== 'image/jpeg') {
       updateFormField('fileText', 'Formats acceptés: JPG, PNG');
     } else {
@@ -64,7 +63,6 @@ const RenseignementDonnees = ({
 
   const handleSubmitBuilding = (e) => {
     e.preventDefault();
-    console.log('submitting building');
     closeAllModals();
     submitBuilding();
   };

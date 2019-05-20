@@ -19,7 +19,6 @@ import './form.scss';
 const Form = ({ children, onSubmit }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log('form submitted');
     onSubmit(); // Function passed from the containing component.
   };
 

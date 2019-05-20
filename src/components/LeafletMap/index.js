@@ -42,14 +42,10 @@ class Leaflet extends React.Component {
 
   componentDidMount() {
     const { getArchitectures, getBuildings, updateFormField, closeMenu } = this.props;
-    // console.log(this.map.leafletElement.getBounds());
-    const actualBounds = this.map.current.leafletElement.getBounds();
 
     // updateFormField('actualBounds', actualBounds);
     // eslint-disable-next-line no-unused-expressions
     detectIfMobile() && toggleFullScreen();
-    // updateFormField('loadingWithLoader', true);
-    // getBuildings(actualBounds);
     getArchitectures();
     closeMenu();
   }

@@ -15,7 +15,6 @@ import './liste.scss';
 class Liste extends Component {
   // {buildings, listData, loading, getBuildingsListData} = this.props;
   // { buildingsData } = getBuildingsListData(buildings);
-  // console.log(buildingsData);
   componentDidMount() {
     const { buildings, getBuildingsListData } = this.props;
     getBuildingsListData(buildings);
