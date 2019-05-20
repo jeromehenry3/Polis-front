@@ -12,14 +12,14 @@ const Profile = ({
   passwordInput,
   passwordConfirmInput,
   updateFormField,
-  updateProfile,
+  updateUser,
   isProfileOpen,
   closeProfile,
 }) => {
-  const handleUpdateProfile = (e) => {
+  const handleUpdateUser = (e) => {
     e.preventDefault();
-    console.log('Profile Updating');
-    updateProfile();
+    console.log('User Updating');
+    updateUser();
   };
   const handlecloseProfile = (e) => {
     e.preventDefault();
@@ -84,7 +84,7 @@ const Profile = ({
         />
         <div className="btns">
           <button type="button" className="form-button cancel" onClick={handlecloseProfile}>Annuler</button>
-          <button type="submit" className="form-button" onClick={handleUpdateProfile}>Modifier</button>
+          <button type="submit" className="form-button" onClick={handleUpdateUser}>Modifier</button>
         </div>
       </form>
     </div>
@@ -98,7 +98,7 @@ Profile.propTypes = {
   passwordInput: PropTypes.string.isRequired,
   passwordConfirmInput: PropTypes.string.isRequired,
   updateFormField: PropTypes.func.isRequired,
-  updateProfile: PropTypes.func.isRequired,
+  updateUser: PropTypes.func.isRequired,
   isProfileOpen: PropTypes.bool.isRequired,
   closeProfile: PropTypes.func.isRequired,
 };
