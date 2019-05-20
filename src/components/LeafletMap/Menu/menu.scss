@@ -60,6 +60,9 @@
             font-size: 2em;
             transform: translateX(2px);
         }
+        &:hover {
+            background-color: #ffffff !important;
+        }
 
         svg {
             position: absolute;
