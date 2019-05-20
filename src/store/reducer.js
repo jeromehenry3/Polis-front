@@ -222,9 +222,9 @@ const reducer = (state = initialState, action = {}) => {
         isConnected: true,
         loginMessage: 'Vous êtes connecté(e)',
         loginStatus: 'connected',
-        username: action.userdata[2],
-        firstNameInput: action.userdata[0],
-        lastNameInput: action.userdata[1],
+        username: action.userdata.email,
+        firstNameInput: action.userdata.firstname,
+        lastNameInput: action.userdata.lastname,
       };
     case SIGNIN:
       return state;
@@ -398,6 +398,7 @@ const reducer = (state = initialState, action = {}) => {
       return {
         ...state,
         view: action.view,
+        loadingWithLoader: false,
       };
     case EMAIL_ERROR:
       return {
