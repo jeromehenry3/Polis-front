@@ -13,8 +13,7 @@ const initialState = {
   // *******MANAGEMENT OF THE CONNECTION************/
   isConnected: false,
   loginMessage: 'Vous devez vous identifier pour contribuer à Polis',
-  loginStatus: 'init', // string : not-connected || connecting || connected, for logic purposes
-  disconnected: false,
+  loginStatus: 'init', // string : not-connected || connecting || connected || disconneced, for logic purposes
 
   // *********MANAGEMENT OF THE GEOLOCALIZATION*********/
   center: [46.7248003746672, 2.9003906250000004], // Center of the map
@@ -200,7 +199,7 @@ const reducer = (state = initialState, action = {}) => {
       return {
         ...initialState,
         loginMessage: 'Vous avez bien été déconnecté(e)',
-        disconnected: true,
+        loginStatus: 'disconnected',
         redirectToLogin: true,
       };
     case CHECK_COOKIE:

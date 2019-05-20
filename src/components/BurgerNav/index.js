@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { NavLink } from 'react-router-dom';
+import { NavLink, Redirect } from 'react-router-dom';
 import Profile from 'src/containers/Profile';
 
 import './burger.scss';
@@ -40,7 +40,17 @@ const BurgerNav = ({
 
       <nav className={isMenuOpen ? 'content-menu open' : 'content-menu'}>
         <ul>
-          {isConnected && <NavLink onClick={() => {disconnect(); handleNavLinkClick(); }} to="/login">Déconnexion</NavLink>}
+          {isConnected && (
+            <NavLink
+              onClick={() => {
+                disconnect();
+                handleNavLinkClick();
+                return (<Redirect to="/login" />);
+              }}
+              to="#"
+            >Déconnexion
+            </NavLink>
+          )}
           {!isConnected && (
           <NavLink
             onClick={() => {
