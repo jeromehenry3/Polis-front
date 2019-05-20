@@ -5,6 +5,7 @@ import axios from 'axios';
 import {
   CONNECT_USER,
   DISCONNECT_USER,
+  UPDATE_USER,
   SIGNIN,
   CHECK_COOKIE,
   autoconnect,
@@ -62,6 +63,24 @@ const polisApiMiddleware = store => next => (action) => {
       break;
     case DISCONNECT_USER:
       axios.get(`${polisApi}/logout`, {
+        withCredentials: true,
+      })
+        .then((response) => {
+          console.log(response.data);
+          next(action);
+        })
+        .catch((error) => {
+          console.log(error.message);
+        });
+      break;
+    case UPDATE_USER:
+      axios.post(`${polisApi}/profile/update`, {
+        firstname: store.getState().firstNameInput,
+        lastname: store.getState().lastNameInput,
+        email: store.getState().username,
+        password: store.getState().paswordInput,
+        password2: store.getState().paswordConfirmInput,
+      }, {
         withCredentials: true,
       })
         .then((response) => {

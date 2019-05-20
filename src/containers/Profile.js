@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 
-import { closeProfile, updateFormField } from 'src/store/reducer';
+import { closeProfile, updateFormField, updateUser } from 'src/store/reducer';
 
 /**
  * Local import
@@ -23,6 +23,9 @@ const mapDispatchToProps = dispatch => ({
   },
   updateFormField: (fieldName, input) => {
     dispatch(updateFormField(fieldName, input));
+  },
+  updateUser: () => {
+    dispatch(updateUser());
   },
 });
 

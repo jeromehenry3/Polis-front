@@ -23,7 +23,7 @@ const About = () => (
             <span className="cadre-passion">Polis est codé avec passion par :</span>
             <ul>
               <li><span className="team-name"><a href="#clement">Clément Eveillard</a></span>  <span className="team-job">Frontend</span>  <span className="team-role">Product Owner</span></li>
-              <li><span className="team-name"><a href="#thomas">Thomas Gilet</a></span>  <span className="team-job">Backend</span>  <span className="team-role">Lead Back</span></li>
+              <li><span className="team-name"><a href="#thomas">Thomas Gillet</a></span>  <span className="team-job">Backend</span>  <span className="team-role">Lead Back</span></li>
               <li><span className="team-name"><a href="#jerome">Jérome Henry</a></span>  <span className="team-job">Frontend</span>  <span className="team-role">Lead Front</span></li>
               <li><span className="team-name"><a href="#fabien">Fabien Mackowiak</a></span>  <span className="team-job">Frontend</span>  <span className="team-role">Project Manager</span></li>
             </ul>

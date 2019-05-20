@@ -48,7 +48,7 @@ class Leaflet extends React.Component {
     // updateFormField('actualBounds', actualBounds);
     // eslint-disable-next-line no-unused-expressions
     detectIfMobile() && toggleFullScreen();
-    updateFormField('loadingWithLoader', true);
+    // updateFormField('loadingWithLoader', true);
     // getBuildings(actualBounds);
     getArchitectures();
     closeMenu();
