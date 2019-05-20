@@ -1,7 +1,12 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { Card, Icon, Image, Message } from 'semantic-ui-react';
-import { Link, Redirect } from 'react-router-dom';
+import {
+  Card, Icon, Image, Message,
+} from 'semantic-ui-react';
+import { Link } from 'react-router-dom';
+
+import ViewToggler from 'src/containers/ViewToggler';
+import BurgerNav from 'src/containers/BurgerNav';
 
 import MainPicture from '../../../styles/images/Libertony.jpg';
 
@@ -20,6 +25,8 @@ class Liste extends Component {
     const { listData, loading } = this.props;
     return (
       <div id="liste">
+        <BurgerNav />
+        <ViewToggler />
         {listData && (
           <Card.Group>
             {listData.map(item => (
