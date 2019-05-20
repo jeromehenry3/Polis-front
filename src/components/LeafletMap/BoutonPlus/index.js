@@ -21,6 +21,31 @@ const BoutonPlus = (closeAllModals, openRenseignementDonnees) => {
         name="plus"
         onClick={handleClick}
       />
+      <svg height="600" width="800">
+        <g id="circle-and-text">
+          <circle
+            id="circle"
+            cx="400"
+            cy="300"
+            r="130"
+          />
+          <path
+            id="arc"
+            d="M395 170.1 A 130 130, 0, 1, 0, 400 170 Z"
+            stroke="green"
+            fill="transparent"
+          />
+          <text id="circleText" width="500">
+            <textPath
+              id="circleTextPath"
+              href="#arc"
+              startOffset="48%"
+            >
+                Resume
+            </textPath>
+          </text>
+        </g>
+      </svg>
     </div>
   );
 };

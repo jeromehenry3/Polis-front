@@ -86,6 +86,26 @@ const TopMenu = ({
           <Icon name="map marker alternate" />
           <Icon corner name="add" />
         </Icon.Group>
+        <svg viewBox="0 0 200 200">
+          <g id="g-svg">
+            <path
+              id="cercle"
+              d="
+                  M 100, 100
+                  m -75, 0
+                  a 75,75 0 1,0 150,0
+                  a 75,75 0 1,0 -150,0
+                  "
+              fill="transparent"
+            />
+            <text id="circleText" fill="#000" fontSize=".9em">
+              <textPath id="circleTextPath" href="#cercle"
+                startOffset="70%">
+                 ajouter
+              </textPath>
+            </text>
+          </g>
+        </svg>
       </Button>
     </div>
   );
