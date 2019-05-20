@@ -60,6 +60,56 @@
             font-size: 2em;
             transform: translateX(2px);
         }
+
+        svg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            // transform: scale(1.3);
+            color: $salmon;
+            opacity: 0;
+
+            g {
+                // transform: scale(1.3);
+            }
+
+            textPath {
+                font-size: 1.9em;
+                letter-spacing: 6px;
+                // text-transform: uppercase;
+            }
+            #circleText {
+                fill: $salmon-darken;
+            }
+
+        }
+        svg:hover {
+            // transform-origin: 400px 300px;
+            animation-name: rotator;
+            animation-duration: .5s;
+            animation-iteration-count: 1;
+            animation-fill-mode: forwards;
+            animation-timing-function: ease-in-out;
+          }
+          
+          @keyframes rotator {
+            0% {
+              transform: rotate(0deg);
+              transform: scale(1);
+              opacity: 0;
+            }
+          
+            // 55% {
+            //   transform: rotate(-151deg);
+            //   opacity: .5;
+            // }
+          
+            100% {
+              transform: rotate(-151deg);
+              transform: scale (1.3);
+              opacity: 1;
+            }
+          }
     }
 
     .ui.search {

@@ -8,10 +8,10 @@ import PropTypes from 'prop-types';
  * Local import
  */
 // Composants
-import Liste from 'src/components/LeafletMap/Liste/index';
 import About from 'src/components/About';
 // Containers
 import Signin from 'src/containers/Signin';
+import Liste from 'src/containers/Liste';
 import Login from 'src/containers/Login';
 import LostPassword from 'src/containers/LostPassword';
 import NewPassword from 'src/containers/NewPassword';

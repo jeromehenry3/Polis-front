@@ -23,12 +23,14 @@ class Leaflet extends React.Component {
   myPinUne = L.icon({
     iconUrl: `${pins2}`,
     iconSize: [40, 80], // size of the icon
+    iconAnchor: [10, 40],
     // shadowSize:   [50, 64], // size of the shadow
   });
 
   myPinDeux = L.icon({
     iconUrl: `${pins}`,
     iconSize: [40, 80], // size of the icon
+    iconAnchor: [10, 40],
     // shadowSize:   [50, 64], // size of the shadow
   });
 
@@ -43,19 +45,22 @@ class Leaflet extends React.Component {
     // console.log(this.map.leafletElement.getBounds());
     const actualBounds = this.map.current.leafletElement.getBounds();
 
-    updateFormField('actualBounds', actualBounds);
+    // updateFormField('actualBounds', actualBounds);
     // eslint-disable-next-line no-unused-expressions
     detectIfMobile() && toggleFullScreen();
-    getBuildings(actualBounds);
+    updateFormField('loadingWithLoader', true);
+    // getBuildings(actualBounds);
     getArchitectures();
     closeMenu();
   }
 
   handleMove = () => {
-    const { updateFormField, getBuildings } = this.props;
+    const { updateFormField, getBuildings, fetchingBuildings } = this.props;
     const actualBounds = this.map.current.leafletElement.getBounds();
     updateFormField('actualBounds', actualBounds);
-    getBuildings(actualBounds);
+    // eslint-disable-next-line no-unused-expressions
+    fetchingBuildings || getBuildings(actualBounds);
+    updateFormField('fetchingBuildings', true);
   }
 
   handleRightClick = (e) => {
@@ -88,9 +93,6 @@ class Leaflet extends React.Component {
       coords, isGeolocationEnabled,
       center, zoom, userLocalized, updateFormField, loadingWithLoader,
     } = this.props;
-    const southWest = L.latLng(-66.51326044311186, -172.26562500000003);
-    const northEast = L.latLng(81.92318632602199, 190.54687500000003);
-    const bounds = L.latLngBounds(southWest, northEast);
 
     if (isGeolocationEnabled && coords && !userLocalized) {
       // eslint-disable-next-line no-unused-expressions
@@ -110,21 +112,31 @@ class Leaflet extends React.Component {
           ref={this.map}
           center={center}
           zoom={zoom}
-          maxZoom={19}
+          maxZoom={21}
           minZoom={3}
-          setView
+          zoomSnap={1}
+          markerZoomAnimation={false}
+          // zoomAnimation={false}
+          // setView
+          flyTo
           attributionControl
           zoomControl
           doubleClickZoom
           scrollWheelZoom
-          maxBounds={bounds}
+          worldCopyJump
           dragging
           animate
           infinite
-          easeLinearity={0.35}
+          inertia
+          wheelDebounceTime={200}
+          wheelPxPerZoomLevel={100}
+          zoomAnimationThreshold={4}
+          fadeAnimation
+          easeLinearity={0.2}
           onContextmenu={this.handleRightClick}
           onClick={closeAllModals}
           whenReady={this.handleMapReady}
+          onZoomEnd={this.handleMove}
           onMoveEnd={this.handleMove}
         >
           <TileLayer

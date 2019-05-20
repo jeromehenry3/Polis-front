@@ -22,6 +22,8 @@ import {
   setBuildingDatas,
   redirectToLogin,
   resetFormBuilding,
+  GET_BUILDINGS_LIST_DATA,
+  setBuildingsListData,
   updateFormField,
   emailError,
   newPasswordErrors,
@@ -184,7 +186,7 @@ const polisApiMiddleware = store => next => (action) => {
         });
       break;
     case GET_BUILDINGS:
-      next(action);
+      setTimeout(() => next(action), 500);
       axios.post(`${polisApi}/buildings/screen`, { bounds: action.bounds })
         .then((response) => {
           store.dispatch(setBuildings(response.data));
@@ -197,7 +199,21 @@ const polisApiMiddleware = store => next => (action) => {
       next(action);
       axios.get(`${polisApi}/buildings/${action.id}`)
         .then((response) => {
-          store.dispatch(setBuildingDatas(response.data));
+          store.dispatch(setBuildingDatas(response.data.infoBuilding));
+        })
+        .catch((error) => {
+          console.log(error.message);
+        });
+      break;
+    case GET_BUILDINGS_LIST_DATA:
+      next(action);
+      const queries = action.list.map(item => axios.get(`${polisApi}/buildings/${item.id}`));
+      axios.all(queries)
+        .then((results) => {
+          console.log(results);
+          const list = results.map(item => item.data.infoBuilding);
+          console.log('Les bâtiments: ', list);
+          store.dispatch(setBuildingsListData(list));
         })
         .catch((error) => {
           console.log(error.message);

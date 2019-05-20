@@ -64,6 +64,7 @@ const initialState = {
   // Datas component did mount
   architectures: [],
   buildings: [],
+  fetchingBuildings: false,
 
 
   // ************FIELDS OF THE CARD DATA*******
@@ -125,6 +126,9 @@ const initialState = {
   // Autocomplete results
   autoCompleteResults: [],
   isAutocompleteOpen: false,
+
+  // COMPOSANT LISTE
+  listData: [],
 };
 
 /**
@@ -143,6 +147,8 @@ export const FORGOTTEN_PASSWORD = 'FORGOTTEN_PASSWORD';
 export const OPEN_DATA_FORM = 'OPEN_DATA_FORM';
 export const OPEN_DATA_FORM_BUTTON = 'OPEN_DATA_FORM_BUTTON';
 export const OPEN_DISPLAY_BUILDING = 'OPEN_DISPLAY_BUILDING';
+export const GET_BUILDINGS_LIST_DATA = 'GET_BUILDINGS_LIST_DATA';
+export const SET_BUILDINGS_LIST_DATA = 'SET_BUILDINGS_LIST_DATA';
 export const OPEN_DATA_FORM_RESPONSE = 'OPEN_DATA_FORM_RESPONSE';
 export const CLOSE_ALL_MODALS = 'CLOSE_ALL_MODALS';
 export const SUBMIT_BUILDING = 'SUBMIT_BULDING';
@@ -172,7 +178,9 @@ export const USER_VOTE = 'USER_VOTE';
 /**
  * Traitements
  */
-
+const mergeBuildings = (a, b, field) => (
+  a.filter(aa => !b.find(bb => aa[field] === bb[field])).concat(b)
+);
 /**
  * Reducer
  */
@@ -261,6 +269,17 @@ const reducer = (state = initialState, action = {}) => {
         isDisplayBuildingOpen: true,
         loading: true,
       };
+    case GET_BUILDINGS_LIST_DATA:
+      return {
+        ...state,
+        loading: true,
+      };
+    case SET_BUILDINGS_LIST_DATA:
+      return {
+        ...state,
+        listData: action.list,
+        loading: false,
+      };
     case OPEN_DATA_FORM_RESPONSE:
       // eslint-disable-next-line camelcase
       const { display_name } = action.data;
@@ -283,10 +302,17 @@ const reducer = (state = initialState, action = {}) => {
         ...state,
         architectures: action.architectures,
       };
+    case GET_BUILDINGS:
+      return {
+        ...state,
+        fetchingBuildings: false,
+      };
     case SET_BUILDINGS:
       return {
         ...state,
-        buildings: action.buildings,
+        // buildings: [...new Set([...state.buildings, ...action.buildings])],
+        buildings: mergeBuildings(state.buildings, action.buildings, 'id'),
+        // fetchingBuildings: false,
       };
     case CREATE_MARKER:
       return {
@@ -485,6 +511,14 @@ export const createMarker = (latitude, longitude, datas) => ({
   latitude,
   longitude,
   datas,
+});
+export const getBuildingsListData = list => ({
+  type: GET_BUILDINGS_LIST_DATA,
+  list,
+});
+export const setBuildingsListData = list => ({
+  type: SET_BUILDINGS_LIST_DATA,
+  list,
 });
 
 export const setBuildingDatas = datas => ({

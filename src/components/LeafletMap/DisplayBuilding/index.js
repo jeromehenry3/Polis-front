@@ -36,6 +36,7 @@ const DisplayBuilding = ({
     id,
   } = datas;
 
+
   const handleCloseDataForm = (e) => {
     e.preventDefault();
     closeAllModals();
