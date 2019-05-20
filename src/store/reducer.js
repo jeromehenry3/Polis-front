@@ -138,6 +138,7 @@ export const UPDATE_FORM_FIELD = 'UPDATE_FORM_FIELD';
 export const CONNECT_USER = 'CONNECT_USER'; // Api connection with username && password
 export const CONNECTING_ERROR = 'CONNECTING_ERROR';
 export const DISCONNECT_USER = 'DISCONNECT_USER';
+export const UPDATE_USER = 'UPDATE_USER'; // update user profile
 export const CHECK_COOKIE = 'CHECK_COOKIE';
 export const AUTOCONNECT = 'AUTOCONNECT';
 export const SIGNIN = 'SIGNIN';
@@ -441,6 +442,9 @@ export const autoconnect = userdata => ({
 export const disconnect = () => ({
   type: DISCONNECT_USER,
 });
+export const updateUser = () => ({
+  type: UPDATE_USER,
+});
 export const signin = () => ({
   type: SIGNIN,
 });
@@ -448,7 +452,6 @@ export const signinErrors = errors => ({
   type: SIGNIN_ERRORS,
   errors,
 });
-
 export const newPasswordErrors = errors => ({
   type: NEW_PASSWORD_ERRORS,
   errors,
