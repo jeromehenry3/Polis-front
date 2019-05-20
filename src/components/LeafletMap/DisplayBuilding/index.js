@@ -1,3 +1,4 @@
+/* eslint-disable camelcase */
 /* eslint-disable jsx-a11y/label-has-associated-control */
 /* eslint-disable jsx-a11y/label-has-for */
 
@@ -18,6 +19,8 @@ const DisplayBuilding = ({
   isModifyPanelOpen,
   openModifyPanel,
   isConnected,
+  buildings,
+  updateFormField,
 }) => {
   const {
     address,
@@ -47,14 +50,16 @@ const DisplayBuilding = ({
   };
   const handleDownVote = (e) => {
     e.preventDefault();
-    console.log('downvote');
+    if (total_votes === -4) {
+      const newBuildingArray = buildings.filter(building => building.id !== id);
+      updateFormField('buildings', newBuildingArray);
+    }
     userVote(id, false);
     openModifyPanel();
   };
 
   const handleUpVote = (e) => {
     e.preventDefault();
-    console.log('upvote');
     userVote(id, true);
   };
 
@@ -160,15 +165,17 @@ const DisplayBuilding = ({
 };
 
 DisplayBuilding.propTypes = {
+  buildings: PropTypes.array.isRequired,
   closeAllModals: PropTypes.func.isRequired,
   datas: PropTypes.object.isRequired,
+  didUserVote: PropTypes.bool.isRequired,
+  isConnected: PropTypes.bool.isRequired,
   isDisplayBuildingOpen: PropTypes.bool.isRequired,
   isModifyPanelOpen: PropTypes.bool.isRequired,
   loading: PropTypes.bool.isRequired,
-  didUserVote: PropTypes.bool.isRequired,
   openModifyPanel: PropTypes.func.isRequired,
+  updateFormField: PropTypes.func.isRequired,
   userVote: PropTypes.func.isRequired,
-  isConnected: PropTypes.bool.isRequired,
 };
 
 export default DisplayBuilding;
