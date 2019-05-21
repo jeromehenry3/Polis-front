@@ -65,7 +65,7 @@ workflows:
       - build-and-deploy:
           filters:
             branches:
-              only: dev
+              only: master
       # - deploy:
       #     requires:
       #       - build
