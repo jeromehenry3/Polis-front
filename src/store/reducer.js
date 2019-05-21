@@ -143,6 +143,7 @@ export const CONNECT_USER = 'CONNECT_USER'; // Api connection with username && p
 export const CONNECTING_ERROR = 'CONNECTING_ERROR';
 export const DISCONNECT_USER = 'DISCONNECT_USER';
 export const UPDATE_USER = 'UPDATE_USER'; // update user profile
+export const PROFILE_IS_UPDATE = 'PROFILE_IS_UPDATE';
 export const CHECK_COOKIE = 'CHECK_COOKIE';
 export const AUTOCONNECT = 'AUTOCONNECT';
 export const SIGNIN = 'SIGNIN';
@@ -183,9 +184,9 @@ export const USER_VOTE = 'USER_VOTE';
 /**
  * Traitements
  */
-const mergeBuildings = (a, b, field) => (
-  a.filter(aa => !b.find(bb => aa[field] === bb[field])).concat(b)
-);
+// const mergeBuildings = (a, b, field) => (
+//   a.filter(aa => !b.find(bb => aa[field] === bb[field])).concat(b)
+// );
 /**
  * Reducer
  */
@@ -201,6 +202,13 @@ const reducer = (state = initialState, action = {}) => {
         ...state,
         loginMessage: 'Connexion en cours',
         loginStatus: 'connecting-user',
+      };
+    case PROFILE_IS_UPDATE:
+      return {
+        ...state,
+        profileUpdatedMessage: 'Profil mis à jour',
+        passwordInput: '',
+        passwordConfirmInput: '',
       };
     case CONNECTING_ERROR:
       return {
@@ -319,7 +327,8 @@ const reducer = (state = initialState, action = {}) => {
       return {
         ...state,
         // buildings: [...new Set([...state.buildings, ...action.buildings])],
-        buildings: mergeBuildings(state.buildings, action.buildings, 'id'),
+        // buildings: mergeBuildings(state.buildings, action.buildings, 'id'),
+        buildings: action.buildings,
         // fetchingBuildings: false,
       };
     case CREATE_MARKER:
@@ -452,6 +461,10 @@ export const disconnect = () => ({
 });
 export const updateUser = () => ({
   type: UPDATE_USER,
+});
+export const profileIsUpdate = message => ({
+  type: PROFILE_IS_UPDATE,
+  message,
 });
 export const signin = () => ({
   type: SIGNIN,

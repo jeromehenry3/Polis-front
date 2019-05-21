@@ -37,14 +37,6 @@
     .input-container label {
         display: none;
     }
-    // .input-container i {
-    //     color: $beige-lighten;
-    // }
-    // .input-container .input:focus {
-    //     margin-bottom: 20px;
-    //     border: none;
-    //     background-color: white;
-    // }
     .btns {
         display:flex;
         justify-content: space-around;
@@ -63,6 +55,11 @@
             background-color: #e4c771;
             color:white;
         }
+    }
+    .updated {
+        font-size: 12px;
+        font-weight: 700;
+        color: $yellow;
     }
 }
 
