@@ -1,0 +1,109 @@
+@import 'src/styles/_vars.scss';
+
+#liste {
+    margin: 0;
+    min-height: 101.2vh; // Petit bug, à corriger..
+    background-color: $beige-lighten;
+
+    .cards {
+        display: flex;
+        justify-content: center;
+        padding: 60px;
+    }
+    .card {
+        transition: box-shadow .6s;
+        &:hover {
+            box-shadow: 1px 2px 7px 1px rgba(0, 0, 0, 0.5);
+        }
+        cursor: pointer;
+        // img {
+        // height: 120px;
+        // }
+        .header {
+            font-size:1em;
+        }
+        .meta {
+            font-size: 0.8em;
+        }
+        .description {
+            color:$orange-darken;
+            font-size: 0.8em;
+            margin-bottom: 1em;
+        }
+        .extra {
+            font-size: 0.9em;
+        }
+        .panel-builders {
+
+            li {
+                display:flex;
+                justify-content: space-between;
+                :nth-child(2) {
+                    margin-left: 30px;
+                }
+            }
+            p {
+                text-align: right;
+            }
+            .construction {
+                color:$yellow-darken;
+                font-weight:700;
+                text-decoration: underline;
+            }
+            .amenagement {
+                color:$orange-darken;
+                font-weight:700;
+                text-decoration: underline;
+            }
+            a {
+                color:#1d1d1d;
+                font-weight:300;
+                transition: 0.4s;
+            }
+            a:hover {
+                color: $yellow-darken;
+            }
+            
+        }
+    }  
+    .message {
+        display: block;
+        width: 67%;
+        margin: 0 auto;
+        background-color: #ffffff;
+        color: $salmon-darken;
+        box-shadow: 1px 2px 6px 0px rgba(0, 0, 0, 0.3);
+    }
+    .back-to-map {
+        position:fixed;
+        bottom: 50px;
+        left: 50%;
+        width: 200px;
+        margin-left:-100px;
+        text-align: center;
+        &-btn {
+        display: inline-block;
+        padding: 8px 15px 8px;
+        border: 2px solid white; 
+        background-color: white;
+        border-radius: 25px;
+        color:$orange;
+        transition: 0.2s;
+        box-shadow: 1px 2px 6px 0px rgba(0, 0, 0, 0.3);
+        font-size:0.9em;
+            i.reply {
+                color:$yellow;
+                transition: 0.3s;
+            }
+        }
+        &-btn:hover {
+            color:$orange-darken;
+            i.map {
+                color: orange-darken;
+            }
+            i.reply {
+                color:$salmon-darken;
+            }
+        }
+    }
+}

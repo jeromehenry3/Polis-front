@@ -1,0 +1,92 @@
+@import 'src/styles/_vars.scss';
+
+p {
+  font-size: 0.8em;
+  text-align: center;
+  padding-top: .8em;
+  padding-bottom: .5em;
+  
+  &.identification-message {
+    transform: translateY(-20px);
+    color: $brown-darken;
+    font-size:13px;;
+    font-weight:bold;
+  }
+  &.connecting-user:after {
+    content: ' .';
+    animation: dots 1s steps(3, end) infinite forwards;
+  }
+}
+
+#login #password {
+  margin-bottom:0;
+}
+.lost-password-label {
+  text-align: left;
+  color: rgb(195, 195, 195);
+  margin-bottom: 1.8em;
+}
+div#login-pin {
+  margin: .8em auto;
+  width: 2.4em;
+  height: 2.4em;
+  background-size: cover;
+  p {
+    text-transform: uppercase;
+    color:  $yellow;
+    font-weight: bold;
+    transform: translateX(-.5px);
+    line-height: 1.2em;
+  }
+}
+
+button.inverted-colors {
+  color: $salmon;
+  background-color: $yellow;
+  &:hover {
+    background-color: $yellow-darken;
+  }
+}
+
+a:hover {
+  color: $yellow-darken;
+  cursor: pointer;
+}
+
+@keyframes dots {
+  0%, 12.5% {
+      opacity: 0;
+      text-shadow: .5em 0 rgba(0, 0, 0, 0);
+      text-shadow: .5em 0, 1em 0 rgba(0, 0, 0, 0);
+  }
+  25% {
+      opacity: 1;
+      text-shadow: .5em 0 rgba(0, 0, 0, 0);
+      text-shadow: .5em 0, 1em 0 rgba(0, 0, 0, 0);
+  }
+  37.5% {
+      text-shadow: .5em 0 black;
+      text-shadow: .5em 0 rgba(0, 0, 0, 1);
+      text-shadow: .5em 0, 1em 0 rgba(0, 0, 0, 0);
+  }
+  50% {
+      text-shadow: .5em 0, 1em 0 black;
+      text-shadow: .5em 0 rgba(0, 0, 0, 1);
+      text-shadow: .5em 0, 1em 0 rgba(0, 0, 0, 1);
+  }
+  80% {
+    text-shadow: .5em 0, 1em 0 black;
+    text-shadow: .5em 0 rgba(0, 0, 0, 0);
+    text-shadow: .5em 0, 1em 0 rgba(0, 0, 0, 0);
+}
+}	
+
+@media screen and (max-width: 430px) {  
+  p.lost-password {
+    font-size: 0.7em;
+    margin-bottom:0.6em;
+  }
+  div#login-pin {
+    margin:.2em auto;
+  }
+}

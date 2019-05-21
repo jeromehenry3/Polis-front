@@ -1,0 +1,40 @@
+@import 'src/styles/_vars.scss';
+
+.form {
+  display: flex;
+  flex-direction: column;
+  padding: 35px;
+  border-radius: 10px;
+  background-color: #ffffff;
+  justify-content: space-between;
+  -webkit-backface-visibility: hidden;
+  -webkit-transform: translateZ(0) scale(1.0, 1.0);
+}
+.form-button {
+  background-color: $salmon;
+  color: #ffffff;
+  border-radius: 4px;
+  padding: 10px;
+  border: none;
+  font-family: 'Open Sans', sans-serif;
+  font-size: 1.3em;
+  margin-top: 10px;
+  transition: 0.4s;
+  font-weight: normal;
+  &:hover {
+    background-color: $salmon-darken;
+  }
+}
+
+// Petits écrans
+@media screen and (max-width: 430px) { 
+  .form {
+    padding: 30px 35px;
+  }
+  .form-button {
+    font-size:16px;;
+  }
+  .link-to-login {
+    font-size:12px;
+  }
+}

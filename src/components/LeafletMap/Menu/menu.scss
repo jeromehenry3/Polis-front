@@ -1,0 +1,183 @@
+@import 'src/styles/_vars.scss';
+
+#menu {
+    position: fixed;
+    width: 100%;
+    z-index: 1000;
+    padding: 0 1em;
+    padding-top: 15px;
+
+    .result {
+        text-align: left;
+        .city {
+            font-weight: bold;
+            color: $salmon;
+        }
+    }
+    .search > div > div > input {
+        margin-bottom: 0;
+    }
+    .input-container .input {
+        border-color: $salmon-lighten;
+        box-shadow: -1px 2px 4px 0px rgba(0,0,0,0.40);
+        transition: 0.4s;
+        width: 230px;
+        &:focus {
+            border-color: $salmon;
+        }
+    }
+    .search.link.icon {
+        right: 10px;
+    }
+    .ui.item.dropdown { // The menu from the burger
+        margin-right: 100px;
+        font-size: 1.9em;
+        color: #405c78;
+        height: 100%;
+        width: 2em;
+        
+    }
+    .menu.transition { // i.e. dropdown menu
+        border: none;
+        box-shadow: 2px 2px 8px 0px rgba(0,0,0,0.40);
+        font-size: 1rem;
+        font-weight: 700;
+        z-index: 1500000;
+        &.option {
+            z-index: 1500000;
+        }
+    }
+
+    button#add-button {
+        position: fixed;
+        bottom: 2em;
+        left: 50vw;
+        transform: translateX(-50%);
+        height: 80px;
+        width: 80px;
+
+        & > i.icons {
+            font-size: 2em;
+            transform: translateX(2px);
+        }
+        &:hover {
+            background-color: #ffffff !important;
+        }
+
+        svg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            // transform: scale(1.3);
+            color: $salmon;
+            opacity: 0;
+
+            g {
+                // transform: scale(1.3);
+            }
+
+            textPath {
+                font-size: 1.9em;
+                letter-spacing: 6px;
+                // text-transform: uppercase;
+            }
+            #circleText {
+                fill: $salmon-darken;
+            }
+
+        }
+        svg:hover {
+            // transform-origin: 400px 300px;
+            animation-name: rotator;
+            animation-duration: .5s;
+            animation-iteration-count: 1;
+            animation-fill-mode: forwards;
+            animation-timing-function: ease-in-out;
+          }
+          
+          @keyframes rotator {
+            0% {
+              transform: rotate(0deg);
+              transform: scale(1);
+              opacity: 0;
+            }
+          
+            // 55% {
+            //   transform: rotate(-151deg);
+            //   opacity: .5;
+            // }
+          
+            100% {
+              transform: rotate(-151deg);
+              transform: scale (1.3);
+              opacity: 1;
+            }
+          }
+    }
+
+    .ui.search {
+        top: 15px;
+        right: 10px;
+        position: fixed;
+    }
+
+    @media screen and (max-width: 430px) { 
+      // For mobile view, the search field is displayed as a button, that becomes an input when focused
+      z-index: 401;
+        .ui.button { // Buttons carte / bâtiments
+            display: none;
+        }
+        i.search.link.icon { // Icon magnifying glass
+            pointer-events: none;
+            position: fixed;
+            height: inherit;
+            top: 31px;
+            right: 20px;
+
+        }
+        .ui.search > div > div > input { // the search input
+            width: 3em;
+            &::placeholder {
+                opacity: 0;
+
+            }
+            & + label { // its label "recherche"
+                opacity: 0
+            }
+            &:focus { // When input is focused, it movez to the center
+                width: inherit;
+                transform: translateX(calc(-40vw + 50%));
+
+                &::placeholder { 
+                  // placheholder appears only when field opened in moble
+                    opacity: inherit;
+                }
+
+                & + label { // Label while field is focused
+                    transform: translate(calc(-40vw + 175%), -13px);
+                    opacity: 1;
+                }
+            }
+        }
+        // input search when has value (centered)
+        .ui.search > div.not-empty > div > input {
+          width: inherit;
+          transform: translateX(calc(-40vw + 50%));
+          & + label { // label stays
+            transform: translate(calc(-40vw + 150%), -13px);
+            opacity: 1;
+          }
+        }
+        // Icon not displayed when input not empty :
+        .ui.search > div.not-empty > i.search.link.icon {
+          display: none;
+
+        }
+        button#add-button { // But add button is
+            display: block;
+            height: 60px;
+            width: 60px;
+        }
+
+      }
+}

@@ -51,12 +51,18 @@
   },
   "dependencies": {
     "@babel/polyfill": "*",
-    "classnames": "*",
+    "axios": "^0.18.0",
+    "classnames": "^2.2.6",
     "http-server": "^0.11.1",
+    "leaflet": "^1.4.0",
     "prop-types": "*",
     "react": "*",
     "react-dom": "*",
+    "react-geolocated": "^2.4.1",
+    "react-leaflet": "^2.2.1",
     "react-redux": "*",
-    "redux": "*"
+    "react-router-dom": "^5.0.0",
+    "redux": "*",
+    "semantic-ui-react": "^0.86.0"
   }
 }
