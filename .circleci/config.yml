@@ -26,6 +26,8 @@ jobs:
             - node_modules
           key: v1-dependencies-{{ checksum "package.json" }}
 
+      - run: yarn test
+
       # run build
       - run: yarn build:prod
 
@@ -38,11 +40,11 @@ jobs:
           fingerprints:
             - 'ae:ec:2e:86:b7:25:f0:79:09:ab:78:24:7f:f6:45:30'
       
-      - run:
-          name: Deploy over ssh
-          command:
-            # ssh -o StrictHostKeyChecking=no $SSH_USER@$SSH_HOST "echo serveur"
-            scp -o StrictHostKeyChecking=no -r -p ./dist/* $SSH_USER@$SSH_HOST:/var/www/www.jeromehenry.fr/
+      # - run:
+      #     name: Deploy over ssh
+      #     command:
+      #       # ssh -o StrictHostKeyChecking=no $SSH_USER@$SSH_HOST "echo serveur"
+      #       scp -o StrictHostKeyChecking=no -r -p ./dist/* $SSH_USER@$SSH_HOST:/var/www/www.jeromehenry.fr/
 
   # deploy:
   #   working_directory: ~/repo
@@ -65,7 +67,7 @@ workflows:
       - build-and-deploy:
           filters:
             branches:
-              only: master
+              only: testsconfig2
       # - deploy:
       #     requires:
       #       - build
