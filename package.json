@@ -4,7 +4,7 @@
   "version": "1.0.0",
   "license": "MIT",
   "devDependencies": {
-    "@babel/core": "*",
+    "@babel/core": "^7.4.5",
     "@babel/plugin-proposal-class-properties": "*",
     "@babel/plugin-proposal-object-rest-spread": "*",
     "@babel/preset-env": "*",
@@ -40,7 +40,7 @@
     "webpack-dev-server": "*"
   },
   "scripts": {
-    "test": "NODE_PATH=./ mocha --require babel-core/register --require tests/.setup.js tests/**/*.test.js",
+    "test": "NODE_PATH=./ mocha --require @babel/register --require tests/.setup.js tests/**/*.test.js",
     "start": "webpack-dev-server",
     "clean": "rm -rf dist",
     "clean:all": "rm -rf dist node_modules",
@@ -51,6 +51,7 @@
   },
   "dependencies": {
     "@babel/polyfill": "*",
+    "@babel/register": "^7.4.4",
     "axios": "^0.18.0",
     "classnames": "^2.2.6",
     "http-server": "^0.11.1",
