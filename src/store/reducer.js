@@ -216,7 +216,7 @@ const reducer = (state = initialState, action = {}) => {
         loginMessage: action.message,
         loginStatus: 'not-connected',
       };
-    case DISCONNECT_USER: // Will have to be updated for cookie use
+    case DISCONNECT_USER:
       return {
         ...initialState,
         loginMessage: 'Vous avez bien été déconnecté(e)',

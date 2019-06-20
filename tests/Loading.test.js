@@ -10,17 +10,4 @@ describe('<Loading />', () => {
   it('Should have an id "loading"', () => {
     ComponentWrapper.props().should.have.property('id').which.equal('loading');
   });
-  // it('Should have a classname "clicked" when <Click /> receives a click event', () => {
-  //   ComponentWrapper.props().should.have.property('className').which.is.empty;
-
-  //   ComponentWrapper.simulate('click');
-
-  //   ComponentWrapper.props().should.have.property('className').which.equal('clicked');
-
-  //   // ComponentWrapper.hasClass('clicked');
-
-  //   ComponentWrapper.simulate('click');
-
-  //   ComponentWrapper.props().should.have.property('className').which.is.empty;
-  // });
 });
