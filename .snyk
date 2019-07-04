@@ -6,3 +6,6 @@ patch:
   SNYK-JS-AXIOS-174505:
     - axios:
         patched: '2019-05-30T11:05:05.327Z'
+  SNYK-JS-LODASH-450202:
+    - semantic-ui-react > lodash:
+        patched: '2019-07-04T08:16:11.117Z'
