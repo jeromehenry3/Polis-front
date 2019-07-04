@@ -47,7 +47,9 @@
     "build:dev": "NODE_ENV=development webpack",
     "build:dev:win": "set NODE_ENV=development && webpack",
     "build:prod": "NODE_ENV=production webpack --mode production",
-    "build:prod:win": "set NODE_ENV=production && webpack --mode production"
+    "build:prod:win": "set NODE_ENV=production && webpack --mode production",
+    "snyk-protect": "snyk protect",
+    "prepublish": "npm run snyk-protect"
   },
   "dependencies": {
     "@babel/polyfill": "*",
@@ -63,6 +65,8 @@
     "react-redux": "*",
     "react-router-dom": "^5.0.0",
     "redux": "*",
-    "semantic-ui-react": "^0.86.0"
-  }
+    "semantic-ui-react": "^0.86.0",
+    "snyk": "^1.189.0"
+  },
+  "snyk": true
 }
