@@ -33,7 +33,7 @@ import {
   USER_VOTE,
 } from './reducer';
 
-const polisApi = 'https://www.thomas-gillet.com/api';
+const polisApi = 'https://api.polis-app.fr/';
 // eslint-disable-next-line consistent-return
 const polisApiMiddleware = store => next => (action) => {
   switch (action.type) {
