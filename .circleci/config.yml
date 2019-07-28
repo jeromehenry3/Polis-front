@@ -42,7 +42,7 @@ jobs:
           name: Deploy over ssh
           command:
             # ssh -o StrictHostKeyChecking=no $SSH_USER@$SSH_HOST "echo serveur"
-            scp -o StrictHostKeyChecking=no -r -p ./dist/* $SSH_USER@$SSH_HOST:/var/www/www.jeromehenry.fr/
+            scp -o StrictHostKeyChecking=no -r -p ./dist/* $SSH_USER@$SSH_HOST:/var/www/www.polis-app.fr/
 
   # deploy:
   #   working_directory: ~/repo
