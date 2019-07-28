@@ -47,11 +47,13 @@
     "build:dev": "NODE_ENV=development webpack",
     "build:dev:win": "set NODE_ENV=development && webpack",
     "build:prod": "NODE_ENV=production webpack --mode production",
-    "build:prod:win": "set NODE_ENV=production && webpack --mode production"
+    "build:prod:win": "set NODE_ENV=production && webpack --mode production",
+    "snyk-protect": "snyk protect",
+    "prepublish": "npm run snyk-protect"
   },
   "dependencies": {
     "@babel/polyfill": "*",
-    "axios": "^0.18.0",
+    "axios": "^0.18.1",
     "classnames": "^2.2.6",
     "http-server": "^0.11.1",
     "leaflet": "^1.4.0",
@@ -63,6 +65,8 @@
     "react-redux": "*",
     "react-router-dom": "^5.0.0",
     "redux": "*",
-    "semantic-ui-react": "^0.86.0"
-  }
+    "semantic-ui-react": "^0.86.0",
+    "snyk": "^1.190.0"
+  },
+  "snyk": true
 }
