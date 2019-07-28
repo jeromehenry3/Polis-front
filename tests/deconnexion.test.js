@@ -10,7 +10,7 @@ describe('reducer', () => {
   - set userId to 0 (default value)
   `, () => {
     let state;
-    state = reducer(undefined, {type: DISCONNECT_USER });
+    state = reducer(undefined, { type: DISCONNECT_USER });
 
     expect(state.isConnected).toEqual(false);
     expect(state.loginMessage).toEqual('Vous avez bien été déconnecté(e)');
