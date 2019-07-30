@@ -4,6 +4,7 @@ import { Link, Redirect } from 'react-router-dom';
 import Pins3 from '../../styles/images/pins3.png';
 import Input from '../Input';
 import Form from '../Form';
+import ModalMessage from '../ModalMessage';
 
 import './login.scss';
 
@@ -11,6 +12,7 @@ const Login = ({
   username, passwordInput, updateFormField, connectUser, isConnected, loginMessage, loginStatus,
 }) => (
   <div id="login">
+    <ModalMessage />
     <Form onSubmit={connectUser}>
       {isConnected && (updateFormField('loadingWithLoader', true), <Redirect to="/map" />)}
       <p className={`identification-message ${loginStatus}`}>{loginMessage}</p>
