@@ -12,7 +12,8 @@ const Login = ({
   username, passwordInput, updateFormField, connectUser, isConnected, loginMessage, loginStatus,
 }) => (
   <div id="login">
-    <ModalMessage />
+    {/* This message is to be used when server has problems */}
+    {/* <ModalMessage /> */}
     <Form onSubmit={connectUser}>
       {isConnected && (updateFormField('loadingWithLoader', true), <Redirect to="/map" />)}
       <p className={`identification-message ${loginStatus}`}>{loginMessage}</p>
