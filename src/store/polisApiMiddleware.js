@@ -134,6 +134,7 @@ const polisApiMiddleware = store => next => (action) => {
       axios.post(`${polisApi}/resetPassword`, {
         password: action.newPassword,
         password2: action.newPasswordConfirm,
+        token: action.token,
       }, {
         withCredentials: true,
       })
