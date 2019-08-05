@@ -47,7 +47,7 @@ const polisApiMiddleware = store => next => (action) => {
       })
 
         .then((response) => {
-          store.dispatch(updateFormField('usernamer', response.data.email));
+          store.dispatch(updateFormField('username', response.data.email));
           store.dispatch(updateFormField('firstNameInput', response.data.firstname));
           store.dispatch(updateFormField('lastNameInput', response.data.lastname));
           store.dispatch(updateFormField('passwordInput', ''));
