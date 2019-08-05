@@ -33,7 +33,7 @@ import {
   USER_VOTE,
 } from './reducer';
 
-const polisApi = 'https://api.polis-app.fr/';
+const polisApi = 'https://api.polis-app.fr/api';
 // eslint-disable-next-line consistent-return
 const polisApiMiddleware = store => next => (action) => {
   switch (action.type) {
@@ -47,7 +47,7 @@ const polisApiMiddleware = store => next => (action) => {
       })
 
         .then((response) => {
-          store.dispatch(updateFormField('usernamer', response.data.email));
+          store.dispatch(updateFormField('username', response.data.email));
           store.dispatch(updateFormField('firstNameInput', response.data.firstname));
           store.dispatch(updateFormField('lastNameInput', response.data.lastname));
           store.dispatch(updateFormField('passwordInput', ''));
@@ -134,6 +134,7 @@ const polisApiMiddleware = store => next => (action) => {
       axios.post(`${polisApi}/resetPassword`, {
         password: action.newPassword,
         password2: action.newPasswordConfirm,
+        token: action.token,
       }, {
         withCredentials: true,
       })
