@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import {
   Map as LeafletMap, TileLayer, Marker, Circle,
 } from 'react-leaflet';
+import MarkerClusterGroup from 'react-leaflet-markercluster';
 import { geolocated } from 'react-geolocated';
 import L from 'leaflet';
 import { toggleFullScreen, detectIfMobile } from 'src/functions/';
@@ -138,20 +139,21 @@ class Leaflet extends React.Component {
           <TileLayer
             url="https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png"
           />
-
-          {
-            buildings.map(({
-              latitude, longitude, delivered, id,
-            }) => (
-              <Marker
-                position={[latitude, longitude]}
-                icon={delivered ? this.myPinDeux : this.myPinUne}
-                key={id}
-                id={id}
-                onClick={this.handleClickMarker}
-              />
-            ))
-          }
+          <MarkerClusterGroup>
+            {
+              buildings.map(({
+                latitude, longitude, delivered, id,
+              }) => (
+                <Marker
+                  position={[latitude, longitude]}
+                  icon={delivered ? this.myPinDeux : this.myPinUne}
+                  key={id}
+                  id={id}
+                  onClick={this.handleClickMarker}
+                />
+              ))
+            }
+          </MarkerClusterGroup>
           {coords !== null && (
             <>
               <Circle
