@@ -48,21 +48,10 @@ svg path.leaflet-interactive {
 // Cluster marker
 .marker-cluster {
   background-color: $yellow-lighten;
-  // filter: alpha(opacity=60);
-  // /* IE */
-  // -moz-opacity: 0.6;
-  // /* Mozilla */
-  // opacity: 0.6;
-  // // opacity: .8;
+  box-shadow: 1px 2px 4px 0px rgba(0,0,0,0.40);
 
   & > div {
     background-color: #fff;
-    // filter: alpha(opacity=100);
-    // /* IE */
-    // -moz-opacity: 1;
-    // /* Mozilla */
-    // opacity: 1;
-    // // opacity: .8;
 
     & > span {
       font-weight: bold;
