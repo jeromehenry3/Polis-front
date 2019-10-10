@@ -57,16 +57,19 @@
     "classnames": "^2.2.6",
     "http-server": "^0.11.1",
     "leaflet": "^1.4.0",
+    "leaflet.markercluster": "^1.4.1",
     "prop-types": "*",
     "react": "*",
     "react-dom": "*",
     "react-geolocated": "^2.4.1",
     "react-leaflet": "^2.2.1",
+    "react-leaflet-markercluster": "^2.0.0-rc3",
     "react-redux": "*",
     "react-router-dom": "^5.0.0",
     "redux": "*",
     "semantic-ui-react": "^0.86.0",
-    "snyk": "^1.190.0"
+    "snyk": "^1.230.5",
+    "union": "0.5.0"
   },
   "snyk": true
 }
