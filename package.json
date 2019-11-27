@@ -36,7 +36,7 @@
     "style-loader": "*",
     "uglifyjs-webpack-plugin": "*",
     "webpack": "*",
-    "webpack-cli": "*",
+    "webpack-cli": "^3.3.10",
     "webpack-dev-server": "*"
   },
   "scripts": {
@@ -48,8 +48,7 @@
     "build:dev:win": "set NODE_ENV=development && webpack",
     "build:prod": "NODE_ENV=production webpack --mode production",
     "build:prod:win": "set NODE_ENV=production && webpack --mode production",
-    "snyk-protect": "snyk protect",
-    "prepublish": "npm run snyk-protect"
+    "snyk-protect": "snyk protect"
   },
   "dependencies": {
     "@babel/polyfill": "*",
