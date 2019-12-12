@@ -48,7 +48,8 @@
     "build:dev:win": "set NODE_ENV=development && webpack",
     "build:prod": "NODE_ENV=production webpack --mode production",
     "build:prod:win": "set NODE_ENV=production && webpack --mode production",
-    "snyk-protect": "snyk protect"
+    "snyk-protect": "snyk protect",
+    "prepare": "yarn run snyk-protect"
   },
   "dependencies": {
     "@babel/polyfill": "*",
@@ -68,7 +69,7 @@
     "redux": "*",
     "semantic-ui-react": "^0.86.0",
     "serialize-javascript": "^2.1.2",
-    "snyk": "^1.230.5",
+    "snyk": "^1.258.2",
     "union": "0.5.0"
   },
   "snyk": true
