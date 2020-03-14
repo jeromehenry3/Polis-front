@@ -24,7 +24,7 @@ const mapStateToProps = state => ({
   urbanistInput: state.urbanistInput,
   descriptionInput: state.descriptionInput,
   loading: state.loading,
-  architectures: state.architectures,
+  architectures: state.architectures || [],
   fileInput: state.fileInput,
   fileText: state.fileText,
 });

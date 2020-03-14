@@ -85,7 +85,7 @@ const polisApiMiddleware = store => next => (action) => {
       }, {
         withCredentials: true,
       })
-        .then((response) => {         
+        .then((response) => {
           store.dispatch(profileIsUpdate(response.data));
           setTimeout(() => store.dispatch(closeProfile()), 1500);
           next(action);
@@ -127,6 +127,7 @@ const polisApiMiddleware = store => next => (action) => {
           store.dispatch(signinErrors(response.data));
         })
         .catch((error) => {
+          // eslint-disable-next-line no-console
           console.log(error.message);
         });
       break;

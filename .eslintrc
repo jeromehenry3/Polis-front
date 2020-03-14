@@ -19,7 +19,8 @@
     "react/no-access-state-in-setstate": "warn",
     "react/jsx-one-expression-per-line": "off",
     "react/destructuring-assignment": "warn",
-    "react/no-unescaped-entities": "off"
+    "react/no-unescaped-entities": "off",
+    "react/state-in-constructor": ["off", "never"]
   },
   "settings": {
     "import/resolver": "webpack"
