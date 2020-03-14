@@ -15,10 +15,11 @@ class ModalMessage extends Component {
         <Header icon="dont" content="Base de données indisponible" />
         <Modal.Content>
           <p>
-            Le serveur backend est actuellement en cours de maintenance (migration sur un autre serveur).
-            Les fonctionnalités de connexion, et l'accès aux données architecturales ne sont pas disponibles.
+            Le serveur backend est actuellement en cours de maintenance.
+            Les fonctionnalités de connexion, et l'accès aux données architecturales ne sont pas disponibles pour le moment.
           </p>
           <p>
+            THOMAS met tout en oeuvre pour rétablir le service au plus vite.
             Le service sera à nouveau disponible dans quelques jours.
             Merci de votre compréhension.
           </p>

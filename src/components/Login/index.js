@@ -13,7 +13,7 @@ const Login = ({
 }) => (
   <div id="login">
     {/* This message is to be used when server has problems */}
-    {/* <ModalMessage /> */}
+    <ModalMessage />
     <Form onSubmit={connectUser}>
       {isConnected && (updateFormField('loadingWithLoader', true), <Redirect to="/map" />)}
       <p className={`identification-message ${loginStatus}`}>{loginMessage}</p>
