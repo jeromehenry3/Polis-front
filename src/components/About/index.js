@@ -68,8 +68,7 @@ const About = () => (
           <div id="jerome" className="main-medaillons-teamate">
             <img src={Jerome} alt="" />
             <div>
-              <span className="teamate-name">Jerome Henry</span>
-              <span className="teamate-email">jerome.henry3@gmail.com</span>
+              <span className="teamate-name">Jérôme Henry</span>
               <span className="teamate-linkedin">
                 <a href="https://www.linkedin.com/in/jerome-henry-dev/"> Linkedin
                 </a>
