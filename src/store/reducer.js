@@ -314,7 +314,6 @@ const reducer = (state = initialState, action = {}) => {
         // Les futurs modals à fermer
       };
     case SET_ARCHITECTURES:
-      console.log(action.architectures);
       return {
         ...state,
         architectures: Array.isArray(action.architectures) ? action.architectures : [],

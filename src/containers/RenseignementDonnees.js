@@ -7,10 +7,9 @@ import { updateFormField, closeAllModals, submitBuilding, findAddress, resetForm
  */
 import RenseignementDonnees from '../components/LeafletMap/RenseignementDonnees';
 
-
 // Action Creators
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
   isDataFormOpen: state.isDataFormOpen,
   nameInput: state.nameInput,
   surfaceInput: state.surfaceInput,
@@ -24,7 +23,7 @@ const mapStateToProps = state => ({
   urbanistInput: state.urbanistInput,
   descriptionInput: state.descriptionInput,
   loading: state.loading,
-  architectures: state.architectures || [],
+  architectures: state.architectures,
   fileInput: state.fileInput,
   fileText: state.fileText,
 });
