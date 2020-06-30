@@ -5,7 +5,7 @@ jobs:
     #   branches:
     #     only: master
     docker:
-      - image: node:11.10.1
+      - image: node:current
 
     working_directory: ~/repo
 
