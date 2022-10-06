@@ -70,7 +70,7 @@
     "redux": "*",
     "semantic-ui-react": "^0.86.0",
     "serialize-javascript": "^3.1.0",
-    "snyk": "^1.316.1",
+    "snyk": "^1.996.0",
     "union": "0.5.0"
   },
   "snyk": true
