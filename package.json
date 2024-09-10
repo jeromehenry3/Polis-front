@@ -66,7 +66,7 @@
     "react-leaflet": "^2.2.1",
     "react-leaflet-markercluster": "^2.0.0-rc3",
     "react-redux": "*",
-    "react-router-dom": "^5.0.0",
+    "react-router-dom": "^6.0.0",
     "redux": "*",
     "semantic-ui-react": "^0.86.0",
     "serialize-javascript": "^3.1.0",
